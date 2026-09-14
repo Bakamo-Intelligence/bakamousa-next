@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Cormorant_Garamond } from "next/font/google";
+import { SocialTheory } from "@/components/social-theory/SocialTheory";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -176,6 +177,8 @@ export default function OurMethodPage() {
           </Link>
         </div>
       </section>
+
+      <SocialTheory headingClassName={cormorant.className} />
 
       <section className="border-t border-border-grey px-6 py-28 text-center md:py-36">
         <div className="mx-auto max-w-4xl">
