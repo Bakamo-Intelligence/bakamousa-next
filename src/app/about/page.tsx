@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { existsSync } from "node:fs";
-import path from "node:path";
 import Image from "next/image";
 import Link from "next/link";
 import { Cormorant_Garamond } from "next/font/google";
@@ -72,30 +70,22 @@ const TEAM = [
   {
     name: "Daniel Fazekas",
     role: "Founder & CEO",
-    initials: "DF",
     photo: "/media/dani.jpeg",
     linkedin: "https://www.linkedin.com/in/danielfazekas/",
   },
   {
     name: "Dan Foreman",
     role: "Executive Chair",
-    initials: "DF",
     photo: "/media/Dan_foreman.jpeg",
     linkedin: "https://www.linkedin.com/in/dforeman/",
   },
   {
     name: "Miki Váradi",
     role: "Head of Research",
-    initials: "MV",
     photo: "/media/miki_varadi.jpeg",
     linkedin: "https://www.linkedin.com/in/miki-varadi-3802542/",
   },
 ];
-
-/** Photo badges show once the file exists in /public; until then, initials. */
-function hasPhoto(photo: string) {
-  return existsSync(path.join(process.cwd(), "public", photo));
-}
 
 function LinkedInIcon() {
   return (
@@ -272,19 +262,13 @@ export default function AboutPage() {
             {TEAM.map((member) => {
               const badge = (
                 <span className="relative block h-28 w-28 shrink-0 overflow-hidden rounded-full border border-accent/60 bg-near-black ring-4 ring-accent/10 transition-colors group-hover:border-accent">
-                  {hasPhoto(member.photo) ? (
-                    <Image
-                      src={member.photo}
-                      alt={`${member.name}, ${member.role}`}
-                      fill
-                      sizes="112px"
-                      className="object-cover grayscale transition duration-500 group-hover:grayscale-0"
-                    />
-                  ) : (
-                    <span className="flex h-full w-full items-center justify-center text-2xl font-light tracking-[0.14em] text-accent">
-                      {member.initials}
-                    </span>
-                  )}
+                  <Image
+                    src={member.photo}
+                    alt={`${member.name}, ${member.role}`}
+                    fill
+                    sizes="112px"
+                    className="object-cover grayscale transition duration-500 group-hover:grayscale-0"
+                  />
                 </span>
               );
               const heading = (
