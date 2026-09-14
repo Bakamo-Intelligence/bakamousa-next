@@ -119,7 +119,7 @@ export default function TechnologyPage() {
           <p
             className={`${cormorant.className} mt-10 max-w-4xl text-4xl italic leading-tight text-accent md:text-5xl`}
           >
-            AI finds patterns. The Reading Machine makes meaning readable.
+            Other tools count patterns. The Reading Machine makes meaning readable.
           </p>
           <p className="mt-10 max-w-2xl text-xl font-light leading-relaxed text-white/80">
             Vector technology means the entire corpus can be mapped into a semantic space rather

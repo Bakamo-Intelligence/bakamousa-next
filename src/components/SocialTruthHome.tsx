@@ -231,12 +231,12 @@ export default function SocialTruthHome({ heroVideo }: { heroVideo: string }) {
               </p>
               <p>
                 But technology doesn&apos;t tell us what matters. Our analysts do. They bring
-                context, judgement, cultural understanding and curiosity to the things machines
-                find &mdash; because finding a pattern is not the same as understanding it.
+                context, judgement, cultural understanding and curiosity to what the Reading
+                Machine surfaces &mdash; because finding a pattern is not the same as understanding it.
               </p>
             </div>
             <p className="mt-12 max-w-4xl border-l border-accent pl-7 text-2xl font-light leading-snug text-white md:text-3xl">
-              AI gives us scale. Humans give it meaning.
+              The Reading Machine gives us scale. Humans give it meaning.
             </p>
             <Link
               href="/technology"

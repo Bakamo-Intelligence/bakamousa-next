@@ -101,8 +101,9 @@ export default function OurMethodPage() {
                   stop producing new patterns.
                 </p>
                 <p>
-                  Human analysts read the material. AI assists with pattern recognition, language
-                  clustering, and surfacing volume. Interpretation stays with the researcher. We map
+                  Human analysts read the material. The Reading Machine holds the whole
+                  conversation at once &mdash; clustering its language, surfacing patterns and
+                  showing where the volume sits. Interpretation stays with the researcher. We map
                   the constructs consumers actually use, the tensions they carry, the decision
                   drivers that organize their behavior, the language they reach for, and the things
                   the conversation has already stopped debating.
