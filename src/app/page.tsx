@@ -1,5 +1,5 @@
 import { getSiteUrl } from "@/lib/site-url";
-import SocialTruthHome from "@/components/SocialTruthHome";
+import SocialTruthHome, { pickHeroVideo } from "@/components/SocialTruthHome";
 
 function buildServiceSchema(siteUrl: string) {
   return {
@@ -17,6 +17,8 @@ function buildServiceSchema(siteUrl: string) {
 export default async function Home() {
   const siteUrl = await getSiteUrl();
   const SERVICE_SCHEMA = buildServiceSchema(siteUrl);
+  // the home route renders per request, so each visit can get a different clip
+  const heroVideo = pickHeroVideo();
 
   return (
     <main className="relative w-full min-h-screen bg-near-black overflow-x-hidden">
@@ -24,7 +26,7 @@ export default async function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(SERVICE_SCHEMA) }}
       />
-      <SocialTruthHome />
+      <SocialTruthHome heroVideo={heroVideo} />
     </main>
   );
 }
