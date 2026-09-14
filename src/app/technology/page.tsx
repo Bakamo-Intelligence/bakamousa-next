@@ -92,8 +92,27 @@ export default function TechnologyPage() {
         </div>
       </section>
 
-      <section className="bg-dark-grey px-6 py-24 md:py-32" data-analytics-section="technology_measurable">
-        <div className="mx-auto max-w-6xl">
+      <section
+        className="relative overflow-hidden bg-dark-grey px-6 py-24 md:py-32"
+        data-analytics-section="technology_measurable"
+      >
+        {/* Reading Machine map as a faded backdrop behind the intro text */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[44rem] md:left-auto md:h-[48rem] md:w-[72%]">
+          <Image
+            src="/media/reading-machine-semantic-map.png"
+            alt="The Reading Machine mapping a whole conversation into semantic space"
+            fill
+            sizes="(min-width: 768px) 72vw, 100vw"
+            className="object-cover object-[70%_top] opacity-25 md:opacity-50"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-dark-grey via-dark-grey/70 to-dark-grey/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-dark-grey via-dark-grey/20 to-dark-grey/40" />
+          <p className="absolute bottom-24 right-6 hidden text-[0.65rem] uppercase tracking-[0.18em] text-text-secondary md:block">
+            The Reading Machine — a whole conversation mapped into semantic space
+          </p>
+        </div>
+
+        <div className="relative mx-auto max-w-6xl">
           <h2 className="max-w-4xl text-4xl font-light leading-tight text-white md:text-6xl">
             We made the qualitative universe measurable
           </h2>
@@ -102,32 +121,15 @@ export default function TechnologyPage() {
           >
             AI finds patterns. The Reading Machine makes meaning readable.
           </p>
-          <div className="mt-10 grid items-start gap-10 md:grid-cols-[3fr_2fr] md:gap-14">
-            <div>
-              <p className="text-xl font-light leading-relaxed text-text-secondary">
-                Vector technology means the entire corpus can be mapped into a semantic space rather
-                than reduced to a sample. Nothing needs to be pre-selected because it looks
-                interesting. The analyst can work across the whole conversation and move from its
-                centre to its edges, from dominant meanings to the outliers.
-              </p>
-              <p className="mt-8 text-2xl font-light leading-snug text-white">
-                That changes the epistemology of qualitative research.
-              </p>
-            </div>
-            <figure>
-              <Image
-                src="/media/reading-machine-semantic-map.png"
-                alt="The Reading Machine mapping 6,301 posts into semantic space, with themes, share of voice and topic associations"
-                width={1541}
-                height={957}
-                sizes="(min-width: 768px) 28rem, 100vw"
-                className="h-auto w-full border border-border-grey"
-              />
-              <figcaption className="mt-4 text-xs uppercase tracking-[0.16em] text-text-secondary">
-                The Reading Machine — a whole conversation mapped into semantic space
-              </figcaption>
-            </figure>
-          </div>
+          <p className="mt-10 max-w-2xl text-xl font-light leading-relaxed text-white/80">
+            Vector technology means the entire corpus can be mapped into a semantic space rather
+            than reduced to a sample. Nothing needs to be pre-selected because it looks interesting.
+            The analyst can work across the whole conversation and move from its centre to its
+            edges, from dominant meanings to the outliers.
+          </p>
+          <p className="mt-8 max-w-2xl text-2xl font-light leading-snug text-white">
+            That changes the epistemology of qualitative research.
+          </p>
 
           <div className="mt-16">
             {PRINCIPLES.map((principle) => (
