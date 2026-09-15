@@ -1,8 +1,9 @@
+import { BOOKING_MINUTES } from "@/lib/booking";
 import { OG_CONTENT_TYPE, OG_SIZE, ogImageAlt, renderOgImage } from "@/lib/og-image";
 
 const content = {
   title: "Contact",
-  descriptor: "Start the conversation with Bakamo.",
+  descriptor: `Book a ${BOOKING_MINUTES}-minute demo with Bakamo.`,
 };
 
 export const alt = ogImageAlt(content);

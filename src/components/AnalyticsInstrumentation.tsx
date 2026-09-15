@@ -37,7 +37,10 @@ function AnalyticsRuntime() {
       }
 
       const payload = getAnalyticsPayloadFromDataset(trackedElement);
-      const destination = payload.destination ?? trackedElement.getAttribute("href") ?? undefined;
+      const href = trackedElement.getAttribute("href") ?? undefined;
+      // mailto:/tel: links would put an email address or phone number into GA4.
+      const destination =
+        payload.destination ?? (href && /^(mailto|tel):/i.test(href) ? href.slice(0, href.indexOf(":")) : href);
 
       trackEvent(eventName, {
         destination,

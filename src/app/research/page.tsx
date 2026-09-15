@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond } from "next/font/google";
 import Link from "next/link";
+import { BOOKING_HREF } from "@/lib/booking";
 import { ACTIVE_ATLAS_CASES } from "@/lib/atlas";
 import { pageOpenGraph } from "@/lib/seo";
 
@@ -308,14 +309,14 @@ export default function ResearchPage() {
             </div>
             <div className="space-y-4">
               <Link
-                href="/contact"
+                href={BOOKING_HREF}
                 className="cta-button text-sm w-full text-center block"
-                data-analytics-event="cta_click"
-                data-analytics-label="Start the conversation"
+                data-analytics-event="book_demo_click"
+                data-analytics-label="Book a demo"
                 data-analytics-location="research_cta"
-                data-analytics-destination="/contact"
+                data-analytics-destination={BOOKING_HREF}
               >
-                Start the conversation
+                Book a demo
               </Link>
               <Link
                 href="/our-method"

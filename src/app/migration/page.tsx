@@ -3,6 +3,7 @@ import { pageOpenGraph } from "@/lib/seo";
 import { Cormorant_Garamond } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
+import { BOOKING_HREF } from "@/lib/booking";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -421,12 +422,12 @@ export default function MigrationPage() {
             </div>
             <div className="space-y-4">
               <Link
-                href="/contact"
+                href={BOOKING_HREF}
                 className="cta-button text-sm w-full text-center block"
-                data-analytics-event="cta_click"
-                data-analytics-label="Contact Bakamo"
+                data-analytics-event="book_demo_click"
+                data-analytics-label="Discuss a Migration Brief"
                 data-analytics-location="migration_cta"
-                data-analytics-destination="/contact"
+                data-analytics-destination={BOOKING_HREF}
               >
                 Discuss a Migration Brief
               </Link>

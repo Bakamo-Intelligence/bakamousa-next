@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import AnalyticsInstrumentation from "@/components/AnalyticsInstrumentation";
+import BookingModal from "@/components/BookingModal";
 import CookieBanner from "@/components/CookieBanner";
 import SiteNavigation from "@/components/SiteNavigation";
 import SiteFooter from "@/components/SiteFooter";
@@ -50,6 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
 
         <SiteFooter />
+        <BookingModal />
         <CookieBanner />
       </body>
     </html>

@@ -94,8 +94,8 @@ export default function CookieBanner() {
       >
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm font-light leading-relaxed text-text-secondary max-w-2xl">
-            We use analytics cookies to understand how visitors use our site —
-            no advertising, no third-party sharing.{" "}
+            We use analytics cookies to understand how visitors use our site. No
+            advertising.{" "}
             <a
               href="/privacy"
               className="text-accent underline-offset-2 hover:underline"
