@@ -22,6 +22,45 @@ const DATE_MODIFIED = "2026-09-15";
 // Election Office (NVI). Checked 15 September 2026.
 const NVI_RESULTS_URL = "https://vtr.valasztas.hu/ogy2026";
 
+const PRESS_COVERAGE = [
+  {
+    outlet: "Bloomberg",
+    date: "2026-03-14",
+    displayDate: "14 March 2026",
+    title: "Orban’s Election Campaign Turns to Russia for Help in Final Stretch",
+    note: "Quotes Bakamo founder Daniel Fazekas on online campaigns against the opposition.",
+    href: "https://www.bloomberg.com/news/articles/2026-03-14/orban-s-election-campaign-turns-to-russia-for-help-in-final-stretch",
+    lang: "en",
+  },
+  {
+    outlet: "Átlátszó",
+    date: "2026-03-23",
+    displayDate: "23 March 2026",
+    title: "Kampánypszichológia: mit árul el tízezer komment a Tiszát és a Fideszt támogató választókról?",
+    note: "Coverage of this briefing (in Hungarian).",
+    href: "https://atlatszo.hu/kozugy/2026/03/23/kampanypszichologia-mit-arul-el-tizezer-komment-a-tiszat-es-a-fideszt-tamogato-valasztokrol/",
+    lang: "hu",
+  },
+  {
+    outlet: "Der Standard",
+    date: "2026-04-04",
+    displayDate: "4 April 2026",
+    title: "Sozialforscher Fazekas: „Erdrutschsieg für Ungarns Opposition würde mich nicht überraschen“",
+    note: "Interview with Daniel Fazekas (in German).",
+    href: "https://www.derstandard.at/story/3000000315096/sozialforscher-fazekas-erdrutschsieg-fuer-ungarns-opposition-wuerde-mich-nicht-ueberraschen",
+    lang: "de",
+  },
+  {
+    outlet: "Átlátszó podcast",
+    date: "2026-04-08",
+    displayDate: "8 April 2026",
+    title: "„Ez már nem szórás, ez nyilvánvaló csalás” – podcast a közvélemény-kutatásokról",
+    note: "Daniel Fazekas on opinion polling in Hungary (in Hungarian).",
+    href: "https://atlatszo.hu/kozugy/2026/04/08/ez-mar-nem-szoras-ez-nyilvanvalo-csalas-podcast-a-kozvelemeny-kutatasokrol/",
+    lang: "hu",
+  },
+];
+
 export const metadata: Metadata = {
   title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
@@ -251,6 +290,11 @@ export default function ElectionsPage() {
                 manifest in widening Tisza&apos;s lead in survey-based polling.&rdquo;
               </p>
               <p>
+                On 4 April, eight days before the vote, Bakamo founder Daniel Fazekas told{" "}
+                <span lang="de">Der Standard</span> that a landslide for Hungary&apos;s opposition
+                would not surprise him.
+              </p>
+              <p>
                 Hungary voted on 12 April 2026. In the final result published by the{" "}
                 <a
                   href={NVI_RESULTS_URL}
@@ -278,6 +322,33 @@ export default function ElectionsPage() {
                 54.7% / 45.3% split reported below describes relevant social media mentions, not
                 voters.
               </p>
+            </div>
+
+            <div className="mt-10 border-t border-white/10 pt-8">
+              <h3 className="text-accent uppercase tracking-[0.2em] text-sm mb-6">In the press</h3>
+              <ul className="space-y-6">
+                {PRESS_COVERAGE.map((item) => (
+                  <li key={item.href} className="max-w-3xl">
+                    <p className="text-xs uppercase tracking-[0.16em] text-text-muted">
+                      {item.outlet} &middot; <time dateTime={item.date}>{item.displayDate}</time>
+                    </p>
+                    <a
+                      href={item.href}
+                      hrefLang={item.lang}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`${cormorant.className} mt-1 block text-xl leading-snug text-white hover:text-accent transition-colors`}
+                      data-analytics-event="outbound_click"
+                      data-analytics-label={`Press: ${item.outlet}`}
+                      data-analytics-location="elections_in_the_press"
+                      data-analytics-destination={item.href}
+                    >
+                      <span lang={item.lang}>{item.title}</span>
+                    </a>
+                    <p className="mt-1 text-sm font-light text-text-secondary">{item.note}</p>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
