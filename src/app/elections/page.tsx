@@ -15,7 +15,7 @@ const cormorant = Cormorant_Garamond({
 const PAGE_TITLE = "Hungarian Election 2026: Social Media Psychographic Analysis";
 const PAGE_DESCRIPTION =
   "Before Hungary's April 2026 vote, Tisza supporters showed a 12.4-point higher inner-directed share online than Fidesz supporters. Updated with the result.";
-const DATE_PUBLISHED = "2026-03-23";
+const DATE_PUBLISHED = "2026-03-20";
 const DATE_MODIFIED = "2026-09-15";
 
 // Final result of the 12 April 2026 election, as published by the National
@@ -194,7 +194,7 @@ export default function ElectionsPage() {
               Research briefing
             </span>
             <span className="text-xs uppercase tracking-[0.16em] text-text-muted">
-              Published <time dateTime={DATE_PUBLISHED}>23 March 2026</time>
+              Published <time dateTime={DATE_PUBLISHED}>20 March 2026</time>
             </span>
             <span aria-hidden="true" className="text-xs text-text-muted">
               &middot;
@@ -228,7 +228,7 @@ export default function ElectionsPage() {
 
           <p className="mt-6 text-base font-light leading-relaxed text-text-secondary max-w-3xl">
             Bakamo conducted a qualitative semantic analysis of over 10,000 social media expressions
-            (generated between March 11&ndash;18). The finding &mdash; subsequently validated at scale
+            (generated between March 11&ndash;19). The finding &mdash; subsequently validated at scale
             by multi-stage AI classification &mdash; is consistent: Tisza supporters produce a
             substantially higher share of inner-directed expressions than Fidesz supporters, with a
             gap of{" "}
@@ -622,7 +622,7 @@ export default function ElectionsPage() {
           <div className="space-y-5 text-base font-light leading-relaxed text-text-secondary">
             <p>
               The fact that Tisza supporters are{" "}
-              <span className="text-white font-medium">2.8× more likely</span> to post inner-directed
+              <span className="text-white font-medium">2.7× more likely</span> to post inner-directed
               content means public discourse contains a larger pool of expressions that can resonate
               with voters outside the existing Tisza base &mdash; including privately dissatisfied
               Fidesz voters who have not yet found a personal reason to switch. When such a voter
@@ -741,7 +741,7 @@ export default function ElectionsPage() {
               {
                 stage: "Stage 2",
                 title: "AI-Assisted Validation at Scale",
-                body: "To test whether the pattern identified by human analysts held across a larger corpus, we collected over 15,000 comments and posts via the Brandwatch social listening platform. This data was processed by a custom AI platform utilising Google's Gemini LLM technology through a three-stage automated pipeline: (1) relevance filtering, (2) political alignment classification, and (3) inner/outer directedness scoring.",
+                body: "To test whether the pattern identified by human analysts held across a larger corpus, we collected over 10,000 comments and posts via the Brandwatch social listening platform. This data was processed by a custom AI platform utilising Google's Gemini LLM technology through a three-stage automated pipeline: (1) relevance filtering, (2) political alignment classification, and (3) inner/outer directedness scoring.",
               },
             ].map((item) => (
               <div
