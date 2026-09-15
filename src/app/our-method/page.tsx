@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { pageOpenGraph } from "@/lib/seo";
 import Link from "next/link";
+import { BOOKING_HREF } from "@/lib/booking";
 import { Cormorant_Garamond } from "next/font/google";
 import { SocialTheory } from "@/components/social-theory/SocialTheory";
 
@@ -191,14 +192,14 @@ export default function OurMethodPage() {
             Build your next study on reality.
           </h2>
           <Link
-            href="/contact"
+            href={BOOKING_HREF}
             className="cta-button mt-10 text-sm"
-            data-analytics-event="cta_click"
-            data-analytics-label="Start the conversation"
+            data-analytics-event="book_demo_click"
+            data-analytics-label="Book a demo"
             data-analytics-location="method_cta"
-            data-analytics-destination="/contact"
+            data-analytics-destination={BOOKING_HREF}
           >
-            Start the conversation
+            Book a demo
           </Link>
         </div>
       </section>

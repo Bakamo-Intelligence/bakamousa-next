@@ -4,6 +4,7 @@ import { SITE_URL } from "@/lib/site-url";
 import { Cormorant_Garamond } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
+import { BOOKING_HREF } from "@/lib/booking";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -909,12 +910,12 @@ export default function ElectionsPage() {
             </div>
             <div className="space-y-4">
               <Link
-                href="/contact"
+                href={BOOKING_HREF}
                 className="cta-button text-sm w-full text-center block"
-                data-analytics-event="cta_click"
-                data-analytics-label="Contact Bakamo"
+                data-analytics-event="book_demo_click"
+                data-analytics-label="Discuss This Research"
                 data-analytics-location="elections_cta"
-                data-analytics-destination="/contact"
+                data-analytics-destination={BOOKING_HREF}
               >
                 Discuss This Research
               </Link>
@@ -935,12 +936,23 @@ export default function ElectionsPage() {
                   <a
                     href="mailto:daniel.fazekas@bakamosocial.com"
                     className="text-accent hover:underline"
+                    data-analytics-event="contact_click"
+                    data-analytics-label="Press contact email"
+                    data-analytics-location="elections_contact"
+                    data-analytics-contact-method="email"
                   >
                     daniel.fazekas@bakamosocial.com
                   </a>
                 </p>
                 <p className="text-sm text-text-secondary">
-                  <a href="tel:+441553432939" className="hover:text-white transition-colors">
+                  <a
+                    href="tel:+441553432939"
+                    className="hover:text-white transition-colors"
+                    data-analytics-event="contact_click"
+                    data-analytics-label="Press contact phone"
+                    data-analytics-location="elections_contact"
+                    data-analytics-contact-method="phone"
+                  >
                     +44 1553 432939
                   </a>
                 </p>

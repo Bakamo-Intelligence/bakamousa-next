@@ -102,8 +102,8 @@ export default function PrivacyPage() {
 
             <Section id="what-we-collect" title="2. What we collect">
               <p>
-                We collect only the minimum data necessary to understand how this website is used so we
-                can improve it.
+                We collect only the minimum data necessary to understand how this website is used, so we
+                can improve it, and to arrange demos you book.
               </p>
               <p><strong className="text-text-primary">Analytics data</strong> (only with your consent):</p>
               <ul className="list-disc list-inside space-y-1 pl-2">
@@ -118,9 +118,15 @@ export default function PrivacyPage() {
                 we receive your email address and the content of your message. This data is not stored in
                 any database — it exists only in our email inbox.
               </p>
+              <p id="bookings" className="scroll-mt-28">
+                <strong className="text-text-primary">Demo bookings:</strong> If you book a demo, you
+                enter your name, email address and any notes or answers to our booking questions into a
+                booking calendar provided by Roam. We receive these details, with the time you choose, as a
+                calendar invitation and email notification.
+              </p>
               <p>
-                We do <strong className="text-text-primary">not</strong> collect names, postal addresses,
-                payment information, or any other personal data through this website.
+                We do <strong className="text-text-primary">not</strong> collect postal addresses or
+                payment information through this website.
               </p>
             </Section>
 
@@ -131,6 +137,11 @@ export default function PrivacyPage() {
                 <li>Identify technical issues (e.g. pages that load slowly or cause errors)</li>
                 <li>Measure the reach of published research</li>
               </ul>
+              <p>
+                Booking details are used only to arrange, hold and follow up on the demo you asked for.
+                The legal basis is taking steps at your request before a possible agreement, and our
+                legitimate interest in responding to business enquiries.
+              </p>
               <p>
                 We do not use your data for advertising, profiling, or any form of automated
                 decision-making. We do not sell or rent data to third parties.
@@ -147,6 +158,11 @@ export default function PrivacyPage() {
               <p>
                 Cookies are small text files stored in your browser. This website uses cookies only for
                 analytics, and only after you have given consent.
+              </p>
+              <p>
+                The booking calendar is not loaded until you choose &ldquo;Book a demo&rdquo;. Once
+                opened, it is served by Roam from its own domains, and Roam&rsquo;s privacy policy explains
+                how Roam handles data, including any cookies it uses.
               </p>
               <div className="overflow-x-auto">
                 <table className="w-full text-xs border-collapse">
@@ -210,7 +226,22 @@ export default function PrivacyPage() {
                 .
               </p>
               <p>
-                No other third-party services receive data from this website.
+                Demo bookings are handled by <strong className="text-text-primary">Roam HQ, Inc.</strong>,
+                which provides the booking calendar and the video call, sends confirmation and reminder
+                emails, and adds the meeting to our Google Workspace calendar. Roam may process your
+                details in the United States. For more information:{" "}
+                <a
+                  href="https://ro.am/privacy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-accent hover:underline"
+                >
+                  ro.am/privacy
+                </a>
+                .
+              </p>
+              <p>
+                Apart from Google and Roam, no third-party services receive data from this website.
               </p>
             </Section>
 
@@ -248,8 +279,9 @@ export default function PrivacyPage() {
                 after which it is automatically deleted by Google.
               </p>
               <p>
-                Email correspondence is retained for as long as it is operationally relevant and
-                deleted thereafter. We do not archive enquiries systematically.
+                Email correspondence, booking details and calendar invitations are retained for as long
+                as they are operationally relevant and deleted thereafter. We do not archive enquiries
+                systematically.
               </p>
             </Section>
 

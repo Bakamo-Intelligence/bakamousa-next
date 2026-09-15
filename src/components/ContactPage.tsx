@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { Cormorant_Garamond } from "next/font/google";
 import { gsap } from "gsap";
+import { BOOKING_ANCHOR, BOOKING_LOBBY_URL, BOOKING_MINUTES } from "@/lib/booking";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -37,8 +38,8 @@ const STARTING_POINTS = [
 const WHAT_HAPPENS = [
   {
     number: "01",
-    title: "Send the context",
-    body: "Tell us what decision is coming up and where your team feels uncertainty, drift, or risk.",
+    title: "Book a demo",
+    body: `Pick a ${BOOKING_MINUTES}-minute slot and tell us what decision is coming up and where your team feels uncertainty, drift, or risk.`,
   },
   {
     number: "02",
@@ -90,7 +91,7 @@ export default function ContactPage() {
   }, []);
 
   const emailHref = `mailto:${email}`;
-  const conversationHref = `mailto:${email}?subject=Start%20the%20conversation`;
+  const bookingHref = `#${BOOKING_ANCHOR}`;
 
   return (
     <div ref={containerRef} className="relative pb-24 text-text-primary">
@@ -121,25 +122,14 @@ export default function ContactPage() {
               </p>
               <div className="contact-body mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
                 <a
-                  href={conversationHref}
+                  href={bookingHref}
                   className="cta-button text-sm"
-                  data-analytics-event="generate_lead"
-                  data-analytics-label="Start the conversation"
+                  data-analytics-event="book_demo_click"
+                  data-analytics-label="Book a demo"
                   data-analytics-location="contact_hero"
-                  data-analytics-contact-method="email"
-                  data-analytics-lead-source="contact_page"
+                  data-analytics-destination="booking_calendar"
                 >
-                  Start the conversation
-                </a>
-                <a
-                  href={emailHref}
-                  className="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-3 text-sm uppercase tracking-[0.16em] text-white transition-colors hover:border-accent hover:text-accent"
-                  data-analytics-event="contact_click"
-                  data-analytics-label="Email Us Directly"
-                  data-analytics-location="contact_hero"
-                  data-analytics-contact-method="email"
-                >
-                  Email Us Directly
+                  Book a demo
                 </a>
               </div>
             </div>
@@ -195,6 +185,79 @@ export default function ContactPage() {
                 </div>
               </div>
             </aside>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id={BOOKING_ANCHOR}
+        className="scroll-mt-24 border-b border-border-grey px-6 py-20 md:py-24"
+        data-analytics-section="contact_booking"
+        data-analytics-label="Book a Demo"
+      >
+        <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-start">
+          <div>
+            <p className="text-sm uppercase tracking-[0.2em] text-accent">Book a demo</p>
+            <h2
+              className={`${cormorant.className} mt-6 text-4xl leading-[0.98] text-white md:text-5xl`}
+            >
+              {BOOKING_MINUTES} minutes with Daniel Fazekas.
+            </h2>
+            <p className="mt-6 max-w-xl text-lg font-light leading-relaxed text-text-secondary">
+              Bring the decision you are facing. Daniel will show how Bakamo reads the
+              conversation around questions like yours, and tell you plainly where the most
+              useful place to start would be.
+            </p>
+            <ul className="mt-8 space-y-3 text-sm text-text-secondary">
+              <li className="border-t border-white/10 pt-3">{BOOKING_MINUTES}-minute video call, online</li>
+              <li className="border-t border-white/10 pt-3">Calendar invitation and email reminders</li>
+              <li className="border-t border-white/10 pt-3">No brief needed in advance</li>
+            </ul>
+          </div>
+          <div
+            className="flex flex-col items-start gap-6 rounded-[2rem] border border-accent/20 p-8 md:p-10"
+            style={{
+              background:
+                "linear-gradient(150deg, rgba(201,169,110,0.12), rgba(20,20,20,0.94) 36%, rgba(10,10,10,0.98))",
+            }}
+          >
+            <p className="text-xs uppercase tracking-[0.2em] text-accent">
+              {BOOKING_MINUTES} minutes &middot; online
+            </p>
+            <p className="max-w-md text-lg font-light leading-relaxed text-text-secondary">
+              Choose a time in your own time zone. You will get a calendar invitation and a link
+              to join the call from your browser.
+            </p>
+            <a
+              href={bookingHref}
+              className="cta-button text-sm"
+              data-analytics-event="book_demo_click"
+              data-analytics-label="Book a demo"
+              data-analytics-location="contact_booking"
+              data-analytics-destination="booking_calendar"
+            >
+              Book a demo
+            </a>
+            <p className="max-w-md text-xs leading-relaxed text-text-muted">
+              Bookings are handled by Roam, which receives the details you enter.{" "}
+              <a href="/privacy#bookings" className="text-accent underline-offset-4 hover:underline">
+                Privacy policy
+              </a>
+              . Calendar not opening?{" "}
+              <a
+                href={BOOKING_LOBBY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent underline-offset-4 hover:underline"
+                data-analytics-event="book_demo_click"
+                data-analytics-label="Open booking on Roam"
+                data-analytics-location="contact_booking_fallback"
+                data-analytics-destination="roam_lobby"
+              >
+                Book on Roam directly
+              </a>
+              .
+            </p>
           </div>
         </div>
       </section>
@@ -310,19 +373,18 @@ export default function ContactPage() {
             Ready to build on reality?
           </h2>
           <p className="mx-auto mt-8 max-w-2xl text-lg font-light leading-relaxed text-text-secondary">
-            Send the context, the problem, or the upcoming decision. We will
-            help work out the most useful way to start.
+            Book a demo and bring the context, the problem, or the upcoming
+            decision. We will help work out the most useful way to start.
           </p>
           <a
-            href={conversationHref}
+            href={bookingHref}
             className="cta-button mt-10 text-sm"
-            data-analytics-event="generate_lead"
-            data-analytics-label="Start the conversation"
+            data-analytics-event="book_demo_click"
+            data-analytics-label="Book a demo"
             data-analytics-location="contact_final_cta"
-            data-analytics-contact-method="email"
-            data-analytics-lead-source="contact_page"
+            data-analytics-destination="booking_calendar"
           >
-            Start the conversation
+            Book a demo
           </a>
         </div>
       </section>

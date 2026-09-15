@@ -23,8 +23,10 @@ a page-view tag and never forwarded the site's own events, so GA4 had no key eve
 | --- | --- |
 | `nav_click` | Top navigation links |
 | `cta_click` | Calls to action and report downloads |
+| `book_demo_click` | Any "Book a demo" button or link (opens the booking popup) |
+| `booking_time_selected` | A time slot is picked in the Roam booking calendar |
+| `generate_lead` | A demo booking is confirmed in the Roam booking calendar |
 | `contact_click` | Email and phone links |
-| `generate_lead` | The main "Start the conversation" email links on /contact |
 | `outbound_click` | Links to other sites |
 | `thinker_card_open` | Opening a thinker on /our-method |
 | `scroll_depth` | 25, 50, 75 and 90% of the page |
@@ -34,8 +36,21 @@ Event parameters, where present: `label`, `location`, `destination`, `page_type`
 `contact_method`, `lead_source`, `depth_percentage`, `section`. Use GA4's built-in
 "Page path" dimension for the page an event happened on.
 
-`generate_lead` counts clicks on the email link, not sent emails, so treat it as a
-strong signal of intent rather than a confirmed enquiry.
+`generate_lead` fires when Roam confirms a booking (the embed's `onEventScheduled`
+callback in `src/components/BookingModal.tsx`), with `contact_method=booking`,
+`booking_tool=roam`, `location=booking_modal` and `lead_source` set to the page type.
+Roam's callbacks also carry the booker's name, email and note: never forward those to
+GA4. Until 15 September 2026 `generate_lead` counted clicks on the /contact email link.
+
+GA4 only sees visitors who accepted analytics cookies, so count bookings from the
+Roam-created events in Google Calendar (or Roam's booking list) as the source of truth.
+
+## Booking popup
+
+"Book a demo" links point to `/contact#book-a-demo`. `BookingModal` (mounted in the root
+layout) intercepts them and opens a popup; Roam's calendar script loads only on first
+open. The lobby URL and call length live in `src/lib/booking.ts`. Leave Roam's own
+"Google Tracking ID" lobby setting empty so GA4 never runs outside the consent banner.
 
 ## GA4 property configuration (done 15 September 2026)
 

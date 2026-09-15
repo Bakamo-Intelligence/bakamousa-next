@@ -5,14 +5,14 @@ import ContactPage from "@/components/ContactPage";
 export const metadata: Metadata = {
   title: { absolute: "Contact Bakamo | Social Intelligence Research" },
   description:
-    "Talk to Bakamo about social intelligence research. Offices in New Jersey, London, Dortmund, Budapest and Kuala Lumpur. Email info@bakamosocial.com.",
+    "Book a 30-minute demo with Bakamo, or email info@bakamosocial.com. Offices in New Jersey, London, Dortmund, Budapest and Kuala Lumpur.",
   alternates: {
     canonical: "/contact",
   },
   openGraph: pageOpenGraph(
     "/contact",
     "Contact Bakamo | Social Intelligence Research",
-    "Talk to Bakamo about social intelligence research. Offices in New Jersey, London, Dortmund, Budapest and Kuala Lumpur. Email info@bakamosocial.com.",
+    "Book a 30-minute demo with Bakamo, or email info@bakamosocial.com. Offices in New Jersey, London, Dortmund, Budapest and Kuala Lumpur.",
   ),
 };
 

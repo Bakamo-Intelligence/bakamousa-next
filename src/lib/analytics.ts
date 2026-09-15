@@ -12,6 +12,7 @@ const PAGE_TYPE_PATTERNS = [
   { pattern: /^\/migration(?:\/|$)/, type: "migration" },
   { pattern: /^\/our-method(?:\/|$)/, type: "our_method" },
   { pattern: /^\/privacy(?:\/|$)/, type: "privacy" },
+  { pattern: /^\/research(?:\/|$)/, type: "research" },
   { pattern: /^\/technology(?:\/|$)/, type: "technology" },
 ];
 

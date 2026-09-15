@@ -2,7 +2,7 @@ import { OG_CONTENT_TYPE, OG_SIZE, ogImageAlt, renderOgImage } from "@/lib/og-im
 
 const content = {
   title: "Contact",
-  descriptor: "Start the conversation with Bakamo.",
+  descriptor: "Book a 30-minute demo with Bakamo.",
 };
 
 export const alt = ogImageAlt(content);
