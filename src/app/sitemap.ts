@@ -1,74 +1,40 @@
 import { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/content";
-import { getSiteUrl } from "@/lib/site-url";
+import { SITE_URL } from "@/lib/site-url";
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const SITE_URL = await getSiteUrl();
+// lastModified is the date the page's content last changed. Update the date
+// when a page's copy changes; Google ignores lastmod that changes on every fetch.
+const STATIC_PAGES: Array<{ path: string; lastModified: string }> = [
+  { path: "", lastModified: "2026-09-14" },
+  { path: "/about", lastModified: "2026-09-14" },
+  { path: "/our-method", lastModified: "2026-09-14" },
+  { path: "/technology", lastModified: "2026-09-14" },
+  { path: "/elections", lastModified: "2026-05-15" },
+  { path: "/migration", lastModified: "2026-09-15" },
+  { path: "/contact", lastModified: "2026-09-15" },
+  { path: "/privacy", lastModified: "2026-09-15" },
+];
 
-  const staticPages: MetadataRoute.Sitemap = [
-    {
-      url: SITE_URL,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 1.0,
-    },
-    {
-      url: `${SITE_URL}/about`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${SITE_URL}/our-method`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${SITE_URL}/technology`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
+export default function sitemap(): MetadataRoute.Sitemap {
+  const posts = getAllPosts();
+
+  const staticPages: MetadataRoute.Sitemap = STATIC_PAGES.map(({ path, lastModified }) => ({
+    url: `${SITE_URL}${path}`,
+    lastModified: new Date(lastModified),
+  }));
+
+  const newestPostDate = posts.find((post) => post.date)?.date;
+  const blogIndex: MetadataRoute.Sitemap = [
     {
       url: `${SITE_URL}/blog`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.7,
-    },
-    {
-      url: `${SITE_URL}/contact`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${SITE_URL}/privacy`,
-      lastModified: new Date("2026-03-23"),
-      changeFrequency: "yearly" as const,
-      priority: 0.3,
-    },
-    {
-      url: `${SITE_URL}/migration`,
-      lastModified: new Date("2026-03-20"),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${SITE_URL}/elections`,
-      lastModified: new Date("2026-03-20"),
-      changeFrequency: "weekly",
-      priority: 0.9,
+      ...(newestPostDate ? { lastModified: new Date(newestPostDate) } : {}),
     },
   ];
 
-  const posts = getAllPosts();
   const blogPages: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${SITE_URL}/blog/${post.slug}`,
-    lastModified: post.date ? new Date(post.date) : new Date(),
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
+    ...(post.date ? { lastModified: new Date(post.date) } : {}),
   }));
 
-  return [...staticPages, ...blogPages];
+  return [...staticPages, ...blogIndex, ...blogPages];
 }

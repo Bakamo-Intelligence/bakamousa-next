@@ -1,23 +1,35 @@
 "use client";
 
-import { useEffect, useSyncExternalStore } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
+import { disableAnalytics, enableAnalytics } from "@/lib/analytics";
 
 const CONSENT_KEY = "bakamo_consent";
 const CONSENT_CHANGE_EVENT = "bakamo_consent_change";
-const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
+export const CONSENT_OPEN_EVENT = "bakamo_consent_open";
 
-function loadGTM() {
-  if (!GTM_ID || typeof window === "undefined") return;
-  if (document.querySelector(`script[src*="${GTM_ID}"]`)) return;
+type Consent = "accepted" | "declined" | "unset";
 
-  const w = window as Window & { dataLayer?: Record<string, unknown>[] };
-  w.dataLayer = w.dataLayer || [];
-  w.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+// Browsers that block storage (common on locked-down corporate machines) throw
+// on localStorage access; fall back to remembering the choice for this page view.
+let memoryConsent: Consent = "unset";
 
-  const script = document.createElement("script");
-  script.async = true;
-  script.src = `https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`;
-  document.head.appendChild(script);
+function readConsent(): Consent {
+  try {
+    const stored = localStorage.getItem(CONSENT_KEY);
+    return stored === "accepted" || stored === "declined" ? stored : "unset";
+  } catch {
+    return memoryConsent;
+  }
+}
+
+function writeConsent(value: Exclude<Consent, "unset">) {
+  memoryConsent = value;
+  try {
+    localStorage.setItem(CONSENT_KEY, value);
+  } catch {
+    // Storage blocked: the in-memory value above still applies until reload.
+  }
+  window.dispatchEvent(new Event(CONSENT_CHANGE_EVENT));
 }
 
 function subscribeToConsent(callback: () => void) {
@@ -29,41 +41,39 @@ function subscribeToConsent(callback: () => void) {
   };
 }
 
-function getConsentSnapshot() {
-  return localStorage.getItem(CONSENT_KEY) ?? "unset";
-}
-
 function getServerConsentSnapshot() {
   return "loading";
 }
 
-function notifyConsentChanged() {
-  window.dispatchEvent(new Event(CONSENT_CHANGE_EVENT));
-}
-
 export default function CookieBanner() {
-  const consent = useSyncExternalStore(
-    subscribeToConsent,
-    getConsentSnapshot,
-    getServerConsentSnapshot,
-  );
-  const visible = consent === "unset";
+  const consent = useSyncExternalStore(subscribeToConsent, readConsent, getServerConsentSnapshot);
+  const [reopened, setReopened] = useState(false);
+  const visible = consent === "unset" || reopened;
 
   useEffect(() => {
     if (consent === "accepted") {
-      loadGTM();
+      enableAnalytics();
+    } else if (consent === "declined") {
+      disableAnalytics();
     }
   }, [consent]);
 
+  useEffect(() => {
+    const open = () => setReopened(true);
+    window.addEventListener(CONSENT_OPEN_EVENT, open);
+    return () => window.removeEventListener(CONSENT_OPEN_EVENT, open);
+  }, []);
+
   function accept() {
-    localStorage.setItem(CONSENT_KEY, "accepted");
-    notifyConsentChanged();
-    loadGTM();
+    writeConsent("accepted");
+    enableAnalytics();
+    setReopened(false);
   }
 
   function decline() {
-    localStorage.setItem(CONSENT_KEY, "declined");
-    notifyConsentChanged();
+    writeConsent("declined");
+    disableAnalytics();
+    setReopened(false);
   }
 
   if (!visible) return null;

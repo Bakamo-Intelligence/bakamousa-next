@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useSyncExternalStore } from "react";
+import { useEffect, useRef } from "react";
 import { Cormorant_Garamond } from "next/font/google";
 import { gsap } from "gsap";
 
@@ -52,20 +52,10 @@ const WHAT_HAPPENS = [
   },
 ];
 
-function getEmailForDomain(): string {
-  if (typeof window === "undefined") return "info@bakamousa.com";
-  const host = window.location.hostname.toLowerCase();
-  if (host.includes("bakamosocial")) return "info@bakamosocial.com";
-  return "info@bakamousa.com";
-}
+const email = "info@bakamosocial.com";
 
 export default function ContactPage() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const email = useSyncExternalStore(
-    () => () => undefined,
-    getEmailForDomain,
-    () => "info@bakamousa.com",
-  );
 
   useEffect(() => {
     const ctx = gsap.context(() => {

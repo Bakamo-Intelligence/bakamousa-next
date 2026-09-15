@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOpenGraph } from "@/lib/seo";
 import Image from "next/image";
 import { Cormorant_Garamond } from "next/font/google";
 
@@ -16,11 +17,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/technology",
   },
-  openGraph: {
-    title: "Technology | Bakamo",
-    description:
-      "Technology is how Bakamo scales Social Truth. It is not what produces it. The Reading Machine makes meaning readable.",
-  },
+  openGraph: pageOpenGraph(
+    "/technology",
+    "Technology | Bakamo",
+    "Technology is how Bakamo scales Social Truth. It is not what produces it. The Reading Machine makes meaning readable.",
+  ),
 };
 
 const PRINCIPLES = [

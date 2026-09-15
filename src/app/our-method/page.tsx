@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOpenGraph } from "@/lib/seo";
 import Link from "next/link";
 import { Cormorant_Garamond } from "next/font/google";
 import { SocialTheory } from "@/components/social-theory/SocialTheory";
@@ -16,10 +17,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/our-method",
   },
-  openGraph: {
-    title: "Our Method | Bakamo",
-    description: "How Bakamo makes Social Truth through discovery first and measurement second.",
-  },
+  openGraph: pageOpenGraph(
+    "/our-method",
+    "Our Method | Bakamo",
+    "How Bakamo makes Social Truth through discovery first and measurement second.",
+  ),
 };
 
 const ENGAGEMENTS = [

@@ -4,10 +4,11 @@ import { Suspense, useEffect } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import {
   buildPagePath,
+  GA_MEASUREMENT_ID,
   getAnalyticsPayloadFromDataset,
   getPageType,
-  pushDataLayerEvent,
   throttle,
+  trackEvent,
 } from "@/lib/analytics";
 
 const SCROLL_MILESTONES = [25, 50, 75, 90];
@@ -17,15 +18,6 @@ function AnalyticsRuntime() {
   const searchParams = useSearchParams();
   const pagePath = buildPagePath(pathname, searchParams);
   const pageType = getPageType(pathname);
-
-  useEffect(() => {
-    pushDataLayerEvent("page_context", {
-      page_location: window.location.href,
-      page_path: pagePath,
-      page_title: document.title,
-      page_type: pageType,
-    });
-  }, [pagePath, pageType]);
 
   useEffect(() => {
     const handleClick = (event: MouseEvent) => {
@@ -47,9 +39,8 @@ function AnalyticsRuntime() {
       const payload = getAnalyticsPayloadFromDataset(trackedElement);
       const destination = payload.destination ?? trackedElement.getAttribute("href") ?? undefined;
 
-      pushDataLayerEvent(eventName, {
+      trackEvent(eventName, {
         destination,
-        page_path: window.location.pathname + window.location.search,
         page_type: getPageType(window.location.pathname),
         ...payload,
       });
@@ -76,9 +67,8 @@ function AnalyticsRuntime() {
         }
 
         loggedMilestones.add(milestone);
-        pushDataLayerEvent("scroll_depth", {
+        trackEvent("scroll_depth", {
           depth_percentage: milestone,
-          page_path: pagePath,
           page_type: pageType,
         });
       });
@@ -111,8 +101,7 @@ function AnalyticsRuntime() {
           seenSections.add(sectionName);
           observer.unobserve(section);
 
-          pushDataLayerEvent("section_view", {
-            page_path: pagePath,
+          trackEvent("section_view", {
             page_type: pageType,
             ...getAnalyticsPayloadFromDataset(section),
           });
@@ -134,7 +123,7 @@ function AnalyticsRuntime() {
 }
 
 export default function AnalyticsInstrumentation() {
-  if (!process.env.NEXT_PUBLIC_GTM_ID) {
+  if (!GA_MEASUREMENT_ID) {
     return null;
   }
 

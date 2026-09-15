@@ -3,6 +3,7 @@ import { getAllPosts, isGitContentConfigured, type Post } from "@/lib/content";
 import sanitizeHtml from "sanitize-html";
 
 import type { Metadata } from "next";
+import { pageOpenGraph } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Insights",
@@ -11,11 +12,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/blog",
   },
-  openGraph: {
-    title: "Insights | Bakamo",
-    description:
-      "Consumer intelligence insights, methodology deep-dives, and cultural analysis from the Bakamo team.",
-  },
+  openGraph: pageOpenGraph(
+    "/blog",
+    "Insights | Bakamo",
+    "Consumer intelligence insights, methodology deep-dives, and cultural analysis from the Bakamo team.",
+  ),
 };
 
 export default async function BlogIndexPage() {
@@ -32,8 +33,10 @@ export default async function BlogIndexPage() {
     <main className="mx-auto max-w-5xl px-6 py-12">
       <div className="flex items-baseline justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-semibold tracking-tight">Blog</h1>
-          <p className="mt-2 text-zinc-600 dark:text-zinc-400">Posts sourced from Git Markdown files.</p>
+          <h1 className="text-3xl font-semibold tracking-tight">Insights</h1>
+          <p className="mt-2 text-zinc-600 dark:text-zinc-400">
+            Consumer intelligence insights, methodology deep-dives, and cultural analysis from the Bakamo team.
+          </p>
         </div>
         <Link
           href="/"

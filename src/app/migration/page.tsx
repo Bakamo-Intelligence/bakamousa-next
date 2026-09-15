@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOpenGraph } from "@/lib/seo";
 import { Cormorant_Garamond } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,19 +14,15 @@ const cormorant = Cormorant_Garamond({
 export const metadata: Metadata = {
   title: "Migration Research",
   description:
-    "A decade of Bakamo’s work reading how Europeans actually talk about migration — pan-European narrative studies and country-level deep dives for foundations and policy institutions.",
+    "A decade of Bakamo’s work reading how Europeans talk about migration: narrative studies and country deep dives for foundations and policy institutions.",
   alternates: {
     canonical: "/migration",
   },
-  robots: {
-    index: false,
-    follow: true,
-  },
-  openGraph: {
-    title: "Migration Research | Bakamo",
-    description:
-      "Narrative, not opinion. A decade of Bakamo’s large-scale listening studies on migration across Europe.",
-  },
+  openGraph: pageOpenGraph(
+    "/migration",
+    "Migration Research | Bakamo",
+    "Narrative, not opinion. A decade of Bakamo’s large-scale listening studies on migration across Europe.",
+  ),
 };
 
 const FES_PDF = "/media/FES_Final%20Report_FINAL%20VERSION.pdf";

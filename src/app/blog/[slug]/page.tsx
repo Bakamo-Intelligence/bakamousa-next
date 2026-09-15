@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPostBySlug, getFeaturedImageUrl, isGitContentConfigured, type Post } from "@/lib/content";
-import { getSiteUrl } from "@/lib/site-url";
+import { SITE_URL } from "@/lib/site-url";
+import { ORGANIZATION_REF, pageOpenGraph } from "@/lib/seo";
 import sanitizeHtml from "sanitize-html";
 import { cookies } from 'next/headers';
 
@@ -14,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) return {};
-  const siteUrl = await getSiteUrl();
+  const description = typeof post.excerpt === "string" ? post.excerpt : undefined;
   return {
     title: post.title,
     description: post.excerpt,
@@ -22,36 +23,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       canonical: `/blog/${slug}`,
     },
     openGraph: {
+      ...pageOpenGraph(`/blog/${slug}`, post.title, description ?? ""),
       type: "article",
-      title: post.title,
-      description: typeof post.excerpt === "string" ? post.excerpt : undefined,
-      url: `${siteUrl}/blog/${slug}`,
       publishedTime: post.date || undefined,
       ...(post.featuredImage ? { images: [post.featuredImage] } : {}),
     },
   };
 }
 
-async function ArticleJsonLd({ post, slug, featuredImage }: { post: Post; slug: string; featuredImage: string | null }) {
-  const siteUrl = await getSiteUrl();
+function ArticleJsonLd({ post, slug, featuredImage }: { post: Post; slug: string; featuredImage: string | null }) {
+  const url = `${SITE_URL}/blog/${slug}`;
   const schema = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
     headline: post.title,
     description: post.excerpt,
     datePublished: post.date || undefined,
-    url: `${siteUrl}/blog/${slug}`,
-    author: {
-      "@type": "Organization",
-      name: "Bakamo",
-      url: siteUrl,
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "Bakamo",
-      url: siteUrl,
-    },
-    ...(featuredImage ? { image: `${siteUrl}${featuredImage}` } : {}),
+    dateModified: post.raw?.data?.updated || post.date || undefined,
+    url,
+    mainEntityOfPage: url,
+    author: ORGANIZATION_REF,
+    publisher: ORGANIZATION_REF,
+    ...(featuredImage ? { image: `${SITE_URL}${featuredImage}` } : {}),
   };
   return (
     <script
