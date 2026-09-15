@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOpenGraph } from "@/lib/seo";
 import { Cormorant_Garamond } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,11 +18,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/elections",
   },
-  openGraph: {
-    title: "A Psychographic Divide in Hungarian Political Discourse | Bakamo",
-    description:
-      "Tisza supporters show a significantly higher inner-directed share — and why it matters for April 12.",
-  },
+  openGraph: pageOpenGraph(
+    "/elections",
+    "A Psychographic Divide in Hungarian Political Discourse | Bakamo",
+    "Tisza supporters show a significantly higher inner-directed share — and why it matters for April 12.",
+  ),
 };
 
 function PieChart({
@@ -78,7 +79,7 @@ function PullQuote({
     <blockquote className="my-10 border-l-2 border-accent pl-6 py-1">
       <p className="text-accent italic text-lg font-light leading-relaxed">&ldquo;{quote}&rdquo;</p>
       {translation && (
-        <p className="mt-3 text-text-muted text-sm italic leading-relaxed">{translation}</p>
+        <p lang="hu" className="mt-3 text-text-muted text-sm italic leading-relaxed">{translation}</p>
       )}
       <footer className="mt-4 text-xs uppercase tracking-[0.16em] text-text-muted">{attribution}</footer>
     </blockquote>
@@ -196,7 +197,7 @@ export default function ElectionsPage() {
                 </span>
               </div>
               <figcaption className="px-1">
-                <p className="text-accent text-sm italic font-light leading-snug">
+                <p lang="hu" className="text-accent text-sm italic font-light leading-snug">
                   &ldquo;03.15 ITT VOLTAM &mdash; 04.12 OTT LESZEK&rdquo;
                 </p>
                 <p className="text-text-muted text-xs mt-1.5 leading-relaxed">
@@ -221,7 +222,7 @@ export default function ElectionsPage() {
                 </span>
               </div>
               <figcaption className="px-1">
-                <p className="text-text-primary text-sm italic font-light leading-snug">
+                <p lang="hu" className="text-text-primary text-sm italic font-light leading-snug">
                   &ldquo;Együtt erő vagyunk! 🇭🇺&rdquo;
                 </p>
                 <p className="text-text-muted text-xs mt-1.5 leading-relaxed">
@@ -750,8 +751,8 @@ export default function ElectionsPage() {
                   </a>
                 </p>
                 <p className="text-sm text-text-secondary">
-                  <a href="tel:+44155343293" className="hover:text-white transition-colors">
-                    +44 1553 43293
+                  <a href="tel:+441553432939" className="hover:text-white transition-colors">
+                    +44 1553 432939
                   </a>
                 </p>
               </div>

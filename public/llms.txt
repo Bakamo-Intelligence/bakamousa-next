@@ -1,0 +1,26 @@
+# Bakamo
+
+> Bakamo is a social intelligence company. Bakamo surfaces Social Truth by reading unprompted online conversation, then builds the quantitative instruments that measure it. The Reading Machine, Bakamo's proprietary technology, holds entire conversations at once; Bakamo's analysts interpret what they mean.
+
+Founded 2016 (work began in 2014). Offices in New Jersey, London, Dortmund, Budapest and Kuala Lumpur. Founder & CEO: Daniel Fazekas. Contact: info@bakamosocial.com.
+
+## Company
+
+- [About](https://www.bakamosocial.com/about): who Bakamo is, how it works, leadership
+- [Contact](https://www.bakamosocial.com/contact): how to start an engagement
+
+## Method and technology
+
+- [Our Method](https://www.bakamosocial.com/our-method): discovery first, measurement second; the two engagement models
+- [Technology](https://www.bakamosocial.com/technology): The Reading Machine and how it makes meaning readable
+
+## Research
+
+- [Hungarian election 2026 psychographic analysis](https://www.bakamosocial.com/elections): inner- and outer-directed discourse among Tisza and Fidesz supporters before the 12 April 2026 parliamentary election
+- [Migration research](https://www.bakamosocial.com/migration): a decade of studies on how Europeans talk about migration, for foundations and policy institutions
+- [French presidential election 2017 report (PDF)](https://www.bakamosocial.com/frenchelection): Bakamo's 2017 study of the French presidential election on social media
+
+## Insights
+
+- [Insights](https://www.bakamosocial.com/blog): methodology and analysis articles
+- [TensionScope: Decoding the Human "Why" Behind the Data](https://www.bakamosocial.com/blog/tensionscope-decoding-the-human-why)

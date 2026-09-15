@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { pageOpenGraph } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -7,9 +8,14 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/privacy",
   },
+  openGraph: pageOpenGraph(
+    "/privacy",
+    "Privacy Policy | Bakamo",
+    "How Bakamo collects, uses, and protects information on this website.",
+  ),
 };
 
-const LAST_UPDATED = "23 March 2026";
+const LAST_UPDATED = "15 September 2026";
 
 function Section({ id, title, children }: { id: string; title: string; children: React.ReactNode }) {
   return (
@@ -73,7 +79,7 @@ export default function PrivacyPage() {
 
             <Section id="who-we-are" title="1. Who we are">
               <p>
-                This website (<strong className="text-text-primary">bakamousa.com</strong>) is operated by{" "}
+                This website (<strong className="text-text-primary">bakamosocial.com</strong>) is operated by{" "}
                 <strong className="text-text-primary">Bakamo Inc.</strong>, a corporation registered in the
                 State of Delaware, USA.
               </p>
@@ -185,9 +191,10 @@ export default function PrivacyPage() {
             <Section id="third-parties" title="5. Third parties">
               <p>
                 Analytics data is processed by{" "}
-                <strong className="text-text-primary">Google LLC</strong> via Google Tag Manager
-                (container <span className="font-mono text-accent">GTM-5ZQTVMCV</span>) and Google
-                Analytics 4. Google may transfer this data to servers outside your country. Google acts
+                <strong className="text-text-primary">Google LLC</strong> via Google Analytics 4
+                (measurement ID <span className="font-mono text-accent">G-L84VKCB2WZ</span>), which is
+                loaded only after you accept analytics cookies. Google may transfer this data to servers
+                outside your country. Google acts
                 as a data processor on our behalf and is bound by Google&rsquo;s data processing terms.
               </p>
               <p>
@@ -223,10 +230,9 @@ export default function PrivacyPage() {
               </ul>
               <p>
                 <strong className="text-text-primary">To withdraw consent</strong> and stop analytics
-                tracking immediately: open your browser&rsquo;s developer tools, go to
-                Application &rarr; Local Storage &rarr; bakamousa.com, and delete the{" "}
-                <span className="font-mono text-accent">bakamo_consent</span> key. The cookie banner will
-                reappear on your next visit and you can choose &ldquo;Decline&rdquo;.
+                tracking immediately, select &ldquo;Cookie settings&rdquo; at the bottom of any page and
+                choose &ldquo;Decline&rdquo;. Analytics stops straight away and the Google Analytics
+                cookies set on this website are deleted.
               </p>
               <p>
                 To exercise any other rights, contact us at the address in{" "}
@@ -260,8 +266,8 @@ export default function PrivacyPage() {
                   </a>
                 </p>
                 <p>
-                  <a href="tel:+44155343293" className="hover:text-white transition-colors">
-                    +44 1553 43293
+                  <a href="tel:+441553432939" className="hover:text-white transition-colors">
+                    +44 1553 432939
                   </a>
                 </p>
               </div>

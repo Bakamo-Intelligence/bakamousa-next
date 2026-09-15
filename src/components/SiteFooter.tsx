@@ -1,9 +1,14 @@
 import Link from "next/link";
+import CookieSettingsButton from "@/components/CookieSettingsButton";
+import CurrentYear from "@/components/CurrentYear";
 
 const FOOTER_LINKS = [
   { label: "About", href: "/about" },
   { label: "Our Method", href: "/our-method" },
   { label: "Technology", href: "/technology" },
+  { label: "Election Research", href: "/elections" },
+  { label: "Migration Research", href: "/migration" },
+  { label: "Insights", href: "/blog" },
   { label: "Contact", href: "/contact" },
   { label: "Privacy", href: "/privacy" },
 ];
@@ -23,10 +28,11 @@ export default function SiteFooter() {
               {item.label}
             </Link>
           ))}
+          <CookieSettingsButton className="uppercase tracking-[0.14em] transition-colors hover:text-white" />
         </nav>
 
         <p className="text-xs text-text-muted">
-          &copy; {new Date().getFullYear()} Bakamo USA. All rights reserved.
+          &copy; <CurrentYear /> Bakamo. All rights reserved.
         </p>
       </div>
     </footer>

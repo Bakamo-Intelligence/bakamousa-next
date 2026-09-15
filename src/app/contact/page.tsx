@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOpenGraph } from "@/lib/seo";
 import ContactPage from "@/components/ContactPage";
 
 export const metadata: Metadata = {
@@ -8,11 +9,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/contact",
   },
-  openGraph: {
-    title: "Contact | Bakamo",
-    description:
-      "Start the conversation with Bakamo. Offices in New Jersey, London, Dortmund, Budapest, and Kuala Lumpur.",
-  },
+  openGraph: pageOpenGraph(
+    "/contact",
+    "Contact | Bakamo",
+    "Start the conversation with Bakamo. Offices in New Jersey, London, Dortmund, Budapest, and Kuala Lumpur.",
+  ),
 };
 
 export default function Contact() {

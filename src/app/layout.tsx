@@ -4,7 +4,8 @@ import AnalyticsInstrumentation from "@/components/AnalyticsInstrumentation";
 import CookieBanner from "@/components/CookieBanner";
 import SiteNavigation from "@/components/SiteNavigation";
 import SiteFooter from "@/components/SiteFooter";
-import { getSiteUrlSync } from "@/lib/site-url";
+import { SITE_URL } from "@/lib/site-url";
+import { ORGANIZATION_SCHEMA, pageOpenGraph } from "@/lib/seo";
 import "./globals.css";
 
 const inter = Inter({
@@ -13,8 +14,8 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const SITE_URL = getSiteUrlSync();
-
+// Canonical URLs are set per page; a root canonical here would be inherited by
+// any route that forgets its own and quietly point it at the homepage.
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
@@ -23,51 +24,17 @@ export const metadata: Metadata = {
   },
   description:
     "Bakamo surfaces Social Truth, then builds the quantitative instruments that measure it.",
-  alternates: {
-    canonical: "/",
-  },
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: SITE_URL,
-    siteName: "Bakamo",
-    title: "Bakamo - Social Truth",
-    description:
-      "Bakamo surfaces Social Truth, then builds the quantitative instruments that measure it.",
-  },
+  openGraph: pageOpenGraph(
+    "/",
+    "Bakamo - Social Truth",
+    "Bakamo surfaces Social Truth, then builds the quantitative instruments that measure it.",
+  ),
+  // No share image exists yet, so use the small card. Title and description are
+  // left out so X falls back to each page's own Open Graph tags.
   twitter: {
-    card: "summary_large_image",
-    title: "Bakamo - Social Truth",
-    description:
-      "Bakamo surfaces Social Truth, then builds the quantitative instruments that measure it.",
+    card: "summary",
   },
 };
-
-async function OrganizationJsonLd() {
-  const { getSiteUrl } = await import("@/lib/site-url");
-  const siteUrl = await getSiteUrl();
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Bakamo",
-    url: siteUrl,
-    description:
-      "We deliver the real human narrative behind the decimal point. Unfiltered consumer intelligence.",
-    foundingDate: "2015",
-    founder: {
-      "@type": "Person",
-      name: "Daniel Fazekas",
-      jobTitle: "Founder & CEO",
-    },
-    sameAs: [],
-  };
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  );
-}
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -75,7 +42,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${inter.className} antialiased bg-near-black text-text-primary`}>
         <AnalyticsInstrumentation />
         <SiteNavigation />
-        <OrganizationJsonLd />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANIZATION_SCHEMA) }}
+        />
 
         {children}
 

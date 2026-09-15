@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOpenGraph } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
 import { Cormorant_Garamond } from "next/font/google";
@@ -18,11 +19,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/about",
   },
-  openGraph: {
-    title: "About Bakamo",
-    description:
-      "Bakamo is a social intelligence company. We close the gap between decision-makers and people by reading unprompted conversation. Build on reality.",
-  },
+  openGraph: pageOpenGraph(
+    "/about",
+    "About Bakamo",
+    "Bakamo is a social intelligence company. We close the gap between decision-makers and people by reading unprompted conversation. Build on reality.",
+  ),
 };
 
 const APPROACH = [

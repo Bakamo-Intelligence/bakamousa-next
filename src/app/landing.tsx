@@ -119,7 +119,7 @@ export default function LandingPage() {
       <footer className="py-12 px-4 bg-blue-900 text-white text-center" id="contact">
         <h3 className="text-2xl font-bold mb-4">Are you ready to measure what actually matters?</h3>
         <p className="mb-6">Let’s discuss how Grounded Quantification can calibrate your upcoming segmentation, tracker, or innovation pipeline.</p>
-        <a href="mailto:info@bakamousa.com" className="bg-white text-blue-900 px-8 py-4 rounded-lg font-bold shadow hover:bg-gray-100 transition mb-4 inline-block">Start an Introduction with Sandra & Bakamo</a>
+        <a href="mailto:info@bakamosocial.com" className="bg-white text-blue-900 px-8 py-4 rounded-lg font-bold shadow hover:bg-gray-100 transition mb-4 inline-block">Start an Introduction with Sandra & Bakamo</a>
         <div className="mt-8 text-sm">© 2024 Bakamo Social. All Rights Reserved. <a href="/privacy-policy" className="underline">Privacy Policy</a>.</div>
       </footer>
     </main>
