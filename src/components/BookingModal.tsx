@@ -3,7 +3,7 @@
 import { Cormorant_Garamond } from "next/font/google";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { getPageType, trackEvent } from "@/lib/analytics";
-import { BOOKING_ANCHOR, BOOKING_LOBBY_URL, BOOKING_MINUTES } from "@/lib/booking";
+import { BOOKING_ANCHOR, BOOKING_HREF, BOOKING_LOBBY_URL, BOOKING_MINUTES } from "@/lib/booking";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -13,6 +13,8 @@ const cormorant = Cormorant_Garamond({
 
 const EMBED_SCRIPT_URL = "https://ro.am/lobbylinks/embed.js";
 const DEFAULT_FRAME_HEIGHT = 680;
+// Roam's embed waits for its iframe to connect and has no timeout of its own.
+const CONNECT_TIMEOUT_MS = 20000;
 
 type RoamLobbyEmbedOptions = {
   url: string;
@@ -27,7 +29,7 @@ type RoamLobbyEmbedOptions = {
 
 declare global {
   interface Window {
-    Roam?: { initLobbyEmbed: (options: RoamLobbyEmbedOptions) => void };
+    Roam?: { initLobbyEmbed: (options: RoamLobbyEmbedOptions) => Promise<void> };
   }
 }
 
@@ -68,6 +70,7 @@ export default function BookingModal() {
   const [status, setStatus] = useState<EmbedStatus>("idle");
   const [frameHeight, setFrameHeight] = useState<number | null>(null);
   const embedRef = useRef<HTMLDivElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const returnFocusRef = useRef<HTMLElement | null>(null);
   const embedStarted = useRef(false);
@@ -82,29 +85,25 @@ export default function BookingModal() {
         const parent = embedRef.current;
         if (!parent || !window.Roam) throw new Error("Booking container missing");
 
-        const titleFrame = new MutationObserver(() => {
-          const frame = parent.querySelector("iframe");
-          if (frame) {
-            frame.title = "Book a demo with Bakamo";
-            titleFrame.disconnect();
-          }
-        });
-        titleFrame.observe(parent, { childList: true, subtree: true });
-
-        window.Roam.initLobbyEmbed({
+        const connected = window.Roam.initLobbyEmbed({
           url: BOOKING_LOBBY_URL,
           parentElement: parent,
           theme: "dark",
           accentColor: "#c9a96e",
           lobbyConfiguration: "booking_only",
           onDateTimeSelected: () => {
-            trackEvent("booking_time_selected", { booking_tool: "roam" });
+            trackEvent("booking_time_selected", {
+              booking_tool: "roam",
+              page_type: getPageType(window.location.pathname),
+            });
           },
           onEventScheduled: () => {
+            const pageType = getPageType(window.location.pathname);
             trackEvent("generate_lead", {
               contact_method: "booking",
               booking_tool: "roam",
-              lead_source: getPageType(window.location.pathname),
+              lead_source: pageType,
+              page_type: pageType,
               location: "booking_modal",
             });
             setStatus("booked");
@@ -113,9 +112,22 @@ export default function BookingModal() {
             if (height > 0) setFrameHeight(height);
           },
         });
-        setStatus("ready");
+        connected.catch(() => undefined);
+        // The iframe is appended before Roam starts waiting for it to connect.
+        parent.querySelector("iframe")?.setAttribute("title", "Book a demo with Bakamo");
+
+        return Promise.race([
+          connected,
+          new Promise<never>((_, reject) =>
+            window.setTimeout(() => reject(new Error("Roam embed timed out")), CONNECT_TIMEOUT_MS),
+          ),
+        ]);
+      })
+      .then(() => {
+        setStatus((current) => (current === "booked" ? current : "ready"));
       })
       .catch(() => {
+        embedRef.current?.replaceChildren();
         embedStarted.current = false;
         setStatus("failed");
       });
@@ -135,7 +147,6 @@ export default function BookingModal() {
     if (window.location.hash === `#${BOOKING_ANCHOR}`) {
       window.history.replaceState(null, "", window.location.pathname + window.location.search);
     }
-    returnFocusRef.current?.focus?.();
   }, []);
 
   // Open from any booking trigger or link, and from a #book-a-demo URL.
@@ -153,6 +164,11 @@ export default function BookingModal() {
 
     const openFromHash = () => {
       if (window.location.hash === `#${BOOKING_ANCHOR}`) {
+        trackEvent("book_demo_click", {
+          location: "url_hash",
+          destination: BOOKING_HREF,
+          page_type: getPageType(window.location.pathname),
+        });
         window.setTimeout(() => open(null), 0);
       }
     };
@@ -166,9 +182,14 @@ export default function BookingModal() {
     };
   }, [open]);
 
-  // While open: lock page scroll, focus the close button, close on Escape.
+  // While open: make the page behind inert (keeps keyboard focus in the dialog),
+  // lock scrolling, focus the close button, and close on Escape or browser Back.
   useEffect(() => {
     if (!isOpen) return;
+    const background = Array.from(document.body.children).filter(
+      (element) => element !== overlayRef.current && !element.hasAttribute("inert"),
+    );
+    background.forEach((element) => element.setAttribute("inert", ""));
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     closeRef.current?.focus();
@@ -176,15 +197,21 @@ export default function BookingModal() {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") close();
     };
+    const handlePopState = () => setIsOpen(false);
     document.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("popstate", handlePopState);
     return () => {
+      background.forEach((element) => element.removeAttribute("inert"));
       document.body.style.overflow = previousOverflow;
       document.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("popstate", handlePopState);
+      if (returnFocusRef.current?.isConnected) returnFocusRef.current.focus();
     };
   }, [isOpen, close]);
 
   return (
     <div
+      ref={overlayRef}
       className={`fixed inset-0 z-[70] items-end justify-center bg-black/75 backdrop-blur-sm sm:items-center sm:p-6 ${
         isOpen ? "flex" : "hidden"
       }`}
@@ -270,7 +297,12 @@ export default function BookingModal() {
 
         <p className="border-t border-white/10 px-6 py-3 text-xs leading-relaxed text-text-muted sm:px-8">
           Bookings are handled by Roam, which receives the details you enter.{" "}
-          <a href="/privacy#bookings" className="text-accent underline-offset-4 hover:underline">
+          <a
+            href="/privacy#bookings"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent underline-offset-4 hover:underline"
+          >
             Privacy policy
           </a>
         </p>

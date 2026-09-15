@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { Cormorant_Garamond } from "next/font/google";
 import { gsap } from "gsap";
-import { BOOKING_ANCHOR, BOOKING_LOBBY_URL, BOOKING_MINUTES } from "@/lib/booking";
+import { BOOKING_ANCHOR, BOOKING_HREF, BOOKING_LOBBY_URL, BOOKING_MINUTES } from "@/lib/booking";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -127,7 +127,7 @@ export default function ContactPage() {
                   data-analytics-event="book_demo_click"
                   data-analytics-label="Book a demo"
                   data-analytics-location="contact_hero"
-                  data-analytics-destination="booking_calendar"
+                  data-analytics-destination={BOOKING_HREF}
                 >
                   Book a demo
                 </a>
@@ -229,18 +229,26 @@ export default function ContactPage() {
               to join the call from your browser.
             </p>
             <a
-              href={bookingHref}
+              href={BOOKING_LOBBY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-booking-trigger
               className="cta-button text-sm"
               data-analytics-event="book_demo_click"
               data-analytics-label="Book a demo"
               data-analytics-location="contact_booking"
-              data-analytics-destination="booking_calendar"
+              data-analytics-destination={BOOKING_HREF}
             >
               Book a demo
             </a>
             <p className="max-w-md text-xs leading-relaxed text-text-muted">
               Bookings are handled by Roam, which receives the details you enter.{" "}
-              <a href="/privacy#bookings" className="text-accent underline-offset-4 hover:underline">
+              <a
+                href="/privacy#bookings"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent underline-offset-4 hover:underline"
+              >
                 Privacy policy
               </a>
               . Calendar not opening?{" "}
@@ -382,7 +390,7 @@ export default function ContactPage() {
             data-analytics-event="book_demo_click"
             data-analytics-label="Book a demo"
             data-analytics-location="contact_final_cta"
-            data-analytics-destination="booking_calendar"
+            data-analytics-destination={BOOKING_HREF}
           >
             Book a demo
           </a>

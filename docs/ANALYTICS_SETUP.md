@@ -23,7 +23,7 @@ a page-view tag and never forwarded the site's own events, so GA4 had no key eve
 | --- | --- |
 | `nav_click` | Top navigation links |
 | `cta_click` | Calls to action and report downloads |
-| `book_demo_click` | Any "Book a demo" button or link (opens the booking popup) |
+| `book_demo_click` | Any "Book a demo" button or link. Most open the booking popup; `destination=roam_lobby` fallback links open ro.am in a new tab. Visits to a `#book-a-demo` URL send it with `location=url_hash`. |
 | `booking_time_selected` | A time slot is picked in the Roam booking calendar |
 | `generate_lead` | A demo booking is confirmed in the Roam booking calendar |
 | `contact_click` | Email and phone links |
@@ -33,14 +33,17 @@ a page-view tag and never forwarded the site's own events, so GA4 had no key eve
 | `section_view` | A tagged section becomes visible |
 
 Event parameters, where present: `label`, `location`, `destination`, `page_type`,
-`contact_method`, `lead_source`, `depth_percentage`, `section`. Use GA4's built-in
+`contact_method`, `lead_source`, `depth_percentage`, `section`, `booking_tool`.
+`booking_tool` is not registered as a custom dimension. Email and phone links send
+`destination=mailto` or `tel`, never the address or number. Use GA4's built-in
 "Page path" dimension for the page an event happened on.
 
 `generate_lead` fires when Roam confirms a booking (the embed's `onEventScheduled`
 callback in `src/components/BookingModal.tsx`), with `contact_method=booking`,
 `booking_tool=roam`, `location=booking_modal` and `lead_source` set to the page type.
 Roam's callbacks also carry the booker's name, email and note: never forward those to
-GA4. Until 15 September 2026 `generate_lead` counted clicks on the /contact email link.
+GA4. Until 15 September 2026 `generate_lead` counted clicks on the /contact email link, and
+`lead_source` was `contact_page`; it now carries page_type values (`contact`, `about`, ...).
 
 GA4 only sees visitors who accepted analytics cookies, so count bookings from the
 Roam-created events in Google Calendar (or Roam's booking list) as the source of truth.
@@ -74,7 +77,7 @@ Property "Bakamo.Social - GA4", web stream `https://www.bakamosocial.com`:
   events" (needed because the site navigates client-side), outbound clicks, file downloads.
 - The eight "create event" rules left over from the GTM setup were deleted.
 - Unwanted referrals: `bakamosocial.com`.
-- User-provided data capabilities: off (the site collects no user data).
+- User-provided data capabilities: off (booking details are entered in Roam's embed and are never sent to GA4).
 - AI assistant traffic: GA4's default channel group includes a built-in "AI Assistant"
   channel, so no custom channel group is needed.
 

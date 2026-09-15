@@ -161,8 +161,9 @@ export default function PrivacyPage() {
               </p>
               <p>
                 The booking calendar is not loaded until you choose &ldquo;Book a demo&rdquo;. Once
-                opened, it is served by Roam from its own domains, and Roam&rsquo;s privacy policy explains
-                how Roam handles data, including any cookies it uses.
+                opened, it is served by Roam and the service providers Roam uses, which receive technical
+                data such as your IP address and browser details. Roam&rsquo;s privacy policy explains how
+                Roam handles data, including any cookies it uses.
               </p>
               <div className="overflow-x-auto">
                 <table className="w-full text-xs border-collapse">
@@ -243,7 +244,9 @@ export default function PrivacyPage() {
                 .
               </p>
               <p>
-                Apart from Google and Roam, no third-party services receive data from this website.
+                Apart from our website hosting provider (Vercel), Google, and Roam with the service
+                providers it uses to run its booking calendar, no third parties receive data from this
+                website.
               </p>
             </Section>
 
