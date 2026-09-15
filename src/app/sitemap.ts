@@ -9,6 +9,8 @@ const STATIC_PAGES: Array<{ path: string; lastModified: string }> = [
   { path: "/about", lastModified: "2026-09-14" },
   { path: "/our-method", lastModified: "2026-09-14" },
   { path: "/technology", lastModified: "2026-09-14" },
+  { path: "/research", lastModified: "2026-09-15" },
+  { path: "/research/french-election-2017", lastModified: "2026-09-15" },
   { path: "/elections", lastModified: "2026-05-15" },
   { path: "/migration", lastModified: "2026-09-15" },
   { path: "/contact", lastModified: "2026-09-15" },

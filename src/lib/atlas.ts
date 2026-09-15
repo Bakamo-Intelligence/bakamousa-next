@@ -6,6 +6,8 @@ export type AtlasCase = {
   lat: number;
   lng: number;
   essence: string;
+  /** Where the case can be read: its study page, or its anchor on /research. */
+  href?: string;
 };
 
 export type AtlasPoint =
@@ -20,6 +22,7 @@ export type AtlasPoint =
 export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
   {
     id: "premium-pet-food",
+    href: "/research#premium-pet-food",
     name: "Premium pet food, North America",
     sectorRegion: "",
     sector: "",
@@ -30,6 +33,7 @@ export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
   },
   {
     id: "hungary-election-2026",
+    href: "/elections",
     name: "The Hungarian Election, 2026 — Public sphere, Europe",
     sectorRegion: "",
     sector: "",
@@ -40,6 +44,7 @@ export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
   },
   {
     id: "public-health",
+    href: "/research#public-health",
     name: "Public health, North America",
     sectorRegion: "",
     sector: "",
@@ -50,6 +55,7 @@ export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
   },
   {
     id: "non-alcoholic-spirits",
+    href: "/research#non-alcoholic-spirits",
     name: "Non-alcoholic spirits, North America",
     sectorRegion: "",
     sector: "",
@@ -60,6 +66,7 @@ export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
   },
   {
     id: "body-care-ssa",
+    href: "/research#body-care-ssa",
     name: "Body care across Sub-Saharan Africa",
     sectorRegion: "",
     sector: "",
@@ -70,6 +77,7 @@ export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
   },
   {
     id: "amsterdam-ad-ban",
+    href: "/research#amsterdam-ad-ban",
     name: "Amsterdam's Ad Ban: a meat debate in disguise",
     sectorRegion: "Public sphere, Europe",
     sector: "",
