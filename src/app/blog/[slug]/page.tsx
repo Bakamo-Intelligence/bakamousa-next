@@ -26,8 +26,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ...pageOpenGraph(`/blog/${slug}`, post.title, description ?? ""),
       type: "article",
       publishedTime: post.date || undefined,
-      ...(post.featuredImage ? { images: [post.featuredImage] } : {}),
+      images: post.featuredImage
+        ? [post.featuredImage]
+        : [{ url: "/blog/opengraph-image", width: 1200, height: 630, alt: "Bakamo: Insights" }],
     },
+    ...(post.featuredImage ? { twitter: { images: [post.featuredImage] } } : {}),
   };
 }
 

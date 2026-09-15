@@ -37,6 +37,13 @@ export const ORGANIZATION_SCHEMA = {
       name: "Bakamo",
       alternateName: ["Bakamo.Social", "Bakamo Social"],
       url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/brand/bakamo-mark.png`,
+        width: 512,
+        height: 512,
+      },
+      image: `${SITE_URL}/brand/bakamo-mark.png`,
       description:
         "Bakamo is a social intelligence company that surfaces Social Truth, then builds the quantitative instruments that measure it.",
       foundingDate: "2016",

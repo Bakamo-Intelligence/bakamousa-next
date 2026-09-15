@@ -11,16 +11,16 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "Technology",
+  title: "The Reading Machine: Semantic Maps of Conversation",
   description:
-    "Technology is how Bakamo scales Social Truth. It is not what produces it. The Reading Machine makes meaning readable.",
+    "The Reading Machine is Bakamo's technology for reading whole conversations. It maps language into semantic space; our analysts interpret what it shows.",
   alternates: {
     canonical: "/technology",
   },
   openGraph: pageOpenGraph(
     "/technology",
-    "Technology | Bakamo",
-    "Technology is how Bakamo scales Social Truth. It is not what produces it. The Reading Machine makes meaning readable.",
+    "The Reading Machine: Semantic Maps of Conversation | Bakamo",
+    "The Reading Machine is Bakamo's technology for reading whole conversations. It maps language into semantic space; our analysts interpret what it shows.",
   ),
 };
 
@@ -52,7 +52,9 @@ export default function TechnologyPage() {
 
       <section className="px-6 pb-24 pt-32 md:pb-32 md:pt-44" data-analytics-section="technology_hero">
         <div className="mx-auto max-w-6xl">
-          <p className="text-xs uppercase tracking-[0.2em] text-accent">Technology</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-accent">
+            The Reading Machine — how we read whole conversations
+          </p>
           <h1
             className={`${cormorant.className} mt-6 max-w-5xl text-[clamp(3.6rem,7.5vw,7rem)] leading-[0.88] tracking-tight text-white`}
           >

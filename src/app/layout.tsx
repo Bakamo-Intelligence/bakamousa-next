@@ -19,20 +19,20 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Bakamo - Social Truth",
+    default: "Bakamo | Social Intelligence & Consumer Research",
     template: "%s | Bakamo",
   },
   description:
-    "Bakamo surfaces Social Truth, then builds the quantitative instruments that measure it.",
+    "Bakamo is a social intelligence company. We read unprompted conversation, then build better surveys and trackers for brands, health and the public sector.",
   openGraph: pageOpenGraph(
     "/",
-    "Bakamo - Social Truth",
-    "Bakamo surfaces Social Truth, then builds the quantitative instruments that measure it.",
+    "Bakamo | Social Intelligence & Consumer Research",
+    "Bakamo is a social intelligence company. We read unprompted conversation, then build better surveys and trackers for brands, health and the public sector.",
   ),
-  // No share image exists yet, so use the small card. Title and description are
-  // left out so X falls back to each page's own Open Graph tags.
+  // Share images come from the opengraph-image/twitter-image files. Title and
+  // description are left out so X falls back to each page's Open Graph tags.
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
   },
 };
 

@@ -12,15 +12,16 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "Our Method",
-  description: "How Bakamo makes Social Truth through discovery first and measurement second.",
+  title: "Our Method: From Conversation to Better Surveys",
+  description:
+    "Bakamo's two-phase method: read unprompted conversation first, then build the survey around what people actually say. A full study, or input for your team.",
   alternates: {
     canonical: "/our-method",
   },
   openGraph: pageOpenGraph(
     "/our-method",
-    "Our Method | Bakamo",
-    "How Bakamo makes Social Truth through discovery first and measurement second.",
+    "Our Method: From Conversation to Better Surveys | Bakamo",
+    "Bakamo's two-phase method: read unprompted conversation first, then build the survey around what people actually say. A full study, or input for your team.",
   ),
 };
 
@@ -42,8 +43,9 @@ export default function OurMethodPage() {
 
       <section className="px-6 pb-24 pt-32 md:pb-32 md:pt-44">
         <div className="mx-auto max-w-6xl">
+          <p className="text-xs uppercase tracking-[0.2em] text-accent">Our research method</p>
           <h1
-            className={`${cormorant.className} max-w-5xl text-[clamp(4rem,8vw,7.5rem)] leading-[0.86] tracking-tight text-white`}
+            className={`${cormorant.className} mt-6 max-w-5xl text-[clamp(4rem,8vw,7.5rem)] leading-[0.86] tracking-tight text-white`}
           >
             How Social Truth Is Made.
           </h1>
@@ -169,12 +171,12 @@ export default function OurMethodPage() {
             ))}
           </div>
           <Link
-            href="/#atlas"
+            href="/research#atlas"
             className="mt-14 inline-flex text-sm uppercase tracking-[0.16em] text-accent transition-colors hover:text-white"
             data-analytics-event="cta_click"
             data-analytics-label="See the Atlas of Social Truths"
             data-analytics-location="method_deliverables"
-            data-analytics-destination="/#atlas"
+            data-analytics-destination="/research#atlas"
           >
             See the Atlas of Social Truths &rarr;
           </Link>

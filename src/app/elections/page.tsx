@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { pageOpenGraph } from "@/lib/seo";
+import { ORGANIZATION_REF, pageOpenGraph } from "@/lib/seo";
+import { SITE_URL } from "@/lib/site-url";
 import { Cormorant_Garamond } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,18 +12,90 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
+const PAGE_TITLE = "Hungarian Election 2026: Social Media Psychographic Analysis";
+const PAGE_DESCRIPTION =
+  "Before Hungary's April 2026 vote, Tisza supporters showed a 12.4-point higher inner-directed share online than Fidesz supporters. Updated with the result.";
+const DATE_PUBLISHED = "2026-03-23";
+const DATE_MODIFIED = "2026-09-15";
+
+// Final result of the 12 April 2026 election, as published by the National
+// Election Office (NVI). Checked 15 September 2026.
+const NVI_RESULTS_URL = "https://vtr.valasztas.hu/ogy2026";
+
+const PRESS_COVERAGE = [
+  {
+    outlet: "Bloomberg",
+    date: "2026-03-14",
+    displayDate: "14 March 2026",
+    title: "Orban’s Election Campaign Turns to Russia for Help in Final Stretch",
+    note: "Quotes Bakamo founder Daniel Fazekas on online campaigns against the opposition.",
+    href: "https://www.bloomberg.com/news/articles/2026-03-14/orban-s-election-campaign-turns-to-russia-for-help-in-final-stretch",
+    lang: "en",
+  },
+  {
+    outlet: "Átlátszó",
+    date: "2026-03-23",
+    displayDate: "23 March 2026",
+    title: "Kampánypszichológia: mit árul el tízezer komment a Tiszát és a Fideszt támogató választókról?",
+    note: "Coverage of this briefing (in Hungarian).",
+    href: "https://atlatszo.hu/kozugy/2026/03/23/kampanypszichologia-mit-arul-el-tizezer-komment-a-tiszat-es-a-fideszt-tamogato-valasztokrol/",
+    lang: "hu",
+  },
+  {
+    outlet: "Der Standard",
+    date: "2026-04-04",
+    displayDate: "4 April 2026",
+    title: "Sozialforscher Fazekas: „Erdrutschsieg für Ungarns Opposition würde mich nicht überraschen“",
+    note: "Interview with Daniel Fazekas (in German).",
+    href: "https://www.derstandard.at/story/3000000315096/sozialforscher-fazekas-erdrutschsieg-fuer-ungarns-opposition-wuerde-mich-nicht-ueberraschen",
+    lang: "de",
+  },
+  {
+    outlet: "Átlátszó podcast",
+    date: "2026-04-08",
+    displayDate: "8 April 2026",
+    title: "„Ez már nem szórás, ez nyilvánvaló csalás” – podcast a közvélemény-kutatásokról",
+    note: "Daniel Fazekas on opinion polling in Hungary (in Hungarian).",
+    href: "https://atlatszo.hu/kozugy/2026/04/08/ez-mar-nem-szoras-ez-nyilvanvalo-csalas-podcast-a-kozvelemeny-kutatasokrol/",
+    lang: "hu",
+  },
+];
+
 export const metadata: Metadata = {
-  title: "Hungarian Election Psychographic Analysis",
-  description:
-    "Bakamo's large-scale semantic analysis reveals a 12.4-percentage-point psychographic divide between Tisza and Fidesz supporters ahead of the April 12, 2026 Hungarian parliamentary elections.",
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
   alternates: {
     canonical: "/elections",
   },
-  openGraph: pageOpenGraph(
-    "/elections",
-    "A Psychographic Divide in Hungarian Political Discourse | Bakamo",
-    "Tisza supporters show a significantly higher inner-directed share — and why it matters for April 12.",
-  ),
+  openGraph: {
+    ...pageOpenGraph(
+      "/elections",
+      `${PAGE_TITLE} | Bakamo`,
+      "What Bakamo's March briefing found in Hungarian social media, and how it reads next to the official result of the 12 April 2026 election.",
+    ),
+    type: "article",
+    publishedTime: DATE_PUBLISHED,
+    modifiedTime: DATE_MODIFIED,
+  },
+};
+
+const ARTICLE_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
+  datePublished: DATE_PUBLISHED,
+  dateModified: DATE_MODIFIED,
+  author: ORGANIZATION_REF,
+  publisher: ORGANIZATION_REF,
+  about: {
+    "@type": "Event",
+    name: "2026 Hungarian parliamentary election",
+    startDate: "2026-04-12",
+    location: { "@type": "Country", name: "Hungary" },
+  },
+  mainEntityOfPage: `${SITE_URL}/elections`,
+  image: `${SITE_URL}/elections/opengraph-image`,
 };
 
 function PieChart({
@@ -91,6 +164,10 @@ const PDF_PATH = "/media/Bakakmo_HU_Election_PressRelease_EN.pdf";
 export default function ElectionsPage() {
   return (
     <main className="relative w-full min-h-screen bg-near-black text-text-primary overflow-x-hidden pb-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ARTICLE_SCHEMA) }}
+      />
       <div className="grain-overlay" />
 
       {/* Ambient glow */}
@@ -112,14 +189,19 @@ export default function ElectionsPage() {
         data-analytics-label="Elections Hero"
       >
         <div className="max-w-4xl mx-auto">
-          <div className="flex flex-wrap items-center gap-4 mb-8">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-3 mb-8">
             <span className="text-xs uppercase tracking-[0.22em] text-accent border border-accent/30 rounded-full px-4 py-1">
-              Research Briefing
+              Research briefing
             </span>
             <span className="text-xs uppercase tracking-[0.16em] text-text-muted">
-              For Immediate Release
+              Published <time dateTime={DATE_PUBLISHED}>23 March 2026</time>
             </span>
-            <span className="text-xs text-text-muted">Monday, Mar 23, 2026</span>
+            <span aria-hidden="true" className="text-xs text-text-muted">
+              &middot;
+            </span>
+            <span className="text-xs uppercase tracking-[0.16em] text-text-muted">
+              Updated <time dateTime={DATE_MODIFIED}>15 September 2026</time>
+            </span>
           </div>
 
           <p className="text-accent uppercase tracking-[0.2em] text-sm mb-6">
@@ -130,7 +212,7 @@ export default function ElectionsPage() {
             className={`${cormorant.className} text-[clamp(2.4rem,5.5vw,4.8rem)] leading-[1.02] tracking-tight text-white`}
           >
             A Psychographic Divide in Hungarian Political Discourse: Tisza Supporters Show
-            a Significantly Higher Inner-Directed Share — and Why It Matters for April&nbsp;12
+            a Significantly Higher Inner-Directed&nbsp;Share
           </h1>
 
           <div className="w-16 h-px bg-accent mt-10 mb-10" />
@@ -172,6 +254,103 @@ export default function ElectionsPage() {
               </svg>
               Download Full Report (PDF)
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Post-election update (15 September 2026), placed ahead of the March briefing. */}
+      <section
+        className="relative px-6 pb-16"
+        aria-labelledby="after-the-vote-heading"
+        data-analytics-section="elections_after_the_vote"
+        data-analytics-label="After the Vote"
+      >
+        <div className="max-w-4xl mx-auto">
+          <div
+            className="rounded-[2rem] border border-accent/25 p-8 md:p-12"
+            style={{
+              background:
+                "linear-gradient(150deg, rgba(201,169,110,0.08), rgba(20,20,20,0.94) 40%, rgba(10,10,10,0.98))",
+            }}
+          >
+            <p className="text-accent uppercase tracking-[0.2em] text-sm mb-4">
+              Updated <time dateTime={DATE_MODIFIED}>15 September 2026</time>
+            </p>
+            <h2
+              id="after-the-vote-heading"
+              className={`${cormorant.className} text-3xl md:text-4xl font-light text-white mb-8 leading-tight`}
+            >
+              After the vote
+            </h2>
+            <div className="space-y-5 text-base font-light leading-relaxed text-text-secondary max-w-3xl">
+              <p>
+                In March we reported that Tisza supporters produced a higher share of inner-directed
+                expressions than Fidesz supporters, &ldquo;with a gap of 12.4 percentage
+                points.&rdquo; We called that gap &ldquo;a predictive indicator that Tisza&apos;s
+                discourse is structured to grow&rdquo; and wrote: &ldquo;we expect this tendency to
+                manifest in widening Tisza&apos;s lead in survey-based polling.&rdquo;
+              </p>
+              <p>
+                On 4 April, eight days before the vote, Bakamo founder Daniel Fazekas told{" "}
+                <span lang="de">Der Standard</span> that a landslide for Hungary&apos;s opposition
+                would not surprise him.
+              </p>
+              <p>
+                Hungary voted on 12 April 2026. In the final result published by the{" "}
+                <a
+                  href={NVI_RESULTS_URL}
+                  hrefLang="hu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-accent hover:underline underline-offset-4"
+                  data-analytics-event="outbound_click"
+                  data-analytics-label="NVI Official Results"
+                  data-analytics-location="elections_after_the_vote"
+                >
+                  National Election Office
+                </a>{" "}
+                (in Hungarian), Tisza won{" "}
+                <span className="text-white font-medium">141 of the 199 seats</span> and{" "}
+                <span className="text-white font-medium">53.18%</span> of valid national list votes.
+                Fidesz&ndash;KDNP won 52 seats and 38.61%. Mi Hazánk won 6 seats.
+              </p>
+              <p>
+                The result matches the direction the briefing described: the party whose supporters
+                showed the higher inner-directed share won, and won by a wide margin.
+              </p>
+              <p className="text-text-primary">
+                The briefing read unprompted online conversation in March, weeks before the vote. The
+                54.7% / 45.3% split reported below describes relevant social media mentions, not
+                voters.
+              </p>
+            </div>
+
+            <div className="mt-10 border-t border-white/10 pt-8">
+              <h3 className="text-accent uppercase tracking-[0.2em] text-sm mb-6">In the press</h3>
+              <ul className="space-y-6">
+                {PRESS_COVERAGE.map((item) => (
+                  <li key={item.href} className="max-w-3xl">
+                    <p className="text-xs uppercase tracking-[0.16em] text-text-muted">
+                      {item.outlet} &middot; <time dateTime={item.date}>{item.displayDate}</time>
+                    </p>
+                    <a
+                      href={item.href}
+                      hrefLang={item.lang}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`${cormorant.className} mt-1 block text-xl leading-snug text-white hover:text-accent transition-colors`}
+                      data-analytics-event="outbound_click"
+                      data-analytics-label={`Press: ${item.outlet}`}
+                      data-analytics-location="elections_in_the_press"
+                      data-analytics-destination={item.href}
+                    >
+                      <span lang={item.lang}>{item.title}</span>
+                    </a>
+                    <p className="mt-1 text-sm font-light text-text-secondary">{item.note}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
@@ -630,10 +809,10 @@ export default function ElectionsPage() {
                   The 2017 French Presidential Election
                 </h3>
                 <p className="text-sm font-light leading-relaxed text-text-secondary mb-6">
-                  Bakamo&apos;s first public election study analysed the psychographic texture of social
-                  media discourse during the 2017 Macron&ndash;Le Pen runoff, mapping how organic expressions
-                  flowed through the media relay before reshaping mainstream narratives. The methodology and
-                  findings were picked up and cited internationally.
+                  Bakamo&apos;s first public election study mapped the French social media landscape from
+                  November 2016 to the May 2017 runoff: which media sources people shared, how rarely they
+                  crossed between them, and how disinformation travelled. The methodology and findings were
+                  picked up and cited internationally.
                 </p>
 
                 {/* Outlet badges */}
@@ -651,6 +830,16 @@ export default function ElectionsPage() {
                   ))}
                 </div>
 
+                <Link
+                  href="/research/french-election-2017"
+                  className="mb-4 inline-flex items-center gap-2 text-sm text-white hover:text-accent transition-colors"
+                  data-analytics-event="cta_click"
+                  data-analytics-label="French Election 2017 Study Page"
+                  data-analytics-location="elections_prior_research"
+                  data-analytics-destination="/research/french-election-2017"
+                >
+                  Read the study summary &rarr;
+                </Link>
                 <a
                   href="/frenchelection"
                   target="_blank"

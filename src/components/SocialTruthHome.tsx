@@ -91,7 +91,9 @@ export default function SocialTruthHome({ heroVideo }: { heroVideo: string }) {
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_20%,rgba(201,169,110,0.16),transparent_34%)]" />
 
         <div className="mx-auto w-full max-w-6xl">
-          <p className="text-xs uppercase tracking-[0.28em] text-accent">Social Truth</p>
+          <p className="text-balance text-xs uppercase tracking-[0.28em] text-accent">
+            Social intelligence &amp; consumer research
+          </p>
           <h1
             className={`${cormorant.className} mt-8 max-w-5xl text-[clamp(3rem,6.5vw,6.25rem)] leading-[0.92] tracking-tight text-white`}
           >
@@ -105,9 +107,9 @@ export default function SocialTruthHome({ heroVideo }: { heroVideo: string }) {
             </p>
             <p className="text-white">This is where Bakamo looks.</p>
             <p>
-              We read natural conversation to uncover the meanings, tensions and assumptions shaping
-              how people see the world &mdash; and turn them into insight that helps organisations
-              make better decisions.
+              We are a social intelligence company. We read natural conversation to uncover the
+              meanings, tensions and assumptions shaping how people see the world &mdash; and turn
+              them into insight that helps organisations make better decisions.
             </p>
           </div>
           <p className={`${cormorant.className} mt-10 text-3xl italic text-accent md:text-4xl`}>
@@ -188,7 +190,8 @@ export default function SocialTruthHome({ heroVideo }: { heroVideo: string }) {
       {/* Reality first + technology */}
       <section className="bg-dark-grey px-6 py-24 md:py-32" data-analytics-section="home_method">
         <div className="mx-auto max-w-5xl">
-          <h2 className={H2}>Reality first. Measurement second.</h2>
+          <p className="text-xs uppercase tracking-[0.2em] text-accent">Our method</p>
+          <h2 className={`mt-6 ${H2}`}>Reality first. Measurement second.</h2>
           <div className={`mt-12 ${BODY}`}>
             <p>Most research starts with a question.</p>
             <p className="text-white">We start with reality.</p>
@@ -255,7 +258,8 @@ export default function SocialTruthHome({ heroVideo }: { heroVideo: string }) {
       {/* The Atlas */}
       <section id="atlas" className="px-6 py-24 md:py-32" data-analytics-section="home_atlas">
         <div className="mx-auto max-w-6xl text-center">
-          <h2 className={`${cormorant.className} text-5xl leading-none text-white md:text-7xl`}>
+          <p className="text-xs uppercase tracking-[0.2em] text-accent">Across markets and languages</p>
+          <h2 className={`${cormorant.className} mt-6 text-5xl leading-none text-white md:text-7xl`}>
             We go where the conversation is.
           </h2>
           <div className="mx-auto mt-10 max-w-3xl space-y-5 text-lg font-light leading-relaxed text-text-secondary">
@@ -298,7 +302,8 @@ export default function SocialTruthHome({ heroVideo }: { heroVideo: string }) {
       {/* Boxes */}
       <section className="border-t border-border-grey px-6 py-24 md:py-32" data-analytics-section="home_boxes">
         <div className="mx-auto max-w-5xl">
-          <h2 className={H2}>We don&apos;t believe people fit neatly into boxes.</h2>
+          <p className="text-xs uppercase tracking-[0.2em] text-accent">Segmentation</p>
+          <h2 className={`mt-6 ${H2}`}>We don&apos;t believe people fit neatly into boxes.</h2>
           <p className="mt-12 max-w-3xl text-2xl font-light leading-snug text-white">
             People are contradictory. Contextual. Social.
           </p>
@@ -317,7 +322,8 @@ export default function SocialTruthHome({ heroVideo }: { heroVideo: string }) {
       {/* What we uncover */}
       <section className="bg-dark-grey px-6 py-24 md:py-32" data-analytics-section="home_sectors">
         <div className="mx-auto max-w-6xl">
-          <h2 className={H2}>What we uncover changes what happens next.</h2>
+          <p className="text-xs uppercase tracking-[0.2em] text-accent">Who we work with</p>
+          <h2 className={`mt-6 ${H2}`}>What we uncover changes what happens next.</h2>
           <p className="mt-10 max-w-3xl text-xl font-light leading-relaxed text-text-secondary">
             Our work has helped organisations understand markets, challenge assumptions, identify
             emerging needs and make decisions with a clearer view of the people affected by them. We

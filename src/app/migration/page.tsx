@@ -12,7 +12,7 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "Migration Research",
+  title: "Migration Research: Narratives Across Europe",
   description:
     "A decade of Bakamo’s work reading how Europeans talk about migration: narrative studies and country deep dives for foundations and policy institutions.",
   alternates: {
@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   },
   openGraph: pageOpenGraph(
     "/migration",
-    "Migration Research | Bakamo",
-    "Narrative, not opinion. A decade of Bakamo’s large-scale listening studies on migration across Europe.",
+    "Migration Research: Narratives Across Europe | Bakamo",
+    "A decade of Bakamo’s work reading how Europeans talk about migration: narrative studies and country deep dives for foundations and policy institutions.",
   ),
 };
 
