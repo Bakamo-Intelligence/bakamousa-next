@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { pageOpenGraph } from "@/lib/seo";
+import { ORGANIZATION_REF, pageOpenGraph } from "@/lib/seo";
+import { SITE_URL } from "@/lib/site-url";
 import { Cormorant_Garamond } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,18 +12,50 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
+const PAGE_TITLE = "Hungarian Election 2026: Social Media Psychographic Analysis";
+const PAGE_DESCRIPTION =
+  "Before Hungary's April 2026 vote, Tisza supporters showed a 12.4-point higher inner-directed share online than Fidesz supporters. Updated with the result.";
+const DATE_PUBLISHED = "2026-03-23";
+const DATE_MODIFIED = "2026-09-15";
+
+// Final result of the 12 April 2026 election, as published by the National
+// Election Office (NVI). Checked 15 September 2026.
+const NVI_RESULTS_URL = "https://vtr.valasztas.hu/ogy2026";
+
 export const metadata: Metadata = {
-  title: "Hungarian Election Psychographic Analysis",
-  description:
-    "Bakamo's large-scale semantic analysis reveals a 12.4-percentage-point psychographic divide between Tisza and Fidesz supporters ahead of the April 12, 2026 Hungarian parliamentary elections.",
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
   alternates: {
     canonical: "/elections",
   },
-  openGraph: pageOpenGraph(
-    "/elections",
-    "A Psychographic Divide in Hungarian Political Discourse | Bakamo",
-    "Tisza supporters show a significantly higher inner-directed share — and why it matters for April 12.",
-  ),
+  openGraph: {
+    ...pageOpenGraph(
+      "/elections",
+      `${PAGE_TITLE} | Bakamo`,
+      "What Bakamo's March briefing found in Hungarian social media, and how it reads next to the official result of the 12 April 2026 election.",
+    ),
+    type: "article",
+    publishedTime: DATE_PUBLISHED,
+    modifiedTime: DATE_MODIFIED,
+  },
+};
+
+const ARTICLE_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
+  datePublished: DATE_PUBLISHED,
+  dateModified: DATE_MODIFIED,
+  author: ORGANIZATION_REF,
+  publisher: ORGANIZATION_REF,
+  about: {
+    "@type": "Event",
+    name: "2026 Hungarian parliamentary election",
+    startDate: "2026-04-12",
+    location: { "@type": "Country", name: "Hungary" },
+  },
+  mainEntityOfPage: `${SITE_URL}/elections`,
 };
 
 function PieChart({
@@ -91,6 +124,10 @@ const PDF_PATH = "/media/Bakakmo_HU_Election_PressRelease_EN.pdf";
 export default function ElectionsPage() {
   return (
     <main className="relative w-full min-h-screen bg-near-black text-text-primary overflow-x-hidden pb-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ARTICLE_SCHEMA) }}
+      />
       <div className="grain-overlay" />
 
       {/* Ambient glow */}
@@ -112,14 +149,19 @@ export default function ElectionsPage() {
         data-analytics-label="Elections Hero"
       >
         <div className="max-w-4xl mx-auto">
-          <div className="flex flex-wrap items-center gap-4 mb-8">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-3 mb-8">
             <span className="text-xs uppercase tracking-[0.22em] text-accent border border-accent/30 rounded-full px-4 py-1">
-              Research Briefing
+              Research briefing
             </span>
             <span className="text-xs uppercase tracking-[0.16em] text-text-muted">
-              For Immediate Release
+              Published <time dateTime={DATE_PUBLISHED}>23 March 2026</time>
             </span>
-            <span className="text-xs text-text-muted">Monday, Mar 23, 2026</span>
+            <span aria-hidden="true" className="text-xs text-text-muted">
+              &middot;
+            </span>
+            <span className="text-xs uppercase tracking-[0.16em] text-text-muted">
+              Updated <time dateTime={DATE_MODIFIED}>15 September 2026</time>
+            </span>
           </div>
 
           <p className="text-accent uppercase tracking-[0.2em] text-sm mb-6">
@@ -130,7 +172,7 @@ export default function ElectionsPage() {
             className={`${cormorant.className} text-[clamp(2.4rem,5.5vw,4.8rem)] leading-[1.02] tracking-tight text-white`}
           >
             A Psychographic Divide in Hungarian Political Discourse: Tisza Supporters Show
-            a Significantly Higher Inner-Directed Share — and Why It Matters for April&nbsp;12
+            a Significantly Higher Inner-Directed&nbsp;Share
           </h1>
 
           <div className="w-16 h-px bg-accent mt-10 mb-10" />
@@ -172,6 +214,72 @@ export default function ElectionsPage() {
               </svg>
               Download Full Report (PDF)
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Post-election update (15 September 2026), placed ahead of the March briefing. */}
+      <section
+        className="relative px-6 pb-16"
+        aria-labelledby="after-the-vote-heading"
+        data-analytics-section="elections_after_the_vote"
+        data-analytics-label="After the Vote"
+      >
+        <div className="max-w-4xl mx-auto">
+          <div
+            className="rounded-[2rem] border border-accent/25 p-8 md:p-12"
+            style={{
+              background:
+                "linear-gradient(150deg, rgba(201,169,110,0.08), rgba(20,20,20,0.94) 40%, rgba(10,10,10,0.98))",
+            }}
+          >
+            <p className="text-accent uppercase tracking-[0.2em] text-sm mb-4">
+              Updated <time dateTime={DATE_MODIFIED}>15 September 2026</time>
+            </p>
+            <h2
+              id="after-the-vote-heading"
+              className={`${cormorant.className} text-3xl md:text-4xl font-light text-white mb-8 leading-tight`}
+            >
+              After the vote
+            </h2>
+            <div className="space-y-5 text-base font-light leading-relaxed text-text-secondary max-w-3xl">
+              <p>
+                In March we reported that Tisza supporters produced a higher share of inner-directed
+                expressions than Fidesz supporters, &ldquo;with a gap of 12.4 percentage
+                points.&rdquo; We called that gap &ldquo;a predictive indicator that Tisza&apos;s
+                discourse is structured to grow&rdquo; and wrote: &ldquo;we expect this tendency to
+                manifest in widening Tisza&apos;s lead in survey-based polling.&rdquo;
+              </p>
+              <p>
+                Hungary voted on 12 April 2026. In the final result published by the{" "}
+                <a
+                  href={NVI_RESULTS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-accent hover:underline underline-offset-4"
+                  data-analytics-event="outbound_click"
+                  data-analytics-label="NVI Official Results"
+                  data-analytics-location="elections_after_the_vote"
+                >
+                  National Election Office
+                </a>
+                , Tisza won <span className="text-white font-medium">141 of the 199 seats</span> and{" "}
+                <span className="text-white font-medium">53.18%</span> of valid national list votes;
+                Fidesz&ndash;KDNP won 52 seats and 38.61%, and Mi Hazánk won 6 seats.
+              </p>
+              <p>
+                The result is consistent with the direction the briefing described: the party whose
+                supporters showed the higher inner-directed share won, and won by a wide margin. It
+                does not confirm the mechanism.
+              </p>
+              <p className="text-text-primary">
+                The briefing was a reading of unprompted online conversation in March, weeks before
+                the vote. It was not a vote forecast or a seat model. It did not estimate vote shares,
+                turnout or seats, and it cannot show whether the gap changed any vote. Its stated
+                expectation was about survey-based polling, which this update does not assess. The
+                limitations set out in the briefing below still apply.
+              </p>
+            </div>
           </div>
         </div>
       </section>
