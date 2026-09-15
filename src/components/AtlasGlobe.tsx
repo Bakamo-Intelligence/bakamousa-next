@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Cormorant_Garamond } from "next/font/google";
+import Link from "next/link";
 import { ATLAS_POINTS, type AtlasPoint, type AtlasCase } from "@/lib/atlas";
 
 const cormorant = Cormorant_Garamond({
@@ -840,6 +841,18 @@ export default function AtlasGlobe() {
                 <p key={index}>{paragraph}</p>
               ))}
             </div>
+            {selectedCase.href ? (
+              <Link
+                href={selectedCase.href}
+                className="mt-8 self-start text-xs uppercase tracking-[0.18em] text-accent underline-offset-4 transition-colors hover:text-white hover:underline"
+                data-analytics-event="cta_click"
+                data-analytics-label={`Atlas case: ${selectedCase.name}`}
+                data-analytics-location="atlas_case_panel"
+                data-analytics-destination={selectedCase.href}
+              >
+                {selectedCase.href.startsWith("/research") ? "Read more" : "See the study"}
+              </Link>
+            ) : null}
           </article>
         </div>
       ) : null}
