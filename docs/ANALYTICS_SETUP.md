@@ -37,19 +37,19 @@ Event parameters, where present: `label`, `location`, `destination`, `page_type`
 `generate_lead` counts clicks on the email link, not sent emails, so treat it as a
 strong signal of intent rather than a confirmed enquiry.
 
-## One-time GA4 admin steps
+## GA4 property configuration (done 15 September 2026)
 
-1. Admin → Events: mark `generate_lead` as a key event.
-2. Admin → Custom definitions: register the parameters above as event-scoped custom
-   dimensions (`depth_percentage` can be a custom metric instead).
-3. Admin → Data streams → the web stream: set the website URL to
-   `https://www.bakamosocial.com` and keep enhanced measurement on.
-4. Data streams → Configure tag settings → List unwanted referrals: make sure
-   `bakamosocial.com` is spelled correctly.
-5. Data streams → Configure tag settings → User-provided data collection: turn automatic
-   detection off (the site never collects user data in forms).
-6. Optional: Admin → Data display → Channel groups: add an "AI assistants" channel that
-   matches sources such as `chatgpt.com`, `perplexity.ai`, `copilot.microsoft.com`,
-   `gemini.google.com` and `claude.ai`.
+Property "Bakamo.Social - GA4", web stream `https://www.bakamosocial.com`:
+
+- Key events: `generate_lead` only (the old `contact_us` / `join_us` key events were removed).
+- Custom dimensions (event scope): `page_type`, `label`, `location`, `destination`,
+  `section`, `contact_method`, `lead_source`. Custom metric: `depth_percentage`.
+- Enhanced measurement: page views including "page changes based on browser history
+  events" (needed because the site navigates client-side), outbound clicks, file downloads.
+- The eight "create event" rules left over from the GTM setup were deleted.
+- Unwanted referrals: `bakamosocial.com`.
+- User-provided data capabilities: off (the site collects no user data).
+- AI assistant traffic: GA4's default channel group includes a built-in "AI Assistant"
+  channel, so no custom channel group is needed.
 
 The GTM container can be deleted, or left unpublished, once GA4 shows the new events.
