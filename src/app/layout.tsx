@@ -19,11 +19,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Bakamo - Social Truth",
+    default: "Bakamo | Social Intelligence & Consumer Research",
     template: "%s | Bakamo",
   },
   description:
-    "Bakamo surfaces Social Truth, then builds the quantitative instruments that measure it.",
+    "Bakamo is a social intelligence company. We read unprompted conversation, then build better surveys and trackers for brands, health and public bodies.",
   openGraph: pageOpenGraph(
     "/",
     "Bakamo - Social Truth",
