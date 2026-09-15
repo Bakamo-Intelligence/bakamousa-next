@@ -13,16 +13,16 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "About",
+  title: { absolute: "About Bakamo: A Social Intelligence Company" },
   description:
-    "Bakamo is a social intelligence company. We close the gap between decision-makers and people by reading unprompted conversation. Build on reality.",
+    "Bakamo is a social intelligence company. We read unprompted conversation in 65 languages for brands, health and pharma, governments and not-for-profits.",
   alternates: {
     canonical: "/about",
   },
   openGraph: pageOpenGraph(
     "/about",
-    "About Bakamo",
-    "Bakamo is a social intelligence company. We close the gap between decision-makers and people by reading unprompted conversation. Build on reality.",
+    "About Bakamo: A Social Intelligence Company",
+    "Bakamo is a social intelligence company. We read unprompted conversation in 65 languages for brands, health and pharma, governments and not-for-profits.",
   ),
 };
 
@@ -107,7 +107,7 @@ export default function AboutPage() {
 
       <section className="px-6 pb-24 pt-32 md:pb-32 md:pt-44" data-analytics-section="about_hero">
         <div className="mx-auto max-w-6xl">
-          <Eyebrow>About Bakamo</Eyebrow>
+          <Eyebrow>About Bakamo — a social intelligence company</Eyebrow>
           <h1
             className={`${cormorant.className} mt-6 max-w-5xl text-[clamp(4rem,8vw,7.5rem)] leading-[0.86] tracking-tight text-white`}
           >
