@@ -229,7 +229,9 @@ export default function PrivacyPage() {
                 Demo bookings are handled by <strong className="text-text-primary">Roam HQ, Inc.</strong>,
                 which provides the booking calendar and the video call, sends confirmation and reminder
                 emails, and adds the meeting to our Google Workspace calendar. Roam may process your
-                details in the United States. For more information:{" "}
+                details in the United States. If you open our booking page directly on ro.am rather than
+                through this website, Roam measures visits and bookings on that page for us with Google
+                Analytics, and Roam may use its own cookies there. For more information:{" "}
                 <a
                   href="https://ro.am/privacy"
                   target="_blank"

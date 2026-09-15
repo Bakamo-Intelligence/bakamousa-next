@@ -49,8 +49,19 @@ Roam-created events in Google Calendar (or Roam's booking list) as the source of
 
 "Book a demo" links point to `/contact#book-a-demo`. `BookingModal` (mounted in the root
 layout) intercepts them and opens a popup; Roam's calendar script loads only on first
-open. The lobby URL and call length live in `src/lib/booking.ts`. Leave Roam's own
-"Google Tracking ID" lobby setting empty so GA4 never runs outside the consent banner.
+open. The lobby URL and call length live in `src/lib/booking.ts`.
+
+Tested 15 September 2026 in headless Chrome with cookies declined: the popup makes no
+requests to Roam until opened, and once opened loads only ro.am, roamstatic.com and
+LaunchDarkly (Roam's feature-flag service), with no Google requests and no cookies.
+
+The Roam lobby (ro.am/dani) has its "Google Tracking ID" set to `G-L84VKCB2WZ`. That
+only affects the standalone lobby page (e.g. the link in email signatures): it loads
+gtag there (with Google consent defaults denied) and sends page views and Roam's lobby
+events to this GA4 property under hostname `ro.am`. Roam's page also loads Roam's own
+Google Ads tag and marketing cookies. In reports, filter `hostName` to
+`www.bakamosocial.com` for website numbers, and treat Roam's lobby events as signature
+and direct-link bookings, separate from the site's `generate_lead`.
 
 ## GA4 property configuration (done 15 September 2026)
 
