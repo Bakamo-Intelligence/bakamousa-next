@@ -1,0 +1,13 @@
+# Original / superseded video files that no page references.
+# The homepage uses the compressed copies in public/media/hero/.
+# Kept in the repo, excluded from Vercel uploads to save deployment storage.
+public/media/Protests.mov
+public/media/india.mov
+public/media/UKSTREET.mov
+public/media/shopping.mov
+public/media/India.m4v
+public/media/india-bg.mp4
+public/media/ukstreet-bg.mp4
+public/media/shopping-bg.mp4
+public/media/protests-bg.mp4
+public/media/hero-bg.mp4
