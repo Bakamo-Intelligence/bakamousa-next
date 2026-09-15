@@ -111,7 +111,7 @@ export default function SiteNavigation() {
     <nav
       ref={navRef}
       aria-label="Main"
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${barBackground} ${
+      className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-500 ${barBackground} ${
         isHidden && !menuOpen ? "-translate-y-full" : "translate-y-0"
       }`}
       style={{ transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)" }}

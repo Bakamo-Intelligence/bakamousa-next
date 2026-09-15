@@ -42,6 +42,7 @@ const ARTICLE_SCHEMA = {
   description: DESCRIPTION,
   url: PAGE_URL,
   mainEntityOfPage: PAGE_URL,
+  image: `${PAGE_URL}/opengraph-image`,
   inLanguage: "en",
   author: ORGANIZATION_REF,
   publisher: ORGANIZATION_REF,

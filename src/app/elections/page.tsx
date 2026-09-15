@@ -95,6 +95,7 @@ const ARTICLE_SCHEMA = {
     location: { "@type": "Country", name: "Hungary" },
   },
   mainEntityOfPage: `${SITE_URL}/elections`,
+  image: `${SITE_URL}/elections/opengraph-image`,
 };
 
 function PieChart({
@@ -808,10 +809,10 @@ export default function ElectionsPage() {
                   The 2017 French Presidential Election
                 </h3>
                 <p className="text-sm font-light leading-relaxed text-text-secondary mb-6">
-                  Bakamo&apos;s first public election study analysed the psychographic texture of social
-                  media discourse during the 2017 Macron&ndash;Le Pen runoff, mapping how organic expressions
-                  flowed through the media relay before reshaping mainstream narratives. The methodology and
-                  findings were picked up and cited internationally.
+                  Bakamo&apos;s first public election study mapped the French social media landscape from
+                  November 2016 to the May 2017 runoff: which media sources people shared, how rarely they
+                  crossed between them, and how disinformation travelled. The methodology and findings were
+                  picked up and cited internationally.
                 </p>
 
                 {/* Outlet badges */}
@@ -829,6 +830,16 @@ export default function ElectionsPage() {
                   ))}
                 </div>
 
+                <Link
+                  href="/research/french-election-2017"
+                  className="mb-4 inline-flex items-center gap-2 text-sm text-white hover:text-accent transition-colors"
+                  data-analytics-event="cta_click"
+                  data-analytics-label="French Election 2017 Study Page"
+                  data-analytics-location="elections_prior_research"
+                  data-analytics-destination="/research/french-election-2017"
+                >
+                  Read the study summary &rarr;
+                </Link>
                 <a
                   href="/frenchelection"
                   target="_blank"

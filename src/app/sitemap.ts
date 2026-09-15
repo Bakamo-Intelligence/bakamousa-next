@@ -5,13 +5,13 @@ import { SITE_URL } from "@/lib/site-url";
 // lastModified is the date the page's content last changed. Update the date
 // when a page's copy changes; Google ignores lastmod that changes on every fetch.
 const STATIC_PAGES: Array<{ path: string; lastModified: string }> = [
-  { path: "", lastModified: "2026-09-14" },
-  { path: "/about", lastModified: "2026-09-14" },
-  { path: "/our-method", lastModified: "2026-09-14" },
-  { path: "/technology", lastModified: "2026-09-14" },
+  { path: "", lastModified: "2026-09-15" },
+  { path: "/about", lastModified: "2026-09-15" },
+  { path: "/our-method", lastModified: "2026-09-15" },
+  { path: "/technology", lastModified: "2026-09-15" },
   { path: "/research", lastModified: "2026-09-15" },
   { path: "/research/french-election-2017", lastModified: "2026-09-15" },
-  { path: "/elections", lastModified: "2026-05-15" },
+  { path: "/elections", lastModified: "2026-09-15" },
   { path: "/migration", lastModified: "2026-09-15" },
   { path: "/contact", lastModified: "2026-09-15" },
   { path: "/privacy", lastModified: "2026-09-15" },

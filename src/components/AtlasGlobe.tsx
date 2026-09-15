@@ -850,7 +850,7 @@ export default function AtlasGlobe() {
                 data-analytics-location="atlas_case_panel"
                 data-analytics-destination={selectedCase.href}
               >
-                {selectedCase.href.startsWith("/research") ? "Read more" : "See the study"}
+                {selectedCase.href.startsWith("/research") ? "View on the research page" : "See the study"}
               </Link>
             ) : null}
           </article>
