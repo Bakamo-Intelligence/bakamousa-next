@@ -108,11 +108,8 @@ export default function SocialTruthHome({ heroVideo }: { heroVideo: string }) {
             <p className="text-white">This is where Bakamo looks.</p>
             <p>
               We are a social intelligence company. We read natural conversation to uncover the
-              meanings, tensions and assumptions shaping how people see the world.
-            </p>
-            <p>
-              Then we turn them into insight that helps organisations make better decisions &mdash;
-              and into the surveys, trackers and segmentations that measure what matters.
+              meanings, tensions and assumptions shaping how people see the world &mdash; and turn
+              them into insight that helps organisations make better decisions.
             </p>
           </div>
           <p className={`${cormorant.className} mt-10 text-3xl italic text-accent md:text-4xl`}>
@@ -375,7 +372,7 @@ export default function SocialTruthHome({ heroVideo }: { heroVideo: string }) {
       <section className="bg-dark-grey px-6 py-28 text-center md:py-40" data-analytics-section="home_close">
         <div className="mx-auto max-w-5xl">
           <h2 className={`${cormorant.className} text-5xl leading-none text-white md:text-8xl`}>
-            Start with reality.
+            Build on reality.
           </h2>
           <div className="mx-auto mt-10 max-w-3xl space-y-5 text-lg font-light leading-relaxed text-text-secondary md:text-xl">
             <p>You don&apos;t always need another study.</p>

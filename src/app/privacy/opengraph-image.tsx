@@ -1,8 +1,8 @@
 import { OG_CONTENT_TYPE, OG_SIZE, ogImageAlt, renderOgImage } from "@/lib/og-image";
 
 const content = {
-  title: "Hungarian Election 2026: Psychographic Analysis",
-  descriptor: "Semantic analysis of Hungarian social media conversations",
+  title: "Privacy Policy",
+  descriptor: "How Bakamo collects, uses and protects information on this website",
 };
 
 export const alt = ogImageAlt(content);

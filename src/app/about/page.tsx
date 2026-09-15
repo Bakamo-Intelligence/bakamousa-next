@@ -15,14 +15,14 @@ const cormorant = Cormorant_Garamond({
 export const metadata: Metadata = {
   title: { absolute: "About Bakamo: A Social Intelligence Company" },
   description:
-    "Bakamo is a social intelligence company. We read unprompted conversation in 65 languages for brands, health and pharma, governments and not-for-profits.",
+    "Bakamo reads unprompted conversation in 65 languages for brands, health and pharma, governments and not-for-profits. Meet the team and our approach.",
   alternates: {
     canonical: "/about",
   },
   openGraph: pageOpenGraph(
     "/about",
     "About Bakamo: A Social Intelligence Company",
-    "Bakamo is a social intelligence company. We read unprompted conversation in 65 languages for brands, health and pharma, governments and not-for-profits.",
+    "Bakamo reads unprompted conversation in 65 languages for brands, health and pharma, governments and not-for-profits. Meet the team and our approach.",
   ),
 };
 

@@ -3,7 +3,7 @@ import { pageOpenGraph } from "@/lib/seo";
 import ContactPage from "@/components/ContactPage";
 
 export const metadata: Metadata = {
-  title: { absolute: "Contact Bakamo: New Jersey, London, Budapest" },
+  title: { absolute: "Contact Bakamo | Social Intelligence Research" },
   description:
     "Talk to Bakamo about social intelligence research. Offices in New Jersey, London, Dortmund, Budapest and Kuala Lumpur. Email info@bakamosocial.com.",
   alternates: {
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   },
   openGraph: pageOpenGraph(
     "/contact",
-    "Contact Bakamo: New Jersey, London, Budapest",
+    "Contact Bakamo | Social Intelligence Research",
     "Talk to Bakamo about social intelligence research. Offices in New Jersey, London, Dortmund, Budapest and Kuala Lumpur. Email info@bakamosocial.com.",
   ),
 };

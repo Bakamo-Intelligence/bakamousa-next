@@ -254,6 +254,7 @@ export default function ElectionsPage() {
                 Hungary voted on 12 April 2026. In the final result published by the{" "}
                 <a
                   href={NVI_RESULTS_URL}
+                  hrefLang="hu"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-accent hover:underline underline-offset-4"
@@ -262,22 +263,20 @@ export default function ElectionsPage() {
                   data-analytics-location="elections_after_the_vote"
                 >
                   National Election Office
-                </a>
-                , Tisza won <span className="text-white font-medium">141 of the 199 seats</span> and{" "}
-                <span className="text-white font-medium">53.18%</span> of valid national list votes;
-                Fidesz&ndash;KDNP won 52 seats and 38.61%, and Mi Hazánk won 6 seats.
+                </a>{" "}
+                (in Hungarian), Tisza won{" "}
+                <span className="text-white font-medium">141 of the 199 seats</span> and{" "}
+                <span className="text-white font-medium">53.18%</span> of valid national list votes.
+                Fidesz&ndash;KDNP won 52 seats and 38.61%. Mi Hazánk won 6 seats.
               </p>
               <p>
-                The result is consistent with the direction the briefing described: the party whose
-                supporters showed the higher inner-directed share won, and won by a wide margin. It
-                does not confirm the mechanism.
+                The result matches the direction the briefing described: the party whose supporters
+                showed the higher inner-directed share won, and won by a wide margin.
               </p>
               <p className="text-text-primary">
-                The briefing was a reading of unprompted online conversation in March, weeks before
-                the vote. It was not a vote forecast or a seat model. It did not estimate vote shares,
-                turnout or seats, and it cannot show whether the gap changed any vote. Its stated
-                expectation was about survey-based polling, which this update does not assess. The
-                limitations set out in the briefing below still apply.
+                The briefing read unprompted online conversation in March, weeks before the vote. The
+                54.7% / 45.3% split reported below describes relevant social media mentions, not
+                voters.
               </p>
             </div>
           </div>

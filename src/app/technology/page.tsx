@@ -53,7 +53,7 @@ export default function TechnologyPage() {
       <section className="px-6 pb-24 pt-32 md:pb-32 md:pt-44" data-analytics-section="technology_hero">
         <div className="mx-auto max-w-6xl">
           <p className="text-xs uppercase tracking-[0.2em] text-accent">
-            The Reading Machine — technology for reading whole conversations
+            The Reading Machine — how we read whole conversations
           </p>
           <h1
             className={`${cormorant.className} mt-6 max-w-5xl text-[clamp(3.6rem,7.5vw,7rem)] leading-[0.88] tracking-tight text-white`}

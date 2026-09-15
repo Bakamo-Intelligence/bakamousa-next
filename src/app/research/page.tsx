@@ -269,6 +269,7 @@ export default function ResearchPage() {
                       data-analytics-destination={studyHref}
                     >
                       See the study
+                      <span className="sr-only">: {atlasCase.name}</span>
                       <ArrowIcon />
                     </Link>
                   ) : null}

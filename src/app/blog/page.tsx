@@ -35,7 +35,7 @@ export default async function BlogIndexPage() {
         <div>
           <h1 className="text-3xl font-semibold tracking-tight">Insights</h1>
           <p className="mt-2 text-zinc-600 dark:text-zinc-400">
-            Consumer intelligence insights, methodology deep-dives, and cultural analysis from the Bakamo team.
+            Articles from the Bakamo team on social intelligence, research methods and what unprompted conversation reveals.
           </p>
         </div>
         <Link

@@ -1,8 +1,8 @@
 import { OG_CONTENT_TYPE, OG_SIZE, ogImageAlt, renderOgImage } from "@/lib/og-image";
 
 const content = {
-  title: "Hungarian Election 2026: Psychographic Analysis",
-  descriptor: "Semantic analysis of Hungarian social media conversations",
+  title: "Research",
+  descriptor: "Bakamo's public studies and the Atlas of Social Truths",
 };
 
 export const alt = ogImageAlt(content);

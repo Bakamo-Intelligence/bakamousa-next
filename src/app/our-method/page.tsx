@@ -12,7 +12,7 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "Our Method: From Social Listening to Better Surveys",
+  title: "Our Method: From Conversation to Better Surveys",
   description:
     "Bakamo's two-phase method: read unprompted conversation first, then build the survey around what people actually say. A full study, or input for your team.",
   alternates: {
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   openGraph: pageOpenGraph(
     "/our-method",
-    "Our Method: From Social Listening to Better Surveys | Bakamo",
+    "Our Method: From Conversation to Better Surveys | Bakamo",
     "Bakamo's two-phase method: read unprompted conversation first, then build the survey around what people actually say. A full study, or input for your team.",
   ),
 };
@@ -171,12 +171,12 @@ export default function OurMethodPage() {
             ))}
           </div>
           <Link
-            href="/#atlas"
+            href="/research#atlas"
             className="mt-14 inline-flex text-sm uppercase tracking-[0.16em] text-accent transition-colors hover:text-white"
             data-analytics-event="cta_click"
             data-analytics-label="See the Atlas of Social Truths"
             data-analytics-location="method_deliverables"
-            data-analytics-destination="/#atlas"
+            data-analytics-destination="/research#atlas"
           >
             See the Atlas of Social Truths &rarr;
           </Link>

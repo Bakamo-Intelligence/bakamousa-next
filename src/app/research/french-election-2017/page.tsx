@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: PAGE_PATH,
   },
-  openGraph: pageOpenGraph(PAGE_PATH, `${REPORT_TITLE} | Bakamo`, DESCRIPTION),
+  openGraph: { ...pageOpenGraph(PAGE_PATH, `${REPORT_TITLE} | Bakamo`, DESCRIPTION), type: "article" },
 };
 
 // The report states no publication date, so none is given here.
@@ -63,7 +63,7 @@ const KEY_FACTS: Array<{ term: string; detail: string; source: string }> = [
   {
     term: "Report",
     detail: "The final report of a three-phase study: non-traditional media map, social media sharing behaviour, and patterns of disinformation. 175 pages.",
-    source: "pp. 3, 41",
+    source: "pp. 3, 41, 175",
   },
   {
     term: "Period",
@@ -77,8 +77,8 @@ const KEY_FACTS: Array<{ term: string; detail: string; source: string }> = [
   },
   {
     term: "Volume",
-    detail: "More than 20 million social media conversations captured. Over 8 million shared links analyzed. 1,000+ media sources analyzed, 800 of them non-traditional. 50,000 social media posts read and coded.",
-    source: "p. 5",
+    detail: "More than 20 million social media conversations captured. Over 8 million shared links analyzed. 1,000+ media sources analyzed, 800 of them non-traditional. The research summary states that 50,000 social media posts were read and coded (p. 5); the methodology section describes 5,000 coded posts and 4,200 coded Facebook comments (p. 174).",
+    source: "pp. 5, 174",
   },
   {
     term: "Team",
@@ -107,7 +107,7 @@ const FINDINGS: Array<{ text: string; source: string }> = [
     source: "pp. 13–14",
   },
   {
-    text: "There was virtually no common ground. Users overwhelmingly shared links from only one section of the media map. Of the top 100 sharers, no more than 3 shared content across the divide between traditional media and Reframe and Alternative sources.",
+    text: "There was virtually no common ground. Users overwhelmingly shared links from only one section of the media map. Of the top 100 sharers by number of followers, no more than 3 shared content across the divide between traditional media and Reframe and Alternative sources.",
     source: "pp. 17, 19, 86",
   },
   {
