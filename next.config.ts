@@ -35,21 +35,21 @@ const nextConfig: NextConfig = {
         destination: "/frenchelection",
         permanent: true,
       },
-      // The Vercel Firewall currently denies /wp-content/* before these run; they
-      // take effect once that rule allows /wp-content/uploads/2021/03/.
+      // Old WordPress report uploads still cited by Wikipedia, press and Search
+      // Console. Matched by keyword so encoded French filenames are covered too.
       {
-        source: "/wp-content/uploads/2021/03/:file(BakamoSocial_FrenchMedia_StudySummary\\.pdf|BakamoSocial_French-Media_Study-Summary-FR\\.pdf|BakamoSocial_FrenchPresidentialElection_FinalReport\\.pdf|PatternsofDisinformationinthe2017FrenchPresidentialElection-Report2-Bakamo\\.pdf|Patternsofdisinformationinthe2017FrenchPresidentialElection-summary-Bakamo\\.pdf|Deck_FrenchPresidentialElectionReport\\.pptx)",
+        source: "/wp-content/uploads/2021/03/:file(.*(?:French|sinformation|Deck_).*)",
         destination: "/frenchelection",
         permanent: true,
       },
       {
-        source: "/wp-content/uploads/2021/03/MigrationNarrativesinEuropein2018CaseStudy.pdf",
+        source: "/wp-content/uploads/2021/03/:file(.*Migration.*)",
         destination: "/migration",
         permanent: true,
       },
       { source: "/:page(public|public1|bakamopublic)", destination: "/migration", permanent: true },
       {
-        source: "/:page(business|business1|business-2|how-we-do-it|howdowe|whatwedo|advantage|solutions|in-house-teams)",
+        source: "/:page(business|business1|business-2|how-we-do-it|howdowe|whatwedo|advantage|solutions|in-house-teams|health)",
         destination: "/our-method",
         permanent: true,
       },
