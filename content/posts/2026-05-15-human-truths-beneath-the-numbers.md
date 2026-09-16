@@ -6,7 +6,7 @@ author: "Daniel Fazekas"
 tags: ["social-truth", "elections", "public-sector", "esomar"]
 category: "Insights"
 summary: "Three weeks before the Hungarian vote we called a two-thirds supermajority from 10,000 conversations while polls spread across 14 points. The election was the proof, not the point."
-draft: true
+draft: false
 ---
 
 Today, at the European Parliament, I gave a talk called *Human Truths Beneath the Numbers* at the ESOMAR Citizen Insights Summit.

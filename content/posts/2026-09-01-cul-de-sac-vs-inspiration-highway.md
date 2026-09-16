@@ -6,7 +6,7 @@ author: "Daniel Fazekas"
 tags: ["reading-machine", "methodology", "qualitative-research", "social-intelligence"]
 category: "Insights"
 summary: "Vectors don't understand meaning. They map distance. That limitation is exactly why they make an honest backbone for qualitative work at social media scale."
-draft: true
+draft: false
 ---
 
 My last post received an interesting question that highlighted a technological aspect of the Reading Machine: the semantic-meaning space. This is also called the vector space, and we have found it to be extremely useful. The question points toward the inherent "stupidity" of vector technology. Indeed, it does not know that two very differently phrased comments can, in some abstracted way, be about the exact same thing.

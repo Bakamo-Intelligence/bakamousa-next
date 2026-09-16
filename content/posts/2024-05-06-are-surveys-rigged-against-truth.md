@@ -6,7 +6,7 @@ author: "Daniel Fazekas"
 tags: ["surveys", "social-intelligence", "esomar", "methodology"]
 category: "Insights"
 summary: "When a survey's first question has no option that speaks for you, the data is skewed before it's analysed. A story about the ESOMAR CEO survey, and what happened after I complained."
-draft: true
+draft: false
 ---
 
 Ever been excited to take a survey on a topic close to your heart, only for the answer options on the first question to have you saying, "none of these speak for me"? This isn't just frustrating. It's disenfranchising. Why bother continuing if your true opinion isn't even an option?

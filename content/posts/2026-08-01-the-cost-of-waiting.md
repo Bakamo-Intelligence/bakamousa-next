@@ -6,7 +6,7 @@ author: "Daniel Fazekas"
 tags: ["reading-machine", "sustainability", "infrastructure"]
 category: "Insights"
 summary: "Our idle servers used five to ten times more energy doing nothing than the Reading Machine used reading everything. So we changed the architecture."
-draft: true
+draft: false
 ---
 
 Data centers drink water and eat electricity. The IEA expects their consumption to more than double by 2030, roughly equivalent to Japan's total demand today. An extraordinary engineering achievement, and a real ecological burden.

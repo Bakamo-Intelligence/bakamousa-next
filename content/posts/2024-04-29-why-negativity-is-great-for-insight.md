@@ -6,7 +6,7 @@ author: "Daniel Fazekas"
 tags: ["social-intelligence", "qualitative-research", "methodology"]
 category: "Insights"
 summary: "\"Social isn't representative, people just like to complain.\" True, and beneath every complaint lies a story about expectations. All you need to do is invert the comment."
-draft: true
+draft: false
 ---
 
 A very frequent objection to social intelligence goes: "Social is not representative, consumers just like to complain." Now, we could talk about the inherently flawed idea of representativity, but I want to show how negative sentiment is great for deep human insight. Think inversion.

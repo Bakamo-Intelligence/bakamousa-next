@@ -6,7 +6,7 @@ author: "Daniel Fazekas"
 tags: ["qualitative-research", "social-intelligence", "conferences"]
 category: "Insights"
 summary: "At QUAL360 in Washington, 57% of talks used social as an insight source. Almost none of it was rigorous. Mediocre at scale is still just mediocre."
-draft: true
+draft: false
 ---
 
 Last week I attended QUAL360 in Washington, DC, and I thoroughly enjoyed it. The intimate setting at Gallup HQ made for a comfortable and engaging atmosphere. Good conversation, great dinners. And being two blocks from the White House added an extra layer of energy and significance to the event.

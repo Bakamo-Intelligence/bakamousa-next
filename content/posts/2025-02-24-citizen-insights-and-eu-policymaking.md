@@ -6,7 +6,7 @@ author: "Daniel Fazekas"
 tags: ["public-sector", "esomar", "social-intelligence", "policy"]
 category: "Insights"
 summary: "Is asking the best way to understand? At the ESOMAR Citizen Insights Summit in Brussels, I argued that institutions should listen to citizens before they survey them."
-draft: true
+draft: false
 ---
 
 Dear EU Citizen,

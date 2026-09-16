@@ -6,7 +6,7 @@ author: "Daniel Fazekas"
 tags: ["conferences", "qualitative-research", "human-truths"]
 category: "Insights"
 summary: "Notes from IIeX North America: the more data you digest, the better your insights get, went the pitch. My worry is that our tools are outshining research's primary mission."
-draft: true
+draft: false
 ---
 
 Travelling in the US is always interesting. I know of no other place that has such diverse and divided realities. What always surprises me is how little interaction there is between these realities. It might be due to convenience, status, fear for safety, and in some ways racism too. In theory, this fragmented cultural context should be great for exploratory, exciting research.

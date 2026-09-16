@@ -6,7 +6,7 @@ author: "Daniel Fazekas"
 tags: ["reading-machine", "methodology", "qualitative-research", "social-intelligence"]
 category: "Insights"
 summary: "Qual has always had a cherry-picking problem. Vector maths gives it a map of the whole discourse, so saturation becomes something we can show rather than assert."
-draft: true
+draft: false
 ---
 
 Mathematical clarity has always been the exclusive domain of quantitative research. Conjoints, statistical probabilities, significance, confidence intervals, regression models — quant has developed an elaborate machinery for demonstrating how it gets from data to conclusion. Qualitative research has so far operated in a different epistemological realm. It relies on interpretation, experience, and judgment. The researcher is the instrument. You give them a pile of conversations and, if they are any good, they disappear into the material and come back with something that nobody else had seen. There is a certain amount of magic and/or witchcraft to it. The client has to trust that the person standing in front of them knows what they are doing.
