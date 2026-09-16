@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPostBySlug, getFeaturedImageUrl, isGitContentConfigured, type Post } from "@/lib/content";
 import { SITE_URL } from "@/lib/site-url";
-import { ORGANIZATION_REF, pageOpenGraph } from "@/lib/seo";
+import { ORGANIZATION_REF, authorRef, pageOpenGraph } from "@/lib/seo";
 import sanitizeHtml from "sanitize-html";
 import { cookies } from 'next/headers';
 
@@ -45,7 +45,7 @@ function ArticleJsonLd({ post, slug, featuredImage }: { post: Post; slug: string
     dateModified: post.raw?.data?.updated || post.date || undefined,
     url,
     mainEntityOfPage: url,
-    author: ORGANIZATION_REF,
+    author: authorRef(post.raw?.data?.author),
     publisher: ORGANIZATION_REF,
     ...(featuredImage ? { image: `${SITE_URL}${featuredImage}` } : {}),
   };
