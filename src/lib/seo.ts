@@ -10,6 +10,31 @@ export const ORGANIZATION_REF = {
   url: SITE_URL,
 };
 
+export const FOUNDER_ID = `${SITE_URL}/#daniel-fazekas`;
+
+// Daniel as a schema.org Person. Referenced by the Organization graph and as
+// the author of posts whose frontmatter names him, so search engines and AI
+// crawlers attribute the writing to a named expert without a visible byline.
+export const FOUNDER_PERSON = {
+  "@type": "Person",
+  "@id": FOUNDER_ID,
+  name: "Daniel Fazekas",
+  jobTitle: "Founder & CEO",
+  worksFor: { "@id": ORGANIZATION_ID },
+  url: `${SITE_URL}/about`,
+  sameAs: [
+    "https://www.linkedin.com/in/danielfazekas/",
+    "https://fazekasdani.substack.com",
+  ],
+};
+
+export const FOUNDER_REF = { "@type": "Person", "@id": FOUNDER_ID, name: "Daniel Fazekas" };
+
+/** Author entity for a post: Daniel when the frontmatter names him, otherwise Bakamo. */
+export function authorRef(author: unknown) {
+  return typeof author === "string" && /daniel\s+fazekas/i.test(author) ? FOUNDER_REF : ORGANIZATION_REF;
+}
+
 type OpenGraph = NonNullable<Metadata["openGraph"]>;
 
 /**
@@ -47,12 +72,7 @@ export const ORGANIZATION_SCHEMA = {
       description:
         "Bakamo is a social intelligence company that surfaces Social Truth, then builds the quantitative instruments that measure it.",
       foundingDate: "2016",
-      founder: {
-        "@type": "Person",
-        name: "Daniel Fazekas",
-        jobTitle: "Founder & CEO",
-        sameAs: ["https://www.linkedin.com/in/danielfazekas/"],
-      },
+      founder: FOUNDER_PERSON,
       email: "info@bakamosocial.com",
       contactPoint: {
         "@type": "ContactPoint",

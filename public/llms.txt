@@ -25,4 +25,13 @@ Founded 2016 (work began in 2014). Offices in New Jersey, London, Dortmund, Buda
 ## Insights
 
 - [Insights](https://www.bakamosocial.com/blog): methodology and analysis articles
-- [TensionScope: Decoding the Human "Why" Behind the Data](https://www.bakamosocial.com/blog/tensionscope-decoding-the-human-why)
+- [Cul-de-Sac vs. Inspiration Highway](https://www.bakamosocial.com/blog/cul-de-sac-vs-inspiration-highway): why the Reading Machine's vector space is deliberately "stupid", and the constructivist view of qual behind it (Daniel Fazekas, 2026)
+- [Making Mushy Qual Mathematical](https://www.bakamosocial.com/blog/making-mushy-qual-mathematical): how vector maths gives qualitative research a map of the whole discourse, and makes saturation observable (Daniel Fazekas, 2026)
+- [The Cost of Waiting](https://www.bakamosocial.com/blog/the-cost-of-waiting): the Reading Machine's energy use, why idle servers were the main cost, and the zero-idle architecture (Daniel Fazekas, 2026)
+- [Human Truths Beneath the Numbers](https://www.bakamosocial.com/blog/human-truths-beneath-the-numbers): social truth explained, from a European Parliament talk on the Hungarian election call (Daniel Fazekas, 2026)
+- [Progress or Regress: Where Is Qual Going?](https://www.bakamosocial.com/blog/progress-or-regress-where-is-qual-going): notes from QUAL360 on social listening vs. social intelligence and the case for a qualitative minimum (Daniel Fazekas, 2025)
+- [Citizen Insights and EU Policymaking](https://www.bakamosocial.com/blog/citizen-insights-and-eu-policymaking): listen before you survey; Bakamo's public-sector cases at the ESOMAR Citizen Insights Summit (Daniel Fazekas, 2025)
+- [Are Surveys Rigged Against Truth?](https://www.bakamosocial.com/blog/are-surveys-rigged-against-truth): how questionnaires frame their own answers, and the ESOMAR CEO survey story (Daniel Fazekas, 2024)
+- [Why Negativity Is Great for Insight](https://www.bakamosocial.com/blog/why-negativity-is-great-for-insight): inverting complaints to find expectations; cautions on sentiment scores (Daniel Fazekas, 2024)
+- [Boring AI vs. Exciting Humans](https://www.bakamosocial.com/blog/boring-ai-vs-exciting-humans): notes from IIeX on tools outshining research's mission (Daniel Fazekas, 2024)
+- [TensionScope: Decoding the Human "Why" Behind the Data](https://www.bakamosocial.com/blog/tensionscope-decoding-the-human-why): the seven tensions framework (Team Bakamo, 2026)
