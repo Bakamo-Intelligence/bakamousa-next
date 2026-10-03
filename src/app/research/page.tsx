@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond } from "next/font/google";
 import Link from "next/link";
 import { BOOKING_HREF } from "@/lib/booking";
-import { ACTIVE_ATLAS_CASES } from "@/lib/atlas";
+import AtlasPlates from "@/components/AtlasPlates";
 import { pageOpenGraph } from "@/lib/seo";
 
 const cormorant = Cormorant_Garamond({
@@ -212,72 +212,29 @@ export default function ResearchPage() {
 
       <div className="section-divider" />
 
-      {/* Atlas of Social Truths, as text so every case can be linked and read without JavaScript */}
+      {/* Atlas of Social Truths: locator globe plus an index of plates; every case stays server-rendered and linkable */}
       <section
         id="atlas"
         className="px-6 py-20 scroll-mt-24"
         data-analytics-section="research_atlas"
         data-analytics-label="Atlas of Social Truths"
       >
-        <div className="max-w-3xl mx-auto">
-          <p className="text-accent uppercase tracking-[0.2em] text-sm mb-4">The Atlas</p>
-          <h2
-            className={`${cormorant.className} text-3xl md:text-5xl font-light text-white mb-8 leading-tight`}
-          >
-            Atlas of Social Truths
-          </h2>
-          <p className="text-base font-light leading-relaxed text-text-secondary">
-            A selection of our work, wherever the conversation lives. Each entry states the Social
-            Truth we found: the shared meaning, tension or assumption beneath an unprompted
-            conversation.
-          </p>
-
-          <div className="mt-14">
-            {ACTIVE_ATLAS_CASES.map((atlasCase) => {
-              const studyHref =
-                atlasCase.href && !atlasCase.href.startsWith("/research") ? atlasCase.href : null;
-
-              return (
-                <article
-                  key={atlasCase.id}
-                  id={atlasCase.id}
-                  className="scroll-mt-24 border-t border-border-grey py-12"
-                >
-                  <h3
-                    className={`${cormorant.className} text-2xl md:text-3xl font-light text-white leading-tight`}
-                  >
-                    {atlasCase.name}
-                  </h3>
-                  {atlasCase.sectorRegion ? (
-                    <p className="mt-3 text-xs uppercase tracking-[0.18em] text-accent">
-                      {atlasCase.sectorRegion}
-                    </p>
-                  ) : null}
-                  <div
-                    className={`${cormorant.className} mt-6 space-y-4 border-l border-accent pl-6 text-lg italic leading-snug text-white md:text-xl`}
-                  >
-                    {atlasCase.essence.split("\n\n").map((paragraph, index) => (
-                      <p key={index}>{paragraph}</p>
-                    ))}
-                  </div>
-                  {studyHref ? (
-                    <Link
-                      href={studyHref}
-                      className="mt-6 inline-flex items-center gap-2 text-sm text-accent hover:underline underline-offset-4"
-                      data-analytics-event="cta_click"
-                      data-analytics-label={`Atlas case: ${atlasCase.name}`}
-                      data-analytics-location="research_atlas"
-                      data-analytics-destination={studyHref}
-                    >
-                      See the study
-                      <span className="sr-only">: {atlasCase.name}</span>
-                      <ArrowIcon />
-                    </Link>
-                  ) : null}
-                </article>
-              );
-            })}
+        <div className="max-w-6xl mx-auto">
+          <div className="max-w-3xl">
+            <p className="text-accent uppercase tracking-[0.2em] text-sm mb-4">The Atlas</p>
+            <h2
+              className={`${cormorant.className} text-3xl md:text-5xl font-light text-white mb-8 leading-tight`}
+            >
+              Atlas of Social Truths
+            </h2>
+            <p className="text-base font-light leading-relaxed text-text-secondary">
+              A selection of our work, wherever the conversation lives. Each entry states the Social
+              Truth we found: the shared meaning, tension or assumption beneath an unprompted
+              conversation.
+            </p>
           </div>
+
+          <AtlasPlates />
         </div>
       </section>
 
