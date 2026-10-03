@@ -63,7 +63,10 @@ export default function AtlasGlobe({ mode = "hero", target = null, onSelect, cla
     [mode, onSelect],
   );
 
-  const close = useCallback(() => setSelected(null), []);
+  const close = useCallback(() => {
+    setSelected(null);
+    setHovered(null);
+  }, []);
 
   useEffect(() => {
     if (!selected) return;
@@ -75,7 +78,10 @@ export default function AtlasGlobe({ mode = "hero", target = null, onSelect, cla
   }, [selected, close]);
 
   const hero = mode === "hero";
-  const activeTarget = hero ? (selected?.id ?? hovered) : target;
+  // In hero mode only a click moves the globe; hovering just holds it still.
+  const activeTarget = hero ? (selected?.id ?? null) : target;
+  // Only a published study has its own page. Short cases are read in place.
+  const studyHref = selected?.href && !selected.href.startsWith("/research") ? selected.href : null;
   const hoveredCase = hovered && !selected ? ATLAS_POINTS.find((p) => p.id === hovered) : null;
 
   return (
@@ -100,6 +106,7 @@ export default function AtlasGlobe({ mode = "hero", target = null, onSelect, cla
           points={ATLAS_POINTS}
           target={activeTarget}
           zoomed={hero && selected !== null}
+          hovered={selected ? null : hovered}
           onSelect={handleSelect}
           onHover={setHovered}
           onReady={() => setReady(true)}
@@ -119,6 +126,15 @@ export default function AtlasGlobe({ mode = "hero", target = null, onSelect, cla
         >
           Click a lit point
         </p>
+      ) : null}
+
+      {hero && selected ? (
+        <button
+          type="button"
+          aria-label="Back to the world"
+          className="absolute inset-0 z-20 cursor-default bg-transparent"
+          onClick={close}
+        />
       ) : null}
 
       {hero ? (
@@ -153,16 +169,16 @@ export default function AtlasGlobe({ mode = "hero", target = null, onSelect, cla
                   <p key={index}>{paragraph}</p>
                 ))}
               </div>
-              {selected.href ? (
+              {studyHref ? (
                 <Link
-                  href={selected.href}
+                  href={studyHref}
                   className="mt-8 self-start text-xs uppercase tracking-[0.18em] text-accent underline-offset-4 transition-colors hover:text-white hover:underline"
                   data-analytics-event="cta_click"
                   data-analytics-label={`Atlas case: ${selected.name}`}
                   data-analytics-location="atlas_case_panel"
-                  data-analytics-destination={selected.href}
+                  data-analytics-destination={studyHref}
                 >
-                  {selected.href.startsWith("/research") ? "View on the research page" : "See the study"}
+                  See the study
                 </Link>
               ) : null}
             </>
