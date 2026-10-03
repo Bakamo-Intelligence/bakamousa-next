@@ -34,8 +34,8 @@ export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
   {
     id: "hungary-election-2026",
     href: "/elections",
-    name: "The Hungarian Election, 2026 — Public sphere, Europe",
-    sectorRegion: "",
+    name: "The Hungarian Election, 2026",
+    sectorRegion: "Public sphere, Europe",
     sector: "",
     lat: 47.4979,
     lng: 19.0402,
