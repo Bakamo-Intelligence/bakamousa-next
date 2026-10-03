@@ -210,23 +210,6 @@ body {
   }
 }
 
-@keyframes atlas-pulse {
-  0%, 100% {
-    transform: scale(0.72);
-    opacity: 0.08;
-  }
-  50% {
-    transform: scale(1);
-    opacity: 0.18;
-  }
-}
-
-.atlas-pulse {
-  animation: atlas-pulse 2.8s ease-in-out infinite;
-  transform-box: fill-box;
-  transform-origin: center;
-}
-
 /* ─── Client marquee ─── */
 @keyframes marquee-scroll {
   from { transform: translateX(0); }

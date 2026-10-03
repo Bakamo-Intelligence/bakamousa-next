@@ -1,0 +1,158 @@
+"use client";
+
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Cormorant_Garamond } from "next/font/google";
+import Link from "next/link";
+import AtlasGlobe from "@/components/AtlasGlobe";
+import { ACTIVE_ATLAS_CASES, type AtlasCase } from "@/lib/atlas";
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
+const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"];
+
+function roman(index: number) {
+  return ROMAN[index] ?? String(index + 1);
+}
+
+function ArrowIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M3 8h10m0 0L9 4m4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+/**
+ * The Atlas as an index of plates beside a locator globe. The plates and the
+ * full text of every case are server-rendered, so each case keeps its anchor
+ * and reads without JavaScript; the globe follows whichever plate the reader
+ * is hovering or reading.
+ */
+export default function AtlasPlates() {
+  const [target, setTarget] = useState<string | null>(null);
+  const [pinned, setPinned] = useState<string | null>(null);
+  const articleRefs = useRef(new Map<string, HTMLElement>());
+
+  // Follow the article nearest the middle of the viewport while scrolling.
+  useEffect(() => {
+    const elements = Array.from(articleRefs.current.values());
+    if (elements.length === 0) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        let best: IntersectionObserverEntry | null = null;
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          if (!best || entry.intersectionRatio > best.intersectionRatio) best = entry;
+        }
+        if (best) setPinned(best.target.id);
+      },
+      { rootMargin: "-35% 0px -45% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] },
+    );
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  const goTo = useCallback((atlasCase: AtlasCase) => {
+    const el = articleRefs.current.get(atlasCase.id);
+    el?.scrollIntoView({ behavior: "smooth", block: "start" });
+    setPinned(atlasCase.id);
+  }, []);
+
+  return (
+    <div className="mt-14 grid gap-12 md:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] md:gap-14">
+      <div className="md:sticky md:top-24 md:self-start">
+        <AtlasGlobe mode="locator" target={target ?? pinned} onSelect={goTo} />
+      </div>
+
+      <div>
+        <p className="text-xs uppercase tracking-[0.2em] text-accent">Index of plates</p>
+        <ol className="mt-6 border-b border-border-grey" onMouseLeave={() => setTarget(null)}>
+          {ACTIVE_ATLAS_CASES.map((atlasCase, index) => (
+            <li key={atlasCase.id} className="border-t border-border-grey">
+              <a
+                href={`#${atlasCase.id}`}
+                className="group grid grid-cols-[3rem_1fr] gap-x-3 py-4 outline-none"
+                onMouseEnter={() => setTarget(atlasCase.id)}
+                onFocus={() => setTarget(atlasCase.id)}
+                onBlur={() => setTarget(null)}
+                onClick={(event) => {
+                  event.preventDefault();
+                  goTo(atlasCase);
+                }}
+              >
+                <span className={`${cormorant.className} text-xl text-accent`}>{roman(index)}</span>
+                <span>
+                  <span
+                    className={`${cormorant.className} block text-xl leading-tight text-white transition-colors group-hover:text-accent group-focus-visible:text-accent ${
+                      (target ?? pinned) === atlasCase.id ? "text-accent" : ""
+                    }`}
+                  >
+                    {atlasCase.name}
+                  </span>
+                  {atlasCase.sectorRegion ? (
+                    <span className="mt-1 block text-[10px] uppercase tracking-[0.18em] text-text-muted">
+                      {atlasCase.sectorRegion}
+                    </span>
+                  ) : null}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ol>
+
+        <div className="mt-6">
+          {ACTIVE_ATLAS_CASES.map((atlasCase, index) => {
+            const studyHref = atlasCase.href && !atlasCase.href.startsWith("/research") ? atlasCase.href : null;
+            return (
+              <article
+                key={atlasCase.id}
+                id={atlasCase.id}
+                ref={(el) => {
+                  if (el) articleRefs.current.set(atlasCase.id, el);
+                  else articleRefs.current.delete(atlasCase.id);
+                }}
+                className="scroll-mt-28 border-t border-border-grey py-12"
+                onMouseEnter={() => setTarget(atlasCase.id)}
+                onMouseLeave={() => setTarget(null)}
+              >
+                <p className="text-xs uppercase tracking-[0.2em] text-accent">Plate {roman(index)}</p>
+                <h3 className={`${cormorant.className} mt-3 text-2xl font-light leading-tight text-white md:text-3xl`}>
+                  {atlasCase.name}
+                </h3>
+                {atlasCase.sectorRegion ? (
+                  <p className="mt-3 text-xs uppercase tracking-[0.18em] text-text-muted">{atlasCase.sectorRegion}</p>
+                ) : null}
+                <div
+                  className={`${cormorant.className} mt-6 space-y-4 border-l border-accent pl-6 text-lg italic leading-snug text-white md:text-xl`}
+                >
+                  {atlasCase.essence.split("\n\n").map((paragraph, i) => (
+                    <p key={i}>{paragraph}</p>
+                  ))}
+                </div>
+                {studyHref ? (
+                  <Link
+                    href={studyHref}
+                    className="mt-6 inline-flex items-center gap-2 text-sm text-accent hover:underline underline-offset-4"
+                    data-analytics-event="cta_click"
+                    data-analytics-label={`Atlas case: ${atlasCase.name}`}
+                    data-analytics-location="research_atlas"
+                    data-analytics-destination={studyHref}
+                  >
+                    See the study
+                    <span className="sr-only">: {atlasCase.name}</span>
+                    <ArrowIcon />
+                  </Link>
+                ) : null}
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
