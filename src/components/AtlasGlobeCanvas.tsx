@@ -20,6 +20,8 @@ export type GlobeProps = {
   target: string | null;
   /** Descend toward the target and dim the sphere behind a reading panel. */
   zoomed: boolean;
+  /** Case under the pointer: lights its beacon and holds the globe still. */
+  hovered?: string | null;
   onSelect: (atlasCase: AtlasCase) => void;
   onHover?: (id: string | null) => void;
   onReady?: () => void;
@@ -134,11 +136,11 @@ function shortAngle(from: number, to: number) {
   return ((((to - from) % 360) + 540) % 360) - 180;
 }
 
-export default function AtlasGlobeCanvas({ points, target, zoomed, onSelect, onHover, onReady, density }: GlobeProps) {
+export default function AtlasGlobeCanvas({ points, target, zoomed, hovered = null, onSelect, onHover, onReady, density }: GlobeProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const pinsRef = useRef<HTMLDivElement>(null);
-  const propsRef = useRef({ points, target, zoomed, onSelect, onHover, density });
-  propsRef.current = { points, target, zoomed, onSelect, onHover, density };
+  const propsRef = useRef({ points, target, zoomed, hovered, onSelect, onHover, density });
+  propsRef.current = { points, target, zoomed, hovered, onSelect, onHover, density };
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -166,6 +168,12 @@ export default function AtlasGlobeCanvas({ points, target, zoomed, onSelect, onH
     let zoom = 1;
     let dim = 0;
     let shift = 0;
+    let spin = 1;
+    // A flight is one timed move of rotation, zoom, shift and dim together,
+    // so opening and closing a case reads as a single gesture.
+    type Pose = { lng: number; lat: number; zoom: number; dim: number; shift: number };
+    let flight: { start: number; dur: number; from: Pose; to: Pose } | null = null;
+    let flightKey = "idle";
     let w = 0;
     let h = 0;
     let r0 = 0;
@@ -228,7 +236,7 @@ export default function AtlasGlobeCanvas({ points, target, zoomed, onSelect, onH
 
     const render = (now: number) => {
       const t = (now - t0) / 1000;
-      const { points: pts, target: targetId } = propsRef.current;
+      const { points: pts, target: targetId, hovered: hoveredId } = propsRef.current;
       const r = r0 * zoom;
       // While reading, keep the case in the half of the frame the panel leaves clear.
       const cx = w / 2 - shift * (w >= 768 ? w * 0.22 : 0);
@@ -365,7 +373,7 @@ export default function AtlasGlobeCanvas({ points, target, zoomed, onSelect, onH
           el.style.left = `${(p[0] / w) * 100}%`;
           el.style.top = `${(p[1] / h) * 100}%`;
         }
-        const hot = targetId === point.id;
+        const hot = targetId === point.id || hoveredId === point.id;
         const k = (hot ? 1.3 : 0.75) + 0.1 * Math.sin(t * 2 + i++);
         const glow = ctx.createRadialGradient(p[0], p[1], 0, p[0], p[1], 22 * k);
         glow.addColorStop(0, `rgba(${GOLD},0.7)`);
@@ -400,19 +408,55 @@ export default function AtlasGlobeCanvas({ points, target, zoomed, onSelect, onH
       if (!visible) return;
       const dt = Math.min(0.05, (now - last) / 1000);
       last = now;
-      const { points: pts, target: targetId, zoomed: isZoomed } = propsRef.current;
+      const { points: pts, target: targetId, zoomed: isZoomed, hovered: hoveredId } = propsRef.current;
       const targetCase = targetId ? pts.find((p) => p.id === targetId) : null;
-      if (!dragging && now > dragUntil) {
+
+      // Start a flight whenever the reading state changes.
+      const key = isZoomed && targetCase ? `read:${targetCase.id}` : "idle";
+      if (key !== flightKey) {
+        const opening = key !== "idle";
+        flightKey = key;
+        flight = {
+          start: now,
+          dur: reduced ? 1 : opening ? 1500 : 1100,
+          from: { lng: rot[0], lat: rot[1], zoom, dim, shift },
+          to: opening && targetCase
+            ? { lng: rot[0] + shortAngle(rot[0], -targetCase.lng), lat: -targetCase.lat, zoom: 3, dim: 1, shift: 1 }
+            : { lng: rot[0], lat: rot[1], zoom: 1, dim: 0, shift: 0 },
+        };
+        spin = 0;
+        dragging = null;
+        dragUntil = 0;
+      }
+
+      if (flight) {
+        const p = Math.min(1, (now - flight.start) / flight.dur);
+        const ease = (x: number) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+        const clamp01 = (x: number) => Math.max(0, Math.min(1, x));
+        const opening = flight.to.zoom > flight.from.zoom;
+        // Opening: turn first, then descend. Closing: lift first, then drift.
+        const turn = ease(opening ? clamp01(p / 0.7) : p);
+        const dive = ease(opening ? clamp01((p - 0.2) / 0.8) : clamp01(p / 0.8));
+        rot[0] = flight.from.lng + (flight.to.lng - flight.from.lng) * turn;
+        rot[1] = flight.from.lat + (flight.to.lat - flight.from.lat) * turn;
+        zoom = flight.from.zoom + (flight.to.zoom - flight.from.zoom) * dive;
+        // The sideways shift rides with the turn so the case travels in one direction.
+        shift = flight.from.shift + (flight.to.shift - flight.from.shift) * turn;
+        dim = flight.from.dim + (flight.to.dim - flight.from.dim) * dive;
+        if (p >= 1) flight = null;
+      } else if (!isZoomed && !dragging) {
         if (targetCase) {
+          // Locator mode: follow the plate being read.
           rot[0] += shortAngle(rot[0], -targetCase.lng) * Math.min(1, dt * 2.2);
           rot[1] += (-targetCase.lat - rot[1]) * Math.min(1, dt * 2.2);
-        } else if (!reduced) {
-          rot[0] += (360 / 80) * dt;
+        } else {
+          // Drift, easing in and out so hover and drag never snap.
+          const wantSpin = !reduced && !hoveredId && now > dragUntil ? 1 : 0;
+          spin += (wantSpin - spin) * Math.min(1, dt * 3);
+          rot[0] += (360 / 80) * dt * spin;
         }
       }
-      zoom += ((isZoomed ? 3 : 1) - zoom) * Math.min(1, dt * 2.4);
-      dim += ((isZoomed ? 1 : 0) - dim) * Math.min(1, dt * 3);
-      shift += ((isZoomed ? 1 : 0) - shift) * Math.min(1, dt * 2.4);
+      pinLayer.style.pointerEvents = isZoomed ? "none" : "auto";
       if (!reduced) {
         for (const p of pulses) {
           p.u += (p.v * dt * 12) / Math.max(12, p.s.pts.length);
@@ -433,6 +477,7 @@ export default function AtlasGlobeCanvas({ points, target, zoomed, onSelect, onH
     };
 
     const onPointerDown = (event: PointerEvent) => {
+      if (propsRef.current.zoomed || flight) return;
       canvas.setPointerCapture(event.pointerId);
       dragging = { x: event.clientX, y: event.clientY, r: [rot[0], rot[1]] };
       dragUntil = performance.now() + 5000;
@@ -454,7 +499,7 @@ export default function AtlasGlobeCanvas({ points, target, zoomed, onSelect, onH
         ArrowDown: [0, 4],
       };
       const m = map[event.key];
-      if (!m) return;
+      if (!m || propsRef.current.zoomed || flight) return;
       event.preventDefault();
       rot[0] += m[0];
       rot[1] = Math.max(-60, Math.min(60, rot[1] + m[1]));
