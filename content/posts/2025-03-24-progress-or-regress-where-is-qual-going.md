@@ -1,5 +1,7 @@
 ---
 title: "Progress or Regress: Where Is Qual Going?"
+subtitle: "Notes from QUAL360 on social media as a source for qualitative research."
+seoTitle: "Where Is Qualitative Research Going? Social Data Without Rigour"
 slug: "progress-or-regress-where-is-qual-going"
 date: "2025-03-24T09:00:00Z"
 author: "Daniel Fazekas"

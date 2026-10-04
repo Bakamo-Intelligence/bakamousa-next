@@ -1,5 +1,7 @@
 ---
 title: "Boring AI vs. Exciting Humans"
+subtitle: "Notes from IIeX North America on research tools outshining research itself."
+seoTitle: "AI in Market Research: Are the Tools Outshining the Insight?"
 slug: "boring-ai-vs-exciting-humans"
 date: "2024-04-22T09:00:00Z"
 author: "Daniel Fazekas"

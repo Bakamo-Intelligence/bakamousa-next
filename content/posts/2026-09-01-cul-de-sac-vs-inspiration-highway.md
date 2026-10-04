@@ -1,5 +1,7 @@
 ---
 title: "Cul-de-Sac vs. Inspiration Highway: Why It Pays to Be \"Stupid\" in Market Research"
+subtitle: "Why vector space makes an honest backbone for qualitative analysis of social media."
+seoTitle: "Vector Embeddings in Qualitative Research: Why It Pays to Be “Stupid”"
 slug: "cul-de-sac-vs-inspiration-highway"
 date: "2026-09-01T11:00:00Z"
 author: "Daniel Fazekas"

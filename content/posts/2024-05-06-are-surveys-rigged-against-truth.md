@@ -1,5 +1,7 @@
 ---
 title: "Are Surveys Rigged Against Truth?"
+subtitle: "How answer options skew survey data before the analysis begins."
+seoTitle: "Survey Bias: When None of the Answer Options Speak for You"
 slug: "are-surveys-rigged-against-truth"
 date: "2024-05-06T09:00:00Z"
 author: "Daniel Fazekas"

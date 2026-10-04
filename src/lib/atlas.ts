@@ -2,6 +2,7 @@ export type AtlasCase = {
   id: string;
   name: string;
   sectorRegion: string;
+  /** Which sector page shows the case: "brands", "health" or "public". */
   sector: string;
   lat: number;
   lng: number;
@@ -25,7 +26,7 @@ export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
     href: "/research#premium-pet-food",
     name: "Premium pet food, North America",
     sectorRegion: "",
-    sector: "",
+    sector: "brands",
     lat: 43.0389,
     lng: -87.9065,
     essence:
@@ -36,7 +37,7 @@ export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
     href: "/elections",
     name: "The Hungarian Election, 2026",
     sectorRegion: "Public sphere, Europe",
-    sector: "",
+    sector: "public",
     lat: 47.4979,
     lng: 19.0402,
     essence:
@@ -47,7 +48,7 @@ export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
     href: "/research#public-health",
     name: "Public health, North America",
     sectorRegion: "",
-    sector: "",
+    sector: "health",
     lat: 38.9072,
     lng: -77.0369,
     essence:
@@ -58,7 +59,7 @@ export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
     href: "/research#non-alcoholic-spirits",
     name: "Non-alcoholic spirits, North America",
     sectorRegion: "",
-    sector: "",
+    sector: "brands",
     lat: 40.7128,
     lng: -74.006,
     essence:
@@ -69,7 +70,7 @@ export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
     href: "/research#body-care-ssa",
     name: "Body care across Sub-Saharan Africa",
     sectorRegion: "",
-    sector: "",
+    sector: "brands",
     lat: -26.2041,
     lng: 28.0473,
     essence:
@@ -80,7 +81,7 @@ export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
     href: "/research#amsterdam-ad-ban",
     name: "Amsterdam's Ad Ban: a meat debate in disguise",
     sectorRegion: "Public sphere, Europe",
-    sector: "",
+    sector: "public",
     lat: 52.3676,
     lng: 4.9041,
     essence:

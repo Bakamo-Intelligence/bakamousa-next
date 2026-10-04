@@ -1,5 +1,6 @@
 ---
 title: 'TensionScope: Decoding the Human "Why" Behind the Data'
+subtitle: "A method for finding the psychological tensions that drive consumer decisions."
 slug: "tensionscope-decoding-the-human-why"
 date: "2026-03-02T09:00:00Z"
 author: "Team Bakamo"

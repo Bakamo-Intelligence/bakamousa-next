@@ -1,5 +1,7 @@
 ---
 title: "Making Mushy Qual Mathematical"
+subtitle: "How vector maths gives qualitative research a map of the whole conversation."
+seoTitle: "Qualitative Research at Scale: Mapping Meaning With Vector Embeddings"
 slug: "making-mushy-qual-mathematical"
 date: "2026-08-28T15:00:00Z"
 author: "Daniel Fazekas"

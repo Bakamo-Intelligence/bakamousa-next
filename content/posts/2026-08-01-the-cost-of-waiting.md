@@ -1,5 +1,7 @@
 ---
 title: "The Cost of Waiting"
+subtitle: "Idle servers used more energy than the Reading Machine did reading. So we changed the architecture."
+seoTitle: "The Energy Cost of Idle Servers: Re-architecting the Reading Machine"
 slug: "the-cost-of-waiting"
 date: "2026-08-01T09:00:00Z"
 author: "Daniel Fazekas"
