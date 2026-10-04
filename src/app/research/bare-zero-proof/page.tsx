@@ -179,7 +179,7 @@ const TIMELINE: Array<{ when: string; what: string; detail: string }> = [
   {
     when: "January 2023",
     what: "The State of Sober Socializing",
-    detail: "BARE publishes its first annual study of the new dry culture.",
+    detail: "BARE turns the insight into its first annual study of the new dry culture.",
   },
   {
     when: "March 2023",
@@ -539,13 +539,14 @@ export default function BareZeroProofPage() {
           <div className="max-w-5xl mx-auto">
             <div className="grid gap-10 rounded-[1.5rem] border border-white/10 bg-black/30 p-8 md:grid-cols-[1.1fr_1fr] md:p-12">
               <div>
-                <p className="text-accent uppercase tracking-[0.2em] text-sm mb-4">What happened next</p>
+                <p className="text-accent uppercase tracking-[0.2em] text-sm mb-4">The launchpad</p>
                 <h3 className={`${cormorant.className} text-3xl leading-tight text-white md:text-4xl`}>
                   The State of Sober Socializing
                 </h3>
                 <div className="mt-6 space-y-4 text-base font-light leading-relaxed text-text-secondary">
                   <p>
-                    In January 2023 BARE published{" "}
+                    The study gave BARE its insight, and BARE built a campaign on it. In January 2023 the brand
+                    published{" "}
                     <a
                       href={REPORT_URL}
                       target="_blank"
@@ -561,8 +562,8 @@ export default function BareZeroProofPage() {
                     of the new dry culture, with a survey of American drinkers and non-drinkers.
                   </p>
                   <p>
-                    Its themes are the ones the conversation had surfaced: acceptance, allies, bartenders who take
-                    the order seriously, and a request to stop saying “mocktail”.
+                    What the conversation had surfaced became the campaign’s argument: acceptance, allies,
+                    bartenders who take the order seriously, and a request to stop saying “mocktail”.
                   </p>
                   <p>
                     The campaign, run by the agency Sēd, received{" "}
