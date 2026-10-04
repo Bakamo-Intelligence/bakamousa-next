@@ -446,7 +446,7 @@ export default function AtlasGlobeCanvas({ points, target, zoomed, hovered = nul
         if (p >= 1) flight = null;
       } else if (!isZoomed && !dragging) {
         if (targetCase) {
-          // Locator mode: follow the plate being read.
+          // Locator mode: follow the case being read.
           rot[0] += shortAngle(rot[0], -targetCase.lng) * Math.min(1, dt * 2.2);
           rot[1] += (-targetCase.lat - rot[1]) * Math.min(1, dt * 2.2);
         } else {

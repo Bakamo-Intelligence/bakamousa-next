@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState, type ComponentType } from "react";
 import { Cormorant_Garamond } from "next/font/google";
+import Image from "next/image";
 import Link from "next/link";
 import { ATLAS_POINTS, type AtlasCase } from "@/lib/atlas";
 import type { GlobeProps } from "@/components/AtlasGlobeCanvas";
@@ -156,6 +157,16 @@ export default function AtlasGlobe({ mode = "hero", target = null, onSelect, cla
               >
                 &larr; Back to the world
               </button>
+              {selected.image ? (
+                <Image
+                  src={selected.image.src}
+                  alt={selected.image.alt}
+                  width={selected.image.width}
+                  height={selected.image.height}
+                  sizes="(min-width: 768px) 320px, 70vw"
+                  className="mb-6 h-auto w-full max-w-xs"
+                />
+              ) : null}
               <h3 className={`${cormorant.className} text-3xl font-light leading-tight text-white md:text-4xl`}>
                 {selected.name}
               </h3>
@@ -172,13 +183,13 @@ export default function AtlasGlobe({ mode = "hero", target = null, onSelect, cla
               {studyHref ? (
                 <Link
                   href={studyHref}
-                  className="mt-8 self-start text-xs uppercase tracking-[0.18em] text-accent underline-offset-4 transition-colors hover:text-white hover:underline"
+                  className="cta-button mt-8 self-start text-sm"
                   data-analytics-event="cta_click"
                   data-analytics-label={`Atlas case: ${selected.name}`}
                   data-analytics-location="atlas_case_panel"
                   data-analytics-destination={studyHref}
                 >
-                  See the study
+                  {selected.linkLabel ?? "See the study"}
                 </Link>
               ) : null}
             </>

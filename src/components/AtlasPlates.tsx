@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Cormorant_Garamond } from "next/font/google";
+import Image from "next/image";
 import Link from "next/link";
 import AtlasGlobe from "@/components/AtlasGlobe";
 import { ACTIVE_ATLAS_CASES, type AtlasCase } from "@/lib/atlas";
@@ -28,10 +29,10 @@ function ArrowIcon() {
 }
 
 /**
- * The Atlas as an index of plates beside a locator globe. The plates and the
- * full text of every case are server-rendered, so each case keeps its anchor
- * and reads without JavaScript; the globe follows whichever plate the reader
- * is hovering or reading. Pass `sector` to show only that sector's cases.
+ * The Atlas as a list of cases beside a locator globe. The list and the full
+ * text of every case are server-rendered, so each case keeps its anchor and
+ * reads without JavaScript; the globe follows whichever case the reader is
+ * hovering or reading. Pass `sector` to show only that sector's cases.
  */
 export default function AtlasPlates({ sector }: { sector?: string }) {
   const cases = sector ? ACTIVE_ATLAS_CASES.filter((c) => c.sector === sector) : ACTIVE_ATLAS_CASES;
@@ -71,7 +72,7 @@ export default function AtlasPlates({ sector }: { sector?: string }) {
       </div>
 
       <div>
-        <p className="text-xs uppercase tracking-[0.2em] text-accent">Index of plates</p>
+        <p className="text-xs uppercase tracking-[0.2em] text-accent">Cases</p>
         <ol className="mt-6 border-b border-border-grey" onMouseLeave={() => setTarget(null)}>
           {cases.map((atlasCase, index) => (
             <li key={atlasCase.id} className="border-t border-border-grey">
@@ -121,8 +122,18 @@ export default function AtlasPlates({ sector }: { sector?: string }) {
                 onMouseEnter={() => setTarget(atlasCase.id)}
                 onMouseLeave={() => setTarget(null)}
               >
-                <p className="text-xs uppercase tracking-[0.2em] text-accent">Plate {roman(index)}</p>
-                <h3 className={`${cormorant.className} mt-3 text-2xl font-light leading-tight text-white md:text-3xl`}>
+                {atlasCase.image ? (
+                  <Image
+                    src={atlasCase.image.src}
+                    alt={atlasCase.image.alt}
+                    width={atlasCase.image.width}
+                    height={atlasCase.image.height}
+                    sizes="320px"
+                    className="mb-6 h-auto w-full max-w-xs"
+                  />
+                ) : null}
+                <p className={`${cormorant.className} text-xl text-accent`}>{roman(index)}</p>
+                <h3 className={`${cormorant.className} mt-2 text-2xl font-light leading-tight text-white md:text-3xl`}>
                   {atlasCase.name}
                 </h3>
                 {atlasCase.sectorRegion ? (
@@ -144,7 +155,7 @@ export default function AtlasPlates({ sector }: { sector?: string }) {
                     data-analytics-location="research_atlas"
                     data-analytics-destination={studyHref}
                   >
-                    See the study
+                    {atlasCase.linkLabel ?? "See the study"}
                     <span className="sr-only">: {atlasCase.name}</span>
                     <ArrowIcon />
                   </Link>

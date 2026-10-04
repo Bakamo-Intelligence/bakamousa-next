@@ -9,6 +9,9 @@ export type AtlasCase = {
   essence: string;
   /** Where the case can be read: its study page, or its anchor on /research. */
   href?: string;
+  /** Link text for a case that has its own page. Defaults to "See the study". */
+  linkLabel?: string;
+  image?: { src: string; alt: string; width: number; height: number };
 };
 
 export type AtlasPoint =
@@ -57,8 +60,15 @@ export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
   {
     id: "non-alcoholic-spirits",
     href: "/research/bare-zero-proof",
-    name: "Non-alcoholic spirits, North America",
-    sectorRegion: "",
+    linkLabel: "Read the case study",
+    image: {
+      src: "/media/bare/bottle-lineup.png",
+      alt: "The BARE Zero Proof range of non-alcoholic spirits.",
+      width: 1254,
+      height: 1033,
+    },
+    name: "BARE Zero Proof",
+    sectorRegion: "Non-alcoholic spirits, North America",
     sector: "brands",
     lat: 40.7128,
     lng: -74.006,
@@ -87,6 +97,28 @@ export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
     essence:
       "On May 1, Amsterdam introduced an ad ban on meat and fossil-fuel products. We explored the reactions of social media users across various channels. The language was English.\n\nWhat we found is that the discourse predominantly focuses on the meat part of the ban, and to a significantly lesser extent on the fossil-fuel part. The fossil-fuel half is largely waved through as common sense. The meat half is where the conversation concentrates.\n\nBy and large, opinions fall into two opposing sides — and which side people land on tends to track whether they're an omnivore or follow a meat-free lifestyle. In this discourse, diet predicts stance more reliably than politics.\n\nSupporters celebrate the policy. They expect that reducing the visibility of meat will normalise vegetarian and vegan options over time, underpinned by a belief that less advertising means meat stops being the default. Other supportive arguments include retribution for the environmental damage attributed to the meat industry, and a smaller group who back the ban because they think fewer ads would have a calming, aesthetic effect on the quality of city life. The stance is anchored in a self-identity as environmentally conscious and forward-looking.\n\nOpponents read the ban as an attack on a normal, everyday way of life — elitist, performative, and a step toward broader censorship. A recurring move is whataboutism: gambling ads are permitted, but meat is where the line is drawn? The register here is largely ridicule and sarcasm rather than evidence, while the supportive side tends toward research, precedent, and moral framing. As a result, the two camps rarely engage directly.\n\nBeneath the meat divide sit two deeper questions that also separate the camps: whether advertising actually changes behaviour, and whether a collective authority should decide what may be promoted. The fossil-fuel half of the ban functions as a useful point of comparison — the same policy, the same city, and the same censorship objection available, yet only meat generates sustained debate. In this discourse, the stronger driver of reaction is dietary identity rather than free-speech principle.",
   },
+  {
+    id: "french-election-2017",
+    href: "/research/french-election-2017",
+    name: "The French Election, 2017",
+    sectorRegion: "Public sphere, Europe",
+    sector: "public",
+    lat: 48.8566,
+    lng: 2.3522,
+    essence:
+      "Around the 2017 election, French social media had virtually no common ground. People shared links from one side of the media map or the other, and almost never both. Fake news travelled because it answered an emotional need, not because it was believed.",
+  },
+  {
+    id: "migration-narratives-eu",
+    href: "/migration",
+    name: "Migration Narratives in Europe",
+    sectorRegion: "Public sphere, 28 EU member states",
+    sector: "public",
+    lat: 52.52,
+    lng: 13.405,
+    essence:
+      "Across 28 EU countries, migration is argued through the same few frames: security, identity, economy and demographics, humanitarianism, and distrust of the political establishment. What changes from country to country is their weight.",
+  },
 ];
 
 export const INERT_ATLAS_POINTS: AtlasPoint[] = [
@@ -95,8 +127,6 @@ export const INERT_ATLAS_POINTS: AtlasPoint[] = [
   { id: "placeholder-brazil", status: "inert", lat: -23.5505, lng: -46.6333 },
   { id: "placeholder-argentina", status: "inert", lat: -34.6037, lng: -58.3816 },
   { id: "placeholder-uk", status: "inert", lat: 51.5072, lng: -0.1276 },
-  { id: "placeholder-france", status: "inert", lat: 48.8566, lng: 2.3522 },
-  { id: "placeholder-germany", status: "inert", lat: 52.52, lng: 13.405 },
   { id: "placeholder-spain", status: "inert", lat: 40.4168, lng: -3.7038 },
   { id: "placeholder-italy", status: "inert", lat: 41.9028, lng: 12.4964 },
   { id: "placeholder-kenya", status: "inert", lat: -1.2921, lng: 36.8219 },
