@@ -29,7 +29,8 @@ export default function AtlasCaseDetail({ atlasCase, variant, analyticsLocation 
   // Parents key this component by case and location, so the tab resets when
   // the reader opens another point.
   const [locationId, setLocationId] = useState<string | undefined>(atlasCase.locationId ?? locations[0]?.id);
-  const location = locations.find((l) => l.id === locationId) ?? locations[0];
+  const tabbed = locations.some((l) => l.character);
+  const location = tabbed ? (locations.find((l) => l.id === locationId) ?? locations[0]) : undefined;
 
   // Only a published study has its own page. Short cases are read in place.
   const studyHref = atlasCase.href && !atlasCase.href.startsWith("/research#") ? atlasCase.href : null;
@@ -115,19 +116,49 @@ export default function AtlasCaseDetail({ atlasCase, variant, analyticsLocation 
             })}
           </div>
           <div role="tabpanel" className="mt-5 rounded-[1.25rem] border border-white/10 bg-black/30 p-6">
-            <p className={`${cormorant.className} text-2xl leading-tight text-white md:text-3xl`}>
-              {location.character}
-            </p>
-            <p className="mt-5 text-[10px] uppercase tracking-[0.18em] text-accent">Where young people go</p>
-            <ol className="mt-3 space-y-1.5">
-              {location.places.map((place, index) => (
-                <li key={place} className="flex items-baseline gap-3 text-sm font-light text-text-secondary">
-                  <span className={`${cormorant.className} text-lg text-accent/80`}>{index + 1}</span>
-                  {place}
-                </li>
-              ))}
-            </ol>
+            {location.character ? (
+              <p className={`${cormorant.className} text-2xl leading-tight text-white md:text-3xl`}>
+                {location.character}
+              </p>
+            ) : null}
+            {location.places?.length ? (
+              <>
+                {atlasCase.locationsListTitle ? (
+                  <p className="mt-5 text-[10px] uppercase tracking-[0.18em] text-accent">
+                    {atlasCase.locationsListTitle}
+                  </p>
+                ) : null}
+                <ol className="mt-3 space-y-1.5">
+                  {location.places.map((place, index) => (
+                    <li key={place} className="flex items-baseline gap-3 text-sm font-light text-text-secondary">
+                      <span className={`${cormorant.className} text-lg text-accent/80`}>{index + 1}</span>
+                      {place}
+                    </li>
+                  ))}
+                </ol>
+              </>
+            ) : null}
           </div>
+        </div>
+      ) : null}
+
+      {!tabbed && locations.length > 1 ? (
+        <div className="mt-8">
+          <p className="text-[10px] uppercase tracking-[0.18em] text-accent">Countries</p>
+          <ul className="mt-3 flex flex-wrap gap-x-2 gap-y-2">
+            {locations.map((l) => (
+              <li
+                key={l.id}
+                className={`rounded-full border px-3 py-1 text-[11px] tracking-[0.04em] ${
+                  l.id === atlasCase.locationId
+                    ? "border-accent text-accent"
+                    : "border-white/10 text-text-secondary"
+                }`}
+              >
+                {l.label}
+              </li>
+            ))}
+          </ul>
         </div>
       ) : null}
 
@@ -145,7 +176,20 @@ export default function AtlasCaseDetail({ atlasCase, variant, analyticsLocation 
         </div>
       ) : null}
 
-      {studyHref ? (
+      {studyHref && /^https?:/.test(studyHref) ? (
+        <a
+          href={studyHref}
+          target="_blank"
+          rel="noopener"
+          className="cta-button mt-8 inline-block self-start text-sm"
+          data-analytics-event="outbound_click"
+          data-analytics-label={`Atlas case: ${atlasCase.name}`}
+          data-analytics-location={analyticsLocation}
+          data-analytics-destination={studyHref}
+        >
+          {atlasCase.linkLabel ?? "See the study"}
+        </a>
+      ) : studyHref ? (
         <Link
           href={studyHref}
           className="cta-button mt-8 inline-block self-start text-sm"

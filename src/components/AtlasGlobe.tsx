@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState, type ComponentType } from "react";
 import AtlasCaseDetail from "@/components/AtlasCaseDetail";
-import { ATLAS_POINTS, type AtlasCase } from "@/lib/atlas";
+import { ACTIVE_ATLAS_CASES, ATLAS_POINTS, type AtlasCase } from "@/lib/atlas";
 import type { GlobeProps } from "@/components/AtlasGlobeCanvas";
 
 type Props = {
@@ -16,6 +16,50 @@ type Props = {
   onSelect?: (atlasCase: AtlasCase) => void;
   className?: string;
 };
+
+/** The case, or cases, that can be read at one globe point. */
+function CasesHere({ point }: { point: AtlasCase }) {
+  const here = point.here ?? [{ caseId: point.caseId ?? point.id, locationId: point.locationId }];
+  const [index, setIndex] = useState(0);
+  const current = here[index] ?? here[0];
+  const atlasCase = ACTIVE_ATLAS_CASES.find((c) => c.id === current.caseId) ?? point;
+
+  return (
+    <>
+      {here.length > 1 ? (
+        <div className="mb-8">
+          <p className="text-[10px] uppercase tracking-[0.18em] text-text-muted">{here.length} studies at this point</p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {here.map((entry, i) => {
+              const name = ACTIVE_ATLAS_CASES.find((c) => c.id === entry.caseId)?.name ?? entry.caseId;
+              return (
+                <button
+                  key={entry.caseId}
+                  type="button"
+                  aria-pressed={i === index}
+                  onClick={() => setIndex(i)}
+                  className={`rounded-full border px-4 py-1.5 text-left text-[11px] tracking-[0.04em] transition-colors ${
+                    i === index
+                      ? "border-accent bg-accent text-near-black"
+                      : "border-white/15 text-text-secondary hover:border-accent hover:text-white"
+                  }`}
+                >
+                  {name}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      ) : null}
+      <AtlasCaseDetail
+        key={current.caseId}
+        atlasCase={{ ...atlasCase, locationId: current.locationId }}
+        variant="panel"
+        analyticsLocation="atlas_case_panel"
+      />
+    </>
+  );
+}
 
 /**
  * Lazy shell around the canvas globe. Renders a lightweight placeholder
@@ -107,9 +151,11 @@ export default function AtlasGlobe({ mode = "hero", target = null, onSelect, cla
       {hoveredCase && hoveredCase.status === "active" ? (
         <p className="pointer-events-none absolute left-1/2 top-4 z-20 -translate-x-1/2 border border-border-grey bg-near-black/90 px-4 py-2 text-center text-sm text-white">
           {hoveredCase.name}
-          {hoveredCase.locations
-            ? ` · ${hoveredCase.locations.find((l) => l.id === hoveredCase.locationId)?.label ?? ""}`
-            : ""}
+          {hoveredCase.here && hoveredCase.here.length > 1
+            ? ` + ${hoveredCase.here.length - 1} more`
+            : hoveredCase.locations
+              ? ` · ${hoveredCase.locations.find((l) => l.id === hoveredCase.locationId)?.label ?? ""}`
+              : ""}
         </p>
       ) : null}
 
@@ -149,7 +195,7 @@ export default function AtlasGlobe({ mode = "hero", target = null, onSelect, cla
               >
                 &larr; Back to the world
               </button>
-              <AtlasCaseDetail key={selected.id} atlasCase={selected} variant="panel" analyticsLocation="atlas_case_panel" />
+              <CasesHere key={selected.id} point={selected} />
             </>
           ) : null}
         </aside>

@@ -206,9 +206,10 @@ export default function AtlasGlobeCanvas({ points, target, zoomed, hovered = nul
       const button = document.createElement("button");
       button.type = "button";
       button.className =
-        "absolute h-9 w-9 -translate-x-1/2 -translate-y-1/2 rounded-full bg-transparent cursor-pointer focus-visible:outline focus-visible:outline-1 focus-visible:outline-accent";
+        "absolute h-6 w-6 -translate-x-1/2 -translate-y-1/2 rounded-full bg-transparent cursor-pointer focus-visible:outline focus-visible:outline-1 focus-visible:outline-accent";
       const place = point.locations?.find((l) => l.id === point.locationId)?.label;
-      button.setAttribute("aria-label", `Open ${point.name}${place ? `, ${place}` : ""}`);
+      const more = point.here && point.here.length > 1 ? ` and ${point.here.length - 1} more` : "";
+      button.setAttribute("aria-label", `Open ${point.name}${place ? `, ${place}` : ""}${more}`);
       button.addEventListener("click", (event) => {
         event.stopPropagation();
         propsRef.current.onSelect(point);
