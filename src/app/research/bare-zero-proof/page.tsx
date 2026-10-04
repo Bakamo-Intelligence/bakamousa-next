@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond } from "next/font/google";
+import Image from "next/image";
 import Link from "next/link";
 import { BOOKING_HREF } from "@/lib/booking";
 import { ORGANIZATION_REF, pageOpenGraph } from "@/lib/seo";
@@ -179,7 +180,7 @@ const TIMELINE: Array<{ when: string; what: string; detail: string }> = [
   {
     when: "January 2023",
     what: "The State of Sober Socializing",
-    detail: "BARE turns the insight into its first annual study of the new dry culture.",
+    detail: "BARE’s public report, built on the study.",
   },
   {
     when: "March 2023",
@@ -189,7 +190,7 @@ const TIMELINE: Array<{ when: string; what: string; detail: string }> = [
   {
     when: "December 2023",
     what: "PR Daily Awards",
-    detail: "Two honorable mentions for the campaign.",
+    detail: "Two honorable mentions.",
   },
   {
     when: "2024",
@@ -341,16 +342,29 @@ export default function BareZeroProofPage() {
               </span>
             </div>
 
-            <h1
-              className={`${cormorant.className} max-w-4xl text-[clamp(2.8rem,7vw,6rem)] leading-[0.98] tracking-tight text-white`}
-            >
-              Who <em className="text-accent">really</em> drinks non-alcoholic spirits
-            </h1>
-            <p
-              className={`${cormorant.className} mt-8 max-w-2xl text-2xl italic leading-snug text-text-secondary md:text-3xl`}
-            >
-              What 214,000 posts told BARE Zero Proof about its consumer, before anyone asked a question.
-            </p>
+            <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_1fr]">
+              <div>
+                <h1
+                  className={`${cormorant.className} text-[clamp(2.8rem,6vw,5.2rem)] leading-[0.98] tracking-tight text-white`}
+                >
+                  Who <em className="text-accent">really</em> drinks non-alcoholic spirits
+                </h1>
+                <p
+                  className={`${cormorant.className} mt-8 max-w-2xl text-2xl italic leading-snug text-text-secondary md:text-3xl`}
+                >
+                  What 214,000 posts told BARE Zero Proof about its consumer, before anyone asked a question.
+                </p>
+              </div>
+              <Image
+                src="/media/bare/bottle-lineup.png"
+                alt="The BARE Zero Proof range: spiced rum, rum blanco, tequila, gin, bourbon whiskey and fernet."
+                width={1254}
+                height={1033}
+                priority
+                sizes="(min-width: 1024px) 480px, 100vw"
+                className="h-auto w-full"
+              />
+            </div>
 
             <dl className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-[1.5rem] border border-white/10 bg-white/10 md:grid-cols-4">
               {STATS.map((stat) => (
@@ -379,16 +393,27 @@ export default function BareZeroProofPage() {
 
         {/* Lead quote */}
         <section className="px-6 py-20 bg-dark-grey/70" data-analytics-section="bare_lead_quote" data-analytics-label="Client Quote">
-          <figure className="max-w-4xl mx-auto text-center">
-            <span className={`${cormorant.className} block text-7xl leading-none text-accent`} aria-hidden="true">
-              “
-            </span>
-            <blockquote>
-              <p className={`${cormorant.className} text-3xl leading-[1.15] text-white md:text-5xl`}>{LEAD_QUOTE}</p>
-            </blockquote>
-            <figcaption className="mt-8 text-xs uppercase tracking-[0.18em] text-text-muted">
-              Jim Kempland, Co-Founder and CEO, <BareLink location="bare_lead_quote">BARE Zero Proof Spirits</BareLink>
-            </figcaption>
+          <figure className="max-w-5xl mx-auto grid items-center gap-10 md:grid-cols-[0.8fr_1.2fr] md:gap-14">
+            <Image
+              src="/media/bare/mai-tai.png"
+              alt="Two hands rising out of the sea, one holding a Mai Tai and the other a bottle of BARE Zero Proof spiced rum."
+              width={1086}
+              height={1448}
+              sizes="(min-width: 768px) 380px, 100vw"
+              className="h-auto w-full rounded-[1.5rem]"
+            />
+            <div>
+              <span className={`${cormorant.className} block text-7xl leading-none text-accent`} aria-hidden="true">
+                “
+              </span>
+              <blockquote>
+                <p className={`${cormorant.className} text-3xl leading-[1.15] text-white md:text-4xl`}>{LEAD_QUOTE}</p>
+              </blockquote>
+              <figcaption className="mt-8 text-xs uppercase tracking-[0.18em] text-text-muted">
+                Jim Kempland, Co-Founder and CEO, <BareLink location="bare_lead_quote">BARE Zero Proof Spirits</BareLink>
+                <span className="mt-2 block normal-case tracking-normal text-text-muted/70">Photo: BARE Zero Proof</span>
+              </figcaption>
+            </div>
           </figure>
         </section>
 
@@ -541,12 +566,11 @@ export default function BareZeroProofPage() {
               <div>
                 <p className="text-accent uppercase tracking-[0.2em] text-sm mb-4">The launchpad</p>
                 <h3 className={`${cormorant.className} text-3xl leading-tight text-white md:text-4xl`}>
-                  The State of Sober Socializing
+                  From study to campaign
                 </h3>
                 <div className="mt-6 space-y-4 text-base font-light leading-relaxed text-text-secondary">
                   <p>
-                    The study gave BARE its insight, and BARE built a campaign on it. In January 2023 the brand
-                    published{" "}
+                    BARE took what we found and went public with it. In January 2023 it published{" "}
                     <a
                       href={REPORT_URL}
                       target="_blank"
@@ -557,25 +581,22 @@ export default function BareZeroProofPage() {
                       data-analytics-location="bare_campaign"
                       data-analytics-destination={REPORT_URL}
                     >
-                      its first annual study
-                    </a>{" "}
-                    of the new dry culture, with a survey of American drinkers and non-drinkers.
+                      The State of Sober Socializing
+                    </a>
+                    , a report on how people who do not drink are treated when they go out. Our study was the
+                    starting point.
                   </p>
                   <p>
-                    What the conversation had surfaced became the campaign’s argument: acceptance, allies,
-                    bartenders who take the order seriously, and a request to stop saying “mocktail”.
-                  </p>
-                  <p>
-                    The campaign, run by the agency Sēd, received{" "}
+                    The campaign got two honorable mentions at the{" "}
                     <a
                       href={AWARDS_URL}
                       target="_blank"
                       rel="noopener"
                       className="text-accent hover:underline underline-offset-4"
                     >
-                      honorable mentions in two categories
-                    </a>{" "}
-                    at the PR Daily Awards 2023: Media Relations Campaign and Thought Leadership Communications.
+                      PR Daily Awards 2023
+                    </a>
+                    .
                   </p>
                 </div>
               </div>
