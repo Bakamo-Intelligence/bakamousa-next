@@ -302,13 +302,13 @@ export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
   {
     id: "migration-journeys",
     name: "Migration journeys, read in transit",
-    sectorRegion: "Public sector, Austria",
+    sectorRegion: "Public sector, client undisclosed",
     sector: "public",
-    lat: PLACES.AT.lat,
-    lng: PLACES.AT.lng,
-    locations: countries("AT TR TN"),
+    lat: PLACES.TR.lat,
+    lng: PLACES.TR.lng,
+    locations: countries("TR TN"),
     essence:
-      "For Gallup, on behalf of an Austrian government ministry, we read the public social media conversation of people in transit towards Europe, in their own languages and with native analysts.\n\nThe reading came before the survey research, so that the questions could build on what people had already said without being asked.",
+      "We read the public social media conversation of people in transit towards Europe, in their own languages and with native analysts.\n\nThe reading came before the survey research, so that the questions could build on what people had already said without being asked.",
   },
   {
     id: "french-election-2017",
