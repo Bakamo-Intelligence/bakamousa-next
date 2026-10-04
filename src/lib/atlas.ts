@@ -167,8 +167,8 @@ export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
   {
     id: "body-care-ssa",
     href: "/research#body-care-ssa",
-    name: "What beauty is made of",
-    sectorRegion: "Body care, four African markets",
+    name: "Beauty and body care, Sub-Saharan Africa",
+    sectorRegion: "Body care, four markets",
     sector: "brands",
     lat: -26.2041,
     lng: 28.0473,
@@ -204,8 +204,8 @@ export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
   },
   {
     id: "tv-show-backdrop",
-    name: "Finding the backdrop for a TV show",
-    sectorRegion: "TV production, Latin America",
+    name: "TV show locations, Latin America",
+    sectorRegion: "TV production",
     sector: "brands",
     lat: -2.7975,
     lng: -40.5137,
@@ -258,7 +258,7 @@ export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
   },
   {
     id: "sbnr-work",
-    name: "Spiritual but not religious, at work",
+    name: "Spiritual but not religious: attitudes to work",
     sectorRegion: "Academic research, worldwide",
     sector: "",
     lat: 32.0158,
@@ -272,8 +272,8 @@ export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
   },
   {
     id: "vaccination-twelve-countries",
-    name: "Vaccination, argued in twelve countries",
-    sectorRegion: "Health, four continents",
+    name: "Childhood vaccination, 12 countries",
+    sectorRegion: "Health",
     sector: "health",
     lat: PLACES.BR.lat,
     lng: PLACES.BR.lng,
@@ -289,7 +289,7 @@ export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
     id: "nato-youth-dashboard",
     href: "https://www.mccaininstitute.org/resources/blog/recommendations-to-the-nato-alliance-to-collectively-combat-misinformation/",
     linkLabel: "See it at the McCain Institute",
-    name: "How NATO is seen, country by country",
+    name: "NATO perception dashboard",
     sectorRegion: "Public sphere, NATO member states",
     sector: "public",
     lat: PLACES.BE.lat,
@@ -306,7 +306,7 @@ export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
   },
   {
     id: "migration-journeys",
-    name: "Migration journeys, read in transit",
+    name: "Migrants in transit, Turkey and Tunisia",
     sectorRegion: "Public sector, client undisclosed",
     sector: "public",
     lat: PLACES.TR.lat,
@@ -318,6 +318,111 @@ export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
       { value: "2", label: "transit countries" },
       { value: "5", label: "countries of origin" },
       { value: "24", label: "months of conversation" },
+    ],
+  },
+  {
+    id: "airport-florida",
+    name: "Airport travellers, Florida",
+    sectorRegion: "Travel, major US airport",
+    sector: "brands",
+    lat: 27.8,
+    lng: -81.6,
+    essence:
+      "For a major airport in Florida we read a year of what travellers say about passing through it. The work sorted travellers into types by what they need from the airport, and set out what makes the experience better or worse for each.",
+    stats: [
+      { value: "12", label: "months of conversation" },
+      { value: "1,500", label: "posts read by analysts" },
+    ],
+  },
+  {
+    id: "university-texas",
+    name: "University reputation, Texas",
+    sectorRegion: "Higher education, major Texas university",
+    sector: "brands",
+    lat: 31.5,
+    lng: -98.5,
+    essence:
+      "For a major Texas university we read a year of public conversation about it, among future, current and former students and among people with no tie to it. The question was what defines the university in the national conversation: why people choose it, what they think sets it apart, and what its former students add to its name.\n\nThe reading set the agenda for the interviews that followed.",
+    stats: [
+      { value: "12", label: "months of conversation" },
+      { value: "1,500", label: "posts read by analysts" },
+    ],
+  },
+  {
+    id: "flooring-us",
+    name: "Flooring, United States",
+    sectorRegion: "Home, flooring manufacturer",
+    sector: "brands",
+    lat: 39.0997,
+    lng: -94.5786,
+    essence:
+      "For a flooring manufacturer we read two years of how people talk about floors: when the subject comes up, what a floor means in a home, whom they trust, and how they choose. A second piece looked from the other side, at how brands, retailers, influencers and media present flooring to the people who buy it.",
+    stats: [
+      { value: "24", label: "months of conversation" },
+      { value: "1,000", label: "posts read by analysts" },
+    ],
+  },
+  {
+    id: "retail-loyalty-us",
+    name: "Loyalty programme, US retail",
+    sectorRegion: "Retail, major US retailer",
+    sector: "brands",
+    lat: 39.9526,
+    lng: -75.1652,
+    essence:
+      "For a major US retailer we read what members say to each other about its loyalty programme: what they like and dislike, how they use it, and which other programmes they hold it up against.",
+  },
+  {
+    id: "toys-us",
+    name: "Children’s toys and collectibles, United States",
+    sectorRegion: "Toys, heritage brand",
+    sector: "brands",
+    lat: 39.7392,
+    lng: -104.9903,
+    essence:
+      "For a toy brand we read two years of how parents talk about what their young daughters play with and collect, and what holds a child’s attention. A second strand read the wider world the brand’s toys belong to, online and off. The work came first, to show later research where to look.",
+    stats: [
+      { value: "24", label: "months of conversation" },
+      { value: "1,500", label: "posts read by analysts" },
+    ],
+  },
+  {
+    id: "financial-advice-us",
+    name: "Financial advice, United States",
+    sectorRegion: "Financial services, national advisory firm",
+    sector: "brands",
+    lat: 35.2271,
+    lng: -80.8431,
+    essence:
+      "For a national financial advisory firm we read how investors talk about moving their money from one firm to another. A separate study read how people talk about working in the industry.",
+  },
+  {
+    id: "public-participation-azerbaijan",
+    name: "Public participation, Azerbaijan",
+    sectorRegion: "Public sphere, South Caucasus",
+    sector: "public",
+    lat: 40.4093,
+    lng: 49.8671,
+    essence:
+      "For a USAID programme in Azerbaijan we read two years of public conversation in Azeri, Russian and English, with a team of local analysts. The reading covered ten social and economic issues, and looked at what helps or hinders people in taking part in public life, among them women, young people and people with disabilities.\n\nIt fed the analysis the programme was designed on. The report itself is not public.",
+    stats: [
+      { value: "24", label: "months of conversation" },
+      { value: "3", label: "languages" },
+      { value: "10", label: "issues" },
+    ],
+  },
+  {
+    id: "civil-society-kazakhstan",
+    name: "Civil society, Kazakhstan",
+    sectorRegion: "Public sphere, Central Asia",
+    sector: "public",
+    lat: 51.1694,
+    lng: 71.4491,
+    essence:
+      "We read two years of public conversation in Kazakhstan, in Russian and Kazakh, about civil society: what people take the term to mean, and how they discuss the organisations that work under it.\n\nThe reading was made to be used together with survey research, in support of NGOs’ part in public debate.",
+    stats: [
+      { value: "24", label: "months of conversation" },
+      { value: "2", label: "languages" },
     ],
   },
   {
