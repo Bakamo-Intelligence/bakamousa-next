@@ -15,6 +15,7 @@ const STATIC_PAGES: Array<{ path: string; lastModified: string }> = [
   { path: "/disinformation", lastModified: "2026-10-04" },
   { path: "/research", lastModified: "2026-09-15" },
   { path: "/research/french-election-2017", lastModified: "2026-10-04" },
+  { path: "/research/bare-zero-proof", lastModified: "2026-10-05" },
   { path: "/elections", lastModified: "2026-09-15" },
   { path: "/migration", lastModified: "2026-09-15" },
   { path: "/contact", lastModified: "2026-09-15" },

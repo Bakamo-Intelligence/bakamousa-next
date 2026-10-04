@@ -108,7 +108,7 @@ export default function AtlasPlates({ sector }: { sector?: string }) {
 
         <div className="mt-6">
           {cases.map((atlasCase, index) => {
-            const studyHref = atlasCase.href && !atlasCase.href.startsWith("/research") ? atlasCase.href : null;
+            const studyHref = atlasCase.href && !atlasCase.href.startsWith("/research#") ? atlasCase.href : null;
             return (
               <article
                 key={atlasCase.id}

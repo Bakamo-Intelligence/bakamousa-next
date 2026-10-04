@@ -56,7 +56,7 @@ export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
   },
   {
     id: "non-alcoholic-spirits",
-    href: "/research#non-alcoholic-spirits",
+    href: "/research/bare-zero-proof",
     name: "Non-alcoholic spirits, North America",
     sectorRegion: "",
     sector: "brands",
