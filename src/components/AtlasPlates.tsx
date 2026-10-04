@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Cormorant_Garamond } from "next/font/google";
-import Link from "next/link";
+import AtlasCaseDetail from "@/components/AtlasCaseDetail";
 import AtlasGlobe from "@/components/AtlasGlobe";
 import { ACTIVE_ATLAS_CASES, type AtlasCase } from "@/lib/atlas";
 
@@ -19,19 +19,11 @@ function roman(index: number) {
   return ROMAN[index] ?? String(index + 1);
 }
 
-function ArrowIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-      <path d="M3 8h10m0 0L9 4m4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
 /**
- * The Atlas as an index of plates beside a locator globe. The plates and the
- * full text of every case are server-rendered, so each case keeps its anchor
- * and reads without JavaScript; the globe follows whichever plate the reader
- * is hovering or reading. Pass `sector` to show only that sector's cases.
+ * The Atlas as a list of cases beside a locator globe. The list and the full
+ * text of every case are server-rendered, so each case keeps its anchor and
+ * reads without JavaScript; the globe follows whichever case the reader is
+ * hovering or reading. Pass `sector` to show only that sector's cases.
  */
 export default function AtlasPlates({ sector }: { sector?: string }) {
   const cases = sector ? ACTIVE_ATLAS_CASES.filter((c) => c.sector === sector) : ACTIVE_ATLAS_CASES;
@@ -59,9 +51,9 @@ export default function AtlasPlates({ sector }: { sector?: string }) {
   }, []);
 
   const goTo = useCallback((atlasCase: AtlasCase) => {
-    const el = articleRefs.current.get(atlasCase.id);
+    const el = articleRefs.current.get(atlasCase.caseId ?? atlasCase.id);
     el?.scrollIntoView({ behavior: "smooth", block: "start" });
-    setPinned(atlasCase.id);
+    setPinned(atlasCase.caseId ?? atlasCase.id);
   }, []);
 
   return (
@@ -71,7 +63,7 @@ export default function AtlasPlates({ sector }: { sector?: string }) {
       </div>
 
       <div>
-        <p className="text-xs uppercase tracking-[0.2em] text-accent">Index of plates</p>
+        <p className="text-xs uppercase tracking-[0.2em] text-accent">Cases</p>
         <ol className="mt-6 border-b border-border-grey" onMouseLeave={() => setTarget(null)}>
           {cases.map((atlasCase, index) => (
             <li key={atlasCase.id} className="border-t border-border-grey">
@@ -108,7 +100,6 @@ export default function AtlasPlates({ sector }: { sector?: string }) {
 
         <div className="mt-6">
           {cases.map((atlasCase, index) => {
-            const studyHref = atlasCase.href && !atlasCase.href.startsWith("/research#") ? atlasCase.href : null;
             return (
               <article
                 key={atlasCase.id}
@@ -121,34 +112,8 @@ export default function AtlasPlates({ sector }: { sector?: string }) {
                 onMouseEnter={() => setTarget(atlasCase.id)}
                 onMouseLeave={() => setTarget(null)}
               >
-                <p className="text-xs uppercase tracking-[0.2em] text-accent">Plate {roman(index)}</p>
-                <h3 className={`${cormorant.className} mt-3 text-2xl font-light leading-tight text-white md:text-3xl`}>
-                  {atlasCase.name}
-                </h3>
-                {atlasCase.sectorRegion ? (
-                  <p className="mt-3 text-xs uppercase tracking-[0.18em] text-text-muted">{atlasCase.sectorRegion}</p>
-                ) : null}
-                <div
-                  className={`${cormorant.className} mt-6 space-y-4 border-l border-accent pl-6 text-lg italic leading-snug text-white md:text-xl`}
-                >
-                  {atlasCase.essence.split("\n\n").map((paragraph, i) => (
-                    <p key={i}>{paragraph}</p>
-                  ))}
-                </div>
-                {studyHref ? (
-                  <Link
-                    href={studyHref}
-                    className="mt-6 inline-flex items-center gap-2 text-sm text-accent hover:underline underline-offset-4"
-                    data-analytics-event="cta_click"
-                    data-analytics-label={`Atlas case: ${atlasCase.name}`}
-                    data-analytics-location="research_atlas"
-                    data-analytics-destination={studyHref}
-                  >
-                    See the study
-                    <span className="sr-only">: {atlasCase.name}</span>
-                    <ArrowIcon />
-                  </Link>
-                ) : null}
+                <p className={`${cormorant.className} mb-4 text-xl text-accent`}>{roman(index)}</p>
+                <AtlasCaseDetail atlasCase={atlasCase} variant="list" analyticsLocation="research_atlas" />
               </article>
             );
           })}

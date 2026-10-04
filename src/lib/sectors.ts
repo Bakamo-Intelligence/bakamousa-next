@@ -90,11 +90,6 @@ export const SECTORS: Sector[] = [
       "McCain Institute / Arizona State University",
       "Greenpeace",
     ],
-    studies: [
-      { title: "French Election Social Media Landscape Report 2017", href: "/research/french-election-2017" },
-      { title: "Migration Narratives in Europe", href: "/migration" },
-      { title: "Hungarian Election 2026: A Psychographic Divide", href: "/elections" },
-    ],
   },
   {
     id: "disinformation",

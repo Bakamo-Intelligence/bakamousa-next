@@ -1,17 +1,9 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState, type ComponentType } from "react";
-import { Cormorant_Garamond } from "next/font/google";
-import Link from "next/link";
+import AtlasCaseDetail from "@/components/AtlasCaseDetail";
 import { ATLAS_POINTS, type AtlasCase } from "@/lib/atlas";
 import type { GlobeProps } from "@/components/AtlasGlobeCanvas";
-
-const cormorant = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  style: ["normal", "italic"],
-  display: "swap",
-});
 
 type Props = {
   /**
@@ -80,8 +72,6 @@ export default function AtlasGlobe({ mode = "hero", target = null, onSelect, cla
   const hero = mode === "hero";
   // In hero mode only a click moves the globe; hovering just holds it still.
   const activeTarget = hero ? (selected?.id ?? null) : target;
-  // Only a published study has its own page. Short cases are read in place.
-  const studyHref = selected?.href && !selected.href.startsWith("/research#") ? selected.href : null;
   const hoveredCase = hovered && !selected ? ATLAS_POINTS.find((p) => p.id === hovered) : null;
 
   return (
@@ -117,6 +107,9 @@ export default function AtlasGlobe({ mode = "hero", target = null, onSelect, cla
       {hoveredCase && hoveredCase.status === "active" ? (
         <p className="pointer-events-none absolute left-1/2 top-4 z-20 -translate-x-1/2 border border-border-grey bg-near-black/90 px-4 py-2 text-center text-sm text-white">
           {hoveredCase.name}
+          {hoveredCase.locations
+            ? ` · ${hoveredCase.locations.find((l) => l.id === hoveredCase.locationId)?.label ?? ""}`
+            : ""}
         </p>
       ) : null}
 
@@ -141,7 +134,7 @@ export default function AtlasGlobe({ mode = "hero", target = null, onSelect, cla
         <aside
           aria-hidden={selected === null}
           aria-label={selected ? `Case: ${selected.name}` : undefined}
-          className={`absolute inset-y-0 right-0 z-30 flex w-full flex-col overflow-y-auto p-7 text-left transition-transform duration-700 ease-[cubic-bezier(.2,.7,.2,1)] md:w-[46%] md:max-w-lg md:p-11 ${selected ? "translate-x-0" : "translate-x-[104%]"}`}
+          className={`absolute inset-y-0 right-0 z-30 flex w-full flex-col overflow-y-auto p-7 text-left transition-transform duration-700 ease-[cubic-bezier(.2,.7,.2,1)] md:w-[54%] md:max-w-2xl md:p-12 ${selected ? "translate-x-0" : "translate-x-[104%]"}`}
           style={{
             background:
               "linear-gradient(90deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.94) 14%, rgba(10,10,10,0.97) 100%)",
@@ -156,31 +149,7 @@ export default function AtlasGlobe({ mode = "hero", target = null, onSelect, cla
               >
                 &larr; Back to the world
               </button>
-              <h3 className={`${cormorant.className} text-3xl font-light leading-tight text-white md:text-4xl`}>
-                {selected.name}
-              </h3>
-              {selected.sectorRegion ? (
-                <p className="mt-3 text-xs uppercase tracking-[0.18em] text-accent">{selected.sectorRegion}</p>
-              ) : null}
-              <div
-                className={`${cormorant.className} mt-6 space-y-4 border-l border-accent pl-5 text-xl italic leading-snug text-white`}
-              >
-                {selected.essence.split("\n\n").map((paragraph, index) => (
-                  <p key={index}>{paragraph}</p>
-                ))}
-              </div>
-              {studyHref ? (
-                <Link
-                  href={studyHref}
-                  className="mt-8 self-start text-xs uppercase tracking-[0.18em] text-accent underline-offset-4 transition-colors hover:text-white hover:underline"
-                  data-analytics-event="cta_click"
-                  data-analytics-label={`Atlas case: ${selected.name}`}
-                  data-analytics-location="atlas_case_panel"
-                  data-analytics-destination={studyHref}
-                >
-                  See the study
-                </Link>
-              ) : null}
+              <AtlasCaseDetail key={selected.id} atlasCase={selected} variant="panel" analyticsLocation="atlas_case_panel" />
             </>
           ) : null}
         </aside>

@@ -171,34 +171,6 @@ const FOLLOW_UP_STATS: Array<{ value: string; label: string }> = [
 const REPORT_URL = "https://enjoybare.com/blogs/news/the-state-of-sober-socializing-2023";
 const AWARDS_URL = "https://www.prdaily.com/awards/events/pr-daily-awards-luncheon-2023/";
 
-const TIMELINE: Array<{ when: string; what: string; detail: string }> = [
-  {
-    when: "June 2022",
-    what: "The study",
-    detail: "Five narratives and six personas, read from 214,000 posts.",
-  },
-  {
-    when: "January 2023",
-    what: "The State of Sober Socializing",
-    detail: "BARE’s public report, built on the study.",
-  },
-  {
-    when: "March 2023",
-    what: "QRCA",
-    detail: "Client, researcher and Bakamo present the work together.",
-  },
-  {
-    when: "December 2023",
-    what: "PR Daily Awards",
-    detail: "Two honorable mentions.",
-  },
-  {
-    when: "2024",
-    what: "Read again",
-    detail: "The Reading Machine follow-up, presented at TMRE.",
-  },
-];
-
 const TALKS: Array<{ event: string; title: string; detail: string }> = [
   {
     event: "QRCA Annual Conference, Charlotte, March 2023",
@@ -556,61 +528,26 @@ export default function BareZeroProofPage() {
               Jim Kempland, Co-Founder and CEO, <BareLink location="bare_impact">BARE Zero Proof Spirits</BareLink>,
               on stage with us in 2023
             </p>
-          </div>
-        </section>
-
-        {/* What happened next */}
-        <section className="px-6 pb-20" data-analytics-section="bare_campaign" data-analytics-label="Campaign">
-          <div className="max-w-5xl mx-auto">
-            <div className="grid gap-10 rounded-[1.5rem] border border-white/10 bg-black/30 p-8 md:grid-cols-[1.1fr_1fr] md:p-12">
-              <div>
-                <p className="text-accent uppercase tracking-[0.2em] text-sm mb-4">The launchpad</p>
-                <h3 className={`${cormorant.className} text-3xl leading-tight text-white md:text-4xl`}>
-                  From study to campaign
-                </h3>
-                <div className="mt-6 space-y-4 text-base font-light leading-relaxed text-text-secondary">
-                  <p>
-                    BARE took what we found and went public with it. In January 2023 it published{" "}
-                    <a
-                      href={REPORT_URL}
-                      target="_blank"
-                      rel="noopener"
-                      className="text-accent hover:underline underline-offset-4"
-                      data-analytics-event="outbound_click"
-                      data-analytics-label="State of Sober Socializing 2023"
-                      data-analytics-location="bare_campaign"
-                      data-analytics-destination={REPORT_URL}
-                    >
-                      The State of Sober Socializing
-                    </a>
-                    , a report on how people who do not drink are treated when they go out. Our study was the
-                    starting point.
-                  </p>
-                  <p>
-                    The campaign got two honorable mentions at the{" "}
-                    <a
-                      href={AWARDS_URL}
-                      target="_blank"
-                      rel="noopener"
-                      className="text-accent hover:underline underline-offset-4"
-                    >
-                      PR Daily Awards 2023
-                    </a>
-                    .
-                  </p>
-                </div>
-              </div>
-              <ol className="relative space-y-7 border-l border-accent/40 pl-7">
-                {TIMELINE.map((step) => (
-                  <li key={step.when} className="relative">
-                    <span className="absolute -left-[2.05rem] top-1.5 h-2.5 w-2.5 rounded-full bg-accent" aria-hidden="true" />
-                    <p className="text-[10px] uppercase tracking-[0.18em] text-accent">{step.when}</p>
-                    <p className={`${cormorant.className} mt-1 text-2xl leading-tight text-white`}>{step.what}</p>
-                    <p className="mt-1 text-sm font-light text-text-secondary">{step.detail}</p>
-                  </li>
-                ))}
-              </ol>
-            </div>
+            <p className="mt-10 max-w-3xl text-lg font-light leading-relaxed text-text-secondary">
+              BARE built its public campaign on the study.{" "}
+              <a
+                href={REPORT_URL}
+                target="_blank"
+                rel="noopener"
+                className="text-accent hover:underline underline-offset-4"
+                data-analytics-event="outbound_click"
+                data-analytics-label="State of Sober Socializing 2023"
+                data-analytics-location="bare_impact"
+                data-analytics-destination={REPORT_URL}
+              >
+                The State of Sober Socializing
+              </a>{" "}
+              came out in January 2023 and was recognised at the{" "}
+              <a href={AWARDS_URL} target="_blank" rel="noopener" className="text-accent hover:underline underline-offset-4">
+                PR Daily Awards
+              </a>{" "}
+              that year.
+            </p>
           </div>
         </section>
 

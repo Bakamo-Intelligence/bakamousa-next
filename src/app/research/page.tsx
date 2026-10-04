@@ -212,7 +212,7 @@ export default function ResearchPage() {
 
       <div className="section-divider" />
 
-      {/* Atlas of Social Truths: locator globe plus an index of plates; every case stays server-rendered and linkable */}
+      {/* Atlas of Social Truths: locator globe plus a list of cases; every case stays server-rendered and linkable */}
       <section
         id="atlas"
         className="px-6 py-20 scroll-mt-24"
