@@ -207,7 +207,8 @@ export default function AtlasGlobeCanvas({ points, target, zoomed, hovered = nul
       button.type = "button";
       button.className =
         "absolute h-9 w-9 -translate-x-1/2 -translate-y-1/2 rounded-full bg-transparent cursor-pointer focus-visible:outline focus-visible:outline-1 focus-visible:outline-accent";
-      button.setAttribute("aria-label", `Open ${point.name}`);
+      const place = point.locations?.find((l) => l.id === point.locationId)?.label;
+      button.setAttribute("aria-label", `Open ${point.name}${place ? `, ${place}` : ""}`);
       button.addEventListener("click", (event) => {
         event.stopPropagation();
         propsRef.current.onSelect(point);
