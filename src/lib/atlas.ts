@@ -412,6 +412,20 @@ export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
     ],
   },
   {
+    id: "civil-society-kazakhstan",
+    name: "Civil society, Kazakhstan",
+    sectorRegion: "Public sphere, Central Asia",
+    sector: "public",
+    lat: 51.1694,
+    lng: 71.4491,
+    essence:
+      "We read two years of public conversation in Kazakhstan, in Russian and Kazakh, about civil society: what people take the term to mean, and how they discuss the organisations that work under it.\n\nThe reading was made to be used together with survey research, in support of NGOs’ part in public debate.",
+    stats: [
+      { value: "24", label: "months of conversation" },
+      { value: "2", label: "languages" },
+    ],
+  },
+  {
     id: "french-election-2017",
     href: "/research/french-election-2017",
     name: "The French Election, 2017",
