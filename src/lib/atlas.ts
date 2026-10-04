@@ -42,6 +42,7 @@ export type AtlasLocation = {
 // Capitals, used for studies that cover whole countries. Cases that share a
 // capital share one globe point.
 const PLACES: Record<string, { label: string; lat: number; lng: number }> = {
+  AF: { label: "Afghanistan", lat: 34.5553, lng: 69.2075 },
   AL: { label: "Albania", lat: 41.3275, lng: 19.8187 },
   AR: { label: "Argentina", lat: -34.6037, lng: -58.3816 },
   AT: { label: "Austria", lat: 48.2082, lng: 16.3738 },
@@ -64,6 +65,7 @@ const PLACES: Record<string, { label: string; lat: number; lng: number }> = {
   ID: { label: "Indonesia", lat: -6.2088, lng: 106.8456 },
   IE: { label: "Ireland", lat: 53.3498, lng: -6.2603 },
   IN: { label: "India", lat: 28.6139, lng: 77.209 },
+  IQ: { label: "Iraq", lat: 33.3152, lng: 44.3661 },
   IS: { label: "Iceland", lat: 64.1466, lng: -21.9426 },
   IT: { label: "Italy", lat: 41.9028, lng: 12.4964 },
   LT: { label: "Lithuania", lat: 54.6872, lng: 25.2797 },
@@ -72,6 +74,7 @@ const PLACES: Record<string, { label: string; lat: number; lng: number }> = {
   ME: { label: "Montenegro", lat: 42.4304, lng: 19.2594 },
   MK: { label: "North Macedonia", lat: 41.9981, lng: 21.4254 },
   MT: { label: "Malta", lat: 35.8989, lng: 14.5146 },
+  NG: { label: "Nigeria", lat: 9.0765, lng: 7.3986 },
   NL: { label: "Netherlands", lat: 52.3676, lng: 4.9041 },
   NO: { label: "Norway", lat: 59.9139, lng: 10.7522 },
   PL: { label: "Poland", lat: 52.2297, lng: 21.0122 },
@@ -81,6 +84,8 @@ const PLACES: Record<string, { label: string; lat: number; lng: number }> = {
   SE: { label: "Sweden", lat: 59.3293, lng: 18.0686 },
   SI: { label: "Slovenia", lat: 46.0569, lng: 14.5058 },
   SK: { label: "Slovakia", lat: 48.1486, lng: 17.1077 },
+  SO: { label: "Somalia", lat: 2.0469, lng: 45.3182 },
+  SY: { label: "Syria", lat: 33.5138, lng: 36.2765 },
   TH: { label: "Thailand", lat: 13.7563, lng: 100.5018 },
   TN: { label: "Tunisia", lat: 36.8065, lng: 10.1815 },
   TR: { label: "Turkey", lat: 39.9334, lng: 32.8597 },
@@ -306,9 +311,14 @@ export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
     sector: "public",
     lat: PLACES.TR.lat,
     lng: PLACES.TR.lng,
-    locations: countries("TR TN"),
+    locations: countries("TR TN SY IQ AF NG SO"),
     essence:
-      "We read the public social media conversation of people in transit towards Europe, in their own languages and with native analysts.\n\nThe reading came before the survey research, so that the questions could build on what people had already said without being asked.",
+      "We read the public social media conversation of people in transit towards Europe, and of the communities that host them, in their own languages and with native analysts. The study followed five groups from their countries of origin through two transit countries.\n\nThe reading came before the survey research, so that the questions could build on what people had already said without being asked.",
+    stats: [
+      { value: "2", label: "transit countries" },
+      { value: "5", label: "countries of origin" },
+      { value: "24", label: "months of conversation" },
+    ],
   },
   {
     id: "french-election-2017",
