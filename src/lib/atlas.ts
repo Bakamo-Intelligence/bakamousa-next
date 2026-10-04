@@ -19,6 +19,8 @@ export type AtlasCase = {
    * opens the case with its own tab selected. The first is the case's home.
    */
   locations?: AtlasLocation[];
+  /** Heading above each location's list of places. */
+  locationsListTitle?: string;
   ranking?: { title: string; items: string[] };
   /** Set on the extra globe points of a multi-location case. */
   caseId?: string;
@@ -31,7 +33,7 @@ export type AtlasLocation = {
   lat: number;
   lng: number;
   character: string;
-  places: string[];
+  places?: string[];
 };
 
 export type AtlasPoint =
@@ -103,13 +105,29 @@ export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
   {
     id: "body-care-ssa",
     href: "/research#body-care-ssa",
-    name: "Body care across Sub-Saharan Africa",
-    sectorRegion: "",
+    name: "What beauty is made of",
+    sectorRegion: "Body care, four African markets",
     sector: "brands",
     lat: -26.2041,
     lng: 28.0473,
     essence:
-      'Skin is a social currency before it is a body. In markets where lightness still carries advantage, "celebrate who you are" rings hollow against a culture organised around changing who you are.',
+      "Beauty is not one idea. Every market assembles it differently, and the people who live there rarely spell it out. They show it in how they talk about their skin, what they do for it, and what they admire in others.\n\nFor a body care brand we read those conversations in South Africa, Nigeria, Ghana and Kenya, in the languages people use with each other. Local analysts did the reading. The picture of beauty in each market then went into the brand’s product development workshops.",
+    stats: [
+      { value: "4", label: "markets" },
+      { value: "5", label: "languages" },
+    ],
+    locations: [
+      {
+        id: "south-africa",
+        label: "South Africa",
+        lat: -26.2041,
+        lng: 28.0473,
+        character: "Read in English, Zulu and Xhosa.",
+      },
+      { id: "nigeria", label: "Nigeria", lat: 6.5244, lng: 3.3792, character: "Read in English and Pidgin." },
+      { id: "ghana", label: "Ghana", lat: 5.6037, lng: -0.187, character: "Read in English and Pidgin." },
+      { id: "kenya", label: "Kenya", lat: -1.2921, lng: 36.8219, character: "Read in English and Swahili." },
+    ],
   },
   {
     id: "amsterdam-ad-ban",
@@ -136,6 +154,7 @@ export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
       { value: "40", label: "destinations profiled" },
       { value: "12", label: "months of conversation" },
     ],
+    locationsListTitle: "Where young people go",
     locations: [
       {
         id: "brazil",
@@ -174,6 +193,20 @@ export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
       title: "Top five by character",
       items: ["Jericoacoara, Brazil", "Xilitla, Mexico", "Real de Catorce, Mexico", "Riviera Maya, Mexico", "Jalapão, Brazil"],
     },
+  },
+  {
+    id: "sbnr-work",
+    name: "Spiritual but not religious, at work",
+    sectorRegion: "Academic research, worldwide",
+    sector: "",
+    lat: 32.0158,
+    lng: 34.7874,
+    essence:
+      "“Spiritual but not religious” is a name people give themselves. For Dr. Ben Bulmash of the Holon Institute of Technology we started from that name and followed it through two years of public conversation in English, wherever in the world it was written.\n\nThe question was about work: the values, attitudes and work ethic of people who describe themselves this way, and how their spirituality shows up in everyday life. Nobody was recruited or asked. The study read what this group says to each other and clustered it into the themes they raise themselves.",
+    stats: [
+      { value: "24", label: "months of conversation" },
+      { value: "3", label: "platforms" },
+    ],
   },
   {
     id: "french-election-2017",
@@ -220,7 +253,6 @@ export const INERT_ATLAS_POINTS: AtlasPoint[] = [
   { id: "placeholder-uk", status: "inert", lat: 51.5072, lng: -0.1276 },
   { id: "placeholder-spain", status: "inert", lat: 40.4168, lng: -3.7038 },
   { id: "placeholder-italy", status: "inert", lat: 41.9028, lng: 12.4964 },
-  { id: "placeholder-kenya", status: "inert", lat: -1.2921, lng: 36.8219 },
   { id: "placeholder-india", status: "inert", lat: 28.6139, lng: 77.209 },
   { id: "placeholder-malaysia", status: "inert", lat: 3.139, lng: 101.6869 },
   { id: "placeholder-japan", status: "inert", lat: 35.6762, lng: 139.6503 },

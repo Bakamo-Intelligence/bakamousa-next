@@ -118,15 +118,23 @@ export default function AtlasCaseDetail({ atlasCase, variant, analyticsLocation 
             <p className={`${cormorant.className} text-2xl leading-tight text-white md:text-3xl`}>
               {location.character}
             </p>
-            <p className="mt-5 text-[10px] uppercase tracking-[0.18em] text-accent">Where young people go</p>
-            <ol className="mt-3 space-y-1.5">
-              {location.places.map((place, index) => (
-                <li key={place} className="flex items-baseline gap-3 text-sm font-light text-text-secondary">
-                  <span className={`${cormorant.className} text-lg text-accent/80`}>{index + 1}</span>
-                  {place}
-                </li>
-              ))}
-            </ol>
+            {location.places?.length ? (
+              <>
+                {atlasCase.locationsListTitle ? (
+                  <p className="mt-5 text-[10px] uppercase tracking-[0.18em] text-accent">
+                    {atlasCase.locationsListTitle}
+                  </p>
+                ) : null}
+                <ol className="mt-3 space-y-1.5">
+                  {location.places.map((place, index) => (
+                    <li key={place} className="flex items-baseline gap-3 text-sm font-light text-text-secondary">
+                      <span className={`${cormorant.className} text-lg text-accent/80`}>{index + 1}</span>
+                      {place}
+                    </li>
+                  ))}
+                </ol>
+              </>
+            ) : null}
           </div>
         </div>
       ) : null}
