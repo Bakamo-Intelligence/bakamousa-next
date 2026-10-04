@@ -1,5 +1,6 @@
 ---
 title: "Citizen Insights and EU Policymaking: Are We Asking the Right Questions?"
+subtitle: "Why institutions should listen to citizens before they survey them."
 slug: "citizen-insights-and-eu-policymaking"
 date: "2025-02-24T09:00:00Z"
 author: "Daniel Fazekas"

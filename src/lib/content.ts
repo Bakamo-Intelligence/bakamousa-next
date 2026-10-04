@@ -16,6 +16,10 @@ type RawPost = {
 
 export type Post = {
   title: string;
+  /** Descriptive line shown under the headline. */
+  subtitle: string | null;
+  /** Title for search results and link previews; falls back to the headline. */
+  seoTitle: string | null;
   slug: string;
   date: string | null;
   excerpt: string;
@@ -44,6 +48,8 @@ export function getAllPosts(opts?: { perPage?: number; preview?: boolean }): Pos
     .filter((p) => (opts?.preview ? true : !p.data.draft))
     .map((p) => ({
       title: p.data.title || p.slug,
+      subtitle: p.data.subtitle || null,
+      seoTitle: p.data.seoTitle || null,
       slug: p.slug,
       date: p.data.date || null,
       excerpt: p.data.summary || p.content.split("\n\n")[0],
@@ -70,6 +76,8 @@ export function getPostBySlug(slug: string, opts?: { preview?: boolean }): Post 
       const html = marked(p.content) as string;
       return {
         title: p.data.title || p.slug,
+        subtitle: p.data.subtitle || null,
+        seoTitle: p.data.seoTitle || null,
         slug: p.slug,
         date: p.data.date || null,
         content: html,

@@ -16,14 +16,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getPostBySlug(slug);
   if (!post) return {};
   const description = typeof post.excerpt === "string" ? post.excerpt : undefined;
+  const title = post.seoTitle ?? post.title;
   return {
-    title: post.title,
+    title,
     description: post.excerpt,
     alternates: {
       canonical: `/blog/${slug}`,
     },
     openGraph: {
-      ...pageOpenGraph(`/blog/${slug}`, post.title, description ?? ""),
+      ...pageOpenGraph(`/blog/${slug}`, title, description ?? ""),
       type: "article",
       publishedTime: post.date || undefined,
       images: post.featuredImage
@@ -105,6 +106,9 @@ export default async function BlogPostPage({ params }: Props) {
         ) : null}
 
         <h1 className="text-3xl font-semibold tracking-tight">{sanitizeHtml(String(post.title))}</h1>
+        {post.subtitle ? (
+          <p className="mt-3 text-lg text-zinc-600 dark:text-zinc-300">{post.subtitle}</p>
+        ) : null}
         <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400">
           {post.date ? new Date(post.date).toLocaleDateString("en-US", {
             year: "numeric",

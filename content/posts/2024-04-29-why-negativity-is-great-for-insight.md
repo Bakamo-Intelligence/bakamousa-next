@@ -1,5 +1,7 @@
 ---
 title: "Why Negativity Is Great for Insight"
+subtitle: "How to read complaints and bad reviews as evidence of what people expected."
+seoTitle: "Why Negative Sentiment on Social Media Is Good for Consumer Insight"
 slug: "why-negativity-is-great-for-insight"
 date: "2024-04-29T09:00:00Z"
 author: "Daniel Fazekas"

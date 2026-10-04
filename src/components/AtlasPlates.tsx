@@ -31,9 +31,10 @@ function ArrowIcon() {
  * The Atlas as an index of plates beside a locator globe. The plates and the
  * full text of every case are server-rendered, so each case keeps its anchor
  * and reads without JavaScript; the globe follows whichever plate the reader
- * is hovering or reading.
+ * is hovering or reading. Pass `sector` to show only that sector's cases.
  */
-export default function AtlasPlates() {
+export default function AtlasPlates({ sector }: { sector?: string }) {
+  const cases = sector ? ACTIVE_ATLAS_CASES.filter((c) => c.sector === sector) : ACTIVE_ATLAS_CASES;
   const [target, setTarget] = useState<string | null>(null);
   const [pinned, setPinned] = useState<string | null>(null);
   const articleRefs = useRef(new Map<string, HTMLElement>());
@@ -72,7 +73,7 @@ export default function AtlasPlates() {
       <div>
         <p className="text-xs uppercase tracking-[0.2em] text-accent">Index of plates</p>
         <ol className="mt-6 border-b border-border-grey" onMouseLeave={() => setTarget(null)}>
-          {ACTIVE_ATLAS_CASES.map((atlasCase, index) => (
+          {cases.map((atlasCase, index) => (
             <li key={atlasCase.id} className="border-t border-border-grey">
               <a
                 href={`#${atlasCase.id}`}
@@ -106,7 +107,7 @@ export default function AtlasPlates() {
         </ol>
 
         <div className="mt-6">
-          {ACTIVE_ATLAS_CASES.map((atlasCase, index) => {
+          {cases.map((atlasCase, index) => {
             const studyHref = atlasCase.href && !atlasCase.href.startsWith("/research") ? atlasCase.href : null;
             return (
               <article

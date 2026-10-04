@@ -1,5 +1,7 @@
 ---
 title: "Human Truths Beneath the Numbers"
+subtitle: "What 10,000 conversations showed about the Hungarian election that the polls did not."
+seoTitle: "Hungarian Election 2026: What Social Conversation Showed Before the Polls"
 slug: "human-truths-beneath-the-numbers"
 date: "2026-05-15T14:00:00Z"
 author: "Daniel Fazekas"

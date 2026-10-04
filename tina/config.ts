@@ -223,6 +223,8 @@ export default defineConfig({
         format: "md",
         fields: [
           { type: "string", name: "title", label: "Title", isTitle: true, required: true },
+          { type: "string", name: "subtitle", label: "Subtitle (shown under the headline)" },
+          { type: "string", name: "seoTitle", label: "Search title (shown in Google; defaults to Title)" },
           { type: "datetime", name: "date", label: "Date" },
           { type: "string", name: "summary", label: "Summary", ui: { component: "textarea" } },
           { type: "boolean", name: "draft", label: "Draft" },
