@@ -81,7 +81,7 @@ export default function AtlasGlobe({ mode = "hero", target = null, onSelect, cla
   // In hero mode only a click moves the globe; hovering just holds it still.
   const activeTarget = hero ? (selected?.id ?? null) : target;
   // Only a published study has its own page. Short cases are read in place.
-  const studyHref = selected?.href && !selected.href.startsWith("/research") ? selected.href : null;
+  const studyHref = selected?.href && !selected.href.startsWith("/research#") ? selected.href : null;
   const hoveredCase = hovered && !selected ? ATLAS_POINTS.find((p) => p.id === hovered) : null;
 
   return (
