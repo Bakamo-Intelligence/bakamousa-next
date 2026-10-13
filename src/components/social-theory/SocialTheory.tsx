@@ -8,6 +8,7 @@
  * Field Guide (ConstellationMap + PhilosopherGallery), restyled for the site.
  */
 
+import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   DISCOURSE_EDGES,
@@ -390,6 +391,18 @@ function ThinkerOverlay({ thinker, onClose }: { thinker: Thinker; onClose: () =>
           <span className="text-white/70">In hand:</span>{" "}
           <span className="italic">{thinker.deep.work}</span>
         </p>
+        {thinker.essay ? (
+          <Link
+            href={thinker.essay.href}
+            className="mt-6 inline-flex text-sm uppercase tracking-[0.16em] text-accent transition-colors hover:text-white"
+            data-analytics-event="cta_click"
+            data-analytics-label={thinker.essay.label}
+            data-analytics-location="thinker_overlay"
+            data-analytics-destination={thinker.essay.href}
+          >
+            {thinker.essay.label} &rarr;
+          </Link>
+        ) : null}
       </div>
     </div>
   );

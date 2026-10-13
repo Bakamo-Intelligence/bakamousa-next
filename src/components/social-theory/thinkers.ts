@@ -67,6 +67,8 @@ export interface Thinker {
   variant: PortraitVariant;
   glyph: GlyphId;
   portrait?: string;
+  /** a longer page on the site about this thinker */
+  essay?: { href: string; label: string };
 }
 
 export const THINKERS: Thinker[] = [
@@ -85,6 +87,7 @@ export const THINKERS: Thinker[] = [
     },
     variant: { hair: "receding", glasses: "rect", beard: "none" },
     glyph: "systems",
+    essay: { href: "/our-method/luhmann", label: "Read the full page on Luhmann" },
   },
   {
     id: "spencer-brown",
