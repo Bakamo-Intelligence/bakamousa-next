@@ -426,6 +426,30 @@ export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
     ],
   },
   {
+    id: "polish-school-meals",
+    href: "/research/polish-school-meals",
+    linkLabel: "Read the case study",
+    name: "Poland’s school meal reform: listening first, then asking",
+    sectorRegion: "Public sphere, Europe",
+    image: {
+      src: "/media/school-meals/five-objections.jpg",
+      alt: "The online argument about plant-based school meals, read by the Reading Machine: five objections and the supporters apart.",
+      width: 1500,
+      height: 844,
+      framed: true,
+    },
+    stats: [
+      { value: "10,000+", label: "posts read" },
+      { value: "1,017", label: "Poles asked" },
+      { value: "52 / 18", label: "support / oppose" },
+    ],
+    sector: "public",
+    lat: 52.2297,
+    lng: 21.0122,
+    essence:
+      "Online, the opposition to plant-based school meals sounded like one voice. Read closely it was five objections, and under all of them something nobody states as a position: a shared shame about the food we give our children. Asked directly, only 14% call the food poor. Asked about the objections, the majority agrees with every one, and backs the change three to one.",
+  },
+  {
     id: "french-election-2017",
     href: "/research/french-election-2017",
     name: "The French Election, 2017",
