@@ -4,6 +4,7 @@ import Link from "next/link";
 import { BOOKING_HREF } from "@/lib/booking";
 import { Cormorant_Garamond } from "next/font/google";
 import { SocialTheory } from "@/components/social-theory/SocialTheory";
+import ProductLadder from "@/components/ProductLadder";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -25,17 +26,6 @@ export const metadata: Metadata = {
     "Bakamo's two-phase method: read unprompted conversation first, then build the survey around what people actually say. A full study, or input for your team.",
   ),
 };
-
-const ENGAGEMENTS = [
-  {
-    title: "The Full Social Truth Study.",
-    body: "End-to-end engagement, Discovery through Measurement, led by the Bakamo team.",
-  },
-  {
-    title: "Better Surveys for Your Team.",
-    body: "Discovery phase only, delivered as an instrument-design input for your in-house or agency quant work.",
-  },
-];
 
 export default function OurMethodPage() {
   return (
@@ -160,16 +150,13 @@ export default function OurMethodPage() {
             findings are interpreted into action.
           </p>
 
-          <h3 className="mt-20 text-3xl font-light text-white">Two ways to engage.</h3>
-          <div className="mt-10 grid gap-10 md:grid-cols-2 md:divide-x md:divide-border-grey">
-            {ENGAGEMENTS.map((engagement, index) => (
-              <article key={engagement.title} className={index === 1 ? "md:pl-10" : ""}>
-                <h4 className="text-2xl font-light text-white">{engagement.title}</h4>
-                <p className="mt-5 text-base leading-relaxed text-text-secondary">
-                  {engagement.body}
-                </p>
-              </article>
-            ))}
+          <h3 className="mt-20 text-3xl font-light text-white">The products.</h3>
+          <p className="mt-5 max-w-3xl text-base leading-relaxed text-text-secondary">
+            Four depths of the same reading, and ongoing tracking. Each deeper one adds a layer of
+            analysis.
+          </p>
+          <div className="mt-10">
+            <ProductLadder headingClassName={cormorant.className} location="method_products" />
           </div>
           <Link
             href="/research#atlas"
