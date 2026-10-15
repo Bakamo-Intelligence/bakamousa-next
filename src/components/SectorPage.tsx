@@ -1,6 +1,7 @@
 import { Cormorant_Garamond } from "next/font/google";
 import Link from "next/link";
 import AtlasPlates from "@/components/AtlasPlates";
+import ProductLadder from "@/components/ProductLadder";
 import { BOOKING_HREF } from "@/lib/booking";
 import { ACTIVE_ATLAS_CASES } from "@/lib/atlas";
 import { SECTORS, type Sector } from "@/lib/sectors";
@@ -11,19 +12,6 @@ const cormorant = Cormorant_Garamond({
   style: ["normal", "italic"],
   display: "swap",
 });
-
-const ENGAGEMENTS: Array<{ name: string; detail: string }> = [
-  {
-    name: "The Full Social Truth Study",
-    detail:
-      "Discovery through measurement, led by the Bakamo team. A written report, a presentation to your team, the discovery architecture and the full quantitative dataset.",
-  },
-  {
-    name: "Better Surveys for Your Team",
-    detail:
-      "The discovery phase only, delivered as an instrument-design input for your in-house or agency quant work.",
-  },
-];
 
 export default function SectorPage({ sector }: { sector: Sector }) {
   const location = `sector_${sector.id}`;
@@ -128,18 +116,11 @@ export default function SectorPage({ sector }: { sector: Sector }) {
       <section
         className="px-6 py-16"
         data-analytics-section={`${location}_engagements`}
-        data-analytics-label="Ways to Work"
+        data-analytics-label="Products"
       >
         <div className="max-w-3xl mx-auto">
-          <p className="text-accent uppercase tracking-[0.2em] text-sm mb-4">Two ways to work with us</p>
-          <dl className="divide-y divide-white/10 border-y border-white/10">
-            {ENGAGEMENTS.map((engagement) => (
-              <div key={engagement.name} className="grid gap-2 py-6 md:grid-cols-[16rem_1fr] md:gap-8">
-                <dt className={`${cormorant.className} text-2xl leading-tight text-white`}>{engagement.name}</dt>
-                <dd className="text-base font-light leading-relaxed text-text-secondary">{engagement.detail}</dd>
-              </div>
-            ))}
-          </dl>
+          <p className="text-accent uppercase tracking-[0.2em] text-sm mb-4">How to work with us</p>
+          <ProductLadder headingClassName={cormorant.className} location={`${location}_products`} />
           {sector.clients ? (
             <p className="mt-8 text-sm font-light leading-relaxed text-text-muted">
               Among those we have worked with: {sector.clients.join(", ")}.
