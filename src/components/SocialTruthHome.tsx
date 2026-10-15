@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Cormorant_Garamond } from "next/font/google";
 import AtlasGlobe from "@/components/AtlasGlobe";
 import ClientMarquee from "@/components/ClientMarquee";
+import HeroVideo from "@/components/HeroVideo";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -10,12 +11,15 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
-/** Web-compressed copies of the originals in /public/media. One plays per visit. */
+/**
+ * One clip plays per visit. Each entry has a .webp poster, a .webm and an .mp4
+ * next to it in /public/media/hero (960px wide, about 1 MB each).
+ */
 export const HERO_VIDEOS = [
-  "/media/hero/india.mp4",
-  "/media/hero/protests.mp4",
-  "/media/hero/ukstreet.mp4",
-  "/media/hero/shopping.mp4",
+  "/media/hero/india",
+  "/media/hero/protests",
+  "/media/hero/ukstreet",
+  "/media/hero/shopping",
 ];
 
 const STATS = [
@@ -75,18 +79,10 @@ export default function SocialTruthHome({ heroVideo }: { heroVideo: string }) {
         className="relative isolate flex min-h-[88vh] items-center overflow-hidden border-b border-border-grey bg-near-black px-6 pb-20 pt-32 md:pt-40"
         data-analytics-section="home_hero"
       >
-        <video
-          key={heroVideo}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          aria-hidden="true"
+        <HeroVideo
+          clip={heroVideo}
           className="pointer-events-none absolute inset-0 -z-10 h-full w-full select-none object-cover opacity-30 motion-reduce:hidden"
-        >
-          <source src={heroVideo} type="video/mp4" />
-        </video>
+        />
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/70 via-black/45 to-near-black" />
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_20%,rgba(201,169,110,0.16),transparent_34%)]" />
 
