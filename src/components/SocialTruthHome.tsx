@@ -226,7 +226,7 @@ export default function SocialTruthHome({ heroVideo }: { heroVideo: string }) {
               <p>
                 Our Reading Machine helps us navigate this complexity &mdash; finding patterns,
                 connections and emerging meanings across conversations at a scale no human team
-                could manage alone.
+                could manage alone. Nothing is pre-selected because it looked interesting.
               </p>
               <p>
                 But technology doesn&apos;t tell us what matters. Our analysts do. They bring

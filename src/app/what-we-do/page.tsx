@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Cormorant_Garamond } from "next/font/google";
 import { BOOKING_HREF } from "@/lib/booking";
-import { CLIENT_QUESTIONS, PRODUCTS } from "@/lib/products";
+import { CLIENT_QUESTIONS, PRODUCTS, READING_MACHINE_LINE } from "@/lib/products";
 import { pageOpenGraph } from "@/lib/seo";
 
 const cormorant = Cormorant_Garamond({
@@ -30,7 +30,7 @@ const FIRST_FINDINGS: Record<string, { figure: string; unit: string }> = {
   radar: { figure: "1", unit: "week to first learnings" },
   cast: { figure: "2", unit: "weeks to first learnings" },
   bedrock: { figure: "2", unit: "weeks to first learnings" },
-  clearing: { figure: "12", unit: "readings a year" },
+  clearing: { figure: "1", unit: "reading every month" },
 };
 
 export default function WhatWeDoPage() {
@@ -105,7 +105,7 @@ export default function WhatWeDoPage() {
                   <p className="mt-3 text-base font-light leading-relaxed text-text-secondary">{item.detail}</p>
                 </div>
                 <div className="border-l border-accent pl-5 md:self-start">
-                  <p className="text-[11px] uppercase tracking-[0.18em] text-accent">For</p>
+                  <p className="text-[11px] uppercase tracking-[0.18em] text-accent">So you can</p>
                   <p className="mt-2 text-base leading-relaxed text-white">{item.outcome}</p>
                 </div>
                 <div className="md:text-right">
@@ -136,7 +136,7 @@ export default function WhatWeDoPage() {
           <p className="mt-6 max-w-3xl text-lg font-light leading-relaxed text-text-secondary">
             Every product reads the same conversation. Each deeper one keeps everything in the one
             before and adds a layer of analysis. First learnings arrive within the first weeks, not
-            at the end. Every finding carries the posts behind it.
+            at the end.
           </p>
 
           <ol className="mt-16 grid gap-px border border-border-grey bg-border-grey md:grid-cols-2 xl:grid-cols-5">
@@ -169,16 +169,23 @@ export default function WhatWeDoPage() {
                   </p>
                   <h3 className={`${cormorant.className} mt-2 text-3xl leading-none text-white`}>{product.name}</h3>
                   <p className="mt-5 text-base leading-snug text-white">{product.question}</p>
-                  <p className="mt-4 flex-1 text-sm font-light leading-relaxed text-text-secondary">
+                  <p className="mt-4 text-sm leading-relaxed text-text-secondary">{product.benefit}</p>
+                  <p className="mt-4 text-[11px] uppercase tracking-[0.18em] text-text-muted">You receive</p>
+                  <p className="mt-1 flex-1 text-sm font-light leading-relaxed text-text-secondary">
                     {product.summary}
                   </p>
                   <div className="mt-8 border-t border-border-grey pt-5">
                     <p className={`${cormorant.className} text-5xl leading-none text-white`}>{timing.figure}</p>
                     <p className="mt-2 text-[11px] uppercase tracking-[0.18em] text-text-muted">{timing.unit}</p>
-                    {!tracking && product.id !== "pulse" ? (
+                    {tracking ? (
+                      <p className="mt-3 text-xs font-light text-text-muted">Six-month minimum</p>
+                    ) : product.id !== "pulse" ? (
                       <p className="mt-3 text-xs font-light text-text-muted">Full report in {product.timing}</p>
                     ) : null}
                   </div>
+                  <p className="mt-5 border-t border-border-grey pt-4 text-xs font-light leading-relaxed text-text-muted">
+                    {READING_MACHINE_LINE}
+                  </p>
                 </li>
               );
             })}
