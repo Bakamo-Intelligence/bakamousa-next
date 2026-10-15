@@ -24,12 +24,12 @@ export const metadata: Metadata = {
   openGraph: pageOpenGraph("/what-we-do", "What We Do: Social Intelligence Products | Bakamo", DESCRIPTION),
 };
 
-// Short timing figure for the product cards. The long form stays in PRODUCTS.timing.
-const TIMING_FIGURE: Record<string, { figure: string; unit: string }> = {
-  pulse: { figure: "48", unit: "hours" },
-  radar: { figure: "3", unit: "weeks" },
-  cast: { figure: "5", unit: "weeks" },
-  bedrock: { figure: "7", unit: "weeks per market" },
+// Big figure on each card: time to first learnings. The full delivery sits under it.
+const FIRST_FINDINGS: Record<string, { figure: string; unit: string }> = {
+  pulse: { figure: "48", unit: "hours to the report" },
+  radar: { figure: "1", unit: "week to first learnings" },
+  cast: { figure: "2", unit: "weeks to first learnings" },
+  bedrock: { figure: "2", unit: "weeks to first learnings" },
   clearing: { figure: "12", unit: "readings a year" },
 };
 
@@ -135,14 +135,15 @@ export default function WhatWeDoPage() {
           </h2>
           <p className="mt-6 max-w-3xl text-lg font-light leading-relaxed text-text-secondary">
             Every product reads the same conversation. Each deeper one keeps everything in the one
-            before and adds a layer of analysis. Every finding carries the posts behind it.
+            before and adds a layer of analysis. First learnings arrive within the first weeks, not
+            at the end. Every finding carries the posts behind it.
           </p>
 
           <ol className="mt-16 grid gap-px border border-border-grey bg-border-grey md:grid-cols-2 xl:grid-cols-5">
             {PRODUCTS.map((product, index) => {
               const depth = Math.min(index + 1, 4);
               const tracking = product.id === "clearing";
-              const timing = TIMING_FIGURE[product.id];
+              const timing = FIRST_FINDINGS[product.id];
               return (
                 <li
                   key={product.id}
@@ -174,6 +175,9 @@ export default function WhatWeDoPage() {
                   <div className="mt-8 border-t border-border-grey pt-5">
                     <p className={`${cormorant.className} text-5xl leading-none text-white`}>{timing.figure}</p>
                     <p className="mt-2 text-[11px] uppercase tracking-[0.18em] text-text-muted">{timing.unit}</p>
+                    {!tracking && product.id !== "pulse" ? (
+                      <p className="mt-3 text-xs font-light text-text-muted">Full report in {product.timing}</p>
+                    ) : null}
                   </div>
                 </li>
               );

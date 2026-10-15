@@ -24,7 +24,10 @@ export default function ProductLadder({ headingClassName, location, detailed = f
               <span className="text-white">{product.question}</span>
               {detailed ? <span className="mt-2 block">{product.summary}</span> : null}
             </dd>
-            <dd className="text-sm uppercase tracking-[0.16em] text-text-muted md:text-right">{product.timing}</dd>
+            <dd className="text-sm uppercase tracking-[0.16em] text-text-muted md:text-right">
+              <span className="block text-white">{product.firstFindings}</span>
+              <span className="mt-1 block text-[10px]">to first learnings</span>
+            </dd>
           </div>
         ))}
       </dl>

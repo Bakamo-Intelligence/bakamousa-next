@@ -3,6 +3,9 @@ export type Product = {
   name: string;
   question: string;
   summary: string;
+  /** When the first learnings reach the client. */
+  firstFindings: string;
+  /** When the report lands. */
   timing: string;
 };
 
@@ -10,6 +13,7 @@ export type Product = {
 export const PRODUCTS: Product[] = [
   {
     id: "pulse",
+    firstFindings: "48 hours",
     name: "Pulse",
     question: "What is the conversation about right now?",
     summary: "A map of the whole conversation, sized by share, with the real posts behind every topic.",
@@ -17,6 +21,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "radar",
+    firstFindings: "1 week",
     name: "Radar",
     question: "Which narratives and tensions govern it?",
     summary:
@@ -25,6 +30,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "cast",
+    firstFindings: "2 weeks",
     name: "Cast",
     question: "Who are these people, and where do we stand with them?",
     summary:
@@ -33,6 +39,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "bedrock",
+    firstFindings: "2 weeks",
     name: "Bedrock",
     question: "What should our strategy be built on?",
     summary:
@@ -41,11 +48,12 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "clearing",
+    firstFindings: "Every month",
     name: "The Clearing",
     question: "What changed since last month, and what is coming?",
     summary:
       "Any study from Radar up, re-read every month in the same framework, so changes show before they reach a tracker.",
-    timing: "Monthly",
+    timing: "Monthly, in the same framework",
   },
 ];
 
