@@ -8,7 +8,7 @@ import type { AtlasCase } from "@/lib/atlas";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400"],
   style: ["normal", "italic"],
   display: "swap",
 });

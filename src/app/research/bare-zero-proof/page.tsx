@@ -8,7 +8,7 @@ import { SITE_URL } from "@/lib/site-url";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400"],
   style: ["normal", "italic"],
   display: "swap",
 });

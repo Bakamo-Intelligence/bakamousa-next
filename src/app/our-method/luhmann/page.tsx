@@ -11,7 +11,7 @@ import { CHAPTERS, LEAD, type Block, type Chapter, type Drawing } from "./conten
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400"],
   style: ["normal", "italic"],
   display: "swap",
 });
