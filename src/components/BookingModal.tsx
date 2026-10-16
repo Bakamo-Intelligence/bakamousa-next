@@ -8,6 +8,7 @@ import { BOOKING_ANCHOR, BOOKING_HREF, BOOKING_LOBBY_URL, BOOKING_MINUTES } from
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["500"],
+  preload: false,
   display: "swap",
 });
 
