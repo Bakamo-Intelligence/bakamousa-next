@@ -34,7 +34,8 @@ export type GlyphId =
   | "twosystems"
   | "needs"
   | "models"
-  | "mirror";
+  | "mirror"
+  | "doxa";
 
 export interface PortraitVariant {
   hair: PortraitHair;
@@ -200,6 +201,22 @@ export const THINKERS: Thinker[] = [
     },
     variant: { hair: "balding", glasses: "rect", beard: "full" },
     glyph: "frame",
+  },
+  {
+    id: "bourdieu",
+    name: "Pierre Bourdieu",
+    dates: "1930–2002",
+    line: "What goes without saying / is what holds everything up.",
+    blurb:
+      "Doxa is what a group takes for granted so completely that nobody says it. Opinion only starts where doxa ends. Our deepest product, Common Sense, is named for what it delivers: the doxa of a market or an issue, read from what people say to each other.",
+    deep: {
+      saw: "Bourdieu drew a line through every field of belief. On one side is doxa: what everyone takes for granted, never stated because no one can picture the alternative. On the other is opinion, where orthodoxy and heresy argue. Opinion only begins once doxa has been breached. Below both sits the habitus, the dispositions a person absorbs from their position in the world, which make some things thinkable and others not. And in 'Public Opinion Does Not Exist' he argued that a poll manufactures consensus by putting the same question to everyone, whether or not they had ever asked it.",
+      take: "We read for the doxa: what a conversation assumes, what it argues about, and the line between. A survey measures the answers people give. Doxa is what they never thought to say, and it is readable only in unprompted talk, where the assumption shows in how an argument is made rather than in a claim. Common Sense, our deepest product, is built to deliver it: the beliefs a strategy should rest on, with the posts behind each.",
+      sure: "If the beliefs that matter most are unsaid, no questionnaire reaches them: asking turns silence into an opinion that was not there before. Bourdieu tells us the right place to look is the whole of what people say without being asked, and that is the only material we read.",
+      work: "Outline of a Theory of Practice (1972); 'Public Opinion Does Not Exist' (1972); Distinction (1979)",
+    },
+    variant: { hair: "receding", glasses: "none", beard: "none" },
+    glyph: "doxa",
   },
   {
     id: "barthes",
@@ -386,6 +403,7 @@ export const DISCOURSE_NODES: DiscourseNode[] = [
   { id: "geertz", name: "Geertz", x: 620, y: 342, band: "culture" },
   { id: "shore", name: "Shore", x: 815, y: 352, band: "culture" },
   { id: "goffman", name: "Goffman", x: 452, y: 392, band: "culture" },
+  { id: "bourdieu", name: "Bourdieu", x: 212, y: 352, band: "culture" },
   {
     id: "korzybski",
     name: "Korzybski",
@@ -454,15 +472,20 @@ export const DISCOURSE_EDGES: DiscourseEdge[] = [
   { from: "bateson", to: "goffman", kind: "influenced", note: "the frame idea" },
   { from: "bateson", to: "luhmann", kind: "influenced", note: "difference as information" },
   { from: "spencer-brown", to: "luhmann", kind: "influenced", note: "the calculus of distinction" },
+  { from: "husserl", to: "bourdieu", kind: "influenced", note: "the taken-for-granted, read sociologically" },
+  { from: "wittgenstein", to: "bourdieu", kind: "influenced", note: "rules become practical sense" },
+  { from: "goffman", to: "bourdieu", kind: "influenced", note: "published in Bourdieu's series, Le Sens commun" },
 
   { from: "shore", to: "geertz", kind: "contra", note: "culture is public — and in minds" },
   { from: "max-neef", to: "maslow", kind: "contra", note: "against the pyramid" },
   { from: "lazarsfeld", to: "adorno", kind: "contra", note: "administrative vs critical research" },
+  { from: "bourdieu", to: "lazarsfeld", kind: "contra", note: "'public opinion does not exist'" },
 
   { from: "lazarsfeld", to: "katz", kind: "collab", note: "Personal Influence, together" },
   { from: "kahneman", to: "tversky", kind: "collab", note: "the long collaboration" },
 
   { from: "barthes", to: "kahneman", kind: "rhyme", note: "two floors, two systems" },
+  { from: "barthes", to: "bourdieu", kind: "rhyme", note: "myth and doxa: the made passing as the given" },
   { from: "ricoeur", to: "shore", kind: "rhyme", note: "story-shapes as cultural models" },
   { from: "goffman", to: "lazarsfeld", kind: "rhyme", note: "performed selves carry influence" },
 ];
