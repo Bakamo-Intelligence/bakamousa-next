@@ -13,7 +13,7 @@ const cormorant = Cormorant_Garamond({
 });
 
 const DESCRIPTION =
-  "The questions clients bring Bakamo, the research product that answers each, and what the answer is for. Pulse, Radar, Cast, Bedrock and The Clearing.";
+  "The questions clients bring Bakamo, the research product that answers each, and what the answer is for. Agenda, Frames, Publics, Common Sense and Public Mood.";
 
 export const metadata: Metadata = {
   title: "What We Do: Social Intelligence Products",
@@ -26,11 +26,11 @@ export const metadata: Metadata = {
 
 // Big figure on each card: time to first learnings. The full delivery sits under it.
 const FIRST_FINDINGS: Record<string, { figure: string; unit: string }> = {
-  pulse: { figure: "48", unit: "hours to the report" },
-  radar: { figure: "1", unit: "week to first learnings" },
-  cast: { figure: "2", unit: "weeks to first learnings" },
-  bedrock: { figure: "2", unit: "weeks to first learnings" },
-  clearing: { figure: "1", unit: "reading every month" },
+  agenda: { figure: "48", unit: "hours to the report" },
+  frames: { figure: "1", unit: "week to first learnings" },
+  publics: { figure: "2", unit: "weeks to first learnings" },
+  "common-sense": { figure: "2", unit: "weeks to first learnings" },
+  "public-mood": { figure: "1", unit: "reading every month" },
 };
 
 export default function WhatWeDoPage() {
@@ -117,7 +117,7 @@ export default function WhatWeDoPage() {
           </ol>
           <p className="mt-10 max-w-3xl text-base font-light leading-relaxed text-text-muted">
             Also commissioned: evidence for litigation and regulatory proceedings, and campaign
-            evaluation. Both are scoped from Radar or Cast.
+            evaluation. Both are scoped from Frames or Publics.
           </p>
         </div>
       </section>
@@ -142,7 +142,7 @@ export default function WhatWeDoPage() {
           <ol className="mt-16 grid gap-px border border-border-grey bg-border-grey md:grid-cols-2 xl:grid-cols-5">
             {PRODUCTS.map((product, index) => {
               const depth = Math.min(index + 1, 4);
-              const tracking = product.id === "clearing";
+              const tracking = product.id === "public-mood";
               const timing = FIRST_FINDINGS[product.id];
               return (
                 <li
@@ -179,7 +179,7 @@ export default function WhatWeDoPage() {
                     <p className="mt-2 text-[11px] uppercase tracking-[0.18em] text-text-muted">{timing.unit}</p>
                     {tracking ? (
                       <p className="mt-3 text-xs font-light text-text-muted">Six-month minimum</p>
-                    ) : product.id !== "pulse" ? (
+                    ) : product.id !== "agenda" ? (
                       <p className="mt-3 text-xs font-light text-text-muted">Full report in {product.timing}</p>
                     ) : null}
                   </div>

@@ -288,6 +288,14 @@ function Glyph({ glyph }: { glyph: GlyphId }) {
           <path d="M66 138 L94 62" />
         </>
       );
+    case "doxa":
+      return (
+        <>
+          <path d="M38 98 L122 98" />
+          <path d="M70 98 L80 84 L90 98" />
+          <path d="M50 98 L80 138 L110 98" strokeDasharray="2 3" />
+        </>
+      );
   }
 }
 

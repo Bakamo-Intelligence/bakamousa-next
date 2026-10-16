@@ -40,20 +40,20 @@ const FOR_YOUR_PROJECT = [
   },
   {
     title: "The same reading, every month.",
-    body: "Because the whole conversation is read the same way each time, a study can be re-read month after month in the same framework. That is what makes The Clearing possible: you see what changed, what is new and what faded, before it reaches a tracker.",
+    body: "Because the whole conversation is read the same way each time, a study can be re-read month after month in the same framework. That is what makes Public Mood possible: you see what changed, what is new and what faded, before it reaches a tracker.",
   },
   {
     title: "Speed without a smaller sample.",
-    body: "A Pulse maps a whole conversation in 48 hours. A Radar delivers first learnings in a week. The depth is the analyst's; the coverage is the machine's.",
+    body: "Agenda maps a whole conversation in 48 hours. Frames delivers first learnings in a week. The depth is the analyst's; the coverage is the machine's.",
   },
 ];
 
 const FOR_EACH_PRODUCT = [
-  { name: "Pulse", body: "The topic map of the whole conversation, sized by share, in 48 hours." },
-  { name: "Radar", body: "Every narrative counted across the full conversation, so you know how large each story is and which is growing." },
-  { name: "Cast", body: "Your brand's footprint measured against competitors, including the posts that never name you." },
-  { name: "Bedrock", body: "Your own strategic questions put to every post, not to a sample." },
-  { name: "The Clearing", body: "The study re-read every month in the same framework, so change is visible at a glance." },
+  { name: "Agenda", body: "The topic map of the whole conversation, sized by share, in 48 hours." },
+  { name: "Frames", body: "Every narrative counted across the full conversation, so you know how large each story is and which is growing." },
+  { name: "Publics", body: "Your brand's footprint measured against competitors, including the posts that never name you." },
+  { name: "Common Sense", body: "Your own strategic questions put to every post, not to a sample." },
+  { name: "Public Mood", body: "The study re-read every month in the same framework, so change is visible at a glance." },
 ];
 
 export default function TechnologyPage() {
