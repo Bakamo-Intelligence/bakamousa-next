@@ -59,6 +59,53 @@ export default function WhatWeDoPage() {
         </div>
       </section>
 
+      {/* The questions people bring, each with the product that answers it */}
+      <section
+        className="border-b border-border-grey px-6 py-24 md:py-32"
+        data-analytics-section="what_we_do_questions"
+        data-analytics-label="Client Questions"
+      >
+        <div className="mx-auto max-w-6xl">
+          <div className="grid gap-8 lg:grid-cols-[1fr_1.4fr] lg:items-end">
+            <div>
+              <p className="text-xs uppercase tracking-[0.2em] text-accent">Where we start</p>
+              <h2 className="mt-4 text-4xl font-light leading-tight text-white md:text-5xl">
+                The questions people bring us.
+              </h2>
+            </div>
+            <p className="text-lg font-light leading-relaxed text-text-secondary lg:pb-2">
+              Find yours, and the product beside it answers it. Each product is described further
+              down.
+            </p>
+          </div>
+
+          <ul className="mt-14 border-t border-border-grey">
+            {PRODUCT_BLOCKS.flatMap((block) => {
+              const product = PRODUCTS.find((p) => p.id === block.id)!;
+              return block.answers.map((q) => (
+                <li key={q} className="border-b border-border-grey">
+                  <Link
+                    href={`#${block.id}`}
+                    className="group grid gap-1 py-5 transition-colors md:grid-cols-[1fr_11rem] md:items-baseline md:gap-8"
+                    data-analytics-event="cta_click"
+                    data-analytics-label={product.name}
+                    data-analytics-location="what_we_do_questions"
+                    data-analytics-destination={`#${block.id}`}
+                  >
+                    <span className="text-lg leading-snug text-white md:text-xl">{q}</span>
+                    <span
+                      className={`${cormorant.className} text-2xl leading-none text-accent transition-colors group-hover:text-white md:text-right`}
+                    >
+                      {product.name}
+                    </span>
+                  </Link>
+                </li>
+              ));
+            })}
+          </ul>
+        </div>
+      </section>
+
       {/* Products, each with the questions it answers */}
       <section
         className="px-6 py-24 md:py-32"
@@ -88,7 +135,7 @@ export default function WhatWeDoPage() {
                 { label: "Timing", lines: [block.timing], strong: true },
               ];
               return (
-                <li key={block.id}>
+                <li key={block.id} id={block.id} className="scroll-mt-28">
                   <h3 className={`${cormorant.className} text-5xl leading-none text-white md:text-6xl`}>
                     {product.name}
                   </h3>
