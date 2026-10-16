@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Cormorant_Garamond } from "next/font/google";
 import { BOOKING_HREF } from "@/lib/booking";
-import { CLIENT_QUESTIONS, PRODUCTS, READING_MACHINE_LINE } from "@/lib/products";
+import ProductLayers from "@/components/what-we-do/ProductLayers";
+import { CLIENT_QUESTIONS } from "@/lib/products";
 import { pageOpenGraph } from "@/lib/seo";
 
 const cormorant = Cormorant_Garamond({
@@ -35,7 +36,7 @@ const FIRST_FINDINGS: Record<string, { figure: string; unit: string }> = {
 
 export default function WhatWeDoPage() {
   return (
-    <main className="relative min-h-screen w-full overflow-x-hidden bg-near-black text-text-primary">
+    <main className="relative min-h-screen w-full overflow-x-clip bg-near-black text-text-primary">
       <div className="grain-overlay" />
 
       {/* Hero */}
@@ -91,7 +92,7 @@ export default function WhatWeDoPage() {
             {CLIENT_QUESTIONS.map((item, index) => (
               <li
                 key={item.title}
-                className="group grid gap-4 border-b border-border-grey py-8 transition-colors md:grid-cols-[4rem_1.1fr_1fr_11rem] md:gap-8 md:py-9"
+                className="group grid gap-4 border-b border-border-grey py-9 transition-colors md:grid-cols-[4rem_1.2fr_1fr] md:gap-10 md:py-10"
               >
                 <span
                   className={`${cormorant.className} text-3xl leading-none text-text-muted transition-colors group-hover:text-accent md:text-4xl`}
@@ -102,15 +103,14 @@ export default function WhatWeDoPage() {
                   <h3 className={`${cormorant.className} text-2xl leading-tight text-white md:text-[1.75rem]`}>
                     {item.title}
                   </h3>
-                  <p className="mt-3 text-base font-light leading-relaxed text-text-secondary">{item.detail}</p>
+                  <p className="mt-3 max-w-xl text-base font-light leading-relaxed text-text-secondary">{item.detail}</p>
+                  <p className="mt-4 text-sm font-light text-text-muted">
+                    Answered by <span className="text-accent">{item.products}</span>
+                  </p>
                 </div>
-                <div className="border-l border-accent pl-5 md:self-start">
+                <div className="border-l border-accent pl-5 md:mt-1 md:self-start">
                   <p className="text-[11px] uppercase tracking-[0.18em] text-accent">So you can</p>
                   <p className="mt-2 text-base leading-relaxed text-white">{item.outcome}</p>
-                </div>
-                <div className="md:text-right">
-                  <p className="text-[11px] uppercase tracking-[0.18em] text-text-muted">Product</p>
-                  <p className="mt-2 text-sm leading-snug text-text-secondary">{item.products}</p>
                 </div>
               </li>
             ))}
@@ -131,65 +131,15 @@ export default function WhatWeDoPage() {
         <div className="mx-auto max-w-6xl">
           <p className="text-xs uppercase tracking-[0.2em] text-accent">The products</p>
           <h2 className="mt-4 max-w-4xl text-4xl font-light leading-tight text-white md:text-5xl">
-            Four depths of the same reading, and ongoing tracking.
+            Five products. Each one goes further than the last.
           </h2>
           <p className="mt-6 max-w-3xl text-lg font-light leading-relaxed text-text-secondary">
-            Every product reads the same conversation. Each deeper one keeps everything in the one
-            before and adds a layer of analysis. First learnings arrive within the first weeks, not
-            at the end.
+            Each product answers a bigger question than the one before it and includes everything
+            the one before delivers. Public Mood keeps watching after the study. First learnings
+            arrive within the first weeks, not at the end.
           </p>
 
-          <ol className="mt-16 grid gap-px border border-border-grey bg-border-grey md:grid-cols-2 xl:grid-cols-5">
-            {PRODUCTS.map((product, index) => {
-              const depth = Math.min(index + 1, 4);
-              const tracking = product.id === "public-mood";
-              const timing = FIRST_FINDINGS[product.id];
-              return (
-                <li
-                  key={product.id}
-                  className="group relative flex flex-col bg-dark-grey p-7 transition-colors hover:bg-near-black md:p-8"
-                >
-                  {/* Depth marks: one bar per layer of analysis included. */}
-                  <div className="flex gap-1.5" aria-hidden="true">
-                    {[0, 1, 2, 3].map((bar) => (
-                      <span
-                        key={bar}
-                        className={`h-1 flex-1 ${
-                          tracking
-                            ? "bg-accent/40"
-                            : bar < depth
-                              ? "bg-accent"
-                              : "bg-white/10"
-                        }`}
-                      />
-                    ))}
-                  </div>
-                  <p className="mt-6 text-[11px] uppercase tracking-[0.18em] text-text-muted">
-                    {tracking ? "Ongoing" : `Depth ${depth}`}
-                  </p>
-                  <h3 className={`${cormorant.className} mt-2 text-3xl leading-none text-white`}>{product.name}</h3>
-                  <p className="mt-5 text-base leading-snug text-white">{product.question}</p>
-                  <p className="mt-4 text-sm leading-relaxed text-text-secondary">{product.benefit}</p>
-                  <p className="mt-4 text-[11px] uppercase tracking-[0.18em] text-text-muted">You receive</p>
-                  <p className="mt-1 flex-1 text-sm font-light leading-relaxed text-text-secondary">
-                    {product.summary}
-                  </p>
-                  <div className="mt-8 border-t border-border-grey pt-5">
-                    <p className={`${cormorant.className} text-5xl leading-none text-white`}>{timing.figure}</p>
-                    <p className="mt-2 text-[11px] uppercase tracking-[0.18em] text-text-muted">{timing.unit}</p>
-                    {tracking ? (
-                      <p className="mt-3 text-xs font-light text-text-muted">Six-month minimum</p>
-                    ) : product.id !== "agenda" ? (
-                      <p className="mt-3 text-xs font-light text-text-muted">Full report in {product.timing}</p>
-                    ) : null}
-                  </div>
-                  <p className="mt-5 border-t border-border-grey pt-4 text-xs font-light leading-relaxed text-text-muted">
-                    {READING_MACHINE_LINE}
-                  </p>
-                </li>
-              );
-            })}
-          </ol>
+          <ProductLayers headingClassName={cormorant.className} firstFindings={FIRST_FINDINGS} />
 
           <div className="mt-14 grid gap-8 md:grid-cols-[1.4fr_1fr] md:items-start">
             <p className="max-w-3xl text-base font-light leading-relaxed text-text-secondary">
