@@ -91,7 +91,7 @@ export default function WhatWeDoPage() {
             {CLIENT_QUESTIONS.map((item, index) => (
               <li
                 key={item.title}
-                className="group grid gap-4 border-b border-border-grey py-8 transition-colors md:grid-cols-[4rem_1.1fr_1fr_11rem] md:gap-8 md:py-9"
+                className="group grid gap-4 border-b border-border-grey py-9 transition-colors md:grid-cols-[4rem_1.2fr_1fr] md:gap-10 md:py-10"
               >
                 <span
                   className={`${cormorant.className} text-3xl leading-none text-text-muted transition-colors group-hover:text-accent md:text-4xl`}
@@ -102,15 +102,14 @@ export default function WhatWeDoPage() {
                   <h3 className={`${cormorant.className} text-2xl leading-tight text-white md:text-[1.75rem]`}>
                     {item.title}
                   </h3>
-                  <p className="mt-3 text-base font-light leading-relaxed text-text-secondary">{item.detail}</p>
+                  <p className="mt-3 max-w-xl text-base font-light leading-relaxed text-text-secondary">{item.detail}</p>
+                  <p className="mt-4 text-sm font-light text-text-muted">
+                    Answered by <span className="text-accent">{item.products}</span>
+                  </p>
                 </div>
-                <div className="border-l border-accent pl-5 md:self-start">
+                <div className="border-l border-accent pl-5 md:mt-1 md:self-start">
                   <p className="text-[11px] uppercase tracking-[0.18em] text-accent">So you can</p>
                   <p className="mt-2 text-base leading-relaxed text-white">{item.outcome}</p>
-                </div>
-                <div className="md:text-right">
-                  <p className="text-[11px] uppercase tracking-[0.18em] text-text-muted">Product</p>
-                  <p className="mt-2 text-sm leading-snug text-text-secondary">{item.products}</p>
                 </div>
               </li>
             ))}
@@ -139,7 +138,9 @@ export default function WhatWeDoPage() {
             at the end.
           </p>
 
-          <ol className="mt-16 grid gap-px border border-border-grey bg-border-grey md:grid-cols-2 xl:grid-cols-5">
+          {/* One product per row, read top to bottom. Each row is name, question, benefit, timing;
+              the deliverables sit behind a disclosure so the row stays light. */}
+          <ol className="mt-16 border-t border-border-grey">
             {PRODUCTS.map((product, index) => {
               const depth = Math.min(index + 1, 4);
               const tracking = product.id === "public-mood";
@@ -147,34 +148,49 @@ export default function WhatWeDoPage() {
               return (
                 <li
                   key={product.id}
-                  className="group relative flex flex-col bg-dark-grey p-7 transition-colors hover:bg-near-black md:p-8"
+                  className="group grid gap-6 border-b border-border-grey py-10 md:grid-cols-[6.5rem_1.15fr_1fr_8.5rem] md:gap-10 md:py-14"
                 >
-                  {/* Depth marks: one bar per layer of analysis included. */}
-                  <div className="flex gap-1.5" aria-hidden="true">
-                    {[0, 1, 2, 3].map((bar) => (
-                      <span
-                        key={bar}
-                        className={`h-1 flex-1 ${
-                          tracking
-                            ? "bg-accent/40"
-                            : bar < depth
-                              ? "bg-accent"
-                              : "bg-white/10"
-                        }`}
-                      />
-                    ))}
+                  {/* Depth */}
+                  <div>
+                    <div className="flex w-16 gap-1" aria-hidden="true">
+                      {[0, 1, 2, 3].map((bar) => (
+                        <span
+                          key={bar}
+                          className={`h-0.5 flex-1 ${
+                            tracking ? "bg-accent/40" : bar < depth ? "bg-accent" : "bg-white/10"
+                          }`}
+                        />
+                      ))}
+                    </div>
+                    <p className="mt-3 text-[11px] uppercase tracking-[0.18em] text-text-muted">
+                      {tracking ? "Ongoing" : `Depth ${depth}`}
+                    </p>
                   </div>
-                  <p className="mt-6 text-[11px] uppercase tracking-[0.18em] text-text-muted">
-                    {tracking ? "Ongoing" : `Depth ${depth}`}
-                  </p>
-                  <h3 className={`${cormorant.className} mt-2 text-3xl leading-none text-white`}>{product.name}</h3>
-                  <p className="mt-5 text-base leading-snug text-white">{product.question}</p>
-                  <p className="mt-4 text-sm leading-relaxed text-text-secondary">{product.benefit}</p>
-                  <p className="mt-4 text-[11px] uppercase tracking-[0.18em] text-text-muted">You receive</p>
-                  <p className="mt-1 flex-1 text-sm font-light leading-relaxed text-text-secondary">
-                    {product.summary}
-                  </p>
-                  <div className="mt-8 border-t border-border-grey pt-5">
+
+                  {/* Name and question */}
+                  <div>
+                    <h3 className={`${cormorant.className} text-4xl leading-none text-white md:text-5xl`}>
+                      {product.name}
+                    </h3>
+                    <p className="mt-4 max-w-sm text-lg leading-snug text-white">{product.question}</p>
+                  </div>
+
+                  {/* Benefit, with the deliverables folded away */}
+                  <div className="md:pt-2">
+                    <p className="text-base font-light leading-relaxed text-text-secondary">{product.benefit}</p>
+                    <details className="group/details mt-5">
+                      <summary className="inline-flex cursor-pointer list-none items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-accent transition-colors hover:text-white [&::-webkit-details-marker]:hidden">
+                        <span className="group-open/details:hidden">What you receive +</span>
+                        <span className="hidden group-open/details:inline">What you receive &minus;</span>
+                      </summary>
+                      <p className="mt-3 max-w-md text-sm font-light leading-relaxed text-text-secondary">
+                        {product.summary}
+                      </p>
+                    </details>
+                  </div>
+
+                  {/* Timing */}
+                  <div className="md:pt-1 md:text-right">
                     <p className={`${cormorant.className} text-5xl leading-none text-white`}>{timing.figure}</p>
                     <p className="mt-2 text-[11px] uppercase tracking-[0.18em] text-text-muted">{timing.unit}</p>
                     {tracking ? (
@@ -183,13 +199,13 @@ export default function WhatWeDoPage() {
                       <p className="mt-3 text-xs font-light text-text-muted">Full report in {product.timing}</p>
                     ) : null}
                   </div>
-                  <p className="mt-5 border-t border-border-grey pt-4 text-xs font-light leading-relaxed text-text-muted">
-                    {READING_MACHINE_LINE}
-                  </p>
                 </li>
               );
             })}
           </ol>
+          <p className="mt-6 text-xs font-light leading-relaxed text-text-muted">
+            Every product: {READING_MACHINE_LINE.charAt(0).toLowerCase() + READING_MACHINE_LINE.slice(1)}
+          </p>
 
           <div className="mt-14 grid gap-8 md:grid-cols-[1.4fr_1fr] md:items-start">
             <p className="max-w-3xl text-base font-light leading-relaxed text-text-secondary">
