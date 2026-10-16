@@ -2,19 +2,19 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Cormorant_Garamond } from "next/font/google";
 import { BOOKING_HREF } from "@/lib/booking";
-import ProductLayers from "@/components/what-we-do/ProductLayers";
-import { CLIENT_QUESTIONS } from "@/lib/products";
+import { PRODUCTS } from "@/lib/products";
+import { CLOSING, INTRO, PRODUCT_BLOCKS } from "@/lib/whatWeDo";
 import { pageOpenGraph } from "@/lib/seo";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["400"],
+  weight: ["400", "500", "600"],
   style: ["normal", "italic"],
   display: "swap",
 });
 
 const DESCRIPTION =
-  "The questions clients bring Bakamo, the research product that answers each, and what the answer is for. Agenda, Frames, Publics, Common Sense and Public Mood.";
+  "The questions clients bring Bakamo and the research product that answers each. Agenda, Frames, Publics, Common Sense and Public Mood.";
 
 export const metadata: Metadata = {
   title: "What We Do: Social Intelligence Products",
@@ -23,15 +23,6 @@ export const metadata: Metadata = {
     canonical: "/what-we-do",
   },
   openGraph: pageOpenGraph("/what-we-do", "What We Do: Social Intelligence Products | Bakamo", DESCRIPTION),
-};
-
-// Big figure on each card: time to first learnings. The full delivery sits under it.
-const FIRST_FINDINGS: Record<string, { figure: string; unit: string }> = {
-  agenda: { figure: "48", unit: "hours to the report" },
-  frames: { figure: "1", unit: "week to first learnings" },
-  publics: { figure: "2", unit: "weeks to first learnings" },
-  "common-sense": { figure: "2", unit: "weeks to first learnings" },
-  "public-mood": { figure: "1", unit: "reading every month" },
 };
 
 export default function WhatWeDoPage() {
@@ -68,85 +59,119 @@ export default function WhatWeDoPage() {
         </div>
       </section>
 
-      {/* Client questions */}
+      {/* The questions people bring, each with the product that answers it */}
       <section
-        className="px-6 py-24 md:py-32"
+        className="border-b border-border-grey px-6 py-24 md:py-32"
         data-analytics-section="what_we_do_questions"
         data-analytics-label="Client Questions"
       >
         <div className="mx-auto max-w-6xl">
-          <div className="grid gap-8 md:grid-cols-[1fr_1.4fr] md:items-end">
+          <div className="grid gap-8 lg:grid-cols-[1fr_1.4fr] lg:items-end">
             <div>
               <p className="text-xs uppercase tracking-[0.2em] text-accent">Where we start</p>
               <h2 className="mt-4 text-4xl font-light leading-tight text-white md:text-5xl">
-                What we are asked for.
+                The questions people bring us.
               </h2>
             </div>
-            <p className="text-lg font-light leading-relaxed text-text-secondary md:pb-2">
-              Nine questions clients bring us. For each, what the answer is for, and which product
-              answers it.
+            <p className="text-lg font-light leading-relaxed text-text-secondary lg:pb-2">
+              Find yours, and the product beside it answers it. Each product is described further
+              down.
             </p>
           </div>
 
-          <ol className="mt-16 border-t border-border-grey">
-            {CLIENT_QUESTIONS.map((item, index) => (
-              <li
-                key={item.title}
-                className="group grid gap-4 border-b border-border-grey py-9 transition-colors md:grid-cols-[4rem_1.2fr_1fr] md:gap-10 md:py-10"
-              >
-                <span
-                  className={`${cormorant.className} text-3xl leading-none text-text-muted transition-colors group-hover:text-accent md:text-4xl`}
-                >
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <h3 className={`${cormorant.className} text-2xl leading-tight text-white md:text-[1.75rem]`}>
-                    {item.title}
-                  </h3>
-                  <p className="mt-3 max-w-xl text-base font-light leading-relaxed text-text-secondary">{item.detail}</p>
-                  <p className="mt-4 text-sm font-light text-text-muted">
-                    Answered by <span className="text-accent">{item.products}</span>
-                  </p>
-                </div>
-                <div className="border-l border-accent pl-5 md:mt-1 md:self-start">
-                  <p className="text-[11px] uppercase tracking-[0.18em] text-accent">So you can</p>
-                  <p className="mt-2 text-base leading-relaxed text-white">{item.outcome}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-          <p className="mt-10 max-w-3xl text-base font-light leading-relaxed text-text-muted">
-            Also commissioned: evidence for litigation and regulatory proceedings, and campaign
-            evaluation. Both are scoped from Frames or Publics.
-          </p>
+          <ul className="mt-14 border-t border-border-grey">
+            {PRODUCT_BLOCKS.flatMap((block) => {
+              const product = PRODUCTS.find((p) => p.id === block.id)!;
+              return block.answers.map((q) => (
+                <li key={q} className="border-b border-border-grey">
+                  <Link
+                    href={`#${block.id}`}
+                    className="group grid gap-1 py-5 transition-colors md:grid-cols-[1fr_11rem] md:items-baseline md:gap-8"
+                    data-analytics-event="cta_click"
+                    data-analytics-label={product.name}
+                    data-analytics-location="what_we_do_questions"
+                    data-analytics-destination={`#${block.id}`}
+                  >
+                    <span className="text-lg leading-snug text-white md:text-xl">{q}</span>
+                    <span
+                      className={`${cormorant.className} text-2xl leading-none text-accent transition-colors group-hover:text-white md:text-right`}
+                    >
+                      {product.name}
+                    </span>
+                  </Link>
+                </li>
+              ));
+            })}
+          </ul>
         </div>
       </section>
 
-      {/* Products */}
+      {/* Products, each with the questions it answers */}
       <section
-        className="border-t border-border-grey bg-dark-grey px-6 py-24 md:py-32"
+        className="px-6 py-24 md:py-32"
         data-analytics-section="what_we_do_products"
         data-analytics-label="Products"
       >
         <div className="mx-auto max-w-6xl">
-          <p className="text-xs uppercase tracking-[0.2em] text-accent">The products</p>
-          <h2 className="mt-4 max-w-4xl text-4xl font-light leading-tight text-white md:text-5xl">
-            Five products. Each one goes further than the last.
-          </h2>
-          <p className="mt-6 max-w-3xl text-lg font-light leading-relaxed text-text-secondary">
-            Each product answers a bigger question than the one before it and includes everything
-            the one before delivers. Public Mood keeps watching after the study. First learnings
-            arrive within the first weeks, not at the end.
-          </p>
+          <div className="grid gap-8 lg:grid-cols-[1fr_1.4fr] lg:items-end">
+            <div>
+              <p className="text-xs uppercase tracking-[0.2em] text-accent">The products</p>
+              <h2 className="mt-4 text-4xl font-light leading-tight text-white md:text-5xl">
+                Which product answers your question.
+              </h2>
+            </div>
+            <p className="text-lg font-light leading-relaxed text-text-secondary lg:pb-2">{INTRO}</p>
+          </div>
 
-          <ProductLayers headingClassName={cormorant.className} firstFindings={FIRST_FINDINGS} />
+          {/* Five identical blocks. The same five labels, in the same order, every time. */}
+          <ol className="mt-20 space-y-20 md:space-y-24">
+            {PRODUCT_BLOCKS.map((block) => {
+              const product = PRODUCTS.find((p) => p.id === block.id)!;
+              const rows: { label: string; lines: string[]; strong?: boolean }[] = [
+                { label: "The question", lines: [block.question], strong: true },
+                { label: "Use it when", lines: [block.useWhen] },
+                { label: "It answers", lines: block.answers, strong: true },
+                { label: "You receive", lines: block.receive },
+                { label: "Timing", lines: [block.timing], strong: true },
+              ];
+              return (
+                <li key={block.id} id={block.id} className="scroll-mt-28">
+                  <h3 className={`${cormorant.className} text-5xl leading-none text-white md:text-6xl`}>
+                    {product.name}
+                  </h3>
+                  <dl className="mt-8 border-t border-accent/60">
+                    {rows.map((row) => (
+                      <div
+                        key={row.label}
+                        className="grid gap-2 border-b border-border-grey py-5 md:grid-cols-[10rem_1fr] md:gap-10 md:py-6"
+                      >
+                        <dt className="text-[11px] uppercase tracking-[0.18em] text-accent md:pt-1.5">
+                          {row.label}
+                        </dt>
+                        <dd className="max-w-3xl">
+                          {row.lines.map((line) => (
+                            <p
+                              key={line}
+                              className={
+                                row.strong
+                                  ? "text-lg leading-snug text-white md:text-xl [&+&]:mt-2"
+                                  : "text-base font-light leading-relaxed text-text-secondary [&+&]:mt-1.5"
+                              }
+                            >
+                              {line}
+                            </p>
+                          ))}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                </li>
+              );
+            })}
+          </ol>
 
-          <div className="mt-14 grid gap-8 md:grid-cols-[1.4fr_1fr] md:items-start">
-            <p className="max-w-3xl text-base font-light leading-relaxed text-text-secondary">
-              Scope, depth and markets are set to the brief. Additional markets, languages and
-              competitors are quoted separately. Book a meeting and bring the question: we will
-              tell you which product answers it, and at what scope.
-            </p>
+          <div className="mt-20 grid gap-8 md:grid-cols-[1.4fr_1fr] md:items-start">
+            <p className="max-w-3xl text-base font-light leading-relaxed text-text-secondary">{CLOSING}</p>
             <div className="flex flex-wrap items-center gap-x-8 gap-y-4 md:justify-self-end">
               <Link
                 href={BOOKING_HREF}
