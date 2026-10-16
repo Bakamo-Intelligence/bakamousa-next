@@ -130,12 +130,12 @@ export default function WhatWeDoPage() {
         <div className="mx-auto max-w-6xl">
           <p className="text-xs uppercase tracking-[0.2em] text-accent">The products</p>
           <h2 className="mt-4 max-w-4xl text-4xl font-light leading-tight text-white md:text-5xl">
-            Four depths of the same reading, and ongoing tracking.
+            Five products. Each one goes further than the last.
           </h2>
           <p className="mt-6 max-w-3xl text-lg font-light leading-relaxed text-text-secondary">
-            Every product reads the same conversation. Each deeper one keeps everything in the one
-            before and adds a layer of analysis. First learnings arrive within the first weeks, not
-            at the end.
+            Each product answers a bigger question than the one before it and includes everything
+            the one before delivers. Public Mood keeps watching after the study. First learnings
+            arrive within the first weeks, not at the end.
           </p>
 
           {/* One product per row, read top to bottom. Each row is name, question, benefit, timing;
@@ -163,7 +163,7 @@ export default function WhatWeDoPage() {
                       ))}
                     </div>
                     <p className="mt-3 text-[11px] uppercase tracking-[0.18em] text-text-muted">
-                      {tracking ? "Ongoing" : `Depth ${depth}`}
+                      {tracking ? "Ongoing" : String(index + 1).padStart(2, "0")}
                     </p>
                   </div>
 
