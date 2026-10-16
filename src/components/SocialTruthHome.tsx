@@ -3,6 +3,7 @@ import { Cormorant_Garamond } from "next/font/google";
 import AtlasGlobe from "@/components/AtlasGlobe";
 import ClientMarquee from "@/components/ClientMarquee";
 import HeroVideo from "@/components/HeroVideo";
+import { HOME_FAQ, HOME_GLOSSARY } from "@/lib/home-faq";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -146,15 +147,38 @@ export default function SocialTruthHome({ heroVideo }: { heroVideo: string }) {
         </div>
       </section>
 
+      {/* What is social intelligence */}
+      <section className="border-t border-border-grey px-6 py-24 md:py-32" data-analytics-section="home_social_intelligence">
+        <div className="mx-auto max-w-5xl">
+          <h2 className={H2}>What is social intelligence?</h2>
+          <div className={`mt-12 ${BODY}`}>
+            <p className="text-white">
+              Social intelligence is the study of what people say to each other, unprompted and in
+              public, to understand how they make sense of a category, an issue or a brand. It reads
+              whole conversations rather than counting mentions, and it is used for consumer
+              insights, brand strategy, communications and public-sector research. Bakamo is a
+              social intelligence company.
+            </p>
+            <p>
+              Most of those conversations never mention a brand. People are talking about rent,
+              their kids, their bodies, what they are tired of and what they are hoping for. That is
+              where the decisions get made, long before anyone sees a survey.
+            </p>
+            <p>We read that conversation first, and only then decide what is worth asking.</p>
+          </div>
+        </div>
+      </section>
+
       {/* What is Social Truth */}
-      <section className="border-t border-border-grey px-6 py-24 md:py-32" data-analytics-section="home_definition">
+      <section className="bg-dark-grey px-6 py-24 md:py-32" data-analytics-section="home_definition">
         <div className="mx-auto max-w-5xl">
           <h2 className={H2}>What is Social Truth?</h2>
           <div className={`mt-12 ${BODY}`}>
-            <p className="text-white">Social Truth lives between people.</p>
-            <p>
-              It is the shared meaning, tension, assumption or belief that emerges through
-              conversation &mdash; often without anyone explicitly stating it.
+            <p className="text-white">
+              Social Truth is Bakamo&apos;s name for the shared meaning, tension or assumption that
+              emerges between people in conversation, usually without anyone stating it outright.
+              It is found by reading unprompted conversation rather than by asking questions. It is
+              the output of social intelligence research.
             </p>
             <p>
               <strong className="font-medium text-white">It is not opinion.</strong> Opinion lives
@@ -162,6 +186,7 @@ export default function SocialTruthHome({ heroVideo }: { heroVideo: string }) {
               <strong className="font-medium text-white">It is not sentiment.</strong> Sentiment is
               a score applied after the fact.
             </p>
+            <p className="text-white">Social Truth lives between people.</p>
           </div>
           <p className="mt-14 text-xs uppercase tracking-[0.2em] text-accent">It can be</p>
           <ul className="mt-6 divide-y divide-border-grey border-y border-border-grey">
@@ -184,7 +209,7 @@ export default function SocialTruthHome({ heroVideo }: { heroVideo: string }) {
       </section>
 
       {/* Reality first + technology */}
-      <section className="bg-dark-grey px-6 py-24 md:py-32" data-analytics-section="home_method">
+      <section className="border-t border-border-grey px-6 py-24 md:py-32" data-analytics-section="home_method">
         <div className="mx-auto max-w-5xl">
           <p className="text-xs uppercase tracking-[0.2em] text-accent">Our method</p>
           <h2 className={`mt-6 ${H2}`}>Reality first. Measurement second.</h2>
@@ -203,6 +228,24 @@ export default function SocialTruthHome({ heroVideo }: { heroVideo: string }) {
             <p className="text-text-secondary">The conversation moves first.</p>
             <p className="text-white">Research usually arrives later.</p>
           </div>
+
+          <h3 className="mt-16 max-w-3xl text-3xl font-light leading-tight text-white md:text-4xl">
+            How does social intelligence research work?
+          </h3>
+          <div className={`mt-8 ${BODY}`}>
+            <p className="text-white">
+              Social intelligence research starts by reading a large body of natural conversation
+              around a topic, with no brand or keyword as the entry point. The recurring meanings
+              and tensions are then mapped, and the ones that matter are measured with a survey or
+              tracker built from the language people actually used. The order is listen, map,
+              measure. Measurement comes last.
+            </p>
+            <p>
+              Most research runs this the other way round. It starts with a question, builds an
+              instrument, and finds what the instrument allows. We start with reality, so the
+              question is earned rather than assumed.
+            </p>
+          </div>
           <Link
             href="/our-method"
             className="mt-8 inline-flex text-sm uppercase tracking-[0.16em] text-accent transition-colors hover:text-white"
@@ -215,23 +258,26 @@ export default function SocialTruthHome({ heroVideo }: { heroVideo: string }) {
           </Link>
 
           <div className="mt-20 border-t border-border-grey pt-16">
-            <h3 className="max-w-3xl text-3xl font-light leading-tight text-white md:text-4xl">
-              We read differently.
+            <p className="text-xs uppercase tracking-[0.2em] text-accent">We read differently</p>
+            <h3 className="mt-6 max-w-3xl text-3xl font-light leading-tight text-white md:text-4xl">
+              What is the Reading Machine?
             </h3>
             <div className={`mt-10 ${BODY}`}>
+              <p className="text-white">
+                The Reading Machine is Bakamo&apos;s system for reading millions of conversations
+                and surfacing the patterns, connections and emerging meanings across them. It does
+                the reading at a scale no human team could manage, and nothing is pre-selected
+                because it looked interesting. Bakamo&apos;s analysts then interpret what it
+                surfaces.
+              </p>
               <p>
                 Millions of conversations contain an enormous amount of information. But information
-                isn&apos;t insight.
+                isn&apos;t insight. Finding a pattern is not the same as understanding it.
               </p>
               <p>
-                Our Reading Machine helps us navigate this complexity &mdash; finding patterns,
-                connections and emerging meanings across conversations at a scale no human team
-                could manage alone. Nothing is pre-selected because it looked interesting.
-              </p>
-              <p>
-                But technology doesn&apos;t tell us what matters. Our analysts do. They bring
-                context, judgement, cultural understanding and curiosity to what the Reading
-                Machine surfaces &mdash; because finding a pattern is not the same as understanding it.
+                Technology doesn&apos;t tell us what matters. Our analysts do. They bring context,
+                judgement, cultural understanding and curiosity to what the Reading Machine
+                surfaces.
               </p>
             </div>
             <p className="mt-12 max-w-4xl border-l border-accent pl-7 text-2xl font-light leading-snug text-white md:text-3xl">
@@ -248,6 +294,58 @@ export default function SocialTruthHome({ heroVideo }: { heroVideo: string }) {
               Meet The Reading Machine &rarr;
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* Social intelligence vs social listening */}
+      <section className="bg-dark-grey px-6 py-24 md:py-32" data-analytics-section="home_versus">
+        <div className="mx-auto max-w-5xl">
+          <h2 className={H2}>Social intelligence vs social listening: what is the difference?</h2>
+          <div className={`mt-12 ${BODY}`}>
+            <p className="text-white">
+              Social listening monitors. A tool collects mentions of a brand, product or keyword and
+              reports how many there were, whether they were positive or negative, and how that
+              changed since last week. Social intelligence reads. It studies the whole conversation
+              around a category or issue, most of which never mentions a brand, and explains how
+              people are making sense of it.
+            </p>
+            <p>Both start from the same raw material. They answer different questions.</p>
+          </div>
+          <div className="mt-14 grid gap-12 md:grid-cols-2">
+            <div>
+              <h3 className="text-2xl font-light text-white">Why automated sentiment fails</h3>
+              <p className="mt-4 text-lg font-light leading-relaxed text-text-secondary">
+                Sentiment analysis scores a post as positive or negative. It cannot tell a joke from
+                a complaint, or praise from irony, and it has no view on what the post means. A
+                category can be ninety per cent negative and still be the best opportunity you
+                have, because the anger is pointed at an assumption nobody has challenged yet. A
+                score will never show you that. Only reading will.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-2xl font-light text-white">Why human-led reading at scale succeeds</h3>
+              <p className="mt-4 text-lg font-light leading-relaxed text-text-secondary">
+                The Reading Machine reads millions of conversations so that nothing is pre-selected
+                and nothing is missed. Our analysts then interpret what it surfaces, with context,
+                judgement and cultural understanding. The machine finds the pattern. People decide
+                what it means. That combination is how a mention count becomes a Social Truth.
+              </p>
+            </div>
+          </div>
+          <div className="mt-14 space-y-2 text-2xl font-light leading-snug">
+            <p className="text-text-secondary">Social listening tells you how much you were talked about.</p>
+            <p className="text-white">Social intelligence tells you why, and what to do about it.</p>
+          </div>
+          <Link
+            href="/blog/social-listening-vs-social-intelligence"
+            className="mt-10 inline-flex text-sm uppercase tracking-[0.16em] text-accent transition-colors hover:text-white"
+            data-analytics-event="cta_click"
+            data-analytics-label="Read the full comparison"
+            data-analytics-location="home_versus"
+            data-analytics-destination="/blog/social-listening-vs-social-intelligence"
+          >
+            Read the full comparison &rarr;
+          </Link>
         </div>
       </section>
 
@@ -320,11 +418,22 @@ export default function SocialTruthHome({ heroVideo }: { heroVideo: string }) {
         <div className="mx-auto max-w-6xl">
           <p className="text-xs uppercase tracking-[0.2em] text-accent">Who we work with</p>
           <h2 className={`mt-6 ${H2}`}>What we uncover changes what happens next.</h2>
-          <p className="mt-10 max-w-3xl text-xl font-light leading-relaxed text-text-secondary">
-            Our work has helped organisations understand markets, challenge assumptions, identify
-            emerging needs and make decisions with a clearer view of the people affected by them. We
-            work across three broad areas:
-          </p>
+          <h3 className="mt-14 max-w-3xl text-3xl font-light leading-tight text-white md:text-4xl">
+            Who uses social intelligence?
+          </h3>
+          <div className={`mt-8 ${BODY}`}>
+            <p className="text-white">
+              Social intelligence is used by brand, insight and strategy teams in commercial
+              companies, by health and pharma organisations studying patients and professionals,
+              and by governments and not-for-profits working on public opinion and contested
+              issues. Bakamo has run more than 550 projects across 45 countries and 65 languages in
+              these three areas.
+            </p>
+            <p>
+              Our work has helped organisations understand markets, challenge assumptions, identify
+              emerging needs and make decisions with a clearer view of the people affected by them.
+            </p>
+          </div>
           <div className="mt-16 grid gap-10 md:grid-cols-3 md:divide-x md:divide-border-grey">
             {SECTORS.map((sector, index) => (
               <article key={sector.title} className={index > 0 ? "md:pl-10" : ""}>
@@ -403,6 +512,44 @@ export default function SocialTruthHome({ heroVideo }: { heroVideo: string }) {
               Explore our work &rarr;
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="border-t border-border-grey px-6 py-24 md:py-32" data-analytics-section="home_faq">
+        <div className="mx-auto max-w-5xl">
+          <p className="text-xs uppercase tracking-[0.2em] text-accent">Questions</p>
+          <h2 className={`mt-6 ${H2}`}>Social intelligence, answered plainly.</h2>
+          <div className="mt-12 divide-y divide-border-grey border-y border-border-grey">
+            {HOME_FAQ.map(({ question, answer }) => (
+              <details key={question} className="group py-6">
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-6 text-xl font-light leading-snug text-white md:text-2xl [&::-webkit-details-marker]:hidden">
+                  <span>{question}</span>
+                  <span
+                    aria-hidden="true"
+                    className="mt-1 shrink-0 text-accent transition-transform group-open:rotate-45"
+                  >
+                    +
+                  </span>
+                </summary>
+                <p className="mt-4 max-w-3xl text-lg font-light leading-relaxed text-text-secondary">
+                  {answer}
+                </p>
+              </details>
+            ))}
+          </div>
+
+          <p className="mt-20 text-xs uppercase tracking-[0.2em] text-accent">Glossary</p>
+          <dl className="mt-8 grid gap-x-12 gap-y-8 md:grid-cols-2">
+            {HOME_GLOSSARY.map(({ term, definition }) => (
+              <div key={term}>
+                <dt className="text-xl font-light text-white">{term}</dt>
+                <dd className="mt-2 text-base font-light leading-relaxed text-text-secondary">
+                  {definition}
+                </dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </section>
     </div>
