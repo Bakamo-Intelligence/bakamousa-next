@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Cormorant_Garamond } from "next/font/google";
 import { BOOKING_HREF } from "@/lib/booking";
-import { CLIENT_QUESTIONS, PRODUCTS, READING_MACHINE_LINE } from "@/lib/products";
+import ProductLayers from "@/components/what-we-do/ProductLayers";
+import { CLIENT_QUESTIONS } from "@/lib/products";
 import { pageOpenGraph } from "@/lib/seo";
 
 const cormorant = Cormorant_Garamond({
@@ -35,7 +36,7 @@ const FIRST_FINDINGS: Record<string, { figure: string; unit: string }> = {
 
 export default function WhatWeDoPage() {
   return (
-    <main className="relative min-h-screen w-full overflow-x-hidden bg-near-black text-text-primary">
+    <main className="relative min-h-screen w-full overflow-x-clip bg-near-black text-text-primary">
       <div className="grain-overlay" />
 
       {/* Hero */}
@@ -138,74 +139,7 @@ export default function WhatWeDoPage() {
             arrive within the first weeks, not at the end.
           </p>
 
-          {/* One product per row, read top to bottom. Each row is name, question, benefit, timing;
-              the deliverables sit behind a disclosure so the row stays light. */}
-          <ol className="mt-16 border-t border-border-grey">
-            {PRODUCTS.map((product, index) => {
-              const depth = Math.min(index + 1, 4);
-              const tracking = product.id === "public-mood";
-              const timing = FIRST_FINDINGS[product.id];
-              return (
-                <li
-                  key={product.id}
-                  className="group grid gap-6 border-b border-border-grey py-10 md:grid-cols-[6.5rem_1.15fr_1fr_8.5rem] md:gap-10 md:py-14"
-                >
-                  {/* Depth */}
-                  <div>
-                    <div className="flex w-16 gap-1" aria-hidden="true">
-                      {[0, 1, 2, 3].map((bar) => (
-                        <span
-                          key={bar}
-                          className={`h-0.5 flex-1 ${
-                            tracking ? "bg-accent/40" : bar < depth ? "bg-accent" : "bg-white/10"
-                          }`}
-                        />
-                      ))}
-                    </div>
-                    <p className="mt-3 text-[11px] uppercase tracking-[0.18em] text-text-muted">
-                      {tracking ? "Ongoing" : String(index + 1).padStart(2, "0")}
-                    </p>
-                  </div>
-
-                  {/* Name and question */}
-                  <div>
-                    <h3 className={`${cormorant.className} text-4xl leading-none text-white md:text-5xl`}>
-                      {product.name}
-                    </h3>
-                    <p className="mt-4 max-w-sm text-lg leading-snug text-white">{product.question}</p>
-                  </div>
-
-                  {/* Benefit, with the deliverables folded away */}
-                  <div className="md:pt-2">
-                    <p className="text-base font-light leading-relaxed text-text-secondary">{product.benefit}</p>
-                    <details className="group/details mt-5">
-                      <summary className="inline-flex cursor-pointer list-none items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-accent transition-colors hover:text-white [&::-webkit-details-marker]:hidden">
-                        <span className="group-open/details:hidden">What you receive +</span>
-                        <span className="hidden group-open/details:inline">What you receive &minus;</span>
-                      </summary>
-                      <p className="mt-3 max-w-md text-sm font-light leading-relaxed text-text-secondary">
-                        {product.summary}
-                      </p>
-                    </details>
-                  </div>
-
-                  {/* Timing */}
-                  <div className="md:pt-1 md:text-right">
-                    <p className={`${cormorant.className} text-5xl leading-none text-white`}>{timing.figure}</p>
-                    <p className="mt-2 text-[11px] uppercase tracking-[0.18em] text-text-muted">{timing.unit}</p>
-                    {tracking ? (
-                      <p className="mt-3 text-xs font-light text-text-muted">Six-month minimum</p>
-                    ) : product.id !== "agenda" ? (
-                      <p className="mt-3 text-xs font-light text-text-muted">Full report in {product.timing}</p>
-                    ) : null}
-                  </div>
-                </li>
-              );
-            })}
-          </ol>
-          <p className="mt-6 text-xs font-light leading-relaxed text-text-muted">
-            Every product: {READING_MACHINE_LINE.charAt(0).toLowerCase() + READING_MACHINE_LINE.slice(1)}
-          </p>
+          <ProductLayers headingClassName={cormorant.className} firstFindings={FIRST_FINDINGS} />
 
           <div className="mt-14 grid gap-8 md:grid-cols-[1.4fr_1fr] md:items-start">
             <p className="max-w-3xl text-base font-light leading-relaxed text-text-secondary">
