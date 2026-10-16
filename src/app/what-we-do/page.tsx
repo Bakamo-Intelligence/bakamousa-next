@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Cormorant_Garamond } from "next/font/google";
 import { BOOKING_HREF } from "@/lib/booking";
-import { PRODUCTS, READING_MACHINE_LINE } from "@/lib/products";
-import { ALSO_COMMISSIONED, PRODUCT_BLOCKS } from "@/lib/whatWeDo";
+import { PRODUCTS } from "@/lib/products";
+import { CLOSING, INTRO, PRODUCT_BLOCKS } from "@/lib/whatWeDo";
 import { pageOpenGraph } from "@/lib/seo";
 
 const cormorant = Cormorant_Garamond({
@@ -24,37 +24,6 @@ export const metadata: Metadata = {
   },
   openGraph: pageOpenGraph("/what-we-do", "What We Do: Social Intelligence Products | Bakamo", DESCRIPTION),
 };
-
-/* One mark for all five products: a square for Agenda, and one more ring
-   around it for each product that includes the one before. Public Mood is the
-   full set drawn dashed: the same reading, repeated. */
-function DepthMark({ depth, repeat }: { depth: number; repeat?: boolean }) {
-  const halves = [10, 23, 36, 49];
-  return (
-    <svg viewBox="0 0 112 112" width="112" height="112" aria-hidden="true" className="block">
-      <rect x="0" y="0" width="112" height="112" fill="var(--near-black)" />
-      {halves.map((h, k) => {
-        const inSet = k < depth;
-        const current = k === depth - 1 && !repeat;
-        return (
-          <rect
-            key={k}
-            x={56 - h}
-            y={56 - h}
-            width={h * 2}
-            height={h * 2}
-            rx="1.5"
-            fill="none"
-            stroke={inSet ? "var(--accent)" : "rgba(255,255,255,0.1)"}
-            strokeWidth={current ? 1.6 : 1}
-            strokeOpacity={inSet ? (current ? 1 : repeat ? 0.9 : 0.4) : 1}
-            strokeDasharray={repeat && inSet ? "3 3" : undefined}
-          />
-        );
-      })}
-    </svg>
-  );
-}
 
 export default function WhatWeDoPage() {
   return (
@@ -101,108 +70,61 @@ export default function WhatWeDoPage() {
             <div>
               <p className="text-xs uppercase tracking-[0.2em] text-accent">The products</p>
               <h2 className="mt-4 text-4xl font-light leading-tight text-white md:text-5xl">
-                What we do, and which product does it.
+                Which product answers your question.
               </h2>
             </div>
-            <p className="text-lg font-light leading-relaxed text-text-secondary lg:pb-2">
-              Each product includes everything in the one before it and answers a bigger question.
-              Public Mood continues any of them.
-            </p>
+            <p className="text-lg font-light leading-relaxed text-text-secondary lg:pb-2">{INTRO}</p>
           </div>
 
-          <ol className="relative mt-20 border-t border-border-grey">
-            {/* The line the marks sit on */}
-            <div
-              aria-hidden="true"
-              className="absolute bottom-0 left-[3.5rem] top-0 hidden w-px bg-border-grey lg:block"
-            />
-            {PRODUCT_BLOCKS.map((block, index) => {
+          {/* Five identical blocks. The same five labels, in the same order, every time. */}
+          <ol className="mt-20 space-y-20 md:space-y-24">
+            {PRODUCT_BLOCKS.map((block) => {
               const product = PRODUCTS.find((p) => p.id === block.id)!;
-              const repeat = block.id === "public-mood";
-              const depth = repeat ? 4 : index + 1;
+              const rows: { label: string; lines: string[]; strong?: boolean }[] = [
+                { label: "The question", lines: [block.question], strong: true },
+                { label: "Use it when", lines: [block.useWhen] },
+                { label: "It answers", lines: block.answers, strong: true },
+                { label: "You receive", lines: block.receive },
+                { label: "Timing", lines: [block.timing], strong: true },
+              ];
               return (
-                <li
-                  key={block.id}
-                  className="grid gap-8 border-b border-border-grey py-16 lg:grid-cols-[7rem_1fr] lg:gap-12 lg:py-20"
-                >
-                  <div className="relative hidden lg:block">
-                    <div className="sticky top-32">
-                      <DepthMark depth={depth} repeat={repeat} />
-                    </div>
-                  </div>
-
-                  <div>
-                    {/* Name, question, purpose, and the figure */}
-                    <div className="grid gap-8 md:grid-cols-[1fr_11rem] md:gap-12">
-                      <div>
-                        <div className="flex items-center gap-4 lg:hidden">
-                          <div className="w-14 shrink-0 [&>svg]:h-14 [&>svg]:w-14">
-                            <DepthMark depth={depth} repeat={repeat} />
-                          </div>
-                        </div>
-                        <h3
-                          className={`${cormorant.className} mt-4 text-5xl leading-none text-white md:text-6xl lg:mt-0`}
-                        >
-                          {product.name}
-                        </h3>
-                        <p className="mt-5 max-w-xl text-xl leading-snug text-white md:text-2xl">
-                          {product.question}
-                        </p>
-                        <p className="mt-6 max-w-2xl text-lg font-light leading-relaxed text-text-secondary">
-                          {block.purpose}
-                        </p>
-                      </div>
-                      <div className="md:pt-2 md:text-right">
-                        <p className={`${cormorant.className} text-6xl leading-none text-white md:text-7xl`}>
-                          {block.figure}
-                        </p>
-                        <p className="mt-3 text-[11px] uppercase tracking-[0.18em] text-text-muted">
-                          {block.unit}
-                        </p>
-                        {block.report ? (
-                          <p className="mt-3 text-xs font-light text-text-muted">{block.report}</p>
-                        ) : null}
-                      </div>
-                    </div>
-
-                    {/* The questions it answers, and what you receive */}
-                    <div className="mt-12 grid gap-10 md:grid-cols-[1fr_1.3fr] md:gap-14">
-                      <div>
-                        <p className="text-[11px] uppercase tracking-[0.18em] text-accent">Answers</p>
-                        <ul className="mt-4 divide-y divide-border-grey border-y border-border-grey">
-                          {block.answers.map((a) => (
-                            <li key={a} className="py-3 text-base leading-snug text-white">
-                              {a}
-                            </li>
+                <li key={block.id}>
+                  <h3 className={`${cormorant.className} text-5xl leading-none text-white md:text-6xl`}>
+                    {product.name}
+                  </h3>
+                  <dl className="mt-8 border-t border-accent/60">
+                    {rows.map((row) => (
+                      <div
+                        key={row.label}
+                        className="grid gap-2 border-b border-border-grey py-5 md:grid-cols-[10rem_1fr] md:gap-10 md:py-6"
+                      >
+                        <dt className="text-[11px] uppercase tracking-[0.18em] text-accent md:pt-1.5">
+                          {row.label}
+                        </dt>
+                        <dd className="max-w-3xl">
+                          {row.lines.map((line) => (
+                            <p
+                              key={line}
+                              className={
+                                row.strong
+                                  ? "text-lg leading-snug text-white md:text-xl [&+&]:mt-2"
+                                  : "text-base font-light leading-relaxed text-text-secondary [&+&]:mt-1.5"
+                              }
+                            >
+                              {line}
+                            </p>
                           ))}
-                        </ul>
+                        </dd>
                       </div>
-                      <div>
-                        <p className="text-[11px] uppercase tracking-[0.18em] text-accent">You receive</p>
-                        <ul className="mt-4 divide-y divide-border-grey border-y border-border-grey">
-                          {block.receive.map((r) => (
-                            <li key={r} className="py-3 text-base font-light leading-relaxed text-text-secondary">
-                              {r}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
+                    ))}
+                  </dl>
                 </li>
               );
             })}
           </ol>
 
-          <p className="mt-8 text-xs font-light leading-relaxed text-text-muted">
-            Every product: {READING_MACHINE_LINE.charAt(0).toLowerCase() + READING_MACHINE_LINE.slice(1)}
-          </p>
-
-          <div className="mt-16 grid gap-8 md:grid-cols-[1.4fr_1fr] md:items-start">
-            <p className="max-w-3xl text-base font-light leading-relaxed text-text-secondary">
-              {ALSO_COMMISSIONED} Scope, markets and languages are set to the brief. Book a meeting
-              and bring the question.
-            </p>
+          <div className="mt-20 grid gap-8 md:grid-cols-[1.4fr_1fr] md:items-start">
+            <p className="max-w-3xl text-base font-light leading-relaxed text-text-secondary">{CLOSING}</p>
             <div className="flex flex-wrap items-center gap-x-8 gap-y-4 md:justify-self-end">
               <Link
                 href={BOOKING_HREF}

@@ -1,116 +1,104 @@
 /**
  * Copy for the What we do page: each product with the client questions it
- * answers. Proposed October 2026, pending the team's sign-off. Product names
- * and questions come from products.ts; everything else lives here so the
- * other pages that list the products are untouched until this is approved.
+ * answers. Approved by the team, October 2026. Product names come from
+ * products.ts; the wording here is this page's own, so the other pages that
+ * list the products are untouched.
  */
 
 export type ProductBlock = {
   id: string;
-  /** When to use it, in one or two plain sentences. */
-  purpose: string;
-  /** The client questions this product answers. */
+  question: string;
+  useWhen: string;
+  /** The client questions, in the client's voice. */
   answers: string[];
   /** What is delivered, one item per line. */
   receive: string[];
-  /** The big figure and its unit. */
-  figure: string;
-  unit: string;
-  /** The line under the figure. */
-  report?: string;
+  timing: string;
 };
+
+export const INTRO =
+  "Every product reads the same thing: what people say to each other online, unprompted, in their own language. Each product includes everything in the one before it and answers a bigger question. Public Mood continues any of them.";
 
 export const PRODUCT_BLOCKS: ProductBlock[] = [
   {
     id: "agenda",
-    purpose:
-      "A first map of the conversation when you have days, not weeks. A crisis, an announcement, a launch that has just happened.",
-    answers: ["Issue and crisis response", "How a launch or announcement landed"],
+    question: "What are people talking about right now?",
+    useWhen: "Something has just happened and you have days, not weeks.",
+    answers: ["What is this crisis really about?", "How did our launch or announcement land?"],
     receive: [
-      "The topics people are discussing, sized by how much of the conversation each takes.",
+      "The topics in the conversation, sized by their share of it.",
       "The largest topics in people's own words.",
       "What we did not expect to find.",
-      "A 30-minute call to go through it.",
+      "A 30-minute call.",
     ],
-    figure: "48",
-    unit: "hours to the report",
+    timing: "Report in 48 hours.",
   },
   {
     id: "frames",
-    purpose:
-      "Before you write a survey, a brief or a position. You learn which stories people tell about the subject, where they disagree, and which stories are growing.",
+    question: "Which stories do people tell about it, and where do they disagree?",
+    useWhen: "You are about to write a survey, a brief or a position, or a launch is coming.",
     answers: [
-      "Discovery before survey design",
-      "Category landscape and innovation territories",
-      "Narrative landscape and public debate",
-      "What a launch or announcement will land in, read before the date",
+      "What should our survey ask?",
+      "Where can our category grow?",
+      "Which narratives lead the public debate?",
     ],
     receive: [
-      "A chapter on each narrative.",
+      "A chapter on each narrative and who tells it.",
       "The tensions between them.",
-      "An outlook with dated predictions.",
-      "The words people use and the hypotheses to test in a survey.",
+      "Dated predictions on which narratives will grow and which will fade.",
+      "The words people use, and hypotheses to test in a survey.",
       "A 60-minute readout.",
     ],
-    figure: "1",
-    unit: "week to first learnings",
-    report: "Report in three weeks",
+    timing: "First findings in one week. Report in three weeks.",
   },
   {
     id: "publics",
-    purpose:
-      "When you need to know who holds each narrative and how your brand sits among them. Who to speak to, what people hold for you and against you, and the posts that show it.",
+    question: "Who are these people, and where do we stand with them?",
+    useWhen: "You need to know who holds each narrative and what they think of you.",
     answers: [
-      "Brand positioning and the competitive landscape",
-      "Personas and hard-to-reach audiences",
-      "Consumer and patient journeys",
+      "Where does our brand stand against competitors?",
+      "Who are the people surveys miss?",
+      "Where do people stall or drop out on the way to a purchase or a treatment?",
     ],
     receive: [
       "Everything in Frames.",
-      "A card for each persona: who they are, what they say, what drives them.",
-      "Your brand's footprint against up to three competitors, with the posts behind each placement.",
+      "Five to seven persona cards: who they are, what they say, what drives them, what holds them back.",
+      "Your brand against up to three competitors, with the posts behind each placement.",
       "A 90-minute readout.",
     ],
-    figure: "2",
-    unit: "weeks to first learnings",
-    report: "Report in five weeks",
+    timing: "First findings in two weeks. Report in five weeks.",
   },
   {
     id: "common-sense",
-    purpose:
-      "When a strategy, a policy or a campaign has to rest on what people already believe. The beliefs nobody states because everyone shares them, read market by market, with your own questions put to the whole conversation.",
-    answers: [
-      "The foundations of a strategy, a policy or a positioning",
-      "Discovery before survey design, when you need the full questionnaire",
-    ],
+    question: "What do people believe without saying it?",
+    useWhen:
+      "A strategy, a policy or a campaign has to rest on what people already believe, in one market or several.",
+    answers: ["What should our strategy, policy or positioning be built on?"],
     receive: [
       "Everything in Publics, for each market.",
-      "Your strategic questions answered from the conversation.",
+      "Your own strategic questions answered from the conversation.",
       "A one-day workshop with your team.",
-      "A hand-off pack with the survey questions that measure what we found.",
-      "Three deep dives on topics you choose.",
+      "A survey questionnaire that measures what we found.",
+      "Three further analyses on topics you choose.",
     ],
-    figure: "2",
-    unit: "weeks to first learnings",
-    report: "Report in seven weeks per market",
+    timing: "First findings in two weeks. Report in seven weeks per market.",
   },
   {
     id: "public-mood",
-    purpose:
-      "After any study, when you want to keep watching. The same narratives, tensions and personas are read again every month, so a shift shows months before a tracker explains it.",
-    answers: ["Tracking and monitoring"],
+    question: "What changed since last month, and what comes next?",
+    useWhen:
+      "A study is finished and you want to keep watching. Shifts show here months before they reach a tracker.",
+    answers: ["What is shifting, and when should we act?"],
     receive: [
-      "A monthly report in the framework of your study.",
+      "A monthly report on what moved, what is new and what faded.",
       "Your brand against competitors, month on month.",
-      "A dated prediction each month, with the record of the earlier ones.",
-      "A 30-minute call.",
-      "A quarterly deep dive.",
+      "A dated prediction each month, with the record of earlier ones.",
+      "A 30-minute call each month.",
+      "A deeper analysis each quarter.",
     ],
-    figure: "1",
-    unit: "reading every month",
-    report: "Six-month minimum",
+    timing: "Every month, after any study. Six-month minimum.",
   },
 ];
 
-export const ALSO_COMMISSIONED =
-  "Evidence for litigation and regulatory proceedings, and campaign evaluation, are scoped from Frames or Publics.";
+export const CLOSING =
+  "Evidence for litigation and regulatory proceedings, and campaign evaluation, are scoped from Frames or Publics. Scope, markets and languages are set to the brief. Book a meeting and bring the question.";
