@@ -35,7 +35,9 @@ export type GlyphId =
   | "needs"
   | "models"
   | "mirror"
-  | "doxa";
+  | "doxa"
+  | "plurality"
+  | "threshold";
 
 export interface PortraitVariant {
   hair: PortraitHair;
@@ -219,6 +221,22 @@ export const THINKERS: Thinker[] = [
     glyph: "doxa",
   },
   {
+    id: "arendt",
+    name: "Hannah Arendt",
+    dates: "1906–1975",
+    line: "A lie can be tidier / than the truth.",
+    blurb:
+      "Arendt saw that a public is many people looking at the same thing from different places. She also saw how a public is wrecked: a tidy lie replaces untidy facts, and people stop believing anything. We read for both, the plurality of a public and the moment it starts to drain away.",
+    deep: {
+      saw: "In The Human Condition Arendt said the public realm is a space of appearance. A thing is real there because many people see it, each from their own position. She called this plurality, and she said it is the condition of all politics. In 'Truth and Politics' she said factual truth is the weakest kind of truth. A fact could always have been otherwise, so it has no argument of its own. A lie made to order is often more coherent than the facts, and so more believable. In The Origins of Totalitarianism she said propaganda on a large scale has a different aim than belief in a lie. It aims to make people believe nothing, so that any story will do.",
+      take: "We read a public as a plurality: how many positions it holds and how far apart they stand. Publics and Public Mood are built on this. When a conversation narrows to one view, or when a story in it is tidier than the facts around it, we flag it. The first sign of a disinformation campaign is cynicism: people who have stopped believing anyone, and a story that is too neat. A false belief that spreads comes later, if at all.",
+      sure: "If a public is real only in its plurality, then measuring one opinion at a time misses the thing itself. Arendt tells us to look at the spread of positions and how they face each other, and that is only visible in talk between people. She also tells us what the early damage looks like, long before a false claim shows up in a poll.",
+      work: "The Origins of Totalitarianism (1951); The Human Condition (1958); 'Truth and Politics' (1967)",
+    },
+    variant: { hair: "swept", glasses: "none", beard: "none", hairPart: "side" },
+    glyph: "plurality",
+  },
+  {
     id: "barthes",
     name: "Roland Barthes",
     dates: "1915–1980",
@@ -265,6 +283,22 @@ export const THINKERS: Thinker[] = [
     },
     variant: { hair: "short", glasses: "rect", beard: "short" },
     glyph: "models",
+  },
+  {
+    id: "bhabha",
+    name: "Homi K. Bhabha",
+    dates: "b. 1949",
+    line: "Meaning is made / at the border.",
+    blurb:
+      "Bhabha said a culture is never a sealed box. It is made where it meets another culture, in a third space, and what comes out is hybrid. We read many markets in many languages, and the meaning that matters often sits at the seams between them.",
+    deep: {
+      saw: "Bhabha wrote against the idea that cultures are whole and separate. In The Location of Culture he argued that cultural meaning is produced in the encounter, in a third space that belongs to neither side. What comes out of it is hybrid: a new thing, with parts of both. His example is mimicry under colonial rule. The colonised copy the coloniser, and the copy is never exact, so it unsettles the original. He also said that a nation tells itself as a story, and that the story is always being rewritten at its edges by the people the first telling left out.",
+      take: "We do not treat a market or a language as a closed container. When a story crosses from one public to another it changes, and the change tells us what each side holds. We read for the seams: the point where a global frame meets a local one, where a diaspora speaks to two homes at once, where a brand's story is copied and comes back altered. The hybrid version is often the one that carries.",
+      sure: "If meaning is made at the border, a method that reads one culture at a time will miss where the action is. Bhabha tells us that the seam is a place in its own right, and that the altered copy is data about both sides. That is why we read across markets and languages together.",
+      work: "The Location of Culture (1994)",
+    },
+    variant: { hair: "full", glasses: "rect", beard: "none", hairPart: "side" },
+    glyph: "threshold",
   },
   {
     id: "wittgenstein",
@@ -376,6 +410,7 @@ export interface DiscourseEdge {
 
 export const DISCOURSE_NODES: DiscourseNode[] = [
   { id: "buber", name: "Buber", x: 250, y: 48, band: "dialogue" },
+  { id: "arendt", name: "Arendt", x: 560, y: 52, band: "dialogue" },
   {
     id: "husserl",
     name: "Husserl",
@@ -402,6 +437,7 @@ export const DISCOURSE_NODES: DiscourseNode[] = [
   { id: "barthes", name: "Barthes", x: 520, y: 262, band: "language" },
   { id: "geertz", name: "Geertz", x: 620, y: 342, band: "culture" },
   { id: "shore", name: "Shore", x: 815, y: 352, band: "culture" },
+  { id: "bhabha", name: "Bhabha", x: 735, y: 402, band: "culture" },
   { id: "goffman", name: "Goffman", x: 452, y: 392, band: "culture" },
   { id: "bourdieu", name: "Bourdieu", x: 212, y: 352, band: "culture" },
   {
@@ -460,6 +496,7 @@ export const DISCOURSE_NODES: DiscourseNode[] = [
 export const DISCOURSE_EDGES: DiscourseEdge[] = [
   { from: "husserl", to: "heidegger", kind: "taught", note: "phenomenology's teacher" },
   { from: "heidegger", to: "gadamer", kind: "taught", note: "his most influential student" },
+  { from: "heidegger", to: "arendt", kind: "taught", note: "his student at Marburg" },
 
   { from: "heidegger", to: "ricoeur", kind: "influenced", note: "the hermeneutic inheritance" },
   { from: "gadamer", to: "ricoeur", kind: "influenced", note: "horizon becomes narrative" },
@@ -477,6 +514,7 @@ export const DISCOURSE_EDGES: DiscourseEdge[] = [
   { from: "goffman", to: "bourdieu", kind: "influenced", note: "published in Bourdieu's series, Le Sens commun" },
 
   { from: "shore", to: "geertz", kind: "contra", note: "culture is public — and in minds" },
+  { from: "bhabha", to: "geertz", kind: "contra", note: "no web of meaning is sealed" },
   { from: "max-neef", to: "maslow", kind: "contra", note: "against the pyramid" },
   { from: "lazarsfeld", to: "adorno", kind: "contra", note: "administrative vs critical research" },
   { from: "bourdieu", to: "lazarsfeld", kind: "contra", note: "'public opinion does not exist'" },
@@ -488,4 +526,7 @@ export const DISCOURSE_EDGES: DiscourseEdge[] = [
   { from: "barthes", to: "bourdieu", kind: "rhyme", note: "myth and doxa: the made passing as the given" },
   { from: "ricoeur", to: "shore", kind: "rhyme", note: "story-shapes as cultural models" },
   { from: "goffman", to: "lazarsfeld", kind: "rhyme", note: "performed selves carry influence" },
+  { from: "buber", to: "arendt", kind: "rhyme", note: "the space between people" },
+  { from: "arendt", to: "goffman", kind: "rhyme", note: "the space of appearance; the presented self" },
+  { from: "bhabha", to: "shore", kind: "rhyme", note: "models cross borders and come back changed" },
 ];

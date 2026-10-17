@@ -296,6 +296,32 @@ function Glyph({ glyph }: { glyph: GlyphId }) {
           <path d="M50 98 L80 138 L110 98" strokeDasharray="2 3" />
         </>
       );
+    case "plurality":
+      return (
+        <>
+          <circle cx="80" cy="100" r="5" />
+          {[200, 250, 290, 340, 20].map((deg) => {
+            const r = (deg * Math.PI) / 180;
+            const x = Math.round(80 + 40 * Math.cos(r));
+            const y = Math.round(100 + 40 * Math.sin(r));
+            return (
+              <g key={deg}>
+                <circle cx={x} cy={y} r="3" fill={GOLD} stroke="none" />
+                <path d={`M${x} ${y} L${Math.round(80 + 9 * Math.cos(r))} ${Math.round(100 + 9 * Math.sin(r))}`} />
+              </g>
+            );
+          })}
+        </>
+      );
+    case "threshold":
+      return (
+        <>
+          <circle cx="64" cy="100" r="26" />
+          <circle cx="96" cy="100" r="26" />
+          <path d="M80 76 A26 26 0 0 1 80 124 A26 26 0 0 1 80 76" strokeDasharray="2 3" />
+          <circle cx="80" cy="100" r="2.5" fill={GOLD} stroke="none" />
+        </>
+      );
   }
 }
 
