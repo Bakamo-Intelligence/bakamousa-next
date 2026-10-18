@@ -426,6 +426,23 @@ export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
     ],
   },
   {
+    id: "eve-effect",
+    href: "/eve-effect",
+    linkLabel: "Read the study",
+    name: "The EVE Effect: what a game gives its players",
+    sectorRegion: "Gaming, CCP Games (now Fenris Creations)",
+    sector: "brands",
+    lat: PLACES.IS.lat,
+    lng: PLACES.IS.lng,
+    stats: [
+      { value: "759", label: "players surveyed" },
+      { value: "73%", label: "made new friends" },
+      { value: "72%", label: "think EVE skills got people better jobs" },
+    ],
+    essence:
+      "CCP Games asked what EVE Online gives the players who stay with it. We read what players say to each other about their lives outside the game. Keyword search could not find it, so analysts collected the quotes by hand and placed each on a hierarchy of needs.\n\nFriendship comes first, and players feel it long before they notice they are learning. Skills come later, once a player sees that what the game taught them works at work too. CCP named the finding the EVE Effect, took it on stage, surveyed its players and took it to recruiters.",
+  },
+  {
     id: "polish-school-meals",
     href: "/research/polish-school-meals",
     linkLabel: "Read the case study",

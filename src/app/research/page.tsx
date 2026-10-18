@@ -48,6 +48,16 @@ const STUDIES: Study[] = [
     analyticsLabel: "Research Study: Hungarian Election 2026",
   },
   {
+    title: "The EVE Effect: Playing EVE Online Gets People Better Jobs",
+    year: "2019",
+    context: "CCP Games (now Fenris Creations) · EVE Online players, worldwide",
+    summary:
+      "Read what EVE Online players say to each other about their lives outside the game. Friendship comes first, skills follow, and 72% of 759 surveyed players think EVE skills have helped people get better jobs.",
+    href: "/eve-effect",
+    linkLabel: "Read the study",
+    analyticsLabel: "Research Study: The EVE Effect",
+  },
+  {
     title: "Migration Narratives in Europe",
     year: "2019",
     context: "Friedrich-Ebert-Stiftung · 28 EU member states",
