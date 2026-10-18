@@ -474,7 +474,7 @@ export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
   },
   {
     id: "migration-narratives-eu",
-    href: "/migration",
+    href: "/research/migration-narratives-eu",
     name: "Migration Narratives in Europe",
     sectorRegion: "Public sphere, 28 EU member states",
     stats: [
