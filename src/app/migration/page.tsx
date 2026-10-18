@@ -29,6 +29,46 @@ export const metadata: Metadata = {
 const FES_PDF = "/media/FES_Final%20Report_FINAL%20VERSION.pdf";
 const OSF_PDF = "/media/Hungarian%20Refugee%20Perception.pdf";
 
+// Third-party publications that cite the FES study. Checked on 18 October 2026.
+const CITED_BY: Array<{ publisher: string; title: string; year: string; href: string }> = [
+  {
+    publisher: "Jacques Delors Centre, Paul-Jasper Dittrich and Lucas Rasche",
+    title: "Deutung und Wahrheit",
+    year: "2019",
+    href: "https://www.hertie-school.org/fileadmin/user_upload/20190911_Desinformation_Migration_DE_Dittrich_Rasche.pdf",
+  },
+  {
+    publisher: "The Routledge Companion to Media Disinformation and Populism, Eileen Culloty and Jane Suiter",
+    title: "Anti-immigration disinformation",
+    year: "2021",
+    href: "https://doras.dcu.ie/25758/",
+  },
+  {
+    publisher: "Media and Communication, Sílvia Melo-Pfeifer and Helena Dedecek Gertz",
+    title: "Transforming Disinformation on Minorities Into a Pedagogical Resource",
+    year: "2022",
+    href: "https://www.cogitatiopress.com/mediaandcommunication/article/view/5708",
+  },
+  {
+    publisher: "Societies, Nadejda Komendantova, Dmitry Erokhin and Teresa Albano",
+    title: "Misinformation and Its Impact on Contested Policy Issues: The Example of Migration Discourses",
+    year: "2023",
+    href: "https://pure.iiasa.ac.at/id/eprint/18913/",
+  },
+  {
+    publisher: "The Routledge Handbook of Discourse and Disinformation, Charlotte Taylor",
+    title: "Disinformation and Immigration Discourses",
+    year: "2023",
+    href: "https://www.taylorfrancis.com/books/oa-edit/10.4324/9781003224495",
+  },
+  {
+    publisher: "UCL doctoral thesis, Carlos Gómez del Tronco",
+    title: "The normalisation of Islamophobia in Czechia through mainstream political discourse",
+    year: "2025",
+    href: "https://discovery.ucl.ac.uk/id/eprint/10203602/",
+  },
+];
+
 function DownloadIcon() {
   return (
     <svg
@@ -358,6 +398,39 @@ export default function MigrationPage() {
               </div>
             </div>
           </article>
+        </div>
+      </section>
+
+      <div className="section-divider" />
+
+      {/* Cited by */}
+      <section
+        className="px-6 py-20"
+        data-analytics-section="migration_cited_by"
+        data-analytics-label="Cited by"
+      >
+        <div className="max-w-3xl mx-auto">
+          <p className="text-accent uppercase tracking-[0.2em] text-sm mb-4">Cited by</p>
+          <h2
+            className={`${cormorant.className} text-3xl md:text-4xl font-light text-white mb-8 leading-tight`}
+          >
+            Where the FES study is cited
+          </h2>
+          <ul className="space-y-3 text-base font-light leading-relaxed text-text-secondary">
+            {CITED_BY.map((entry) => (
+              <li key={entry.title}>
+                {entry.publisher},{" "}
+                <a
+                  href={entry.href}
+                  className="text-accent hover:underline underline-offset-4"
+                  rel="noopener"
+                >
+                  {entry.title}
+                </a>
+                , {entry.year}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
