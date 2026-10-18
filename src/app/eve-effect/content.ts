@@ -1,5 +1,4 @@
-// The EVE Effect micro site: one long page at /eve-effect, with its own
-// section navigation. Every fact here comes from two files Daniel approved on
+// The EVE Effect study: one long page at /eve-effect. Every fact here comes from two files Daniel approved on
 // 18 October 2026: the research inventory of Bakamo's Google Drive and the
 // public Talkwalker case study "Play to win". Do not add numbers, quotes or
 // dates that are not in those two sources.
@@ -17,18 +16,6 @@ export const DESCRIPTION =
   "Bakamo's research for CCP Games on what EVE Online gives its players outside the game: friends, skills and better jobs. The method, the findings and what CCP did with them.";
 
 export const CLIENT = "CCP Games (now Fenris Creations)";
-
-/** The micro site's own navigation. Each id is a section on the page. */
-export const SECTIONS: Array<{ id: string; label: string }> = [
-  { id: "front", label: "Start" },
-  { id: "question", label: "CCP's question" },
-  { id: "how-we-read", label: "Method" },
-  { id: "journey", label: "A player's path" },
-  { id: "skills", label: "Skills" },
-  { id: "in-their-words", label: "Player quotes" },
-  { id: "what-ccp-did", label: "What CCP did" },
-  { id: "beyond", label: "For recruiters" },
-];
 
 // ─── Front ───
 

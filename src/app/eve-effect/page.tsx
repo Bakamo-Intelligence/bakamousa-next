@@ -4,7 +4,6 @@ import Link from "next/link";
 import { BOOKING_HREF } from "@/lib/booking";
 import { ORGANIZATION_REF, pageOpenGraph } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site-url";
-import EveNav from "./EveNav";
 import Journey from "./Journey";
 import {
   BEYOND,
@@ -112,8 +111,6 @@ export default function EveEffectPage() {
           <Prose paragraphs={FRONT_LEAD} className="mt-10 max-w-3xl text-xl" />
         </div>
       </section>
-
-      <EveNav />
 
       {/* Survey figures and the Hilmar quote */}
       <section className="px-6 pb-20 pt-14 md:pb-28" data-analytics-section="eve_figures" data-analytics-label="Survey Figures">
