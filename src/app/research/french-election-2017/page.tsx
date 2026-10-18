@@ -202,6 +202,63 @@ const CLUSTERS: Array<{ section: string; names: string[] }> = [
 ];
 
 // Report, p. 85. Sharers in thousands.
+// Third-party publications that cite this study. Checked on 18 October 2026.
+// Entries without a URL have no public copy online at that date.
+const CITED_BY: Array<{ publisher: string; title: string; year?: string; href?: string }> = [
+  {
+    publisher: "Wikipedia",
+    title: "Fake news",
+    href: "https://en.wikipedia.org/wiki/Fake_news",
+  },
+  {
+    publisher: "Council of Europe and First Draft, Claire Wardle and Hossein Derakhshan",
+    title: "Information Disorder",
+    year: "2017",
+    href: "https://firstdraftnews.org/wp-content/uploads/2017/11/PREMS-162317-GBR-2018-Report-de%CC%81sinformation-1.pdf",
+  },
+  {
+    publisher: "Freedom House",
+    title: "Freedom on the Net 2017: France",
+    year: "2017",
+    href: "https://freedomhouse.org/country/france/freedom-net/2017",
+  },
+  {
+    publisher: "The Economist",
+    title: "Once considered a boon to democracy, social media have started to look like its nemesis",
+    year: "2017",
+    href: "https://www.economist.com/briefing/2017/11/04/once-considered-a-boon-to-democracy-social-media-have-started-to-look-like-its-nemesis",
+  },
+  {
+    publisher: "United States Senate Committee on Foreign Relations",
+    title: "Putin’s Asymmetric Assault on Democracy in Russia and Europe",
+    year: "2018",
+    href: "https://www.govinfo.gov/app/details/CPRT-115SPRT28110",
+  },
+  {
+    publisher: "CAPS and IRSEM, Jean-Baptiste Jeangène Vilmer, Alexandre Escorcia, Marine Guillaume and Janaina Herrera",
+    title: "Les manipulations de l’information",
+    year: "2018",
+  },
+  {
+    publisher: "Atlantic Council and IRSEM, Jean-Baptiste Jeangène Vilmer",
+    title: "The Macron Leaks Operation: A Post-Mortem",
+    year: "2019",
+    href: "https://www.atlanticcouncil.org/wp-content/uploads/2019/06/The_Macron_Leaks_Operation-A_Post-Mortem.pdf",
+  },
+  {
+    publisher: "Tactical Tech",
+    title: "Personal Data: Political Persuasion",
+    year: "2019",
+    href: "https://cdn.ttc.io/s/tacticaltech.org/methods_guidebook_A4_spread_web_Ed2.pdf",
+  },
+  {
+    publisher: "Questions de communication, Julien Figeac and others",
+    title: "Facebook favorise-t-il la désinformation et la polarisation idéologique des opinions ?",
+    year: "2019",
+    href: "https://shs.hal.science/halshs-02541184",
+  },
+];
+
 const SHARING_METRICS: Array<{ section: string; sharers: string; links: string; perLink: string; perSharer: string }> = [
   { section: "Traditional", sharers: "390,000", links: "13", perLink: "10.1", perSharer: "129" },
   { section: "Campaign", sharers: "96,000", links: "7", perLink: "4.0", perSharer: "27" },
@@ -911,6 +968,43 @@ export default function FrenchElection2017Page() {
             .
           </p>
         </Chapter>
+
+        <div className="section-divider" />
+
+        {/* Cited by */}
+        <section
+          className="px-6 py-16"
+          data-analytics-section="french_election_cited_by"
+          data-analytics-label="Cited by"
+        >
+          <div className="max-w-3xl mx-auto">
+            <p className="text-accent uppercase tracking-[0.2em] text-sm mb-4">Cited by</p>
+            <h2
+              className={`${cormorant.className} text-3xl md:text-4xl font-light text-white mb-8 leading-tight`}
+            >
+              Where this study is cited
+            </h2>
+            <ul className="space-y-3 text-base font-light leading-relaxed text-text-secondary">
+              {CITED_BY.map((entry) => (
+                <li key={entry.title}>
+                  {entry.publisher},{" "}
+                  {entry.href ? (
+                    <a
+                      href={entry.href}
+                      className="text-accent hover:underline underline-offset-4"
+                      rel="noopener"
+                    >
+                      {entry.title}
+                    </a>
+                  ) : (
+                    entry.title
+                  )}
+                  {entry.year ? `, ${entry.year}` : null}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
 
         <div className="section-divider" />
 
