@@ -53,8 +53,8 @@ const STUDIES: Study[] = [
     context: "Friedrich-Ebert-Stiftung · 28 EU member states",
     summary:
       "Identified the migration narrative frames that cross every border (security, identity, economy and demographics, humanitarianism, and the political-establishment frame) and mapped how their weight shifts country by country.",
-    href: "/migration",
-    linkLabel: "See the study",
+    href: "/research/migration-narratives-eu",
+    linkLabel: "Open the dashboard",
     analyticsLabel: "Research Study: Migration Narratives in Europe",
   },
   {

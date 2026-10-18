@@ -338,6 +338,16 @@ export default function MigrationPage() {
                   <DownloadIcon />
                   Download Full Report (PDF)
                 </a>
+                <Link
+                  href="/research/migration-narratives-eu"
+                  className="ml-0 mt-4 inline-flex items-center gap-2 text-sm text-accent hover:underline underline-offset-4 sm:ml-8 sm:mt-0"
+                  data-analytics-event="cta_click"
+                  data-analytics-label="Open Migration Narratives Dashboard"
+                  data-analytics-location="migration_study_fes"
+                  data-analytics-destination="/research/migration-narratives-eu"
+                >
+                  Open the 28-country dashboard &rarr;
+                </Link>
               </div>
             </div>
           </article>
