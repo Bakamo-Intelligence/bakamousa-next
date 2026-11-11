@@ -128,7 +128,7 @@ export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
     lat: 47.4979,
     lng: 19.0402,
     essence:
-      "A polarised electorate is not divided by what people want. It is divided by two opposing psychological architectures — the Employee, who locates safety inside the system, and the Entrepreneur, who locates it in personal agency. Identity comes first. Politics follows.",
+      "Expected: the two camps differ in what they want.\n\nFound: Tisza supporters wrote from personal conviction far more often than Fidesz supporters, a gap of 12.4 points.\n\nThe question: does a campaign message built on personal agency reach the other camp at all?\n\nA polarised electorate is not divided by what people want. It is divided by two opposing psychological architectures — the Employee, who locates safety inside the system, and the Entrepreneur, who locates it in personal agency. Identity comes first. Politics follows.",
   },
   {
     id: "public-health",
@@ -139,7 +139,7 @@ export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
     lat: 38.9072,
     lng: -77.0369,
     essence:
-      "The middle of a contested public conversation is not undecided. It accepts the problem exists and rejects the language used to name it. The door is opened by class, not race.",
+      "Expected: the middle of the debate is undecided.\n\nFound: people in the middle accept the problem and reject the words used to name it.\n\nThe question: which words lose the middle, and which keep it?\n\nThe middle of a contested public conversation is not undecided. It accepts the problem exists and rejects the language used to name it. The door is opened by class, not race.",
   },
   {
     id: "non-alcoholic-spirits",
@@ -162,7 +162,7 @@ export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
     lat: 40.7128,
     lng: -74.006,
     essence:
-      "A new beverage category cannot be sold on what it removes. People do not seek the absence of alcohol — they seek a different way to be present in the moments alcohol used to mark. Until the category offers that, it is a substitute. After, it is a choice.",
+      "Expected: industry trend reports described the buyer of non-alcoholic drinks as young, a generation choosing to drink less.\n\nFound: in these conversations, people describe wanting a way to take part in the moments alcohol used to mark. The most engaged voices were people who had decided to stop drinking alcohol.\n\nThe question: how much of the category depends on people who have stopped drinking, and what do they need from a drink?",
   },
   {
     id: "body-care-ssa",
@@ -200,7 +200,7 @@ export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
     lat: 52.3676,
     lng: 4.9041,
     essence:
-      "On May 1, Amsterdam introduced an ad ban on meat and fossil-fuel products. We explored the reactions of social media users across various channels. The language was English.\n\nWhat we found is that the discourse predominantly focuses on the meat part of the ban, and to a significantly lesser extent on the fossil-fuel part. The fossil-fuel half is largely waved through as common sense. The meat half is where the conversation concentrates.\n\nBy and large, opinions fall into two opposing sides — and which side people land on tends to track whether they're an omnivore or follow a meat-free lifestyle. In this discourse, diet predicts stance more reliably than politics.\n\nSupporters celebrate the policy. They expect that reducing the visibility of meat will normalise vegetarian and vegan options over time, underpinned by a belief that less advertising means meat stops being the default. Other supportive arguments include retribution for the environmental damage attributed to the meat industry, and a smaller group who back the ban because they think fewer ads would have a calming, aesthetic effect on the quality of city life. The stance is anchored in a self-identity as environmentally conscious and forward-looking.\n\nOpponents read the ban as an attack on a normal, everyday way of life — elitist, performative, and a step toward broader censorship. A recurring move is whataboutism: gambling ads are permitted, but meat is where the line is drawn? The register here is largely ridicule and sarcasm rather than evidence, while the supportive side tends toward research, precedent, and moral framing. As a result, the two camps rarely engage directly.\n\nBeneath the meat divide sit two deeper questions that also separate the camps: whether advertising actually changes behaviour, and whether a collective authority should decide what may be promoted. The fossil-fuel half of the ban functions as a useful point of comparison — the same policy, the same city, and the same censorship objection available, yet only meat generates sustained debate. In this discourse, the stronger driver of reaction is dietary identity rather than free-speech principle.",
+      "Expected: a ban on meat and fossil-fuel advertising would be argued as a free-speech question.\n\nFound: people argued almost only about meat, and their side followed their diet.\n\nThe question: does dietary identity decide how a food policy is received, more than politics does?\n\nOn May 1, Amsterdam introduced an ad ban on meat and fossil-fuel products. We explored the reactions of social media users across various channels. The language was English.\n\nWhat we found is that the discourse predominantly focuses on the meat part of the ban, and to a significantly lesser extent on the fossil-fuel part. The fossil-fuel half is largely waved through as common sense. The meat half is where the conversation concentrates.\n\nBy and large, opinions fall into two opposing sides — and which side people land on tends to track whether they're an omnivore or follow a meat-free lifestyle. In this discourse, diet predicts stance more reliably than politics.\n\nSupporters celebrate the policy. They expect that reducing the visibility of meat will normalise vegetarian and vegan options over time, underpinned by a belief that less advertising means meat stops being the default. Other supportive arguments include retribution for the environmental damage attributed to the meat industry, and a smaller group who back the ban because they think fewer ads would have a calming, aesthetic effect on the quality of city life. The stance is anchored in a self-identity as environmentally conscious and forward-looking.\n\nOpponents read the ban as an attack on a normal, everyday way of life — elitist, performative, and a step toward broader censorship. A recurring move is whataboutism: gambling ads are permitted, but meat is where the line is drawn? The register here is largely ridicule and sarcasm rather than evidence, while the supportive side tends toward research, precedent, and moral framing. As a result, the two camps rarely engage directly.\n\nBeneath the meat divide sit two deeper questions that also separate the camps: whether advertising actually changes behaviour, and whether a collective authority should decide what may be promoted. The fossil-fuel half of the ban functions as a useful point of comparison — the same policy, the same city, and the same censorship objection available, yet only meat generates sustained debate. In this discourse, the stronger driver of reaction is dietary identity rather than free-speech principle.",
   },
   {
     id: "tv-show-backdrop",
@@ -210,7 +210,7 @@ export const ACTIVE_ATLAS_CASES: AtlasCase[] = [
     lat: -2.7975,
     lng: -40.5137,
     essence:
-      "A production needed locations for a high-end show for young viewers in Brazil, Mexico, Argentina and Colombia. We read how young people in each country talk about the places they travel to, and profiled forty destinations by their character, by who goes there, and by the size of their social media audience.\n\nOne desire ran through all four countries: nature, and depth. The deeper a place lies, the more untouched, mystical or psychedelic the experience. Hard access and no signal are part of the appeal.",
+      "Expected: young viewers want famous destinations.\n\nFound: in all four countries the places they admire are remote and hard to reach.\n\nThe question: does a hard-to-reach location make a show more attractive to this audience?\n\nA production needed locations for a high-end show for young viewers in Brazil, Mexico, Argentina and Colombia. We read how young people in each country talk about the places they travel to, and profiled forty destinations by their character, by who goes there, and by the size of their social media audience.\n\nOne desire ran through all four countries: nature, and depth. The deeper a place lies, the more untouched, mystical or psychedelic the experience. Hard access and no signal are part of the appeal.",
     stats: [
       { value: "4", label: "countries" },
       { value: "40", label: "destinations profiled" },

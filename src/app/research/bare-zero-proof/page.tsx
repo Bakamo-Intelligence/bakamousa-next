@@ -18,7 +18,7 @@ const cormorant = Cormorant_Garamond({
 // Reading Machine analysis presented at TMRE. Do not add figures that are not
 // in those documents.
 
-const TITLE = "BARE Zero Proof: Who Really Drinks Non-Alcoholic Spirits";
+const TITLE = "BARE Zero Proof: Who Drinks Non-Alcoholic Spirits";
 const PAGE_PATH = "/research/bare-zero-proof";
 const PAGE_URL = `${SITE_URL}${PAGE_PATH}`;
 const BARE_URL = "https://enjoybare.com";
@@ -319,7 +319,7 @@ export default function BareZeroProofPage() {
                 <h1
                   className={`${cormorant.className} text-[clamp(2.8rem,6vw,5.2rem)] leading-[0.98] tracking-tight text-white`}
                 >
-                  Who <em className="text-accent">really</em> drinks non-alcoholic spirits
+                  Who drinks non-alcoholic spirits
                 </h1>
                 <p
                   className={`${cormorant.className} mt-8 max-w-2xl text-2xl italic leading-snug text-text-secondary md:text-3xl`}

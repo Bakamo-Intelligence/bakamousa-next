@@ -89,7 +89,7 @@ export default function SectorPage({ sector }: { sector: Sector }) {
             {hasAtlasCases ? "From the Atlas of the Unexpected" : "Our research"}
           </p>
           <h2 className={`${cormorant.className} text-3xl md:text-4xl font-light text-white leading-tight`}>
-            What we found when we listened
+            What came up when nobody was asking
           </h2>
           {hasAtlasCases ? <AtlasPlates sector={sector.id} /> : null}
           {sector.studies ? (

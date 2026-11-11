@@ -23,18 +23,18 @@ export const SECTORS: Sector[] = [
     label: "Brands",
     metaTitle: "Social Intelligence for Brands and Consumer Research",
     description:
-      "Bakamo reads what consumers say to each other about a category, then builds surveys, segmentations and trackers on the constructs and language they actually use.",
+      "Bakamo reads what consumers say to each other about a category and brings back the questions your tracker, segmentation or survey did not ask.",
     heading: "Social intelligence for brands",
     standfirst: "What consumers tell each other about your category, before you ask them anything.",
     intro: [
-      "A tracker tells you how the category scores on the attributes you chose. It cannot tell you whether those are the attributes people use.",
-      "We read the conversation consumers are already having, in forums, comment sections and communities where no brand is present. We map the constructs, tensions and language that organise their decisions. Then we build the survey around that map.",
+      "A tracker scores the category on the attributes you chose. We read the conversation to find the attributes, the words and the people it does not yet include.",
+      "We read the conversation consumers are already having, in forums, comment sections and communities where no brand is present. We map the constructs, tensions and language that organise their decisions. You leave with the questions for your next survey, tracker or segmentation. Your team, your agency or Bakamo can field them.",
     ],
     questions: [
       "Why does a proposition that tests well not travel?",
       "Where does the category begin and end for the people who buy it?",
       "Which need is forming before it shows in sales data or a tracker?",
-      "Does our segmentation describe people, or the brief that commissioned it?",
+      "Who is in the conversation that our segmentation has no place for?",
       "We are entering a market and a language we do not know. What are we missing?",
     ],
     clients: ["Adidas", "Nivea", "Philips", "Unilever", "Nestlé", "L’Oréal", "Reckitt", "De Beers", "Tesco", "Macy’s"],
@@ -45,12 +45,12 @@ export const SECTORS: Sector[] = [
     label: "Health",
     metaTitle: "Social Intelligence for Health and Pharma",
     description:
-      "Bakamo reads what patients and clinicians say to each other in public conversation, then builds patient research and surveys on how they actually describe a condition.",
+      "Bakamo reads what patients and clinicians say to each other in public conversation and brings back the questions for patient research and surveys, in the words patients use.",
     heading: "Social intelligence for health and pharma",
     standfirst: "What patients and clinicians say to each other when no one is asking.",
     intro: [
       "People living with a condition talk to each other every day: about symptoms they have not mentioned to their doctor, treatments they stopped and why, what they fear and whom they trust. Nobody recruited them and nobody is moderating.",
-      "We read that public conversation, and the professional one alongside it, and map how patients and clinicians organise the decision. The survey, the tracker or the patient-journey work is then built on that map.",
+      "We read that public conversation, and the professional one alongside it, and map how patients and clinicians organise the decision. You leave with the questions for the survey, the tracker or the patient-journey work that follows.",
     ],
     questions: [
       "What happens between diagnosis and treatment that never reaches the clinic?",
@@ -71,7 +71,7 @@ export const SECTORS: Sector[] = [
     heading: "Social intelligence for government and not-for-profit",
     standfirst: "How a contested issue is being argued, by the people arguing it.",
     intro: [
-      "A poll tells you how many people agree with a statement. It does not tell you which statement they would have made themselves.",
+      "A poll tells you how many people agree with a statement. We read the conversation first, to find the statements people make themselves, so the poll can ask about them.",
       "We read the public conversation around an election, a policy or a contested issue, and map the narratives, frames and divides that organise it. Our public studies of the French election, migration narratives across the EU and the Hungarian election were made this way.",
     ],
     questions: [

@@ -77,7 +77,7 @@ export const CHAPTERS: Chapter[] = [
       },
       {
         kind: "p",
-        text: "This is the ground under the phrase we use for what we find: Social Truth. It is not what people say when you ask them. It is what their conversations reveal when you listen.",
+        text: "This is the ground under what we report: what people say to each other, and what it means between them.",
       },
     ],
   },
@@ -151,7 +151,7 @@ export const CHAPTERS: Chapter[] = [
         items: [
           {
             lead: "We never ask.",
-            text: "We read what people say to each other where no researcher is present and no question has been put. People perform for researchers; they tell each other the truth.",
+            text: "We read what people say to each other where no researcher is present and no question has been put. People raise things with each other that no researcher asked about.",
           },
           {
             lead: "What they say is how they see.",

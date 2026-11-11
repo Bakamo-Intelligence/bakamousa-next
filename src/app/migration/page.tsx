@@ -151,9 +151,9 @@ export default function MigrationPage() {
           <div className="w-16 h-px bg-accent mt-10 mb-10" />
 
           <p className="text-lg font-light leading-relaxed text-text-secondary max-w-3xl">
-            Migration is the most-polled and least-understood issue in European politics. Surveys
-            capture positions; they miss the stories underneath &mdash; what people tell each other
-            when no pollster is listening. For nearly a decade, Bakamo has been reading those
+            Migration is the most-polled issue in European politics. Polls record positions. We
+            read the stories people tell each other about migration, which is where the questions
+            for the next poll come from. For nearly a decade, Bakamo has been reading those
             conversations at scale, for foundations and institutions that need to understand the
             debate before they try to shape it.
           </p>
@@ -467,7 +467,7 @@ export default function MigrationPage() {
               the output representative of the population, not the platform.
             </p>
             <p className="text-text-primary">
-              It&rsquo;s what we call <em>Fixed Quant</em> &mdash; reality in, defensible data out.
+              We call it <em>Fixed Quant</em>: the questions come from the conversation, and the survey measures them.
             </p>
           </div>
         </div>
@@ -494,7 +494,7 @@ export default function MigrationPage() {
               <h2
                 className={`${cormorant.className} text-3xl md:text-4xl font-light text-white leading-tight`}
               >
-                Let&rsquo;s talk about what the conversation is really saying.
+                Bring us the migration brief you are working on.
               </h2>
               <p className="mt-6 text-base font-light leading-relaxed text-text-secondary">
                 Bakamo has built dedicated methodologies for migration, integration, and refugee

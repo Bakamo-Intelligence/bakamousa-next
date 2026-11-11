@@ -2,7 +2,7 @@ import { OG_CONTENT_TYPE, OG_SIZE, ogImageAlt, renderOgImage } from "@/lib/og-im
 
 const content = {
   title: "BARE Zero Proof",
-  descriptor: "Who really drinks non-alcoholic spirits: a case study",
+  descriptor: "Who drinks non-alcoholic spirits: a case study",
 };
 
 export const alt = ogImageAlt(content);
