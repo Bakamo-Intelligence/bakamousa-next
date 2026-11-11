@@ -11,6 +11,7 @@ const FOOTER_LINKS = [
   { label: "Health", href: "/health" },
   { label: "Public Sector", href: "/public-sector" },
   { label: "Disinformation", href: "/disinformation" },
+  { label: "For Agencies", href: "/agencies" },
   { label: "Research", href: "/research" },
   { label: "Insights", href: "/blog" },
   { label: "Contact", href: "/contact" },
@@ -23,7 +24,7 @@ export default function SiteFooter() {
       <div className="mx-auto flex max-w-6xl flex-col gap-8 md:flex-row md:items-center md:justify-between">
         <div>
           <p className="text-sm uppercase tracking-[0.24em] text-white">Bakamo</p>
-          <p className="mt-2 text-sm text-text-muted">Build on reality.</p>
+          <p className="mt-2 text-sm text-text-muted">We find what nobody thought to ask about.</p>
         </div>
 
         <nav className="flex flex-wrap gap-x-6 gap-y-3 text-xs uppercase tracking-[0.14em] text-text-muted">

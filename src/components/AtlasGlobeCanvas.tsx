@@ -559,7 +559,7 @@ export default function AtlasGlobeCanvas({ points, target, zoomed, hovered = nul
         ref={canvasRef}
         tabIndex={0}
         role="img"
-        aria-label="Interactive globe showing the Atlas of Social Truths. Use the arrow keys to turn it."
+        aria-label="Interactive globe showing the Atlas of the Unexpected. Use the arrow keys to turn it."
         className="absolute inset-0 h-full w-full touch-none select-none outline-none focus-visible:ring-1 focus-visible:ring-accent"
       />
       <div ref={pinsRef} className="absolute inset-0" aria-hidden={false} />

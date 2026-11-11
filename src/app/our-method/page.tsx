@@ -3,8 +3,6 @@ import { pageOpenGraph } from "@/lib/seo";
 import Link from "next/link";
 import { BOOKING_HREF } from "@/lib/booking";
 import { Cormorant_Garamond } from "next/font/google";
-import { SocialTheory } from "@/components/social-theory/SocialTheory";
-import ProductLadder from "@/components/ProductLadder";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -13,180 +11,285 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
+const TITLE = "Our Method: Discovery First, Measurement Second";
+const DESCRIPTION =
+  "Interviews and surveys go deep on the questions you bring. Discovery finds the ones you did not bring. It runs first, before the discussion guide and the questionnaire are written.";
+
 export const metadata: Metadata = {
-  title: "Our Method: From Conversation to Better Surveys",
-  description:
-    "Bakamo's two-phase method: read unprompted conversation first, then build the survey around what people actually say. A full study, or input for your team.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: {
     canonical: "/our-method",
   },
-  openGraph: pageOpenGraph(
-    "/our-method",
-    "Our Method: From Conversation to Better Surveys | Bakamo",
-    "Bakamo's two-phase method: read unprompted conversation first, then build the survey around what people actually say. A full study, or input for your team.",
-  ),
+  openGraph: pageOpenGraph("/our-method", `${TITLE} | Bakamo`, DESCRIPTION),
 };
+
+const PHASES = [
+  {
+    label: "Phase one",
+    name: "Discovery",
+    owner: "Ours.",
+    rows: [
+      {
+        label: "What we do",
+        text: "We collect what people say to each other about your category, over months or years, in forums, communities, reviews and comment threads. We keep reading until new sources stop adding anything new.",
+      },
+      {
+        label: "What we look for",
+        text: "Where the conversation differs from the assumptions in your brief. A group you had not counted. A meaning the category does not use. A word people use that your questionnaire does not.",
+      },
+      {
+        label: "What you receive",
+        text: "The Question Set. It holds what we found, the vocabulary people use, and the questions it raises for your qualitative and quantitative work.",
+      },
+    ],
+  },
+  {
+    label: "Phase two",
+    name: "Measurement",
+    owner: "Yours, your agency's or ours.",
+    rows: [
+      { label: "What happens", text: "The questions go into interviews, a survey or a tracker." },
+      {
+        label: "What it adds",
+        text: "Size, proportion and behaviour, which reading conversation cannot give.",
+      },
+      {
+        label: "Who does it",
+        text: "Your insight team, your research agency, or Bakamo's own quantitative team.",
+      },
+    ],
+  },
+];
+
+const KINDS = ["Discovery (Bakamo)", "Interviews and groups", "Survey"];
+
+const COMPARISON = [
+  {
+    label: "Starts from",
+    cells: ["What people already say to each other", "Your discussion guide", "Your questionnaire"],
+  },
+  {
+    label: "Best at",
+    cells: ["Finding what nobody asked about", "Depth on a question you bring", "Size and proportion"],
+  },
+  {
+    label: "Cannot",
+    cells: [
+      "Size it, or test what does not exist yet",
+      "Return a topic the guide did not open",
+      "Return an answer you did not list",
+    ],
+  },
+  { label: "You leave with", cells: ["Questions", "Explanations", "Numbers"] },
+];
+
+const SOURCES = [
+  {
+    name: "Charles S. Peirce",
+    idea: "abduction",
+    text: "You meet a surprising fact and reason to the explanation that would make it unsurprising. Peirce held that this is the step that brings in a new idea.",
+  },
+  {
+    name: "John Tukey",
+    idea: "exploratory analysis",
+    text: "Look at the material before you hold a hypothesis, to see what is there.",
+  },
+  {
+    name: "Glaser and Strauss",
+    idea: "grounded theory",
+    text: "Categories come out of the material. They are not set in advance.",
+  },
+  {
+    name: "Kenneth Pike",
+    idea: "emic and etic",
+    text: "The categories people use themselves differ from the researcher's. We report the first kind.",
+  },
+  {
+    name: "Hans-Georg Gadamer",
+    idea: "hermeneutics",
+    text: "Reading is interpretation, and interpretation needs a trained reader.",
+  },
+  {
+    name: "Niklas Luhmann",
+    idea: "systems theory",
+    text: "Meaning forms in communication between people, so that is where we read.",
+  },
+];
+
+const OPTIONS = [
+  {
+    label: "Option A",
+    name: "Discovery for your study",
+    text: "We deliver the Question Set. Your team or your agency runs the interviews and the survey.",
+  },
+  {
+    label: "Option B",
+    name: "Discovery and survey",
+    text: "We deliver the Question Set, then build and field the survey and report the results.",
+  },
+];
+
+const H2 = "text-4xl font-light leading-tight text-white md:text-6xl";
+const EYEBROW = "text-xs uppercase tracking-[0.2em] text-accent";
 
 export default function OurMethodPage() {
   return (
     <main className="relative min-h-screen w-full overflow-x-hidden bg-near-black text-text-primary">
       <div className="grain-overlay" />
 
-      <section className="px-6 pb-24 pt-32 md:pb-32 md:pt-44">
+      <section className="px-6 pb-24 pt-32 md:pb-32 md:pt-44" data-analytics-section="method_hero">
         <div className="mx-auto max-w-6xl">
-          <p className="text-xs uppercase tracking-[0.2em] text-accent">Our research method</p>
+          <p className={EYEBROW}>Discovery first. Measurement second.</p>
           <h1
-            className={`${cormorant.className} mt-6 max-w-5xl text-[clamp(4rem,8vw,7.5rem)] leading-[0.86] tracking-tight text-white`}
+            className={`${cormorant.className} mt-6 max-w-5xl text-[clamp(3.2rem,7vw,6.5rem)] leading-[0.9] tracking-tight text-white`}
           >
-            How Social Truth Is Made.
+            A study is only as good as the questions it starts from.
           </h1>
+          <div className="mt-10 h-px w-16 bg-accent" />
           <p className="mt-10 max-w-3xl text-xl font-light leading-relaxed text-text-secondary">
-            Every Bakamo engagement runs in two phases. The first phase reads reality. The second
-            phase measures it. Below: how the work is done.
+            Interviews and surveys go deep on the questions you bring. Discovery finds the ones you
+            did not bring. It runs first, before the discussion guide and the questionnaire are
+            written.
           </p>
         </div>
       </section>
 
-      <section className="border-t border-border-grey px-6 py-24 md:py-32">
+      {/* Two phases */}
+      <section className="bg-dark-grey px-6 py-24 md:py-32" data-analytics-section="method_phases">
+        <div className="mx-auto max-w-6xl">
+          <h2 className={H2}>Two phases.</h2>
+          <div className="mt-16 grid gap-14 lg:grid-cols-2 lg:gap-0 lg:divide-x lg:divide-border-grey">
+            {PHASES.map((phase, index) => (
+              <article key={phase.name} className={index === 0 ? "lg:pr-14" : "lg:pl-14"}>
+                <p className={EYEBROW}>{phase.label}</p>
+                <h3 className={`${cormorant.className} mt-4 text-5xl leading-none text-white`}>
+                  {phase.name}
+                </h3>
+                <p className="mt-3 text-lg font-light text-text-secondary">{phase.owner}</p>
+                <dl className="mt-8 border-t border-accent/60">
+                  {phase.rows.map((row) => (
+                    <div key={row.label} className="border-b border-border-grey py-6">
+                      <dt className="text-[11px] uppercase tracking-[0.18em] text-accent">{row.label}</dt>
+                      <dd className="mt-3 text-lg font-light leading-relaxed text-white">{row.text}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </article>
+            ))}
+          </div>
+          <p className="mt-14 max-w-4xl border-l border-accent pl-7 text-xl font-light leading-relaxed text-text-secondary">
+            Researchers call this an exploratory sequential design: qualitative discovery builds
+            the instrument, and quantitative work measures. What we change is the material for the
+            first phase.
+          </p>
+        </div>
+      </section>
+
+      {/* What each kind of research is for */}
+      <section className="border-t border-border-grey px-6 py-24 md:py-32" data-analytics-section="method_comparison">
+        <div className="mx-auto max-w-6xl">
+          <h2 className={H2}>What each kind of research is for.</h2>
+          <div className="mt-14 overflow-x-auto">
+            <table className="w-full min-w-[44rem] border-collapse text-left">
+              <thead>
+                <tr className="border-b border-accent/60">
+                  <th className="w-40 py-5" />
+                  {KINDS.map((kind, index) => (
+                    <th
+                      key={kind}
+                      scope="col"
+                      className={`${cormorant.className} py-5 pr-6 text-2xl font-normal leading-tight md:text-3xl ${
+                        index === 0 ? "text-accent" : "text-white"
+                      }`}
+                    >
+                      {kind}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {COMPARISON.map((row) => (
+                  <tr key={row.label} className="border-b border-border-grey align-top">
+                    <th
+                      scope="row"
+                      className="py-6 pr-6 text-[11px] font-normal uppercase tracking-[0.18em] text-accent"
+                    >
+                      {row.label}
+                    </th>
+                    {row.cells.map((cell, index) => (
+                      <td
+                        key={cell}
+                        className={`py-6 pr-6 text-lg font-light leading-snug ${
+                          index === 0 ? "text-white" : "text-text-secondary"
+                        }`}
+                      >
+                        {cell}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* Where the method comes from */}
+      <section className="bg-dark-grey px-6 py-24 md:py-32" data-analytics-section="method_sources">
         <div className="mx-auto max-w-5xl">
-          <h2 className="text-4xl font-light leading-tight text-white md:text-6xl">
-            Discovery first. Measurement second.
-          </h2>
-          <div className="mt-12 max-w-4xl space-y-7 text-xl font-light leading-relaxed text-text-secondary">
-            <p>
-              Most quantitative studies are preceded by qualitative work - focus groups, depth
-              interviews, ethnographies. The intent is right: understand before you measure. The
-              execution carries the same blind spot the survey will inherit. Whoever wrote the
-              discussion guide, recruited the participants, and moderated the room was operating
-              inside the brief. The participants knew they were in a study. Someone was paying them
-              to talk. A researcher was in the room.
-            </p>
-            <p>
-              The result is qualitative material shaped by the same assumptions the survey is about
-              to encode. The constructs to explore were chosen in advance. The recruit was built
-              around hypotheses the team already held. The conversation happened on the
-              industry&apos;s terms, not the consumer&apos;s. Useful, often. Sufficient, rarely.
-            </p>
-            <p>
-              We reverse the order differently. Before any question is written and before any
-              participant is recruited, we read what the category is already saying - in places
-              where no brand is present, no question has been asked, and no consumer is performing
-              for a researcher. The discovery phase tells us what the survey should measure. The
-              survey then measures it.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-dark-grey px-6 py-24 md:py-32">
-        <div className="mx-auto max-w-6xl">
-          <h2 className="text-4xl font-light leading-tight text-white md:text-6xl">
-            The two phases.
-          </h2>
-          <div className="mt-16 grid gap-14 lg:grid-cols-2 lg:divide-x lg:divide-border-grey">
-            <article>
-              <p className="text-xs uppercase tracking-[0.2em] text-accent">Phase One</p>
-              <h3 className="mt-4 text-3xl font-light text-white">Discovery</h3>
-              <div className="mt-8 space-y-6 text-base leading-relaxed text-text-secondary">
-                <p>
-                  We identify the platforms, communities, and conversations where the category
-                  actually lives. Reddit threads, patient forums, TikTok comment sections, YouTube
-                  discussions, niche Discord servers, professional communities. We collect
-                  unprompted discourse to the point of qualitative saturation - when new sources
-                  stop producing new patterns.
-                </p>
-                <p>
-                  Human analysts read the material. The Reading Machine holds the whole
-                  conversation at once &mdash; clustering its language, surfacing patterns and
-                  showing where the volume sits. Interpretation stays with the researcher. We map
-                  the constructs consumers actually use, the tensions they carry, the decision
-                  drivers that organize their behavior, the language they reach for, and the things
-                  the conversation has already stopped debating.
-                </p>
-                <p>
-                  The output of Phase One is an architecture: the variables, constructs, segments,
-                  and vocabulary that the survey should be built around. We compare this
-                  architecture against the original brief and assumptions. The gap between them is
-                  where the most important findings already are.
-                </p>
-              </div>
-            </article>
-
-            <article className="lg:pl-14">
-              <p className="text-xs uppercase tracking-[0.2em] text-accent">Phase Two</p>
-              <h3 className="mt-4 text-3xl font-light text-white">Measurement</h3>
-              <div className="mt-8 space-y-6 text-base leading-relaxed text-text-secondary">
-                <p>
-                  The survey instrument is built from the Phase One architecture. Constructs reflect
-                  how consumers actually organize the category. Question wording mirrors consumer
-                  language. Variables include the ones discovery surfaced and exclude the ones
-                  discovery showed were absent from the conversation.
-                </p>
-                <p>
-                  The survey is fielded against the appropriate consumer audience. Analysis is
-                  conducted with the discovery architecture in mind - so the quantitative findings
-                  are interpreted against the qualitative reality that produced the instrument.
-                </p>
-                <p>
-                  The output of Phase Two is a complete quantitative study: validated, statistically
-                  robust, and grounded in what consumers actually live - not what the industry
-                  assumed they live.
-                </p>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section className="px-6 py-24 md:py-32">
-        <div className="mx-auto max-w-6xl">
-          <h2 className="text-4xl font-light leading-tight text-white md:text-6xl">
-            The deliverables.
-          </h2>
-          <p className="mt-10 max-w-4xl text-xl font-light leading-relaxed text-text-secondary">
-            A complete written report. A presentation to your team. The discovery architecture
-            document, which functions as a strategic asset in its own right. The full quantitative
-            dataset with cuts you can return to. Sandra is available for follow-up sessions as
-            findings are interpreted into action.
+          <h2 className={H2}>Where the method comes from.</h2>
+          <p className="mt-10 max-w-3xl text-xl font-light leading-relaxed text-text-secondary">
+            Finding and testing are different jobs, and research has long treated them separately.
+            Our method belongs to the finding side.
           </p>
-
-          <h3 className="mt-20 text-3xl font-light text-white">The products.</h3>
-          <p className="mt-5 max-w-3xl text-base leading-relaxed text-text-secondary">
-            Four depths of the same reading, and ongoing tracking. Each deeper one adds a layer of
-            analysis.
+          <dl className="mt-14 divide-y divide-border-grey border-y border-border-grey">
+            {SOURCES.map((source) => (
+              <div key={source.name} className="grid gap-3 py-7 md:grid-cols-[18rem_1fr] md:gap-10">
+                <dt>
+                  <span className={`${cormorant.className} block text-2xl leading-tight text-white`}>
+                    {source.name}
+                  </span>
+                  <span className="mt-1 block text-[11px] uppercase tracking-[0.18em] text-accent">
+                    {source.idea}
+                  </span>
+                </dt>
+                <dd className="text-lg font-light leading-relaxed text-text-secondary">{source.text}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="mt-14 max-w-4xl border-l border-accent pl-7 text-xl font-light leading-relaxed text-white">
+            Medicine works the same way. A clinical trial measures the effects its designers chose
+            in advance. Effects nobody anticipated are found later, in reports from doctors and
+            patients, and then go back into a study.
           </p>
-          <div className="mt-10">
-            <ProductLadder headingClassName={cormorant.className} location="method_products" />
-          </div>
-          <Link
-            href="/research#atlas"
-            className="mt-14 inline-flex text-sm uppercase tracking-[0.16em] text-accent transition-colors hover:text-white"
-            data-analytics-event="cta_click"
-            data-analytics-label="See the Atlas of Social Truths"
-            data-analytics-location="method_deliverables"
-            data-analytics-destination="/research#atlas"
-          >
-            See the Atlas of Social Truths &rarr;
-          </Link>
         </div>
       </section>
 
-      <SocialTheory headingClassName={cormorant.className} />
-
-      <section className="border-t border-border-grey px-6 py-28 text-center md:py-36">
-        <div className="mx-auto max-w-4xl">
-          <h2 className={`${cormorant.className} text-5xl leading-none text-white md:text-7xl`}>
-            Build your next study on reality.
-          </h2>
+      {/* Two ways to work with us */}
+      <section className="border-t border-border-grey px-6 py-24 md:py-32" data-analytics-section="method_cta">
+        <div className="mx-auto max-w-6xl">
+          <h2 className={H2}>Two ways to work with us.</h2>
+          <div className="mt-14 grid gap-6 md:grid-cols-2">
+            {OPTIONS.map((option) => (
+              <article key={option.name} className="rounded-[2rem] border border-white/10 bg-dark-grey p-8 md:p-10">
+                <p className={EYEBROW}>{option.label}</p>
+                <h3 className={`${cormorant.className} mt-4 text-4xl leading-tight text-white`}>
+                  {option.name}
+                </h3>
+                <p className="mt-6 text-lg font-light leading-relaxed text-text-secondary">{option.text}</p>
+              </article>
+            ))}
+          </div>
           <Link
             href={BOOKING_HREF}
-            className="cta-button mt-10 text-sm"
+            className="cta-button mt-14 text-sm"
             data-analytics-event="book_demo_click"
-            data-analytics-label="Book a demo"
+            data-analytics-label="Start with the study you are planning"
             data-analytics-location="method_cta"
             data-analytics-destination={BOOKING_HREF}
           >
-            Book a demo
+            Start with the study you are planning
           </Link>
         </div>
       </section>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BOOKING_HREF } from "@/lib/booking";
 import { Cormorant_Garamond } from "next/font/google";
 import AtlasGlobe from "@/components/AtlasGlobe";
 import ClientMarquee from "@/components/ClientMarquee";
@@ -24,47 +25,56 @@ export const HERO_VIDEOS = [
 ];
 
 const STATS = [
-  { value: "45", label: "countries" },
-  { value: "65", label: "languages" },
   { value: "550+", label: "projects" },
+  { value: "45", label: "countries" },
+  { value: "65", label: "languages, read by native analysts" },
 ];
 
-const EXAMPLES = [
-  "The tension nobody put in the discussion guide.",
-  "The assumption everyone in a category has quietly accepted.",
-  "The thing people have stopped arguing about.",
-  "The language consumers use when they don't know they're being researched.",
-  "The reason a perfectly good proposition doesn't travel.",
+const CASE_CARDS = [
+  {
+    title: "Hospitals",
+    expected: "Patients judge a hospital by credentials, waiting times and technology.",
+    found: "In their own accounts, patients talk about food, rooms and how staff spoke to them.",
+    question: "Which signs of everyday care do patients treat as signs of clinical care?",
+  },
+  {
+    title: "Non-alcoholic drinks",
+    expected: "The buyer is young and choosing to drink less.",
+    found: "The people for whom these drinks matter most have decided to stop drinking alcohol.",
+    question:
+      "How much of the category depends on people who have stopped drinking, and what do they need from a drink?",
+  },
+  {
+    title: "Mobile games",
+    expected: "A puzzle game fills spare minutes.",
+    found: "Some players describe a fixed daily session between leaving work and arriving home.",
+    question: "How many players use the game this way, and what does the game do to that moment?",
+  },
+  {
+    title: "Pet food",
+    expected: "Owners choose by ingredients and nutrition.",
+    found: "Owners describe feeding as a way of showing what kind of carer they are.",
+    question: "Which ideas of care do buyers hold, and does the pack speak to any of them?",
+  },
 ];
 
-const SECTORS = [
-  {
-    title: "Commercial",
-    body: "Consumers, categories, brands, culture, communications and emerging needs.",
-  },
-  {
-    title: "Health & Pharma",
-    body: "Patients, healthcare professionals, health equity, public discourse and the social forces shaping health.",
-  },
-  {
-    title: "Government & Not-for-Profit",
-    body: "Citizens, public opinion, policy, advocacy, social movements and contested issues.",
-  },
+const YOU_GET = [
+  "What is present in the conversation that your research did not cover",
+  "What your category means to the people in it, in their words",
+  "The questions this raises for your interviews and your survey",
 ];
 
-function Lines({ lines, className }: { lines: string[]; className?: string }) {
-  return (
-    <div className={className}>
-      {lines.map((line) => (
-        <p key={line}>{line}</p>
-      ))}
-    </div>
-  );
-}
+const YOU_DO_NOT_GET = [
+  "How many people hold a view in the population",
+  "What people buy, switch to or pay",
+  "A verdict on a concept that does not exist yet",
+];
 
 const H2 = "max-w-4xl text-4xl font-light leading-tight text-white md:text-6xl";
 const BODY = "max-w-3xl space-y-7 text-xl font-light leading-relaxed text-text-secondary";
-const RULED = "max-w-3xl space-y-2 border-l border-accent pl-7 text-2xl font-light leading-snug text-white";
+const EYEBROW = "text-xs uppercase tracking-[0.2em] text-accent";
+const TEXT_LINK =
+  "inline-flex text-sm uppercase tracking-[0.16em] text-accent transition-colors hover:text-white";
 
 export function pickHeroVideo() {
   return HERO_VIDEOS[Math.floor(Math.random() * HERO_VIDEOS.length)];
@@ -89,282 +99,195 @@ export default function SocialTruthHome({ heroVideo }: { heroVideo: string }) {
 
         <div className="mx-auto w-full max-w-6xl">
           <p className="text-balance text-xs uppercase tracking-[0.28em] text-accent">
-            Social intelligence &amp; consumer research
+            Discovery before measurement
           </p>
           <h1
-            className={`${cormorant.className} mt-8 max-w-5xl text-[clamp(3rem,6.5vw,6.25rem)] leading-[0.92] tracking-tight text-white`}
+            className={`${cormorant.className} mt-8 max-w-5xl text-[clamp(2.75rem,6vw,5.75rem)] leading-[0.95] tracking-tight text-white`}
           >
-            Before you ask people what they think, listen to what they say when nobody is asking.
+            Most research answers your questions. Bakamo finds the ones nobody thought to ask.
           </h1>
           <div className="mt-10 h-px w-16 bg-accent" />
-          <div className="mt-10 max-w-3xl space-y-5 text-lg font-light leading-relaxed text-white/75 md:text-xl">
-            <p>People are constantly telling each other what matters to them.</p>
-            <p>
-              In conversations, arguments, jokes, complaints, recommendations, stories and silences.
-            </p>
-            <p className="text-white">This is where Bakamo looks.</p>
-            <p>
-              We are a social intelligence company. We read natural conversation to uncover the
-              meanings, tensions and assumptions shaping how people see the world &mdash; and turn
-              them into insight that helps organisations make better decisions.
-            </p>
-          </div>
-          <p className={`${cormorant.className} mt-10 text-3xl italic text-accent md:text-4xl`}>
-            We call this Social Truth.
+          <p className="mt-10 max-w-3xl text-lg font-light leading-relaxed text-white/75 md:text-xl">
+            A questionnaire or a discussion guide can only contain what its author already
+            suspected. We read what people say to each other about your category and bring back
+            what your research had no place for: the people, the meanings and the words. You leave
+            with the questions to ask next.
           </p>
-        </div>
-      </section>
-
-      {/* The problem */}
-      <section className="bg-dark-grey px-6 py-24 md:py-32" data-analytics-section="home_problem">
-        <div className="mx-auto max-w-5xl">
-          <h2 className={H2}>Research has become very good at measuring the wrong things.</h2>
-          <div className={`mt-12 ${BODY}`}>
-            <p>
-              We have perfected the questionnaire, the focus group, the tracker, the segment and the
-              dashboard.
-            </p>
-            <p>
-              But people don&apos;t experience their lives in questionnaires, segments or dashboards.
-            </p>
-            <p className="text-white">They live in culture. In conversation. In contradiction.</p>
-            <p>And when you ask people what they think, you inevitably shape what they tell you.</p>
-          </div>
-          <Lines
-            lines={[
-              "The brief defines the question.",
-              "The question defines the instrument.",
-              "The instrument defines what can be found.",
-            ]}
-            className={`mt-10 ${RULED}`}
-          />
-          <p className="mt-12 max-w-4xl text-2xl font-light leading-snug text-white md:text-3xl">
-            So we start somewhere else.
-          </p>
-          <p className="mt-4 max-w-3xl text-xl font-light leading-relaxed text-text-secondary">
-            We listen to what people say to each other when nobody is asking.
-          </p>
-        </div>
-      </section>
-
-      {/* What is social intelligence */}
-      <section className="border-t border-border-grey px-6 py-24 md:py-32" data-analytics-section="home_social_intelligence">
-        <div className="mx-auto max-w-5xl">
-          <h2 className={H2}>What is social intelligence?</h2>
-          <div className={`mt-12 ${BODY}`}>
-            <p className="text-white">
-              Social intelligence is the study of what people say to each other, unprompted and in
-              public, to understand how they make sense of a category, an issue or a brand. It reads
-              whole conversations rather than counting mentions, and it is used for consumer
-              insights, brand strategy, communications and public-sector research. Bakamo is a
-              social intelligence company.
-            </p>
-            <p>
-              Most of those conversations never mention a brand. People are talking about rent,
-              their kids, their bodies, what they are tired of and what they are hoping for. That is
-              where the decisions get made, long before anyone sees a survey.
-            </p>
-            <p>We read that conversation first, and only then decide what is worth asking.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* What is Social Truth */}
-      <section className="bg-dark-grey px-6 py-24 md:py-32" data-analytics-section="home_definition">
-        <div className="mx-auto max-w-5xl">
-          <h2 className={H2}>What is Social Truth?</h2>
-          <div className={`mt-12 ${BODY}`}>
-            <p className="text-white">
-              Social Truth is Bakamo&apos;s name for the shared meaning, tension or assumption that
-              emerges between people in conversation, usually without anyone stating it outright.
-              It is found by reading unprompted conversation rather than by asking questions. It is
-              the output of social intelligence research.
-            </p>
-            <p>
-              <strong className="font-medium text-white">It is not opinion.</strong> Opinion lives
-              inside a person.{" "}
-              <strong className="font-medium text-white">It is not sentiment.</strong> Sentiment is
-              a score applied after the fact.
-            </p>
-            <p className="text-white">Social Truth lives between people.</p>
-          </div>
-          <p className="mt-14 text-xs uppercase tracking-[0.2em] text-accent">It can be</p>
-          <ul className="mt-6 divide-y divide-border-grey border-y border-border-grey">
-            {EXAMPLES.map((example) => (
-              <li
-                key={example}
-                className={`${cormorant.className} py-6 text-3xl leading-snug text-white md:text-4xl`}
-              >
-                {example}
-              </li>
-            ))}
-          </ul>
-          <div className="mt-14 space-y-2 text-2xl font-light leading-snug">
-            <p className="text-text-secondary">
-              Social Truth is not what people say when you ask them.
-            </p>
-            <p className="text-white">It is what their conversations reveal when you listen.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Reality first + technology */}
-      <section className="border-t border-border-grey px-6 py-24 md:py-32" data-analytics-section="home_method">
-        <div className="mx-auto max-w-5xl">
-          <p className="text-xs uppercase tracking-[0.2em] text-accent">Our method</p>
-          <h2 className={`mt-6 ${H2}`}>Reality first. Measurement second.</h2>
-          <div className={`mt-12 ${BODY}`}>
-            <p>Most research starts with a question.</p>
-            <p className="text-white">We start with reality.</p>
-            <p>
-              We explore the conversations that already exist, discover what is actually meaningful,
-              and only then decide what is worth measuring.
-            </p>
-          </div>
-          <p className={`${cormorant.className} mt-14 text-5xl leading-none text-white md:text-7xl`}>
-            Listen. Map. Measure.
-          </p>
-          <div className="mt-8 space-y-1 text-xl font-light">
-            <p className="text-text-secondary">The conversation moves first.</p>
-            <p className="text-white">Research usually arrives later.</p>
-          </div>
-
-          <h3 className="mt-16 max-w-3xl text-3xl font-light leading-tight text-white md:text-4xl">
-            How does social intelligence research work?
-          </h3>
-          <div className={`mt-8 ${BODY}`}>
-            <p className="text-white">
-              Social intelligence research starts by reading a large body of natural conversation
-              around a topic, with no brand or keyword as the entry point. The recurring meanings
-              and tensions are then mapped, and the ones that matter are measured with a survey or
-              tracker built from the language people actually used. The order is listen, map,
-              measure. Measurement comes last.
-            </p>
-            <p>
-              Most research runs this the other way round. It starts with a question, builds an
-              instrument, and finds what the instrument allows. We start with reality, so the
-              question is earned rather than assumed.
-            </p>
-          </div>
-          <Link
-            href="/our-method"
-            className="mt-8 inline-flex text-sm uppercase tracking-[0.16em] text-accent transition-colors hover:text-white"
-            data-analytics-event="cta_click"
-            data-analytics-label="See how Social Truth is made"
-            data-analytics-location="home_method"
-            data-analytics-destination="/our-method"
-          >
-            See how Social Truth is made &rarr;
-          </Link>
-
-          <div className="mt-20 border-t border-border-grey pt-16">
-            <p className="text-xs uppercase tracking-[0.2em] text-accent">We read differently</p>
-            <h3 className="mt-6 max-w-3xl text-3xl font-light leading-tight text-white md:text-4xl">
-              What is the Reading Machine?
-            </h3>
-            <div className={`mt-10 ${BODY}`}>
-              <p className="text-white">
-                The Reading Machine is Bakamo&apos;s system for reading millions of conversations
-                and surfacing the patterns, connections and emerging meanings across them. It does
-                the reading at a scale no human team could manage, and nothing is pre-selected
-                because it looked interesting. Bakamo&apos;s analysts then interpret what it
-                surfaces.
-              </p>
-              <p>
-                Millions of conversations contain an enormous amount of information. But information
-                isn&apos;t insight. Finding a pattern is not the same as understanding it.
-              </p>
-              <p>
-                Technology doesn&apos;t tell us what matters. Our analysts do. They bring context,
-                judgement, cultural understanding and curiosity to what the Reading Machine
-                surfaces.
-              </p>
-            </div>
-            <p className="mt-12 max-w-4xl border-l border-accent pl-7 text-2xl font-light leading-snug text-white md:text-3xl">
-              The Reading Machine gives us scale. Humans give it meaning.
-            </p>
+          <div className="mt-12 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
             <Link
-              href="/technology"
-              className="mt-10 inline-flex text-sm uppercase tracking-[0.16em] text-accent transition-colors hover:text-white"
+              href="#cases"
+              className="cta-button text-sm"
               data-analytics-event="cta_click"
-              data-analytics-label="Meet The Reading Machine"
-              data-analytics-location="home_technology"
-              data-analytics-destination="/technology"
+              data-analytics-label="See what we found"
+              data-analytics-location="home_hero"
+              data-analytics-destination="#cases"
             >
-              Meet The Reading Machine &rarr;
+              See what we found
+            </Link>
+            <Link
+              href="/our-method"
+              className={TEXT_LINK}
+              data-analytics-event="cta_click"
+              data-analytics-label="How we work"
+              data-analytics-location="home_hero"
+              data-analytics-destination="/our-method"
+            >
+              How we work &rarr;
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Social intelligence vs social listening */}
-      <section className="bg-dark-grey px-6 py-24 md:py-32" data-analytics-section="home_versus">
-        <div className="mx-auto max-w-5xl">
-          <h2 className={H2}>Social intelligence vs social listening: what is the difference?</h2>
-          <div className={`mt-12 ${BODY}`}>
-            <p className="text-white">
-              Social listening monitors. A tool collects mentions of a brand, product or keyword and
-              reports how many there were, whether they were positive or negative, and how that
-              changed since last week. Social intelligence reads. It studies the whole conversation
-              around a category or issue, most of which never mentions a brand, and explains how
-              people are making sense of it.
-            </p>
-            <p>Both start from the same raw material. They answer different questions.</p>
-          </div>
-          <div className="mt-14 grid gap-12 md:grid-cols-2">
-            <div>
-              <h3 className="text-2xl font-light text-white">Why automated sentiment fails</h3>
-              <p className="mt-4 text-lg font-light leading-relaxed text-text-secondary">
-                Sentiment analysis scores a post as positive or negative. It cannot tell a joke from
-                a complaint, or praise from irony, and it has no view on what the post means. A
-                category can be ninety per cent negative and still be the best opportunity you
-                have, because the anger is pointed at an assumption nobody has challenged yet. A
-                score will never show you that. Only reading will.
+      {/* How a question goes missing */}
+      <section className="bg-dark-grey px-6 py-24 md:py-32" data-analytics-section="home_missing_question">
+        <div className="mx-auto max-w-6xl">
+          <h2 className={H2}>You cannot ask about what you have not thought of.</h2>
+          <div className="mt-14 grid gap-12 md:grid-cols-2 md:gap-0 md:divide-x md:divide-border-grey">
+            <div className="md:pr-12">
+              <p className={EYEBROW}>What you ask</p>
+              <p className="mt-6 text-xl font-light leading-relaxed text-text-secondary">
+                A hospital group measures what it believes patients judge: clinical expertise,
+                waiting times, equipment. The survey returns clear scores on each. Every score
+                answers a question the hospital chose.
               </p>
             </div>
-            <div>
-              <h3 className="text-2xl font-light text-white">Why human-led reading at scale succeeds</h3>
-              <p className="mt-4 text-lg font-light leading-relaxed text-text-secondary">
-                The Reading Machine reads millions of conversations so that nothing is pre-selected
-                and nothing is missed. Our analysts then interpret what it surfaces, with context,
-                judgement and cultural understanding. The machine finds the pattern. People decide
-                what it means. That combination is how a mention count becomes a Social Truth.
+            <div className="md:pl-12">
+              <p className={EYEBROW}>What comes up unasked</p>
+              <p className="mt-6 text-xl font-light leading-relaxed text-white">
+                When patients and families describe a hospital stay to each other, they write about
+                the food, the state of the room and how staff spoke to them. Few of them discuss
+                clinical skill, which they say they cannot judge.
               </p>
             </div>
           </div>
-          <div className="mt-14 space-y-2 text-2xl font-light leading-snug">
-            <p className="text-text-secondary">Social listening tells you how much you were talked about.</p>
-            <p className="text-white">Social intelligence tells you why, and what to do about it.</p>
+          <p
+            className={`${cormorant.className} mt-16 max-w-4xl border-l border-accent pl-7 text-3xl leading-snug text-white md:text-4xl`}
+          >
+            The question this raises: do patients read everyday care as a sign of clinical care? No
+            scorecard had asked it.
+          </p>
+        </div>
+      </section>
+
+      {/* Cases preview */}
+      <section
+        id="cases"
+        className="scroll-mt-20 border-t border-border-grey px-6 py-24 md:py-32"
+        data-analytics-section="home_cases"
+      >
+        <div className="mx-auto max-w-6xl">
+          <h2 className={H2}>What came up when nobody was asking.</h2>
+          <div className="mt-14 grid gap-6 md:grid-cols-2">
+            {CASE_CARDS.map((card) => (
+              <article
+                key={card.title}
+                className="flex flex-col rounded-[2rem] border border-white/10 bg-dark-grey p-8 md:p-10"
+              >
+                <h3 className={`${cormorant.className} text-3xl leading-tight text-white md:text-4xl`}>
+                  {card.title}
+                </h3>
+                <dl className="mt-8 space-y-6">
+                  <div>
+                    <dt className="text-[11px] uppercase tracking-[0.18em] text-text-muted">Expected</dt>
+                    <dd className="mt-2 text-base font-light leading-relaxed text-text-secondary">
+                      {card.expected}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-[11px] uppercase tracking-[0.18em] text-accent">Found</dt>
+                    <dd className="mt-2 text-lg leading-snug text-white">{card.found}</dd>
+                  </div>
+                  <div className="border-t border-accent/50 pt-6">
+                    <dt className="text-[11px] uppercase tracking-[0.18em] text-accent">The question</dt>
+                    <dd className={`${cormorant.className} mt-2 text-2xl italic leading-snug text-white`}>
+                      {card.question}
+                    </dd>
+                  </div>
+                </dl>
+              </article>
+            ))}
           </div>
           <Link
-            href="/blog/social-listening-vs-social-intelligence"
-            className="mt-10 inline-flex text-sm uppercase tracking-[0.16em] text-accent transition-colors hover:text-white"
+            href="/research"
+            className={`mt-12 ${TEXT_LINK}`}
             data-analytics-event="cta_click"
-            data-analytics-label="Read the full comparison"
-            data-analytics-location="home_versus"
-            data-analytics-destination="/blog/social-listening-vs-social-intelligence"
+            data-analytics-label="All cases in the Atlas"
+            data-analytics-location="home_cases"
+            data-analytics-destination="/research"
           >
-            Read the full comparison &rarr;
+            All cases in the Atlas &rarr;
           </Link>
         </div>
       </section>
 
-      {/* The Atlas */}
-      <section id="atlas" className="px-6 py-24 md:py-32" data-analytics-section="home_atlas">
-        <div className="mx-auto max-w-6xl text-center">
-          <p className="text-xs uppercase tracking-[0.2em] text-accent">Across markets and languages</p>
-          <h2 className={`${cormorant.className} mt-6 text-5xl leading-none text-white md:text-7xl`}>
-            We go where the conversation is.
+      {/* The Reading Machine */}
+      <section className="bg-dark-grey px-6 py-24 md:py-32" data-analytics-section="home_technology">
+        <div className="mx-auto max-w-5xl">
+          <p className={EYEBROW}>The Reading Machine</p>
+          <h2 className={`mt-6 ${H2}`}>
+            We read the whole conversation, because the unexpected sits at its edge.
           </h2>
-          <div className="mx-auto mt-10 max-w-3xl space-y-5 text-lg font-light leading-relaxed text-text-secondary">
-            <p className="text-2xl text-white">Reality doesn&apos;t stop at borders.</p>
+          <div className={`mt-12 ${BODY}`}>
             <p>
-              People talk differently in different places, cultures and languages. But everywhere,
-              they are negotiating identity, belonging, status, security, trust, change and meaning.
+              A sample drops the unusual post. A summary averages it away. The Reading Machine maps
+              every post in a conversation, so our analysts can see the small group that does not
+              fit and read it closely. The machine handles the volume. The analyst decides what it
+              means.
             </p>
-            <p>We&apos;ve spent ten years learning how to read those conversations.</p>
           </div>
-          <div className="mx-auto mt-14 grid max-w-3xl grid-cols-3 gap-6">
+          <Link
+            href="/technology"
+            className={`mt-10 ${TEXT_LINK}`}
+            data-analytics-event="cta_click"
+            data-analytics-label="How the Reading Machine works"
+            data-analytics-location="home_technology"
+            data-analytics-destination="/technology"
+          >
+            How the Reading Machine works &rarr;
+          </Link>
+        </div>
+      </section>
+
+      {/* What you get, and what you do not */}
+      <section className="border-t border-border-grey px-6 py-24 md:py-32" data-analytics-section="home_limits">
+        <div className="mx-auto max-w-6xl">
+          <h2 className={H2}>We find the question. Measurement answers it.</h2>
+          <div className="mt-14 grid gap-12 md:grid-cols-2 md:gap-0 md:divide-x md:divide-border-grey">
+            <div className="md:pr-12">
+              <p className={EYEBROW}>What you get</p>
+              <ul className="mt-6 divide-y divide-border-grey border-y border-border-grey">
+                {YOU_GET.map((item) => (
+                  <li key={item} className="py-5 text-xl font-light leading-snug text-white">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="md:pl-12">
+              <p className="text-xs uppercase tracking-[0.2em] text-text-muted">What you do not get</p>
+              <ul className="mt-6 divide-y divide-border-grey border-y border-border-grey">
+                {YOU_DO_NOT_GET.map((item) => (
+                  <li key={item} className="py-5 text-xl font-light leading-snug text-text-secondary">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <p className="mt-12 max-w-3xl text-xl font-light leading-relaxed text-text-secondary">
+            For those, the questions go to a survey, to sales data or to interviews. We work with
+            your agency or your team, or we field the survey ourselves.
+          </p>
+        </div>
+      </section>
+
+      {/* Credentials */}
+      <section id="atlas" className="bg-dark-grey px-6 py-24 md:py-32" data-analytics-section="home_atlas">
+        <div className="mx-auto max-w-6xl text-center">
+          <h2 className={`${cormorant.className} text-5xl leading-none text-white md:text-7xl`}>
+            Ten years of finding what the brief left out.
+          </h2>
+          <div className="mx-auto mt-14 grid max-w-4xl grid-cols-3 gap-6">
             {STATS.map((stat) => (
               <div key={stat.label}>
                 <p
@@ -380,143 +303,49 @@ export default function SocialTruthHome({ heroVideo }: { heroVideo: string }) {
           </div>
         </div>
         <AtlasGlobe />
-        <div className="mx-auto mt-16 max-w-3xl space-y-5 text-center text-lg font-light leading-relaxed text-text-secondary">
-          <p>
-            Our Atlas shows where we&apos;ve listened &mdash; across markets, cultures, categories
-            and some of the most contested issues facing organisations today. Click a dot.
-          </p>
-          <p>But the point isn&apos;t how much data we&apos;ve collected.</p>
-          <p className="text-2xl text-white">It&apos;s how much reality we&apos;ve learned to recognise.</p>
-        </div>
         <div className="mx-auto max-w-6xl">
           <ClientMarquee />
         </div>
       </section>
 
-      {/* Boxes */}
-      <section className="border-t border-border-grey px-6 py-24 md:py-32" data-analytics-section="home_boxes">
-        <div className="mx-auto max-w-5xl">
-          <p className="text-xs uppercase tracking-[0.2em] text-accent">Segmentation</p>
-          <h2 className={`mt-6 ${H2}`}>We don&apos;t believe people fit neatly into boxes.</h2>
-          <p className="mt-12 max-w-3xl text-2xl font-light leading-snug text-white">
-            People are contradictory. Contextual. Social.
-          </p>
-          <div className={`mt-8 ${BODY}`}>
-            <p>
-              They don&apos;t live inside the segments, personas and categories researchers build
-              for them. So we start by listening to the world they actually inhabit.
-            </p>
-          </div>
-          <p className={`${cormorant.className} mt-12 text-4xl italic text-accent md:text-5xl`}>
-            Then we work out what the boxes should have been.
-          </p>
-        </div>
-      </section>
-
-      {/* What we uncover */}
-      <section className="bg-dark-grey px-6 py-24 md:py-32" data-analytics-section="home_sectors">
-        <div className="mx-auto max-w-6xl">
-          <p className="text-xs uppercase tracking-[0.2em] text-accent">Who we work with</p>
-          <h2 className={`mt-6 ${H2}`}>What we uncover changes what happens next.</h2>
-          <h3 className="mt-14 max-w-3xl text-3xl font-light leading-tight text-white md:text-4xl">
-            Who uses social intelligence?
-          </h3>
-          <div className={`mt-8 ${BODY}`}>
-            <p className="text-white">
-              Social intelligence is used by brand, insight and strategy teams in commercial
-              companies, by health and pharma organisations studying patients and professionals,
-              and by governments and not-for-profits working on public opinion and contested
-              issues. Bakamo has run more than 550 projects across 45 countries and 65 languages in
-              these three areas.
-            </p>
-            <p>
-              Our work has helped organisations understand markets, challenge assumptions, identify
-              emerging needs and make decisions with a clearer view of the people affected by them.
-            </p>
-          </div>
-          <div className="mt-16 grid gap-10 md:grid-cols-3 md:divide-x md:divide-border-grey">
-            {SECTORS.map((sector, index) => (
-              <article key={sector.title} className={index > 0 ? "md:pl-10" : ""}>
-                <h3 className="text-2xl font-light text-white">{sector.title}</h3>
-                <p className="mt-4 text-base leading-relaxed text-text-secondary">{sector.body}</p>
-              </article>
-            ))}
-          </div>
-          <div className="mt-16 space-y-1 text-2xl font-light">
-            <p className="text-text-secondary">Different questions. Different audiences.</p>
-            <p className="text-white">The same starting point: reality.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* The insight you didn't ask for */}
-      <section className="border-t border-border-grey px-6 py-24 md:py-32" data-analytics-section="home_uncomfortable">
-        <div className="mx-auto max-w-5xl">
-          <h2 className={H2}>Sometimes the most valuable insight is the one you didn&apos;t ask for.</h2>
-          <div className={`mt-12 ${BODY}`}>
-            <p>A brief is a useful starting point. It isn&apos;t necessarily the right question.</p>
-          </div>
-          <Lines
-            lines={[
-              "We challenge assumptions when the evidence demands it.",
-              "We expose tensions that don't fit the hypothesis.",
-              "We bring back things that are inconvenient, uncomfortable or simply unexpected.",
-            ]}
-            className={`mt-10 ${RULED}`}
-          />
-          <p className="mt-12 max-w-3xl text-xl font-light leading-relaxed text-text-secondary">
-            Because our job isn&apos;t to make the research look good.
-          </p>
-          <p className="mt-4 max-w-4xl text-2xl font-light leading-snug text-white md:text-3xl">
-            Our job is to make reality impossible to ignore.
-          </p>
-        </div>
-      </section>
-
       {/* Close */}
-      <section className="bg-dark-grey px-6 py-28 text-center md:py-40" data-analytics-section="home_close">
+      <section className="border-t border-border-grey px-6 py-28 text-center md:py-40" data-analytics-section="home_close">
         <div className="mx-auto max-w-5xl">
-          <h2 className={`${cormorant.className} text-5xl leading-none text-white md:text-8xl`}>
-            Build on reality.
+          <h2 className={`${cormorant.className} text-5xl leading-none text-white md:text-7xl`}>
+            Before you write the questionnaire, find out what it is missing.
           </h2>
-          <div className="mx-auto mt-10 max-w-3xl space-y-5 text-lg font-light leading-relaxed text-text-secondary md:text-xl">
-            <p>You don&apos;t always need another study.</p>
-            <p>
-              Sometimes you need to know whether you&apos;re asking the right question in the first
-              place.
-            </p>
-            <p className="text-white">Bring us the decision you&apos;re trying to make.</p>
-          </div>
-          <p className="mx-auto mt-6 max-w-3xl text-2xl font-light leading-snug text-white">
-            We&apos;ll help you understand what you need to know first.
+          <p className="mx-auto mt-10 max-w-3xl text-lg font-light leading-relaxed text-text-secondary md:text-xl">
+            Bring us the study you are about to run, the tracker you are about to renew or the brief
+            you are about to send. We will show you what people are already saying that it does not
+            ask about.
           </p>
-          <div className="mt-12 flex flex-col items-center justify-center gap-5 sm:flex-row">
+          <div className="mt-12 flex flex-col items-center justify-center gap-6 sm:flex-row">
             <Link
-              href="/our-method"
+              href={BOOKING_HREF}
               className="cta-button text-sm"
-              data-analytics-event="cta_click"
-              data-analytics-label="Discover Social Truth"
+              data-analytics-event="book_demo_click"
+              data-analytics-label="Bring us your next study"
               data-analytics-location="home_close"
-              data-analytics-destination="/our-method"
+              data-analytics-destination={BOOKING_HREF}
             >
-              Discover Social Truth
+              Bring us your next study
             </Link>
             <Link
-              href="#atlas"
-              className="inline-flex text-sm uppercase tracking-[0.16em] text-accent transition-colors hover:text-white"
+              href="/about"
+              className={TEXT_LINK}
               data-analytics-event="cta_click"
-              data-analytics-label="Explore our work"
+              data-analytics-label="Why we are named after a fool"
               data-analytics-location="home_close"
-              data-analytics-destination="#atlas"
+              data-analytics-destination="/about"
             >
-              Explore our work &rarr;
+              Why we are named after a fool &rarr;
             </Link>
           </div>
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="border-t border-border-grey px-6 py-24 md:py-32" data-analytics-section="home_faq">
+      <section className="border-t border-border-grey bg-dark-grey px-6 py-24 md:py-32" data-analytics-section="home_faq">
         <div className="mx-auto max-w-5xl">
           <p className="text-xs uppercase tracking-[0.2em] text-accent">Questions</p>
           <h2 className={`mt-6 ${H2}`}>Social intelligence, answered plainly.</h2>

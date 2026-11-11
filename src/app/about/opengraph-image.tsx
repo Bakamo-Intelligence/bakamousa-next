@@ -1,8 +1,8 @@
 import { OG_CONTENT_TYPE, OG_SIZE, ogImageAlt, renderOgImage } from "@/lib/og-image";
 
 const content = {
-  title: "About",
-  descriptor: "Build on reality.",
+  title: "Why courts kept a fool",
+  descriptor: "About Bakamo",
 };
 
 export const alt = ogImageAlt(content);

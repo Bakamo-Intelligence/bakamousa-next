@@ -86,7 +86,7 @@ export default function SectorPage({ sector }: { sector: Sector }) {
       >
         <div className="max-w-6xl mx-auto">
           <p className="text-accent uppercase tracking-[0.2em] text-sm mb-4">
-            {hasAtlasCases ? "From the Atlas of Social Truths" : "Our research"}
+            {hasAtlasCases ? "From the Atlas of the Unexpected" : "Our research"}
           </p>
           <h2 className={`${cormorant.className} text-3xl md:text-4xl font-light text-white leading-tight`}>
             What we found when we listened

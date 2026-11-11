@@ -9,7 +9,7 @@ export const HOME_FAQ: QA[] = [
   {
     question: "What is social intelligence?",
     answer:
-      "Social intelligence is research that reads what people say to each other in public, unprompted, to understand how they think about a category, an issue or a brand. It studies whole conversations rather than mentions. Bakamo uses it to find Social Truth: the shared meanings and tensions that shape decisions before anyone is asked a question.",
+      "Social intelligence is research that reads what people say to each other in public, unprompted, to understand how they think about a category, an issue or a brand. It studies whole conversations rather than mentions. Bakamo uses it to find what a brief, a questionnaire or a discussion guide did not ask about.",
   },
   {
     question: "What is the difference between social intelligence and social listening?",
@@ -17,14 +17,9 @@ export const HOME_FAQ: QA[] = [
       "Social listening monitors mentions of the terms you give it and reports volume and sentiment. Social intelligence reads the wider conversation, most of which never mentions a brand, and explains how people make sense of the topic. Listening tells you how much you were talked about. Intelligence tells you why, and what to do about it.",
   },
   {
-    question: "What is Social Truth?",
-    answer:
-      "Social Truth is Bakamo's term for the shared meaning, tension or assumption that emerges between people in conversation, usually without anyone stating it. It is not opinion, which lives inside a person, and it is not sentiment, which is a score applied afterwards. It is what conversations reveal when you read them properly.",
-  },
-  {
     question: "How is social intelligence different from a survey or a focus group?",
     answer:
-      "Surveys and focus groups ask people questions, and the question shapes the answer. Social intelligence reads what people said when nobody was asking. We use it first, to discover what matters, and then design the survey around what we found. Discovery before validation.",
+      "Interviews and surveys go deep on the questions you bring. Discovery finds the ones you did not bring. It runs first, before the discussion guide and the questionnaire are written.",
   },
   {
     question: "Is social intelligence the same as consumer insights?",
@@ -39,17 +34,33 @@ export const HOME_FAQ: QA[] = [
   {
     question: "Can social intelligence be measured?",
     answer:
-      "Yes. Once we have mapped the meanings and tensions in a conversation, we build quantitative instruments that measure how much weight each one carries, by demographic and by market. Reality first, measurement second.",
+      "Every count in our reports is a count of posts. It describes the conversation. Turning a finding into a market figure is the job of the survey that follows, which your team, your agency or Bakamo can field.",
   },
   {
     question: "How long does a social intelligence project take?",
     answer:
-      "First learnings arrive in one to two weeks depending on the scope. We start with the decision you are trying to make and help you work out what you need to know first. Book a meeting to talk it through.",
+      "First learnings arrive in one to two weeks depending on the scope. Book a meeting to talk it through.",
   },
   {
     question: "Which markets and languages does Bakamo cover?",
     answer:
-      "We have worked in 45 countries and 65 languages, across commercial, health and public-sector questions. Reality does not stop at borders, and neither does the conversation.",
+      "We have worked in 45 countries and 65 languages, across commercial, health and public-sector questions.",
+  },
+  {
+    question: "Is the conversation representative?",
+    answer: "No. It shows what exists. A sample shows how much.",
+  },
+  {
+    question: "Does it predict what people will do?",
+    answer: "It shows a change in meaning early. It does not show who will switch or pay.",
+  },
+  {
+    question: "What if you find nothing unexpected?",
+    answer: "Then your frame has been checked from outside it, which your own research cannot do.",
+  },
+  {
+    question: "How does this fit with our agency?",
+    answer: "It runs first and feeds their recruitment, guides and questionnaire.",
   },
 ];
 
@@ -63,11 +74,6 @@ export const HOME_GLOSSARY: Term[] = [
     term: "Social listening",
     definition:
       "Software that monitors mentions of specified brands or keywords and reports volume, reach and sentiment over time. Useful for communications and customer care. Finds only what you already knew to look for.",
-  },
-  {
-    term: "Social Truth",
-    definition:
-      "Bakamo's term for the shared meaning, tension or assumption that emerges between people in conversation without anyone stating it. The output of social intelligence research.",
   },
   {
     term: "Consumer insights",
@@ -97,7 +103,7 @@ export const HOME_GLOSSARY: Term[] = [
   {
     term: "Discovery before validation",
     definition:
-      "Bakamo's working rule. Read the conversation to discover what matters, then build the survey to measure it. Most research does the reverse and validates what it already assumed.",
+      "Bakamo's working rule. Read the conversation to find the questions, then let interviews and a survey answer them.",
   },
 ];
 

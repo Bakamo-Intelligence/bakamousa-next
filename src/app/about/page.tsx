@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { BOOKING_HREF } from "@/lib/booking";
 import { Cormorant_Garamond } from "next/font/google";
-import AtlasGlobe from "@/components/AtlasGlobe";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -13,53 +12,24 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
+const TITLE = "About Bakamo: Why Courts Kept a Fool";
+const DESCRIPTION =
+  "Bakamo takes its name from a Japanese word for a foolish person. At court, the fool was the one person allowed to raise what nobody had asked.";
+
 export const metadata: Metadata = {
-  title: { absolute: "About Bakamo: A Social Intelligence Company" },
-  description:
-    "Bakamo reads unprompted conversation in 65 languages for brands, health and pharma, governments and not-for-profits. Meet the team and our approach.",
+  title: { absolute: TITLE },
+  description: DESCRIPTION,
   alternates: {
     canonical: "/about",
   },
-  openGraph: pageOpenGraph(
-    "/about",
-    "About Bakamo: A Social Intelligence Company",
-    "Bakamo reads unprompted conversation in 65 languages for brands, health and pharma, governments and not-for-profits. Meet the team and our approach.",
-  ),
+  openGraph: pageOpenGraph("/about", TITLE, DESCRIPTION),
 };
 
-const APPROACH = [
-  {
-    title: "We read, we don't just count.",
-    body: "Mention volumes and sentiment scores tell you what was said, but they cannot tell you what it means. We work in narratives and interpretations, not just datasets and statements.",
-  },
-  {
-    title: "Human judgment + technology.",
-    body: "Technology can scale reading, but it cannot replace judgment. Our proprietary technology — the Reading Machine — holds entire conversations at once so nothing is missed, but a named, accountable expert is always responsible for what it actually means.",
-  },
-  {
-    title: "We embrace the messiness.",
-    body: "The categories come from the data; we never impose them. We capture the shared, underlying assumptions people carry into every decision — the things that go without saying.",
-  },
-  {
-    title: "We tell the truth, even if it's uncomfortable.",
-    body: "Our job is not to confirm what you already think. It is to expose what you haven't seen. We interrogate the brief, challenge hypotheses, and are never afraid to bring you the bad news if it reflects reality.",
-    note: "In fact, “Bakamo” is a nod to the Japanese word for “fool” — a reminder of the medieval jester, who was the only person in the court permitted to speak the unvarnished truth to those in power.",
-  },
-];
-
-const SECTORS = [
-  {
-    title: "Commercial Research",
-    body: "Brands, culture, communications, and emerging consumer needs.",
-  },
-  {
-    title: "Health & Pharma",
-    body: "Patients, health equity, public discourse, and the social forces shaping health.",
-  },
-  {
-    title: "Not-for-Profit & Government",
-    body: "Citizens, public opinion, policy, and social movements.",
-  },
+const HOW_WE_WORK = [
+  "We read conversation people started themselves. We never ask and never interact.",
+  "We read in the language of each market, with native analysts.",
+  "We let categories come out of the material.",
+  "We say what a finding does not show.",
 ];
 
 const STATS = [
@@ -108,158 +78,68 @@ export default function AboutPage() {
 
       <section className="px-6 pb-24 pt-32 md:pb-32 md:pt-44" data-analytics-section="about_hero">
         <div className="mx-auto max-w-6xl">
-          <Eyebrow>About Bakamo — a social intelligence company</Eyebrow>
+          <Eyebrow>The name</Eyebrow>
           <h1
             className={`${cormorant.className} mt-6 max-w-5xl text-[clamp(4rem,8vw,7.5rem)] leading-[0.86] tracking-tight text-white`}
           >
-            Build on reality.
+            Why courts kept a fool.
           </h1>
           <div className="mt-10 h-px w-16 bg-accent" />
+          <p className="mt-10 max-w-3xl text-xl font-light leading-relaxed text-text-secondary">
+            At court, everyone answered the questions the king asked. One person was allowed to
+            raise what nobody had asked: the fool. Bakamo takes its name from a Japanese word for a
+            foolish person.
+          </p>
         </div>
       </section>
 
-      {/* The WHY */}
+      {/* What we are for */}
       <section className="border-t border-border-grey px-6 py-24 md:py-32" data-analytics-section="about_why">
         <div className="mx-auto max-w-5xl">
-          <Eyebrow>The why — our purpose &amp; beliefs</Eyebrow>
-          <h2 className="mt-6 max-w-4xl text-4xl font-light leading-tight text-white md:text-6xl">
-            We believe in closing the gap between decision-makers and people.
+          <h2 className="max-w-4xl text-4xl font-light leading-tight text-white md:text-6xl">
+            What we are for.
           </h2>
           <div className="mt-12 max-w-3xl space-y-7 text-xl font-light leading-relaxed text-text-secondary">
             <p>
-              For too long, the research industry has flattened the world it was supposed to
-              understand. People are squeezed into segments, complex motivations are reduced to
-              percentages, and messy human realities are simplified just to fit a brief.
+              Organisations are good at answering their own questions. Briefs, trackers and
+              questionnaires are written by people who know the category well, and that is also
+              their limit. They contain what the organisation already has in mind.
             </p>
             <p>
-              When you ask people a question, they instinctively try to fit themselves into the
-              boxes they are given. What they actually think stays unsaid. We come from different
-              backgrounds, but we share the same deep frustration: traditional research forces
-              people to conform to the researcher&apos;s assumptions, producing a photograph of
-              somebody else&apos;s question rather than the truth.
-            </p>
-            <p className="border-l border-accent pl-7 text-3xl leading-snug text-white">
-              Bakamo exists because we stopped accepting that.
-            </p>
-            <p>
-              We naively, yet fiercely, believe that if decision-makers could see people more
-              clearly — as citizens, patients, audiences, and peers — they would make wiser
-              decisions, not just more informed ones. Wiser decisions come from understanding why
-              things matter to the people living them.
-            </p>
-            <p className="text-white">
-              Our ambition is simple: we advocate for the people on the other side of the research
-              by making their reality impossible to ignore.
+              Our job is the other part. We read what people say to each other and bring back what
+              the organisation had not thought to ask about. Sometimes it is uncomfortable.
+              Sometimes it confirms the plan, from outside the plan. Either way the next piece of
+              research starts from a better list of questions.
             </p>
           </div>
         </div>
       </section>
 
-      {/* The HOW */}
+      {/* How we work */}
       <section className="bg-dark-grey px-6 py-24 md:py-32" data-analytics-section="about_how">
-        <div className="mx-auto max-w-6xl">
-          <Eyebrow>The how — our approach</Eyebrow>
-          <h2 className="mt-6 max-w-4xl text-4xl font-light leading-tight text-white md:text-6xl">
-            We stop asking questions and start listening to natural conversations.
+        <div className="mx-auto max-w-5xl">
+          <h2 className="max-w-4xl text-4xl font-light leading-tight text-white md:text-6xl">
+            How we work.
           </h2>
-          <p className="mt-10 max-w-3xl text-xl font-light leading-relaxed text-text-secondary">
-            People are most interesting — and most honest — when nobody is asking them a question.
-            Instead of prompting responses, we find meaning in the things people are already saying
-            to each other.
-          </p>
-          <p className="mt-16 text-2xl font-light text-white">
-            Here is how we uncover the Social Truth:
-          </p>
-          <div className="mt-10">
-            {APPROACH.map((item) => (
-              <article key={item.title} className="relative border-t border-border-grey py-9">
-                <div className="absolute bottom-0 left-0 top-9 hidden w-px bg-border-grey md:block" />
-                <div className="md:pl-10">
-                  <h3 className="text-3xl font-light text-white">{item.title}</h3>
-                  <p className="mt-5 max-w-3xl text-base leading-relaxed text-text-secondary">
-                    {item.body}
-                  </p>
-                  {item.note && (
-                    <p className="mt-5 max-w-3xl text-sm italic leading-relaxed text-accent">
-                      {item.note}
-                    </p>
-                  )}
-                </div>
-              </article>
+          <ul className="mt-12 divide-y divide-border-grey border-y border-border-grey">
+            {HOW_WE_WORK.map((line) => (
+              <li
+                key={line}
+                className={`${cormorant.className} py-6 text-3xl leading-snug text-white md:text-4xl`}
+              >
+                {line}
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
-      </section>
-
-      {/* The WHAT */}
-      <section className="px-6 py-24 md:py-32" data-analytics-section="about_what">
-        <div className="mx-auto max-w-6xl">
-          <Eyebrow>The what — what we do &amp; our proof</Eyebrow>
-          <h2 className="mt-6 max-w-4xl text-4xl font-light leading-tight text-white md:text-6xl">
-            We are a social intelligence company.
-          </h2>
-          <p className="mt-10 max-w-3xl text-xl font-light leading-relaxed text-text-secondary">
-            We uncover what people really think by reading unprompted conversations across the
-            globe, translating that meaning into strategic, actionable insights for our clients. We
-            work wherever understanding people matters:
-          </p>
-          <div className="mt-14 grid gap-10 md:grid-cols-3 md:divide-x md:divide-border-grey">
-            {SECTORS.map((sector, index) => (
-              <article key={sector.title} className={index > 0 ? "md:pl-10" : ""}>
-                <h3 className="text-2xl font-light text-white">{sector.title}</h3>
-                <p className="mt-4 text-base leading-relaxed text-text-secondary">{sector.body}</p>
-              </article>
-            ))}
-          </div>
-
-          <div className="mt-24 border-t border-border-grey pt-16">
-            <h3 className="text-xs uppercase tracking-[0.2em] text-accent">The proof</h3>
-            <div className="mt-10 grid grid-cols-3 gap-6">
-              {STATS.map((stat) => (
-                <div key={stat.label}>
-                  <p
-                    className={`${cormorant.className} text-[clamp(3rem,7vw,6rem)] leading-none text-white`}
-                  >
-                    {stat.value}
-                  </p>
-                  <p className="mt-3 text-xs uppercase tracking-[0.16em] text-text-secondary">
-                    {stat.label}
-                  </p>
-                </div>
-              ))}
-            </div>
-            <p className="mt-14 max-w-3xl text-xl font-light leading-relaxed text-text-secondary">
-              From Fortune 100 companies and global brands to the European Commission, NATO, and
-              Amnesty International, our work drives tangible impact. We have helped brands execute
-              commercial turnarounds, informed public policy (including citations in the US Senate),
-              and advanced academic science.
-            </p>
-          </div>
-        </div>
-
-        <div className="mx-auto mt-24 max-w-6xl text-center">
-          <h3 className={`${cormorant.className} text-5xl leading-none text-white md:text-7xl`}>
-            The Atlas of Social Truths.
-          </h3>
-          <p className="mx-auto mt-6 max-w-2xl text-lg font-light leading-relaxed text-text-secondary">
-            A selection of our work, wherever the conversation lives. Click a dot.
-          </p>
-        </div>
-        <AtlasGlobe />
       </section>
 
       {/* The PEOPLE */}
-      <section className="bg-dark-grey px-6 py-24 md:py-32" data-analytics-section="about_people">
+      <section className="border-t border-border-grey px-6 py-24 md:py-32" data-analytics-section="about_people">
         <div className="mx-auto max-w-6xl">
-          <Eyebrow>The people</Eyebrow>
-          <h2 className="mt-6 max-w-4xl text-4xl font-light leading-tight text-white md:text-6xl">
-            The people who win the work stay close to the work.
+          <h2 className="max-w-4xl text-4xl font-light leading-tight text-white md:text-6xl">
+            The people.
           </h2>
-          <p className="mt-10 max-w-3xl text-xl font-light leading-relaxed text-text-secondary">
-            When you work with us, there is no senior pitch team that disappears after kick-off. We
-            are proud to work with a global network of 250+ analysts and helpers, bringing the
-            linguistic and analytical skills to read conversations in their own languages.
-          </p>
           <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
             {TEAM.map((member) => {
               const badge = (
@@ -316,27 +196,39 @@ export default function AboutPage() {
             })}
           </div>
           <p className="mt-16 max-w-3xl text-xl font-light leading-relaxed text-white">
-            We work directly, collaboratively, and alongside your team to give you findings you can
-            act on, rather than a document you have to translate.
+            Behind them, a network of analysts reading in 65 languages.
           </p>
         </div>
       </section>
 
-      <section className="border-t border-border-grey px-6 py-28 text-center md:py-36" data-analytics-section="about_cta">
-        <div className="mx-auto max-w-4xl">
-          <p className="text-xs uppercase tracking-[0.2em] text-accent">Try it out</p>
-          <h2 className={`${cormorant.className} mt-6 text-5xl leading-none text-white md:text-7xl`}>
-            Bakamo. Build on reality.
+      {/* Track record */}
+      <section className="bg-dark-grey px-6 py-24 md:py-32" data-analytics-section="about_what">
+        <div className="mx-auto max-w-6xl">
+          <h2 className="max-w-4xl text-4xl font-light leading-tight text-white md:text-6xl">
+            Track record.
           </h2>
+          <div className="mt-14 grid grid-cols-3 gap-6">
+            {STATS.map((stat) => (
+              <div key={stat.label}>
+                <p className={`${cormorant.className} text-[clamp(3rem,7vw,6rem)] leading-none text-white`}>
+                  {stat.value}
+                </p>
+                <p className="mt-3 text-xs uppercase tracking-[0.16em] text-text-secondary">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-14 max-w-3xl text-xl font-light leading-relaxed text-text-secondary">
+            For brands, health organisations, governments and NGOs.
+          </p>
           <Link
             href={BOOKING_HREF}
-            className="cta-button mt-10 text-sm"
+            className="cta-button mt-12 text-sm"
             data-analytics-event="book_demo_click"
-            data-analytics-label="Book a demo"
+            data-analytics-label="Book a meeting"
             data-analytics-location="about_cta"
             data-analytics-destination={BOOKING_HREF}
           >
-            Book a demo
+            Book a meeting
           </Link>
         </div>
       </section>

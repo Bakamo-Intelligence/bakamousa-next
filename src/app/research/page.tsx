@@ -12,9 +12,9 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
-const TITLE = "Research: Social Intelligence Studies";
+const TITLE = "The Atlas of the Unexpected: Cases and Research";
 const DESCRIPTION =
-  "Bakamo’s public research: studies of elections and migration read from unprompted social media conversation, plus the Atlas of Social Truths.";
+  "Each case shows what a client or an industry expected, what Bakamo found in the conversation, and the question it raised. With Bakamo's published studies.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -89,6 +89,106 @@ const STUDIES: Study[] = [
   },
 ];
 
+type Case = {
+  id: string;
+  name: string;
+  context: string;
+  expected: string;
+  found: string;
+  questions: string[];
+  next?: string;
+  href?: string;
+  linkLabel?: string;
+};
+
+// From the website copy deck v3, November 2026. Keep the wording as approved.
+const CASES: Case[] = [
+  {
+    id: "bare",
+    name: "BARE Zero Proof",
+    context: "Non-alcoholic drinks",
+    expected:
+      "Industry trend reports described the buyer of non-alcoholic drinks as young: a generation choosing to drink less.",
+    found:
+      "In the public conversation about these drinks, the most engaged voices were people who had decided to stop drinking alcohol. They wrote about the category often, in detail, and with a lot at stake.",
+    questions: [
+      "How much of the category's volume comes from people who have stopped drinking?",
+      "What do they need from a drink that someone cutting down does not?",
+      "Does the way the category talks about itself include them?",
+    ],
+    href: "/research/bare-zero-proof",
+    linkLabel: "Read the case study",
+  },
+  {
+    id: "hospitals",
+    name: "Hospitals",
+    context: "Public health",
+    expected:
+      "Patients judge a hospital on clinical expertise, waiting times and technology, the items on a satisfaction survey.",
+    found:
+      "When patients and families describe a stay to each other, they write about food, the state of the rooms and how staff spoke to them. Many say they cannot judge clinical skill.",
+    questions: [
+      "Do patients read everyday care as a sign of clinical care?",
+      "Which everyday signs weigh most when people recommend or choose a hospital?",
+      "Where does the satisfaction survey ask about them?",
+    ],
+  },
+  {
+    id: "king",
+    name: "King",
+    context: "Mobile games",
+    expected: "Casual puzzle games fill spare minutes: on a commute, in a queue.",
+    found:
+      "Some players describe a fixed daily session between leaving work and arriving home. They talk about it as time to switch off before the evening begins.",
+    questions: [
+      "How many players use the game this way?",
+      "What do notifications and session length do to that moment?",
+      "What else competes for it?",
+    ],
+  },
+  {
+    id: "pet-food",
+    name: "Premium pet food",
+    context: "Pet care",
+    expected:
+      "Owners choose pet food on ingredients and nutrition, and research kept confirming interest in both.",
+    found:
+      "In owner communities, people describe feeding as a way of showing what kind of carer they are. The ingredient list comes up as support for that, not as the starting point.",
+    questions: [
+      "Which ideas of care do buyers hold?",
+      "Which of them does the brand speak to today?",
+      "What does a buyer feel the pack says about them?",
+    ],
+  },
+  {
+    id: "eve-online",
+    name: "EVE Online",
+    context: "CCP Games",
+    expected: "A multiplayer space game is an escape from work.",
+    found:
+      "Players described friendship as the main benefit, and after it the skills they had learned running large in-game organisations. Several linked those skills to their jobs.",
+    questions: ["Do players believe the game has helped their careers?"],
+    next: "The question went into a survey. Of 759 players, 72% said EVE skills had helped them get better jobs.",
+    href: "/eve-effect",
+    linkLabel: "Read the study",
+  },
+  {
+    id: "migration-narratives",
+    name: "Migration narratives in Europe",
+    context: "28 EU states",
+    expected: "Each country argues about migration in its own terms.",
+    found:
+      "Five narratives appeared across borders. What differed from country to country was the weight of each.",
+    questions: [
+      "Which narrative does your audience hold?",
+      "What would move someone from one narrative to another?",
+      "Are \"for\" and \"against\" the right answer options at all?",
+    ],
+    href: "/research/migration-narratives-eu",
+    linkLabel: "Open the dashboard",
+  },
+];
+
 function ArrowIcon() {
   return (
     <svg
@@ -134,26 +234,153 @@ export default function ResearchPage() {
       >
         <div className="max-w-4xl mx-auto">
           <span className="text-xs uppercase tracking-[0.22em] text-accent border border-accent/30 rounded-full px-4 py-1 inline-block mb-8">
-            The Research
+            Cases
           </span>
 
           <h1
             className={`${cormorant.className} text-[clamp(2.4rem,5.5vw,4.8rem)] leading-[1.02] tracking-tight text-white`}
           >
-            Social Intelligence Studies
+            The Atlas of the Unexpected.
           </h1>
 
           <div className="w-16 h-px bg-accent mt-10 mb-10" />
 
           <p className="text-lg font-light leading-relaxed text-text-secondary max-w-3xl">
-            This is Bakamo&rsquo;s public research. Each study reads the unprompted conversation
-            around a contested question &mdash; an election, migration, a public debate &mdash; and
-            reports what people say to each other, not what they say when asked. Every study links
-            to its full report.
+            Each case shows what a client or an industry expected, what we found in the
+            conversation, and the question it raised. Some clients went on to measure the answer.
+            All of them left with a question they had not brought.
           </p>
         </div>
       </section>
 
+      {/* Cases: expected, found, the questions raised */}
+      <section
+        id="cases"
+        className="px-6 py-20 scroll-mt-24"
+        data-analytics-section="research_cases"
+        data-analytics-label="Cases"
+      >
+        <ol className="max-w-5xl mx-auto space-y-6">
+          {CASES.map((item, index) => (
+            <li
+              key={item.id}
+              id={item.id}
+              className="scroll-mt-28 rounded-[2rem] border border-white/10 p-8 md:p-12"
+              style={{
+                background:
+                  "linear-gradient(160deg, rgba(26,53,80,0.22), rgba(20,20,20,0.94) 40%, rgba(10,10,10,0.98))",
+              }}
+            >
+              <div className="flex flex-wrap items-baseline gap-x-5 gap-y-2">
+                <span className={`${cormorant.className} text-2xl text-accent`}>
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <h2 className={`${cormorant.className} text-4xl md:text-5xl font-light text-white leading-tight`}>
+                  {item.name}
+                </h2>
+                <span className="text-xs uppercase tracking-[0.16em] text-text-muted">{item.context}</span>
+              </div>
+
+              <div className="mt-10 grid gap-10 md:grid-cols-2">
+                <div>
+                  <p className="text-[11px] uppercase tracking-[0.18em] text-text-muted">Expected</p>
+                  <p className="mt-3 text-lg font-light leading-relaxed text-text-secondary">{item.expected}</p>
+                </div>
+                <div>
+                  <p className="text-[11px] uppercase tracking-[0.18em] text-accent">Found</p>
+                  <p className="mt-3 text-lg leading-relaxed text-white">{item.found}</p>
+                </div>
+              </div>
+
+              <div className="mt-10 border-t border-accent/50 pt-8">
+                <p className="text-[11px] uppercase tracking-[0.18em] text-accent">
+                  {item.questions.length > 1 ? "The questions it raised" : "The question it raised"}
+                </p>
+                <ul className="mt-4 space-y-3">
+                  {item.questions.map((question) => (
+                    <li
+                      key={question}
+                      className={`${cormorant.className} text-2xl md:text-3xl italic leading-snug text-white`}
+                    >
+                      {question}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {item.next ? (
+                <div className="mt-8">
+                  <p className="text-[11px] uppercase tracking-[0.18em] text-accent">What happened next</p>
+                  <p className="mt-3 text-lg font-light leading-relaxed text-text-secondary">{item.next}</p>
+                </div>
+              ) : null}
+
+              {item.href ? (
+                <Link
+                  href={item.href}
+                  className="mt-8 inline-flex items-center gap-2 text-sm text-accent hover:underline underline-offset-4"
+                  data-analytics-event="cta_click"
+                  data-analytics-label={`Case: ${item.name}`}
+                  data-analytics-location="research_cases"
+                  data-analytics-destination={item.href}
+                >
+                  {item.linkLabel}
+                  <span className="sr-only">: {item.name}</span>
+                  <ArrowIcon />
+                </Link>
+              ) : null}
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      {/* CTA */}
+      <section
+        className="px-6 py-24"
+        data-analytics-section="research_cta"
+        data-analytics-label="Research CTA"
+      >
+        <div
+          className="max-w-5xl mx-auto rounded-[2rem] border border-accent/20 p-8 md:p-14"
+          style={{
+            background:
+              "linear-gradient(145deg, rgba(201,169,110,0.12), rgba(20,20,20,0.94) 36%, rgba(10,10,10,1))",
+          }}
+        >
+          <div className="grid gap-10 md:grid-cols-2 md:items-center">
+            <div>
+              <p className="text-sm uppercase tracking-[0.2em] text-accent mb-4">Work with Bakamo</p>
+              <h2
+                className={`${cormorant.className} text-3xl md:text-4xl font-light text-white leading-tight`}
+              >
+                Every case here ended with a question the brief did not contain.
+              </h2>
+            </div>
+            <div className="space-y-4">
+              <Link
+                href={BOOKING_HREF}
+                className="cta-button text-sm w-full text-center block"
+                data-analytics-event="book_demo_click"
+                data-analytics-label="Bring us your brief"
+                data-analytics-location="research_cta"
+                data-analytics-destination={BOOKING_HREF}
+              >
+                Bring us your brief
+              </Link>
+              <Link
+                href="/our-method"
+                className="inline-flex items-center justify-center w-full rounded-full border border-white/15 px-6 py-3 text-sm uppercase tracking-[0.16em] text-white transition-colors hover:border-accent hover:text-accent"
+                data-analytics-event="cta_click"
+                data-analytics-label="See Our Method"
+                data-analytics-location="research_cta"
+                data-analytics-destination="/our-method"
+              >
+                See Our Method
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
       <div className="section-divider" />
 
       {/* Studies */}
@@ -222,12 +449,12 @@ export default function ResearchPage() {
 
       <div className="section-divider" />
 
-      {/* Atlas of Social Truths: locator globe plus a list of cases; every case stays server-rendered and linkable */}
+      {/* More Atlas entries: locator globe plus a list of cases; every case stays server-rendered and linkable */}
       <section
         id="atlas"
         className="px-6 py-20 scroll-mt-24"
         data-analytics-section="research_atlas"
-        data-analytics-label="Atlas of Social Truths"
+        data-analytics-label="Atlas"
       >
         <div className="max-w-6xl mx-auto">
           <div className="max-w-3xl">
@@ -235,12 +462,10 @@ export default function ResearchPage() {
             <h2
               className={`${cormorant.className} text-3xl md:text-5xl font-light text-white mb-8 leading-tight`}
             >
-              Atlas of Social Truths
+              More from the Atlas
             </h2>
             <p className="text-base font-light leading-relaxed text-text-secondary">
-              A selection of our work, wherever the conversation lives. Each entry states the Social
-              Truth we found: the shared meaning, tension or assumption beneath an unprompted
-              conversation.
+              A selection of our work, wherever the conversation lives.
             </p>
           </div>
 
@@ -248,57 +473,6 @@ export default function ResearchPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section
-        className="px-6 py-24"
-        data-analytics-section="research_cta"
-        data-analytics-label="Research CTA"
-      >
-        <div
-          className="max-w-5xl mx-auto rounded-[2rem] border border-accent/20 p-8 md:p-14"
-          style={{
-            background:
-              "linear-gradient(145deg, rgba(201,169,110,0.12), rgba(20,20,20,0.94) 36%, rgba(10,10,10,1))",
-          }}
-        >
-          <div className="grid gap-10 md:grid-cols-2 md:items-center">
-            <div>
-              <p className="text-sm uppercase tracking-[0.2em] text-accent mb-4">Work with Bakamo</p>
-              <h2
-                className={`${cormorant.className} text-3xl md:text-4xl font-light text-white leading-tight`}
-              >
-                Every study here started with a question.
-              </h2>
-              <p className="mt-6 text-base font-light leading-relaxed text-text-secondary">
-                Tell us yours. We read the conversation around it first, then build the instruments
-                that measure what we find.
-              </p>
-            </div>
-            <div className="space-y-4">
-              <Link
-                href={BOOKING_HREF}
-                className="cta-button text-sm w-full text-center block"
-                data-analytics-event="book_demo_click"
-                data-analytics-label="Book a demo"
-                data-analytics-location="research_cta"
-                data-analytics-destination={BOOKING_HREF}
-              >
-                Book a demo
-              </Link>
-              <Link
-                href="/our-method"
-                className="inline-flex items-center justify-center w-full rounded-full border border-white/15 px-6 py-3 text-sm uppercase tracking-[0.16em] text-white transition-colors hover:border-accent hover:text-accent"
-                data-analytics-event="cta_click"
-                data-analytics-label="See Our Method"
-                data-analytics-location="research_cta"
-                data-analytics-destination="/our-method"
-              >
-                See Our Method
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
     </main>
   );
 }
