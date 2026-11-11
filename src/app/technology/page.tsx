@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { pageOpenGraph } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
+import { BOOKING_HREF } from "@/lib/booking";
 import { Cormorant_Garamond } from "next/font/google";
 
 const cormorant = Cormorant_Garamond({
@@ -11,50 +12,39 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
+const TITLE = "The Reading Machine: Reading the Whole Conversation";
+const DESCRIPTION =
+  "The Reading Machine is Bakamo's own analysis system. It places every post in a conversation on a map, so an analyst can see the small group that does not fit and read it.";
+
 export const metadata: Metadata = {
-  title: "The Reading Machine: Semantic Maps of Conversation",
-  description:
-    "The Reading Machine is Bakamo's technology for reading whole conversations. It maps language into semantic space; our analysts interpret what it shows.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: {
     canonical: "/technology",
   },
-  openGraph: pageOpenGraph(
-    "/technology",
-    "The Reading Machine: Semantic Maps of Conversation | Bakamo",
-    "The Reading Machine is Bakamo's technology for reading whole conversations. It maps language into semantic space; our analysts interpret what it shows.",
-  ),
+  openGraph: pageOpenGraph("/technology", `${TITLE} | Bakamo`, DESCRIPTION),
 };
 
-const FOR_YOUR_PROJECT = [
+const WHAT_IT_DOES = [
   {
-    title: "The whole conversation, not a sample.",
-    body: "Every post we collect on your subject is read and placed against every other. Mainstream and outlier, the expected and the unexpected, sit in the same picture. Nothing is pre-selected because it looked interesting.",
+    title: "It maps the whole conversation.",
+    body: "Every post is placed by how similar its wording is to every other. Nothing is left out before the reading starts.",
   },
   {
-    title: "No cherry-picking.",
-    body: "The analyst does not decide which fragments stand for the whole. The machine lays out the terrain first; the analyst interprets it. Where the evidence is thin, the reading shows that too, rather than filling the gap with confidence. We tell you when a conversation is too small to carry a conclusion.",
+    title: "It shows what is not yet explained.",
+    body: "Posts that no narrative accounts for stay visible on the map. That remainder is where most new questions come from.",
   },
   {
-    title: "Every finding carries its posts.",
-    body: "Each narrative, tension and persona comes with its share of the conversation and the verbatims behind it. Any claim in the report can be traced back to what people actually said.",
+    title: "It makes the reading checkable.",
+    body: "Each finding shows how many posts support it and where they sit. You can open the posts behind any claim.",
   },
   {
-    title: "The same reading, every month.",
-    body: "Because the whole conversation is read the same way each time, a study can be re-read month after month in the same framework. That is what makes Public Mood possible: you see what changed, what is new and what faded, before it reaches a tracker.",
-  },
-  {
-    title: "Speed without a smaller sample.",
-    body: "Agenda maps a whole conversation in 48 hours. Frames delivers first learnings in a week. The depth is the analyst's; the coverage is the machine's.",
+    title: "It leaves the judgment to people.",
+    body: "The machine clusters and suggests. A senior analyst names what a group of posts means and signs it.",
   },
 ];
 
-const FOR_EACH_PRODUCT = [
-  { name: "Agenda", body: "The topic map of the whole conversation, sized by share, in 48 hours." },
-  { name: "Frames", body: "Every narrative counted across the full conversation, so you know how large each story is and which is growing." },
-  { name: "Publics", body: "Your brand's footprint measured against competitors, including the posts that never name you." },
-  { name: "Common Sense", body: "Your own strategic questions put to every post, not to a sample." },
-  { name: "Public Mood", body: "The study re-read every month in the same framework, so change is visible at a glance." },
-];
+const H2 = "text-4xl font-light leading-tight text-white md:text-6xl";
 
 export default function TechnologyPage() {
   return (
@@ -63,78 +53,54 @@ export default function TechnologyPage() {
 
       <section className="px-6 pb-24 pt-32 md:pb-32 md:pt-44" data-analytics-section="technology_hero">
         <div className="mx-auto max-w-6xl">
-          <p className="text-xs uppercase tracking-[0.2em] text-accent">
-            The Reading Machine — how we read whole conversations
-          </p>
+          <p className="text-xs uppercase tracking-[0.2em] text-accent">The Reading Machine</p>
           <h1
-            className={`${cormorant.className} mt-6 max-w-5xl text-[clamp(3.6rem,7.5vw,7rem)] leading-[0.88] tracking-tight text-white`}
+            className={`${cormorant.className} mt-6 max-w-5xl text-[clamp(3.2rem,7vw,6.5rem)] leading-[0.9] tracking-tight text-white`}
           >
-            Technology is how we scale Social Truth. It is not what produces it.
+            The unexpected is at the edge of a conversation. So we read all of it.
           </h1>
           <div className="mt-10 h-px w-16 bg-accent" />
           <p className="mt-10 max-w-3xl text-xl font-light leading-relaxed text-text-secondary">
-            The world does not lack data. It lacks the kind of reading that makes data legible.
-          </p>
-        </div>
-      </section>
-
-      <section className="border-t border-border-grey px-6 py-24 md:py-32" data-analytics-section="technology_reading">
-        <div className="mx-auto max-w-4xl space-y-8 text-xl font-light leading-relaxed text-text-secondary">
-          <p>
-            Qualitative research has always had to choose. Read deeply, and you read a sample: the
-            fragments someone decided were worth seeing. Read everything, and you count instead of
-            read.
-          </p>
-          <p className="border-l border-accent pl-7 text-3xl leading-snug text-white">
-            That is why we built The Reading Machine.
-          </p>
-          <p>
-            It is the in-house technology we built so our analysts no longer have to choose. It
-            lets them read the whole conversation, not a sample, and still read it as qualitative
-            researchers. It does not replace the analyst. It gives them something they have never
-            had before: the ability to work with the whole conversation.
+            A keyword count shows the centre. A sample drops the unusual post. The Reading Machine
+            places every post on a map, so an analyst can see the small group that does not fit and
+            read it.
           </p>
         </div>
       </section>
 
       <section
         className="relative overflow-hidden bg-dark-grey px-6 py-24 md:py-32"
-        data-analytics-section="technology_measurable"
+        data-analytics-section="technology_what_it_does"
       >
         {/* Reading Machine map as a faded backdrop behind the intro text */}
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[44rem] md:left-auto md:h-[48rem] md:w-[72%]">
           <Image
             src="/media/reading-machine-semantic-map.png"
-            alt="The Reading Machine mapping a whole conversation into semantic space"
+            alt="The Reading Machine placing every post of a conversation on a map"
             fill
             sizes="(min-width: 768px) 72vw, 100vw"
             className="object-cover object-[70%_top] opacity-25 md:opacity-50"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-dark-grey via-dark-grey/70 to-dark-grey/10" />
           <div className="absolute inset-0 bg-gradient-to-t from-dark-grey via-dark-grey/20 to-dark-grey/40" />
-          <p className="absolute bottom-24 right-6 hidden text-[0.65rem] uppercase tracking-[0.18em] text-text-secondary md:block">
-            The Reading Machine — a whole conversation mapped into semantic space
-          </p>
         </div>
 
         <div className="relative mx-auto max-w-6xl">
-          <p className="text-xs uppercase tracking-[0.2em] text-accent">What that means for your project</p>
-          <h2 className="mt-6 max-w-4xl text-4xl font-light leading-tight text-white md:text-6xl">
-            Not a sample of the category. The conversation itself.
-          </h2>
-          <p
-            className={`${cormorant.className} mt-10 max-w-4xl text-4xl italic leading-tight text-accent md:text-5xl`}
-          >
-            Other tools count patterns. The Reading Machine makes meaning readable.
+          <h2 className={`max-w-4xl ${H2}`}>What it does.</h2>
+          <p className="mt-10 max-w-3xl text-xl font-light leading-relaxed text-text-secondary">
+            The Reading Machine is our own analysis system. It extends a qualitative analyst&apos;s
+            reading to a whole conversation, tens of thousands of posts at a time.
           </p>
 
           <div className="mt-16">
-            {FOR_YOUR_PROJECT.map((item) => (
+            {WHAT_IT_DOES.map((item) => (
               <article key={item.title} className="relative border-t border-border-grey py-9">
                 <div className="absolute bottom-0 left-0 top-9 hidden w-px bg-border-grey md:block" />
                 <div className="md:pl-10">
                   <h3 className="text-3xl font-light text-white">{item.title}</h3>
-                  <p className="mt-5 max-w-3xl text-base leading-relaxed text-text-secondary">{item.body}</p>
+                  <p className="mt-5 max-w-3xl text-lg font-light leading-relaxed text-text-secondary">
+                    {item.body}
+                  </p>
                 </div>
               </article>
             ))}
@@ -142,77 +108,38 @@ export default function TechnologyPage() {
         </div>
       </section>
 
-      <section className="px-6 py-24 md:py-32" data-analytics-section="technology_products">
+      <section className="border-t border-border-grey px-6 py-24 md:py-32" data-analytics-section="technology_numbers">
         <div className="mx-auto max-w-5xl">
-          <h2 className="text-4xl font-light leading-tight text-white md:text-6xl">
-            What it does for each product.
-          </h2>
-          <dl className="mt-12 divide-y divide-border-grey border-y border-border-grey">
-            {FOR_EACH_PRODUCT.map((item) => (
-              <div key={item.name} className="grid gap-2 py-6 md:grid-cols-[11rem_1fr] md:gap-8">
-                <dt className={`${cormorant.className} text-2xl leading-tight text-white`}>{item.name}</dt>
-                <dd className="text-base font-light leading-relaxed text-text-secondary">{item.body}</dd>
-              </div>
-            ))}
-          </dl>
-          <Link
-            href="/what-we-do"
-            className="mt-10 inline-flex text-sm uppercase tracking-[0.16em] text-accent transition-colors hover:text-white"
-            data-analytics-event="cta_click"
-            data-analytics-label="What we do"
-            data-analytics-location="technology_products"
-            data-analytics-destination="/what-we-do"
-          >
-            The products &rarr;
-          </Link>
-        </div>
-      </section>
-
-      <section className="border-t border-border-grey px-6 py-24 md:py-32" data-analytics-section="technology_ai">
-        <div className="mx-auto max-w-5xl">
-          <p className="text-xs uppercase tracking-[0.2em] text-accent">Where others use AI</p>
-          <h2 className="mt-6 text-4xl font-light leading-tight text-white md:text-6xl">
-            We use our own.
-          </h2>
-          <div className="mt-10 max-w-4xl space-y-8 text-xl font-light leading-relaxed text-text-secondary">
-            <p>
-              The Reading Machine is Bakamo&apos;s in-house technology. It reads, files and counts.
-              It does not name a narrative, does not write a sentence of interpretation, and does
-              not decide what matters. Our analysts do that, and they sign it.
-            </p>
-            <p className="text-white">The Reading Machine gives us scale. Humans give it meaning.</p>
-          </div>
-          <p className="mt-14 max-w-3xl border-l border-accent pl-7 text-base leading-relaxed text-text-secondary">
-            For the epistemologists: The Reading Machine is not an AI. It is a hermeneutic engine.
-            Language is given a position in semantic space; things that mean similar things sit
-            closer together. The machine does not decide what those relationships mean. It gives
-            the analyst a visible terrain on which to interpret them.
-          </p>
-        </div>
-      </section>
-
-      <section className="bg-dark-grey px-6 py-24 md:py-32" data-analytics-section="technology_point">
-        <div className="mx-auto max-w-5xl">
-          <p className="text-xs uppercase tracking-[0.2em] text-accent">Which is the point</p>
-          <h2
-            className={`${cormorant.className} mt-6 max-w-4xl text-[clamp(2.8rem,5.5vw,5rem)] leading-[0.95] tracking-tight text-white`}
-          >
-            The Reading Machine is our methodology at hyperdrive.
-          </h2>
+          <h2 className={H2}>What the numbers mean.</h2>
           <p className="mt-10 max-w-4xl text-xl font-light leading-relaxed text-text-secondary">
-            It is not a product bolted onto our research. It is an extension of the methodology
-            itself — another proof point for the argument we have been making for ten years:
+            Every count in our reports is a count of posts. It describes the conversation: how much
+            of it a topic takes up, how close two meanings sit. It does not describe the market.
+            Turning a finding into a market figure is the job of the survey that follows.
           </p>
-          <p className="mt-10 max-w-4xl border-l border-accent pl-7 text-3xl font-light leading-snug text-white">
-            The evidence you need already exists, unprompted, in the way people talk to each other.
+        </div>
+      </section>
+
+      <section className="bg-dark-grey px-6 py-24 md:py-32" data-analytics-section="technology_summary">
+        <div className="mx-auto max-w-5xl">
+          <h2 className={H2}>Not a summary tool.</h2>
+          <p className="mt-10 max-w-4xl text-xl font-light leading-relaxed text-text-secondary">
+            An AI summary gives you the average of a conversation. The average is what you already
+            knew. We built the Reading Machine to keep the exceptions in view, because the
+            exception is usually the question nobody asked.
           </p>
-          <div className="mt-14 space-y-2 text-2xl font-light leading-snug text-text-secondary">
-            <p>Technology lets us read more of it.</p>
-            <p>Humans make sense of it.</p>
-          </div>
-          <p className={`${cormorant.className} mt-10 text-5xl italic text-accent md:text-6xl`}>
-            Build on reality.
+          <p className={`${cormorant.className} mt-14 text-4xl italic leading-tight text-accent md:text-5xl`}>
+            The machine reads at scale. People make sense of it.
           </p>
+          <Link
+            href={BOOKING_HREF}
+            className="cta-button mt-12 text-sm"
+            data-analytics-event="book_demo_click"
+            data-analytics-label="Book a demo of the Reading Machine"
+            data-analytics-location="technology_summary"
+            data-analytics-destination={BOOKING_HREF}
+          >
+            Book a demo of the Reading Machine
+          </Link>
         </div>
       </section>
     </main>

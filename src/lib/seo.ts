@@ -70,7 +70,7 @@ export const ORGANIZATION_SCHEMA = {
       },
       image: `${SITE_URL}/brand/bakamo-mark.png`,
       description:
-        "Bakamo is a social intelligence company that surfaces Social Truth, then builds the quantitative instruments that measure it.",
+        "Bakamo is a social intelligence company. It reads what people say to each other and finds the questions nobody thought to ask.",
       foundingDate: "2016",
       founder: FOUNDER_PERSON,
       email: "info@bakamosocial.com",

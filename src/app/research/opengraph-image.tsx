@@ -1,8 +1,8 @@
 import { OG_CONTENT_TYPE, OG_SIZE, ogImageAlt, renderOgImage } from "@/lib/og-image";
 
 const content = {
-  title: "Research",
-  descriptor: "Bakamo's public studies and the Atlas of Social Truths",
+  title: "The Atlas of the Unexpected",
+  descriptor: "What was expected, what we found, and the question it raised",
 };
 
 export const alt = ogImageAlt(content);

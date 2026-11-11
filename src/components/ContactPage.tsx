@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { Cormorant_Garamond } from "next/font/google";
 import { gsap } from "gsap";
+import InquiryForm from "@/components/InquiryForm";
 import { BOOKING_ANCHOR, BOOKING_HREF, BOOKING_LOBBY_URL, BOOKING_MINUTES } from "@/lib/booking";
 
 const cormorant = Cormorant_Garamond({
@@ -20,36 +21,21 @@ const OFFICES = [
   { city: "Kuala Lumpur", country: "Malaysia", role: "APAC" },
 ];
 
-const STARTING_POINTS = [
-  {
-    title: "Tracker refresh",
-    body: "You suspect the current instrument still measures yesterday's reality.",
-  },
-  {
-    title: "Segmentation or innovation brief",
-    body: "You want the next large study to begin from live market language rather than internal vocabulary.",
-  },
-  {
-    title: "Independent outside read",
-    body: "Leadership needs a ground-truth check before strategic momentum hardens into certainty.",
-  },
-];
-
 const WHAT_HAPPENS = [
   {
     number: "01",
     title: "Book a demo",
-    body: `Pick a ${BOOKING_MINUTES}-minute slot and tell us what decision is coming up and where your team feels uncertainty, drift, or risk.`,
+    body: `Pick a ${BOOKING_MINUTES}-minute slot and tell us about the study, the tracker or the brief you are about to commit to.`,
   },
   {
     number: "02",
     title: "We scope the right entry point",
-    body: "If the job is diagnosis, mapping, or calibration, we will tell you that directly instead of forcing the wrong product shape.",
+    body: "We tell you how we would look for what your study is missing, and which product fits.",
   },
   {
     number: "03",
     title: "Begin the work",
-    body: "The first engagement is designed to sharpen the brief, reveal fault lines, and show what the business should investigate next.",
+    body: "You leave the first engagement with the questions to ask next.",
   },
 ];
 
@@ -111,14 +97,12 @@ export default function ContactPage() {
               <h1
                 className={`${cormorant.className} contact-title mt-6 max-w-4xl text-[clamp(3.2rem,7vw,6.4rem)] leading-[0.88] tracking-tight text-white`}
               >
-                Start the conversation.
+                What is your research not asking?
               </h1>
               <div className="mt-10 h-px w-16 bg-accent" />
               <p className="contact-body mt-8 max-w-2xl text-lg font-light leading-relaxed text-text-secondary">
-                If you have a tracker to refresh, a segmentation to build, an
-                innovation program to shape, or a strategy that needs an outside
-                read, start here. We will help determine the right entry point
-                before the brief gets fixed in the wrong form.
+                Tell us about the study, the tracker or the brief you are about to commit to. We
+                will tell you how we would look for what it is missing.
               </p>
               <div className="contact-body mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
                 <a
@@ -270,38 +254,11 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section
-        className="px-6 py-24 md:py-28"
-        data-analytics-section="contact_reasons"
-        data-analytics-label="Contact Reasons"
-      >
-        <div className="mx-auto max-w-6xl grid gap-12 lg:grid-cols-[minmax(0,0.86fr)_minmax(0,1.14fr)] lg:items-start">
-          <div>
-            <p className="text-sm uppercase tracking-[0.2em] text-accent">
-              Good reasons to start a conversation
-            </p>
-            <h2 className="mt-6 text-3xl font-extralight leading-tight text-white md:text-5xl">
-              Most teams arrive when something feels off, stale, or too expensive to guess.
-            </h2>
-            <p className="mt-6 max-w-xl text-lg font-light leading-relaxed text-text-secondary">
-              You do not need a perfectly formed brief. In many cases the first
-              useful move is clarifying what kind of question the business is
-              actually facing.
-            </p>
-          </div>
-
-          <div className="grid gap-4">
-            {STARTING_POINTS.map((item) => (
-              <article
-                key={item.title}
-                className="contact-card rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-6"
-              >
-                <h3 className="text-lg font-medium text-white">{item.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-text-secondary">
-                  {item.body}
-                </p>
-              </article>
-            ))}
+      <section className="px-6 py-24 md:py-28" data-analytics-label="Inquiry form">
+        <div className="mx-auto max-w-4xl">
+          <p className="text-sm uppercase tracking-[0.22em] text-accent">Tell us about your study</p>
+          <div className="mt-10">
+            <InquiryForm email={email} />
           </div>
         </div>
       </section>
@@ -378,11 +335,11 @@ export default function ContactPage() {
           <h2
             className={`${cormorant.className} mt-6 text-4xl leading-[0.96] text-white md:text-5xl`}
           >
-            Ready to build on reality?
+            Before you write the questionnaire, find out what it is missing.
           </h2>
           <p className="mx-auto mt-8 max-w-2xl text-lg font-light leading-relaxed text-text-secondary">
-            Book a demo and bring the context, the problem, or the upcoming
-            decision. We will help work out the most useful way to start.
+            Bring us the study you are about to run, the tracker you are about to renew or the
+            brief you are about to send.
           </p>
           <a
             href={bookingHref}

@@ -22,7 +22,7 @@ type Props = {
 
 /**
  * Everything a reader sees about one Atlas case: image, headline numbers, the
- * Social Truth, the places it covers and the way on to its page.
+ * finding, the places it covers and the way on to its page.
  */
 export default function AtlasCaseDetail({ atlasCase, variant, analyticsLocation }: Props) {
   const locations = atlasCase.locations ?? [];

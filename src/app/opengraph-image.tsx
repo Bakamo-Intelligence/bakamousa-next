@@ -1,8 +1,8 @@
 import { OG_CONTENT_TYPE, OG_SIZE, ogImageAlt, renderOgImage } from "@/lib/og-image";
 
 const content = {
-  title: "Social Truth",
-  descriptor: "Social intelligence and consumer research",
+  title: "We find what nobody thought to ask about",
+  descriptor: "Discovery before measurement",
 };
 
 export const alt = ogImageAlt(content);

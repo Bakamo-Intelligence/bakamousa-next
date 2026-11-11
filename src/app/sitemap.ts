@@ -5,17 +5,18 @@ import { SITE_URL } from "@/lib/site-url";
 // lastModified is the date the page's content last changed. Update the date
 // when a page's copy changes; Google ignores lastmod that changes on every fetch.
 const STATIC_PAGES: Array<{ path: string; lastModified: string }> = [
-  { path: "", lastModified: "2026-09-15" },
-  { path: "/about", lastModified: "2026-09-15" },
-  { path: "/what-we-do", lastModified: "2026-10-15" },
-  { path: "/our-method", lastModified: "2026-10-15" },
+  { path: "", lastModified: "2026-11-11" },
+  { path: "/about", lastModified: "2026-11-11" },
+  { path: "/what-we-do", lastModified: "2026-11-11" },
+  { path: "/our-method", lastModified: "2026-11-11" },
   { path: "/our-method/luhmann", lastModified: "2026-10-13" },
-  { path: "/technology", lastModified: "2026-09-15" },
+  { path: "/technology", lastModified: "2026-11-11" },
+  { path: "/agencies", lastModified: "2026-11-11" },
   { path: "/brands", lastModified: "2026-10-15" },
   { path: "/health", lastModified: "2026-10-15" },
   { path: "/public-sector", lastModified: "2026-10-15" },
   { path: "/disinformation", lastModified: "2026-10-15" },
-  { path: "/research", lastModified: "2026-09-15" },
+  { path: "/research", lastModified: "2026-11-11" },
   { path: "/research/french-election-2017", lastModified: "2026-10-04" },
   { path: "/research/bare-zero-proof", lastModified: "2026-10-05" },
   { path: "/research/polish-school-meals", lastModified: "2026-10-14" },
@@ -23,7 +24,7 @@ const STATIC_PAGES: Array<{ path: string; lastModified: string }> = [
   { path: "/eve-effect", lastModified: "2026-10-18" },
   { path: "/elections", lastModified: "2026-09-15" },
   { path: "/migration", lastModified: "2026-09-15" },
-  { path: "/contact", lastModified: "2026-09-15" },
+  { path: "/contact", lastModified: "2026-11-11" },
   { path: "/privacy", lastModified: "2026-09-15" },
 ];
 

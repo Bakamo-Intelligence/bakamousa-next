@@ -24,11 +24,11 @@ export const metadata: Metadata = {
     template: "%s | Bakamo",
   },
   description:
-    "Bakamo is a social intelligence company. We read unprompted conversation to find consumer insights, then build better surveys and trackers for brands, health and the public sector.",
+    "Most research answers your questions. Bakamo finds the ones nobody thought to ask. We read what people say to each other about your category and bring back the questions to ask next.",
   openGraph: pageOpenGraph(
     "/",
     "Bakamo | Social Intelligence & Consumer Research",
-    "Bakamo is a social intelligence company. We read unprompted conversation to find consumer insights, then build better surveys and trackers for brands, health and the public sector.",
+    "Most research answers your questions. Bakamo finds the ones nobody thought to ask. We read what people say to each other about your category and bring back the questions to ask next.",
   ),
   // Share images come from the opengraph-image/twitter-image files. Title and
   // description are left out so X falls back to each page's Open Graph tags.
