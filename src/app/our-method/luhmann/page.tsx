@@ -200,11 +200,11 @@ export default function LuhmannPage() {
             href={BOOKING_HREF}
             className="cta-button mt-10 text-sm"
             data-analytics-event="book_demo_click"
-            data-analytics-label="Book a demo"
+            data-analytics-label="Book a meeting"
             data-analytics-location="luhmann_cta"
             data-analytics-destination={BOOKING_HREF}
           >
-            Book a demo
+            Book a meeting
           </Link>
         </div>
       </section>

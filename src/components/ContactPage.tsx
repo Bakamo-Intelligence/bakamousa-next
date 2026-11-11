@@ -24,7 +24,7 @@ const OFFICES = [
 const WHAT_HAPPENS = [
   {
     number: "01",
-    title: "Book a demo",
+    title: "Book a meeting",
     body: `Pick a ${BOOKING_MINUTES}-minute slot and tell us about the study, the tracker or the brief you are about to commit to.`,
   },
   {
@@ -109,11 +109,11 @@ export default function ContactPage() {
                   href={bookingHref}
                   className="cta-button text-sm"
                   data-analytics-event="book_demo_click"
-                  data-analytics-label="Book a demo"
+                  data-analytics-label="Book a meeting"
                   data-analytics-location="contact_hero"
                   data-analytics-destination={BOOKING_HREF}
                 >
-                  Book a demo
+                  Book a meeting
                 </a>
               </div>
             </div>
@@ -181,7 +181,7 @@ export default function ContactPage() {
       >
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-start">
           <div>
-            <p className="text-sm uppercase tracking-[0.2em] text-accent">Book a demo</p>
+            <p className="text-sm uppercase tracking-[0.2em] text-accent">Book a meeting</p>
             <h2
               className={`${cormorant.className} mt-6 text-4xl leading-[0.98] text-white md:text-5xl`}
             >
@@ -219,11 +219,11 @@ export default function ContactPage() {
               data-booking-trigger
               className="cta-button text-sm"
               data-analytics-event="book_demo_click"
-              data-analytics-label="Book a demo"
+              data-analytics-label="Book a meeting"
               data-analytics-location="contact_booking"
               data-analytics-destination={BOOKING_HREF}
             >
-              Book a demo
+              Book a meeting
             </a>
             <p className="max-w-md text-xs leading-relaxed text-text-muted">
               Bookings are handled by Roam, which receives the details you enter.{" "}
@@ -345,11 +345,11 @@ export default function ContactPage() {
             href={bookingHref}
             className="cta-button mt-10 text-sm"
             data-analytics-event="book_demo_click"
-            data-analytics-label="Book a demo"
+            data-analytics-label="Book a meeting"
             data-analytics-location="contact_final_cta"
             data-analytics-destination={BOOKING_HREF}
           >
-            Book a demo
+            Book a meeting
           </a>
         </div>
       </section>

@@ -95,7 +95,7 @@ export default function AboutPage() {
 
       {/* What we are for */}
       <section className="border-t border-border-grey px-6 py-24 md:py-32" data-analytics-section="about_why">
-        <div className="mx-auto max-w-5xl">
+        <div className="mx-auto max-w-6xl">
           <h2 className="max-w-4xl text-4xl font-light leading-tight text-white md:text-6xl">
             What we are for.
           </h2>
@@ -117,7 +117,7 @@ export default function AboutPage() {
 
       {/* How we work */}
       <section className="bg-dark-grey px-6 py-24 md:py-32" data-analytics-section="about_how">
-        <div className="mx-auto max-w-5xl">
+        <div className="mx-auto max-w-6xl">
           <h2 className="max-w-4xl text-4xl font-light leading-tight text-white md:text-6xl">
             How we work.
           </h2>

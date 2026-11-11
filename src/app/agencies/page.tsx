@@ -91,7 +91,7 @@ export default function AgenciesPage() {
       </section>
 
       <section className="border-t border-border-grey px-6 py-24 md:py-32" data-analytics-section="agencies_receive">
-        <div className="mx-auto max-w-5xl">
+        <div className="mx-auto max-w-6xl">
           <h2 className={H2}>What you receive.</h2>
           <ul className="mt-12 divide-y divide-border-grey border-y border-border-grey">
             {YOU_RECEIVE.map((item) => (
@@ -104,7 +104,7 @@ export default function AgenciesPage() {
       </section>
 
       <section className="bg-dark-grey px-6 py-24 md:py-32" data-analytics-section="agencies_cta">
-        <div className="mx-auto max-w-5xl">
+        <div className="mx-auto max-w-6xl">
           <h2 className={H2}>What stays with you.</h2>
           <p className="mt-10 max-w-3xl text-xl font-light leading-relaxed text-text-secondary">
             The interviews, the sample, the numbers and the client relationship. We appear in your

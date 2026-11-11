@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { BOOKING_HREF } from "@/lib/booking";
 import { Cormorant_Garamond } from "next/font/google";
@@ -104,14 +105,14 @@ export default function SocialTruthHome({ heroVideo }: { heroVideo: string }) {
           <h1
             className={`${cormorant.className} mt-8 max-w-5xl text-[clamp(2.75rem,6vw,5.75rem)] leading-[0.95] tracking-tight text-white`}
           >
-            Most research answers your questions. Bakamo finds the ones nobody thought to ask.
+            Most research starts with what you know. Bakamo finds what you don&apos;t.
           </h1>
           <div className="mt-10 h-px w-16 bg-accent" />
           <p className="mt-10 max-w-3xl text-lg font-light leading-relaxed text-white/75 md:text-xl">
-            A questionnaire or a discussion guide can only contain what its author already
-            suspected. We read what people say to each other about your category and bring back
-            what your research had no place for: the people, the meanings and the words. You leave
-            with the questions to ask next.
+            Every questionnaire starts with assumptions about what matters. We start with people:
+            what they talk about, what they care about and what they take for granted. By listening
+            before asking, we uncover the meanings, motivations and language that research
+            questions often miss. The result is a better understanding of what to ask next.
           </p>
           <div className="mt-12 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
             <Link
@@ -221,8 +222,22 @@ export default function SocialTruthHome({ heroVideo }: { heroVideo: string }) {
       </section>
 
       {/* The Reading Machine */}
-      <section className="bg-dark-grey px-6 py-24 md:py-32" data-analytics-section="home_technology">
-        <div className="mx-auto max-w-5xl">
+      <section
+        className="relative overflow-hidden bg-dark-grey px-6 py-24 md:py-32"
+        data-analytics-section="home_technology"
+      >
+        <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[62%] md:block">
+          <Image
+            src="/media/reading-machine-semantic-map.png"
+            alt=""
+            fill
+            sizes="62vw"
+            className="object-cover object-[70%_center] opacity-50"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-dark-grey via-dark-grey/60 to-dark-grey/10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-dark-grey/60 via-transparent to-dark-grey/60" />
+        </div>
+        <div className="relative mx-auto max-w-6xl">
           <p className={EYEBROW}>The Reading Machine</p>
           <h2 className={`mt-6 ${H2}`}>
             We read the whole conversation, because the unexpected sits at its edge.
@@ -346,7 +361,7 @@ export default function SocialTruthHome({ heroVideo }: { heroVideo: string }) {
 
       {/* FAQ */}
       <section className="border-t border-border-grey bg-dark-grey px-6 py-24 md:py-32" data-analytics-section="home_faq">
-        <div className="mx-auto max-w-5xl">
+        <div className="mx-auto max-w-6xl">
           <p className="text-xs uppercase tracking-[0.2em] text-accent">Questions</p>
           <h2 className={`mt-6 ${H2}`}>Social intelligence, answered plainly.</h2>
           <div className="mt-12 divide-y divide-border-grey border-y border-border-grey">

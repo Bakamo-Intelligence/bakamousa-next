@@ -3,6 +3,7 @@ import { pageOpenGraph } from "@/lib/seo";
 import Link from "next/link";
 import { BOOKING_HREF } from "@/lib/booking";
 import { Cormorant_Garamond } from "next/font/google";
+import { SocialTheory } from "@/components/social-theory/SocialTheory";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -84,7 +85,7 @@ const COMPARISON = [
   { label: "You leave with", cells: ["Questions", "Explanations", "Numbers"] },
 ];
 
-const SOURCES = [
+const SOURCES: { name: string; idea: string; text: string; href?: string; linkLabel?: string }[] = [
   {
     name: "Charles S. Peirce",
     idea: "abduction",
@@ -114,6 +115,8 @@ const SOURCES = [
     name: "Niklas Luhmann",
     idea: "systems theory",
     text: "Meaning forms in communication between people, so that is where we read.",
+    href: "/our-method/luhmann",
+    linkLabel: "Why we read the way we do",
   },
 ];
 
@@ -237,7 +240,7 @@ export default function OurMethodPage() {
 
       {/* Where the method comes from */}
       <section className="bg-dark-grey px-6 py-24 md:py-32" data-analytics-section="method_sources">
-        <div className="mx-auto max-w-5xl">
+        <div className="mx-auto max-w-6xl">
           <h2 className={H2}>Where the method comes from.</h2>
           <p className="mt-10 max-w-3xl text-xl font-light leading-relaxed text-text-secondary">
             Finding and testing are different jobs, and research has long treated them separately.
@@ -254,7 +257,21 @@ export default function OurMethodPage() {
                     {source.idea}
                   </span>
                 </dt>
-                <dd className="text-lg font-light leading-relaxed text-text-secondary">{source.text}</dd>
+                <dd className="text-lg font-light leading-relaxed text-text-secondary">
+                  {source.text}
+                  {source.href ? (
+                    <Link
+                      href={source.href}
+                      className="mt-3 block text-sm uppercase tracking-[0.16em] text-accent transition-colors hover:text-white"
+                      data-analytics-event="cta_click"
+                      data-analytics-label={source.linkLabel}
+                      data-analytics-location="method_sources"
+                      data-analytics-destination={source.href}
+                    >
+                      {source.linkLabel} &rarr;
+                    </Link>
+                  ) : null}
+                </dd>
               </div>
             ))}
           </dl>
@@ -265,6 +282,8 @@ export default function OurMethodPage() {
           </p>
         </div>
       </section>
+
+      <SocialTheory headingClassName={cormorant.className} />
 
       {/* Two ways to work with us */}
       <section className="border-t border-border-grey px-6 py-24 md:py-32" data-analytics-section="method_cta">

@@ -39,9 +39,35 @@ const WHAT_IT_DOES = [
     body: "Each finding shows how many posts support it and where they sit. You can open the posts behind any claim.",
   },
   {
+    title: "It tells you when the evidence is thin.",
+    body: "Where a conversation is too small to carry a conclusion, the reading shows that.",
+  },
+  {
+    title: "It reads the same way every month.",
+    body: "A study can be re-read in the same framework, which is what makes Public Mood possible.",
+  },
+  {
     title: "It leaves the judgment to people.",
     body: "The machine clusters and suggests. A senior analyst names what a group of posts means and signs it.",
   },
+];
+
+const STUDY_STATS = [
+  { value: "214,000", label: "public posts on the map" },
+  { value: "130,000", label: "people writing them" },
+  { value: "24", label: "months of conversation" },
+  { value: "5,000+", label: "posts read closely by analysts" },
+];
+
+const FOR_EACH_PRODUCT = [
+  { name: "Agenda", body: "The topic map of the whole conversation, sized by share of conversation, in 48 hours." },
+  {
+    name: "Frames",
+    body: "Every narrative counted across the full conversation, so you see how much of it each story takes up.",
+  },
+  { name: "Publics", body: "Your brand compared with competitors, including the posts that never name you." },
+  { name: "Common Sense", body: "Your own strategic questions put to every post." },
+  { name: "Public Mood", body: "The study re-read every month in the same framework." },
 ];
 
 const H2 = "text-4xl font-light leading-tight text-white md:text-6xl";
@@ -68,24 +94,39 @@ export default function TechnologyPage() {
         </div>
       </section>
 
-      <section
-        className="relative overflow-hidden bg-dark-grey px-6 py-24 md:py-32"
-        data-analytics-section="technology_what_it_does"
-      >
-        {/* Reading Machine map as a faded backdrop behind the intro text */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[44rem] md:left-auto md:h-[48rem] md:w-[72%]">
-          <Image
-            src="/media/reading-machine-semantic-map.png"
-            alt="The Reading Machine placing every post of a conversation on a map"
-            fill
-            sizes="(min-width: 768px) 72vw, 100vw"
-            className="object-cover object-[70%_top] opacity-25 md:opacity-50"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-dark-grey via-dark-grey/70 to-dark-grey/10" />
-          <div className="absolute inset-0 bg-gradient-to-t from-dark-grey via-dark-grey/20 to-dark-grey/40" />
-        </div>
+      <section className="border-t border-border-grey px-6 py-24 md:py-32" data-analytics-section="technology_why">
+        <div className="mx-auto max-w-6xl">
+          <div className="max-w-4xl space-y-8 text-xl font-light leading-relaxed text-text-secondary">
+            <p>
+              Qualitative research has always had to choose. Read deeply, and you read a sample:
+              the fragments someone decided were worth seeing. Read everything, and you count
+              instead of read.
+            </p>
+            <p className="border-l border-accent pl-7 text-3xl leading-snug text-white">
+              We built the Reading Machine so our analysts no longer have to choose.
+            </p>
+          </div>
 
-        <div className="relative mx-auto max-w-6xl">
+          <figure className="mt-16">
+            <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[2rem] border border-white/10 bg-dark-grey">
+              <Image
+                src="/media/reading-machine-semantic-map.png"
+                alt="The Reading Machine's map of a whole conversation, with every post placed by its wording"
+                fill
+                sizes="(min-width: 1152px) 1152px, 100vw"
+                className="object-cover"
+              />
+            </div>
+            <figcaption className="mt-6 max-w-3xl text-lg font-light leading-relaxed text-text-secondary">
+              A whole conversation on one map. Posts with similar wording sit close together. The
+              small groups at the edge are where we look first.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section className="bg-dark-grey px-6 py-24 md:py-32" data-analytics-section="technology_what_it_does">
+        <div className="mx-auto max-w-6xl">
           <h2 className={`max-w-4xl ${H2}`}>What it does.</h2>
           <p className="mt-10 max-w-3xl text-xl font-light leading-relaxed text-text-secondary">
             The Reading Machine is our own analysis system. It extends a qualitative analyst&apos;s
@@ -108,8 +149,62 @@ export default function TechnologyPage() {
         </div>
       </section>
 
+      <section className="border-t border-border-grey px-6 py-24 md:py-32" data-analytics-section="technology_study">
+        <div className="mx-auto max-w-6xl">
+          <p className="text-xs uppercase tracking-[0.2em] text-accent">BARE Zero Proof</p>
+          <h2 className={`mt-6 ${H2}`}>One study in numbers.</h2>
+          <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-12 md:grid-cols-4">
+            {STUDY_STATS.map((stat) => (
+              <div key={stat.label}>
+                <p className={`${cormorant.className} text-[clamp(2.6rem,5vw,4.5rem)] leading-none text-white`}>
+                  {stat.value}
+                </p>
+                <p className="mt-3 text-xs uppercase tracking-[0.16em] text-text-secondary">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-14 max-w-3xl text-xl font-light leading-relaxed text-text-secondary">
+            The people who had stopped drinking were one group on that map, away from the centre.
+          </p>
+          <Link
+            href="/research/bare-zero-proof"
+            className="mt-8 inline-flex text-sm uppercase tracking-[0.16em] text-accent transition-colors hover:text-white"
+            data-analytics-event="cta_click"
+            data-analytics-label="Read the case study"
+            data-analytics-location="technology_study"
+            data-analytics-destination="/research/bare-zero-proof"
+          >
+            Read the case study &rarr;
+          </Link>
+        </div>
+      </section>
+
+      <section className="bg-dark-grey px-6 py-24 md:py-32" data-analytics-section="technology_products">
+        <div className="mx-auto max-w-6xl">
+          <h2 className={H2}>What it does for each product.</h2>
+          <dl className="mt-12 divide-y divide-border-grey border-y border-border-grey">
+            {FOR_EACH_PRODUCT.map((item) => (
+              <div key={item.name} className="grid gap-2 py-6 md:grid-cols-[14rem_1fr] md:gap-8">
+                <dt className={`${cormorant.className} text-3xl leading-tight text-white`}>{item.name}</dt>
+                <dd className="text-lg font-light leading-relaxed text-text-secondary">{item.body}</dd>
+              </div>
+            ))}
+          </dl>
+          <Link
+            href="/what-we-do"
+            className="mt-10 inline-flex text-sm uppercase tracking-[0.16em] text-accent transition-colors hover:text-white"
+            data-analytics-event="cta_click"
+            data-analytics-label="The products"
+            data-analytics-location="technology_products"
+            data-analytics-destination="/what-we-do"
+          >
+            The products &rarr;
+          </Link>
+        </div>
+      </section>
+
       <section className="border-t border-border-grey px-6 py-24 md:py-32" data-analytics-section="technology_numbers">
-        <div className="mx-auto max-w-5xl">
+        <div className="mx-auto max-w-6xl">
           <h2 className={H2}>What the numbers mean.</h2>
           <p className="mt-10 max-w-4xl text-xl font-light leading-relaxed text-text-secondary">
             Every count in our reports is a count of posts. It describes the conversation: how much
@@ -120,7 +215,7 @@ export default function TechnologyPage() {
       </section>
 
       <section className="bg-dark-grey px-6 py-24 md:py-32" data-analytics-section="technology_summary">
-        <div className="mx-auto max-w-5xl">
+        <div className="mx-auto max-w-6xl">
           <h2 className={H2}>Not a summary tool.</h2>
           <p className="mt-10 max-w-4xl text-xl font-light leading-relaxed text-text-secondary">
             An AI summary gives you the average of a conversation. The average is what you already
@@ -129,6 +224,11 @@ export default function TechnologyPage() {
           </p>
           <p className={`${cormorant.className} mt-14 text-4xl italic leading-tight text-accent md:text-5xl`}>
             The machine reads at scale. People make sense of it.
+          </p>
+          <p className="mt-14 max-w-3xl border-l border-accent pl-7 text-base leading-relaxed text-text-secondary">
+            For methodologists: the Reading Machine is not an AI. It is a hermeneutic engine.
+            Language is given a position in semantic space, and things that mean similar things sit
+            closer together. The machine does not decide what those relationships mean.
           </p>
           <Link
             href={BOOKING_HREF}

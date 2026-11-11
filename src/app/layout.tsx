@@ -20,15 +20,15 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Bakamo | Social Intelligence & Consumer Research",
+    default: "Bakamo | We Find What Nobody Thought to Ask About",
     template: "%s | Bakamo",
   },
   description:
-    "Most research answers your questions. Bakamo finds the ones nobody thought to ask. We read what people say to each other about your category and bring back the questions to ask next.",
+    "Most research starts with what you know. Bakamo finds what you don't. By listening before asking, we uncover the meanings, motivations and language that research questions often miss.",
   openGraph: pageOpenGraph(
     "/",
-    "Bakamo | Social Intelligence & Consumer Research",
-    "Most research answers your questions. Bakamo finds the ones nobody thought to ask. We read what people say to each other about your category and bring back the questions to ask next.",
+    "Bakamo | We Find What Nobody Thought to Ask About",
+    "Most research starts with what you know. Bakamo finds what you don't. By listening before asking, we uncover the meanings, motivations and language that research questions often miss.",
   ),
   // Share images come from the opengraph-image/twitter-image files. Title and
   // description are left out so X falls back to each page's Open Graph tags.

@@ -119,7 +119,7 @@ export default function PrivacyPage() {
                 any database — it exists only in our email inbox.
               </p>
               <p id="bookings" className="scroll-mt-28">
-                <strong className="text-text-primary">Demo bookings:</strong> If you book a demo, you
+                <strong className="text-text-primary">Demo bookings:</strong> If you book a meeting, you
                 enter your name, email address and any notes or answers to our booking questions into a
                 booking calendar provided by Roam. We receive these details, with the time you choose, as a
                 calendar invitation and email notification.
@@ -160,7 +160,7 @@ export default function PrivacyPage() {
                 analytics, and only after you have given consent.
               </p>
               <p>
-                The booking calendar is not loaded until you choose &ldquo;Book a demo&rdquo;. Once
+                The booking calendar is not loaded until you choose &ldquo;Book a meeting&rdquo;. Once
                 opened, it is served by Roam and the service providers Roam uses, which receive technical
                 data such as your IP address and browser details. Roam&rsquo;s privacy policy explains how
                 Roam handles data, including any cookies it uses.
