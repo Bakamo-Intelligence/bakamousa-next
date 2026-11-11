@@ -62,7 +62,7 @@ const TRIGGER_SELECTOR = `[data-booking-trigger], a[href$="#${BOOKING_ANCHOR}"]`
 type EmbedStatus = "idle" | "loading" | "ready" | "booked" | "failed";
 
 /**
- * Site-wide "Book a demo" layer. Roam's calendar is loaded the first time the
+ * Site-wide "Book a meeting" layer. Roam's calendar is loaded the first time the
  * visitor opens it, never on a plain page view. Roam's callbacks also pass the
  * booker's name, email and note; none of that reaches analytics.
  */
@@ -115,7 +115,7 @@ export default function BookingModal() {
         });
         connected.catch(() => undefined);
         // The iframe is appended before Roam starts waiting for it to connect.
-        parent.querySelector("iframe")?.setAttribute("title", "Book a demo with Bakamo");
+        parent.querySelector("iframe")?.setAttribute("title", "Book a meeting with Bakamo");
 
         return Promise.race([
           connected,
@@ -228,7 +228,7 @@ export default function BookingModal() {
       >
         <div className="flex items-start justify-between gap-6 border-b border-white/10 px-6 py-5 sm:px-8">
           <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-accent">Book a demo</p>
+            <p className="text-xs uppercase tracking-[0.2em] text-accent">Book a meeting</p>
             <h2
               id="booking-modal-title"
               className={`${cormorant.className} mt-2 text-2xl leading-tight text-white sm:text-3xl`}
@@ -257,7 +257,7 @@ export default function BookingModal() {
           ) : null}
           {status === "booked" ? (
             <p role="status" className="px-6 pt-6 text-sm text-white sm:px-8">
-              Your demo is booked. Check your inbox for the calendar invitation.
+              Your meeting is booked. Check your inbox for the calendar invitation.
             </p>
           ) : null}
           {status === "failed" ? (

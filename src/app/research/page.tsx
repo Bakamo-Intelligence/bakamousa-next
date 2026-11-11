@@ -4,6 +4,7 @@ import Link from "next/link";
 import { BOOKING_HREF } from "@/lib/booking";
 import AtlasPlates from "@/components/AtlasPlates";
 import { pageOpenGraph } from "@/lib/seo";
+import { SECTORS } from "@/lib/sectors";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -37,6 +38,26 @@ type Study = {
 
 // Every summary is taken from the study's own page or report. Keep it that way.
 const STUDIES: Study[] = [
+  {
+    title: "BARE Zero Proof: Who Drinks Non-Alcoholic Spirits",
+    year: "2022",
+    context: "BARE Zero Proof · Non-alcoholic spirits, United States",
+    summary:
+      "Read 214,000 public posts about non-alcoholic spirits. Industry reports described the buyer as young. The most engaged voices were people who had decided to stop drinking alcohol.",
+    href: "/research/bare-zero-proof",
+    linkLabel: "Read the case study",
+    analyticsLabel: "Research Study: BARE Zero Proof",
+  },
+  {
+    title: "Listening First, Then Asking: Poland's School Meal Reform",
+    year: "2026",
+    context: "With Inquiry · Poland",
+    summary:
+      "Read the online argument about Poland's plant-based school meals and found five objections and one thing nobody states as a position. Inquiry turned them into a survey of 1,017 Poles.",
+    href: "/research/polish-school-meals",
+    linkLabel: "Read the case study",
+    analyticsLabel: "Research Study: Polish School Meals",
+  },
   {
     title: "Hungarian Election 2026: A Psychographic Divide",
     year: "2026",
@@ -189,6 +210,16 @@ const CASES: Case[] = [
   },
 ];
 
+// The sector and specialty pages. Each line is that page's own standfirst.
+const DOMAINS = [
+  ...SECTORS.map((sector) => ({ label: sector.label, href: sector.path, line: sector.standfirst })),
+  {
+    label: "Migration",
+    href: "/migration",
+    line: "A decade of reading how Europeans talk about migration, for foundations and policy institutions.",
+  },
+];
+
 function ArrowIcon() {
   return (
     <svg
@@ -252,6 +283,32 @@ export default function ResearchPage() {
           </p>
         </div>
       </section>
+
+      {/* The Atlas: locator globe plus a list of cases; every case stays server-rendered and linkable */}
+      <section
+        id="atlas"
+        className="px-6 py-20 scroll-mt-24"
+        data-analytics-section="research_atlas"
+        data-analytics-label="Atlas"
+      >
+        <div className="max-w-6xl mx-auto">
+          <div className="max-w-3xl">
+            <p className="text-accent uppercase tracking-[0.2em] text-sm mb-4">The Atlas</p>
+            <h2
+              className={`${cormorant.className} text-3xl md:text-5xl font-light text-white mb-8 leading-tight`}
+            >
+              Where we have read
+            </h2>
+            <p className="text-base font-light leading-relaxed text-text-secondary">
+              A selection of our work, wherever the conversation lives.
+            </p>
+          </div>
+
+          <AtlasPlates />
+        </div>
+      </section>
+
+      <div className="section-divider" />
 
       {/* Cases: expected, found, the questions raised */}
       <section
@@ -383,6 +440,49 @@ export default function ResearchPage() {
       </section>
       <div className="section-divider" />
 
+      {/* Domain expertise: the sector and specialty pages */}
+      <section
+        id="domains"
+        className="px-6 py-20 scroll-mt-24"
+        data-analytics-section="research_domains"
+        data-analytics-label="Domain expertise"
+      >
+        <div className="max-w-5xl mx-auto">
+          <p className="text-accent uppercase tracking-[0.2em] text-sm mb-4">By field</p>
+          <h2
+            className={`${cormorant.className} text-3xl md:text-5xl font-light text-white mb-12 leading-tight max-w-3xl`}
+          >
+            Domain expertise.
+          </h2>
+          <ul className="border-t border-white/10">
+            {DOMAINS.map((domain) => (
+              <li key={domain.href} className="border-b border-white/10">
+                <Link
+                  href={domain.href}
+                  className="group grid gap-2 py-7 md:grid-cols-[16rem_1fr_2rem] md:items-baseline md:gap-8"
+                  data-analytics-event="cta_click"
+                  data-analytics-label={`Domain: ${domain.label}`}
+                  data-analytics-location="research_domains"
+                  data-analytics-destination={domain.href}
+                >
+                  <span
+                    className={`${cormorant.className} text-3xl md:text-4xl leading-tight text-white transition-colors group-hover:text-accent`}
+                  >
+                    {domain.label}
+                  </span>
+                  <span className="text-lg font-light leading-relaxed text-text-secondary">{domain.line}</span>
+                  <span className="hidden text-accent md:block md:justify-self-end">
+                    <ArrowIcon />
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <div className="section-divider" />
+
       {/* Studies */}
       <section
         id="studies"
@@ -391,11 +491,11 @@ export default function ResearchPage() {
         data-analytics-label="Research Studies"
       >
         <div className="max-w-5xl mx-auto">
-          <p className="text-accent uppercase tracking-[0.2em] text-sm mb-4">The Studies</p>
+          <p className="text-accent uppercase tracking-[0.2em] text-sm mb-4">Read in full</p>
           <h2
             className={`${cormorant.className} text-3xl md:text-5xl font-light text-white mb-16 leading-tight max-w-3xl`}
           >
-            Published research.
+            Case studies and published research.
           </h2>
 
           <div className="grid gap-6 md:grid-cols-2">
@@ -444,32 +544,6 @@ export default function ResearchPage() {
               </article>
             ))}
           </div>
-        </div>
-      </section>
-
-      <div className="section-divider" />
-
-      {/* More Atlas entries: locator globe plus a list of cases; every case stays server-rendered and linkable */}
-      <section
-        id="atlas"
-        className="px-6 py-20 scroll-mt-24"
-        data-analytics-section="research_atlas"
-        data-analytics-label="Atlas"
-      >
-        <div className="max-w-6xl mx-auto">
-          <div className="max-w-3xl">
-            <p className="text-accent uppercase tracking-[0.2em] text-sm mb-4">The Atlas</p>
-            <h2
-              className={`${cormorant.className} text-3xl md:text-5xl font-light text-white mb-8 leading-tight`}
-            >
-              More from the Atlas
-            </h2>
-            <p className="text-base font-light leading-relaxed text-text-secondary">
-              A selection of our work, wherever the conversation lives.
-            </p>
-          </div>
-
-          <AtlasPlates />
         </div>
       </section>
 

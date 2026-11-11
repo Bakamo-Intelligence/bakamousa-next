@@ -132,11 +132,11 @@ export default function SectorPage({ sector }: { sector: Sector }) {
               href={BOOKING_HREF}
               className="cta-button text-sm"
               data-analytics-event="book_demo_click"
-              data-analytics-label="Book a demo"
+              data-analytics-label="Book a meeting"
               data-analytics-location={`${location}_cta`}
               data-analytics-destination={BOOKING_HREF}
             >
-              Book a demo
+              Book a meeting
             </Link>
             {otherSectors.map((other) => (
               <Link

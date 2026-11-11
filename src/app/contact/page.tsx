@@ -6,7 +6,7 @@ const DESCRIPTION = `Tell us about the study, the tracker or the brief you are a
 import ContactPage from "@/components/ContactPage";
 
 export const metadata: Metadata = {
-  title: { absolute: "Contact Bakamo | Social Intelligence Research" },
+  title: { absolute: "Contact Bakamo | What Is Your Research Not Asking?" },
   description:
     DESCRIPTION,
   alternates: {
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   },
   openGraph: pageOpenGraph(
     "/contact",
-    "Contact Bakamo | Social Intelligence Research",
+    "Contact Bakamo | What Is Your Research Not Asking?",
     DESCRIPTION,
   ),
 };

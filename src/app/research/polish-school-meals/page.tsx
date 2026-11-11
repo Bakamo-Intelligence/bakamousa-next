@@ -390,11 +390,11 @@ export default function PolishSchoolMealsPage() {
                 href={BOOKING_HREF}
                 className="cta-button text-sm"
                 data-analytics-event="book_demo_click"
-                data-analytics-label="Book a demo"
+                data-analytics-label="Book a meeting"
                 data-analytics-location="psm_cta"
                 data-analytics-destination={BOOKING_HREF}
               >
-                Book a demo
+                Book a meeting
               </Link>
               <Link
                 href="/public-sector"
