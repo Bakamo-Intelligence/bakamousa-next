@@ -105,14 +105,14 @@ export default function SocialTruthHome({ heroVideo }: { heroVideo: string }) {
           <h1
             className={`${cormorant.className} mt-8 max-w-5xl text-[clamp(2.75rem,6vw,5.75rem)] leading-[0.95] tracking-tight text-white`}
           >
-            Most research starts with what you know. Bakamo finds what you don&apos;t.
+            Most research answers your questions. Bakamo finds the ones nobody thought to ask.
           </h1>
           <div className="mt-10 h-px w-16 bg-accent" />
           <p className="mt-10 max-w-3xl text-lg font-light leading-relaxed text-white/75 md:text-xl">
-            Every questionnaire starts with assumptions about what matters. We start with people:
-            what they talk about, what they care about and what they take for granted. By listening
-            before asking, we uncover the meanings, motivations and language that research
-            questions often miss. The result is a better understanding of what to ask next.
+            A questionnaire or a discussion guide can only contain what its author already
+            suspected. So we start with people: what they talk about, what they care about and what
+            they take for granted. We listen before anyone asks, and bring back the meanings and
+            the language your questions would have missed. You leave knowing what to ask next.
           </p>
           <div className="mt-12 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
             <Link

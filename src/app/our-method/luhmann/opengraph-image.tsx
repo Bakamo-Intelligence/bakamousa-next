@@ -2,7 +2,7 @@ import { OG_CONTENT_TYPE, OG_SIZE, ogImageAlt, renderOgImage } from "@/lib/og-im
 
 const content = {
   title: "Why We Read the Way We Do",
-  descriptor: "Niklas Luhmann and Social Truth",
+  descriptor: "Niklas Luhmann and why we read conversation",
 };
 
 export const alt = ogImageAlt(content);

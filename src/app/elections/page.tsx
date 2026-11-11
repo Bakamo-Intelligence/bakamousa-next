@@ -219,7 +219,7 @@ export default function ElectionsPage() {
           <div className="w-16 h-px bg-accent mt-10 mb-10" />
 
           <p className="text-lg font-light leading-relaxed text-text-secondary max-w-3xl">
-            Budapest &mdash; Bakamo, a global social intelligence agency, publishes findings from a
+            Budapest &mdash; Bakamo, a social intelligence company, publishes findings from a
             large-scale semantic analysis of Hungarian social media conversations ahead of the April
             12, 2026 parliamentary elections. The research reveals a measurable psychographic divide
             between supporters of Tisza (Péter Magyar) and supporters of Fidesz (Viktor Orbán) &mdash;
@@ -894,18 +894,11 @@ export default function ElectionsPage() {
               <h2
                 className={`${cormorant.className} text-3xl md:text-4xl font-light text-white leading-tight`}
               >
-                Reality-first intelligence, at scale.
+                We find what nobody thought to ask about.
               </h2>
               <p className="mt-6 text-base font-light leading-relaxed text-text-secondary">
-                Bakamo is a global social intelligence agency that listens to the open web to reveal
-                truths that conventional research cannot reach. Our methodology combines technology,
-                human analysis, and academic rigour to surface the motivational and cultural drivers
-                buried beneath surface-level opinion.
-              </p>
-              <p className="mt-4 text-sm font-light leading-relaxed text-text-muted">
-                It is this foundation in reality &mdash; in what people actually say, not what they
-                say when asked &mdash; that gives Bakamo&apos;s psychographic analysis its distinctive
-                credibility.
+                Bakamo is a social intelligence company. We read what people say to each other and
+                find the questions nobody thought to ask.
               </p>
             </div>
             <div className="space-y-4">

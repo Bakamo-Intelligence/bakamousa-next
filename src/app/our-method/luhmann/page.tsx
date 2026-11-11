@@ -16,7 +16,7 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
-const TITLE = "Why We Read the Way We Do: Niklas Luhmann and Social Truth";
+const TITLE = "Why We Read the Way We Do: Niklas Luhmann and Why We Read Conversation";
 const PAGE_PATH = "/our-method/luhmann";
 const PAGE_URL = `${SITE_URL}${PAGE_PATH}`;
 const DESCRIPTION =
@@ -170,10 +170,18 @@ export default function LuhmannPage() {
             Why we read the way we do.
           </h1>
           <p className="mt-4 text-xs uppercase tracking-[0.2em] text-text-secondary">
-            Niklas Luhmann and Social Truth
+            Niklas Luhmann and why we read conversation
           </p>
           <p className="mt-10 max-w-3xl text-xl font-light leading-relaxed text-text-secondary">
             {LEAD}
+          </p>
+          <p className="mt-6 max-w-3xl text-base leading-relaxed text-text-secondary">
+            This page is the philosophical argument behind the discovery phase. Measurement is the
+            second phase, and{" "}
+            <Link href="/our-method" className="text-accent underline-offset-4 hover:underline">
+              Our Method
+            </Link>{" "}
+            describes how the two fit.
           </p>
         </div>
       </section>
@@ -185,7 +193,7 @@ export default function LuhmannPage() {
       <section className="border-t border-border-grey px-6 py-28 text-center md:py-36">
         <div className="mx-auto max-w-4xl">
           <h2 className={`${cormorant.className} text-5xl leading-none text-white md:text-7xl`}>
-            Build your next study on reality.
+            Start with the study you are planning.
           </h2>
           <p className="mt-8 text-base text-text-secondary">
             <Link href="/our-method" className="text-accent transition-colors hover:text-white">

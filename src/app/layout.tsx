@@ -24,11 +24,11 @@ export const metadata: Metadata = {
     template: "%s | Bakamo",
   },
   description:
-    "Most research starts with what you know. Bakamo finds what you don't. By listening before asking, we uncover the meanings, motivations and language that research questions often miss.",
+    "Most research answers your questions. Bakamo finds the ones nobody thought to ask. We listen before anyone asks, and bring back the meanings and the language your questions would have missed.",
   openGraph: pageOpenGraph(
     "/",
     "Bakamo | We Find What Nobody Thought to Ask About",
-    "Most research starts with what you know. Bakamo finds what you don't. By listening before asking, we uncover the meanings, motivations and language that research questions often miss.",
+    "Most research answers your questions. Bakamo finds the ones nobody thought to ask. We listen before anyone asks, and bring back the meanings and the language your questions would have missed.",
   ),
   // Share images come from the opengraph-image/twitter-image files. Title and
   // description are left out so X falls back to each page's Open Graph tags.
